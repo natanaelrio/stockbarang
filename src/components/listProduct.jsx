@@ -52,7 +52,6 @@ export default function ListProduct({ data }) {
 
     return (
         <>
-            {JSONStringfy}
             <button className={styles.tombolscan} onClick={() => setCameraBarcode(!input)}>Scan</button>
             <button className={styles.tambahproduct} onClick={() => setInput(!input)}>Tambahkan Product</button>
             <div className={styles.tableContainer}>
