@@ -54,11 +54,10 @@ export default function ListProduct({ data }) {
     }, [scannedData])
 
 
-    console.log(dataBarcode);
 
     return (
         <>
-            <button className={styles.tombolscan} onClick={() => { setCameraBarcode(!input), setScannedData("") }}>Scan</button>
+            <button className={styles.tombolscan} onClick={() => { setCameraBarcode(!input), setDataBarcode([]) }}>Scan</button>
             <button className={styles.tambahproduct} onClick={() => setInput(!input)}>Tambahkan Product</button>
             <div className={styles.tableContainer}>
                 <table className={styles.productTable}>
