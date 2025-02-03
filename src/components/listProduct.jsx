@@ -74,7 +74,7 @@ export default function ListProduct({ data }) {
 
     //Lainnya
     const [valueIdBarang, setValueIdBarang] = useState('')
-    const [scannedData, setScannedData] = useState("");
+    const [scannedData, setScannedData] = useState(null);
     const [cameraBarcode, setCameraBarcode] = useState(false)
     const [dataBarcode, setDataBarcode] = useState([])
     const [Nodata, setNoData] = useState('')
@@ -89,6 +89,8 @@ export default function ListProduct({ data }) {
         }
         FetchData()
     }, [scannedData])
+
+    console.log(scannedData);
 
     const handleIdBarang = async (e) => {
         e.preventDefault()
@@ -138,14 +140,23 @@ export default function ListProduct({ data }) {
         setDataBarcode([])
         setIsTambahKurang(null)
         setHiddenCamera(true)
-        setIsLoading(false),
-            setNoData('')
+        setIsLoading(false)
+        setNoData('')
+        setScannedData(null)
+    }
+
+    const TombolTambahkan = () => {
+        setInput(!input)
+        setIdInput('')
+        setNamaBarangInput('')
+        setIsLoadingInput(false)
+        setScannedData(null)
     }
 
     return (
         <>
             <button className={styles.tombolscan} onClick={TombolScan}>Scan</button>
-            <button className={styles.tambahproduct} onClick={() => { setInput(!input), setIdInput(''), setNamaBarangInput(''), setIsLoadingInput(false) }}>Tambahkan Product</button>
+            <button className={styles.tambahproduct} onClick={TombolTambahkan}>Tambahkan Product</button>
             <div className={styles.tableContainer}>
                 <table className={styles.productTable}>
                     <thead>
@@ -180,7 +191,7 @@ export default function ListProduct({ data }) {
                 <>
                     <div className={styles.bghitam} onClick={() => setInput(!input)}></div>
                     <form className={styles.inputbarang}>
-                        <BarcodeScanner onScan={(data) => setScannedData(data)} />
+                        {!scannedData && <BarcodeScanner onScan={(data) => setScannedData(data)} />}
                         <input disabled={isLoadingInput} type='text' value={idInput} onChange={(e) => setIdInput(scannedData ? scannedData : e.target.value)} placeholder='ID BARANG' name='idBarang' />
                         <input disabled={isLoadingInput} type='text' onChange={(e) => setNamaBarangInput(e.target.value)} placeholder='NAMA BARANG' name='namaBarang' />
                         <button disabled={isLoadingInput} onClick={handleBarangInput} type='submit'>Submit</button>
@@ -213,11 +224,15 @@ export default function ListProduct({ data }) {
                 <>
                     <div className={styles.bghitam} onClick={() => setCameraBarcode(null)}></div>
                     <div className={styles.inputbarang}>
-                        {!Boolean(dataBarcode.length) && <BarcodeScanner onScan={(data) => setScannedData(data)} />}
-                        <form className={styles.inputkamera}>
-                            <input disabled={isLoading} onChange={(e) => setValueIdBarang(e.target.value)} type='text' placeholder='ID Barang' name='IdBarang' />
-                            <button onClick={handleIdBarang} disabled={isLoading} type='submit'>Cari</button>
-                        </form>
+                        {!Boolean(dataBarcode.length) &&
+                            <>
+                                <BarcodeScanner onScan={(data) => setScannedData(data)} />
+                                <form className={styles.inputkamera}>
+                                    <input disabled={isLoading} onChange={(e) => setValueIdBarang(e.target.value)} type='text' placeholder='ID Barang' name='IdBarang' />
+                                    <button onClick={handleIdBarang} disabled={isLoading} type='submit'>Cari</button>
+                                </form>
+                            </>
+                        }
                         {isLoading && <p><strong>Loading...</strong></p>}
                         {Nodata == 'Tidak ada Produk' && Nodata}
                         {Boolean(dataBarcode.length) &&
