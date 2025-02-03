@@ -42,7 +42,9 @@ export default function ListProduct({ data }) {
 
     const startScanner = () => {
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({ video: true })
+            navigator.mediaDevices.getUserMedia({
+                video: { facingMode: { exact: "environment" } } // Menggunakan kamera belakang
+            })
                 .then((stream) => {
                     videoRef.current.srcObject = stream;
                     videoRef.current.play();
