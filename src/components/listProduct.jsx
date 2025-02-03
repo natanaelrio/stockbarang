@@ -93,8 +93,8 @@ export default function ListProduct({ data }) {
                 error: <b>Could not save.</b>,
             }
         );
-        router.refresh()
-        // setCameraBarcode(!cameraBarcode)
+        // router.refresh()
+        setCameraBarcode(!cameraBarcode)
         setIsLoading(false)
     }
 

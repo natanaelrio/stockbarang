@@ -27,6 +27,9 @@ export const GetProduct = async () => {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
+            },
+            next: {
+                revalidate: 0
             }
         });
         const data = await res.json()
@@ -46,6 +49,9 @@ export const GetSearchProduct = async (e) => {
                 'Content-Type': 'application/json',
                 'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
             },
+            next: {
+                revalidate: 0
+            }
         });
         const data = await res.json()
         return data
