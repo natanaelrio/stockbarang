@@ -42,17 +42,23 @@ export default function ListProduct({ data }) {
     const [scannedData, setScannedData] = useState("");
     const [cameraBarcode, setCameraBarcode] = useState(false)
     const [dataBarcode, setDataBarcode] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
     useEffect(() => {
         const FetchData = async () => {
+            setIsLoading(true)
             const data = await GetSearchProduct(scannedData)
-            setDataBarcode(data.data[0])
+            setDataBarcode(data.data)
+            setIsLoading(false)
         }
         FetchData()
     }, [scannedData])
 
+
+    console.log(dataBarcode);
+
     return (
         <>
-            <button className={styles.tombolscan} onClick={() => setCameraBarcode(!input)}>Scan</button>
+            <button className={styles.tombolscan} onClick={() => { setCameraBarcode(!input), setScannedData("") }}>Scan</button>
             <button className={styles.tambahproduct} onClick={() => setInput(!input)}>Tambahkan Product</button>
             <div className={styles.tableContainer}>
                 <table className={styles.productTable}>
@@ -121,12 +127,13 @@ export default function ListProduct({ data }) {
                     <div className={styles.bghitam} onClick={() => setCameraBarcode(null)}></div>
                     <div className={styles.inputbarang}>
                         <BarcodeScanner onScan={(data) => setScannedData(data)} />
-                        {scannedData &&
+                        {isLoading && <p><strong>Loading...</strong></p>}
+                        {Boolean(dataBarcode.length) &&
                             <>
                                 <h3>Detail Produk</h3>
                                 <p><strong>ID: {scannedData}</strong></p>
-                                <p><strong>Nama Barang:{dataBarcode?.name_barang}</strong></p>
-                                <p><strong>Stok Barang:{dataBarcode?.stock_barang}</strong></p>
+                                <p><strong>Nama Barang:{dataBarcode[0]?.name_barang}</strong></p>
+                                <p><strong>Stok Barang:{dataBarcode[0]?.stock_barang}</strong></p>
                             </>
                         }
                         <button onClick={() => setCameraBarcode(null)}>Tutup</button>

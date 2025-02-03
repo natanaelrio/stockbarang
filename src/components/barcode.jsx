@@ -46,7 +46,7 @@ const BarcodeScanner = ({ onScan }) => {
   return (
     <div>
       <video ref={videoRef} style={{ width: "100%", height: "auto" }} />
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {/* {error && <p style={{ color: "red" }}>{error}</p>} */}
     </div>
   );
 };
