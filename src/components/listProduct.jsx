@@ -213,7 +213,7 @@ export default function ListProduct({ data }) {
                 <>
                     <div className={styles.bghitam} onClick={() => setCameraBarcode(null)}></div>
                     <div className={styles.inputbarang}>
-                        {hiddenCamera && <BarcodeScanner onScan={(data) => setScannedData(data)} />}
+                        {!Boolean(dataBarcode.length) && <BarcodeScanner onScan={(data) => setScannedData(data)} />}
                         <form className={styles.inputkamera}>
                             <input disabled={isLoading} onChange={(e) => setValueIdBarang(e.target.value)} type='text' placeholder='ID Barang' name='IdBarang' />
                             <button onClick={handleIdBarang} disabled={isLoading} type='submit'>Cari</button>
