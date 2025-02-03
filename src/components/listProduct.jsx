@@ -4,6 +4,7 @@ import JsBarcode from 'jsbarcode';
 import styles from '@/components/listProduct.module.css';
 import { BrowserMultiFormatReader, BrowserBarcodeReader } from "@zxing/library";
 import BarcodeScanner from './barcode';
+import { GetSearchProduct } from '@/service/data';
 
 export default function ListProduct({ data }) {
     const [input, setInput] = useState(false);
@@ -39,11 +40,20 @@ export default function ListProduct({ data }) {
     };
 
     const [scannedData, setScannedData] = useState("");
+    const [cameraBarcode, setCameraBarcode] = useState(false)
+    const [dataBarcode, setDataBarcode] = useState([])
+    useEffect(() => {
+        const FetchData = async () => {
+            const data = await GetSearchProduct(scannedData)
+            setDataBarcode(data.data[0])
+        }
+        FetchData()
+    }, [scannedData])
+
     return (
         <>
-            <h2>Scan Barcode</h2>
-            <BarcodeScanner onScan={(data) => setScannedData(data)} />
-            {scannedData && <p>Hasil Scan: {scannedData}</p>}
+            {JSONStringfy}
+            <button className={styles.tombolscan} onClick={() => setCameraBarcode(!input)}>Scan</button>
             <button className={styles.tambahproduct} onClick={() => setInput(!input)}>Tambahkan Product</button>
             <div className={styles.tableContainer}>
                 <table className={styles.productTable}>
@@ -103,6 +113,24 @@ export default function ListProduct({ data }) {
                             ></svg>
                         </div>
                         <button onClick={() => setSelectedProduct(null)}>Tutup</button>
+                    </div>
+                </>
+            )}
+
+            {cameraBarcode && (
+                <>
+                    <div className={styles.bghitam} onClick={() => setCameraBarcode(null)}></div>
+                    <div className={styles.inputbarang}>
+                        <BarcodeScanner onScan={(data) => setScannedData(data)} />
+                        {scannedData &&
+                            <>
+                                <h3>Detail Produk</h3>
+                                <p><strong>ID: {scannedData}</strong></p>
+                                <p><strong>Nama Barang:{dataBarcode.name_barang}</strong></p>
+                                <p><strong>Stok Barang:{dataBarcode.stock_barang}</strong></p>
+                            </>
+                        }
+                        <button onClick={() => setCameraBarcode(null)}>Tutup</button>
                     </div>
                 </>
             )}

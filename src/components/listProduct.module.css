@@ -127,3 +127,9 @@
         min-width: 500px;
     }
 }
+
+@media (max-width: 555px) {
+    .inputbarang {
+        width: 95%;
+    }
+}
