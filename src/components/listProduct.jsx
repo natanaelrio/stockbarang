@@ -76,10 +76,11 @@ export default function ListProduct({ data }) {
         e.preventDefault()
         setIsLoading(true)
         const FetchData = async () => {
-            isTambahKurang ? await UpdateIncrement({
+            isTambahKurang && await UpdateIncrement({
                 id: dataBarcode[0]?.id,
                 stock: valueTambahKurang
-            }) : await UpdateDecrement({
+            })
+            !isTambahKurang && await UpdateDecrement({
                 id: dataBarcode[0]?.id,
                 stock: valueTambahKurang
             })
@@ -93,7 +94,7 @@ export default function ListProduct({ data }) {
             }
         );
         router.refresh()
-        setCameraBarcode(!cameraBarcode)
+        // setCameraBarcode(!cameraBarcode)
         setIsLoading(false)
     }
 
