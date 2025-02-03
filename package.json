@@ -10,12 +10,15 @@
   },
   "dependencies": {
     "@prisma/client": "^5.9.1",
+    "@zxing/library": "^0.21.3",
+    "html5-qrcode": "^2.3.8",
     "jsbarcode": "^3.11.6",
     "jsqr": "^1.4.0",
     "moment": "^2.30.1",
     "moment-timezone": "^0.5.47",
     "nanoid": "^5.0.9",
     "next": "14.0.3",
+    "quagga": "^0.12.1",
     "react": "^18",
     "react-dom": "^18"
   },

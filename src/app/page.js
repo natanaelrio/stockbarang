@@ -4,6 +4,8 @@ import { GetProduct } from '@/service/data'
 export default async function Home() {
   const data = await GetProduct()
   return (
-    <ListProduct data={data.data} />
+    <>
+      <ListProduct data={data.data} />
+    </>
   )
 }
