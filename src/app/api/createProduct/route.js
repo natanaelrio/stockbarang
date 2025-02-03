@@ -22,7 +22,7 @@ export async function POST(req) {
             return res
         } catch (error) {
             if (error.code === "P2002") {
-                return new Response(JSON.stringify({ error: 'ID' + ' ' + id + ' ' + 'sudah ada' }), {
+                return new Response(JSON.stringify({ status: 500 }), {
                     status: 400,
                     headers: { "Content-Type": "application/json" },
                 })

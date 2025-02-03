@@ -47,22 +47,25 @@ export default function ListProduct({ data }) {
     const [namaBarangInput, setNamaBarangInput] = useState('')
     const [isLoadingInput, setIsLoadingInput] = useState(false)
 
-    const handleBarangInput = async () => {
+    const handleBarangInput = () => {
+        setIsLoadingInput(true)
         const FetchData = async () => {
-            setIsLoadingInput(true)
-            await CreateProduct({
+            const res = await CreateProduct({
                 "id": idInput,
                 "name_barang": namaBarangInput,
                 "stock_barang": 0
             })
-            setIsLoadingInput(false)
+            if (!res || res.status === 500) {
+                throw new Error("Server error, gagal menyimpan produk.");
+            }
         }
+        setIsLoadingInput(false)
         toast.promise(
             FetchData(),
             {
                 loading: 'Saving...',
                 success: <b>{namaBarangInput}, Berhasil ditambakan!</b>,
-                error: <b>Could not save.</b>,
+                error: <b>ID : {idInput} syudah adaww....</b>,
             }
         );
         router.refresh()
@@ -104,14 +107,18 @@ export default function ListProduct({ data }) {
         e.preventDefault()
         setIsLoading(true)
         const FetchData = async () => {
-            isTambahKurang && await UpdateIncrement({
-                id: dataBarcode[0]?.id,
-                stock: valueTambahKurang
-            })
-            !isTambahKurang && await UpdateDecrement({
-                id: dataBarcode[0]?.id,
-                stock: valueTambahKurang
-            })
+            try {
+                isTambahKurang && await UpdateIncrement({
+                    id: dataBarcode[0]?.id,
+                    stock: valueTambahKurang
+                })
+                !isTambahKurang && await UpdateDecrement({
+                    id: dataBarcode[0]?.id,
+                    stock: valueTambahKurang
+                })
+            } catch (e) {
+                throw new Error("Server error, gagal update stock.");
+            }
         }
         toast.promise(
             FetchData(),
@@ -138,7 +145,7 @@ export default function ListProduct({ data }) {
     return (
         <>
             <button className={styles.tombolscan} onClick={TombolScan}>Scan</button>
-            <button className={styles.tambahproduct} onClick={() => setInput(!input)}>Tambahkan Product</button>
+            <button className={styles.tambahproduct} onClick={() => { setInput(!input), setIdInput(''), setNamaBarangInput(''), setIsLoadingInput(false) }}>Tambahkan Product</button>
             <div className={styles.tableContainer}>
                 <table className={styles.productTable}>
                     <thead>
@@ -174,7 +181,7 @@ export default function ListProduct({ data }) {
                     <div className={styles.bghitam} onClick={() => setInput(!input)}></div>
                     <form className={styles.inputbarang}>
                         <BarcodeScanner onScan={(data) => setScannedData(data)} />
-                        <input disabled={isLoadingInput} type='text' value={scannedData} onChange={(e) => setIdInput(e.target.value)} placeholder='ID BARANG' name='idBarang' />
+                        <input disabled={isLoadingInput} type='text' value={idInput} onChange={(e) => setIdInput(scannedData ? scannedData : e.target.value)} placeholder='ID BARANG' name='idBarang' />
                         <input disabled={isLoadingInput} type='text' onChange={(e) => setNamaBarangInput(e.target.value)} placeholder='NAMA BARANG' name='namaBarang' />
                         <button disabled={isLoadingInput} onClick={handleBarangInput} type='submit'>Submit</button>
                         <div className={styles.close} onClick={() => setInput(!input)}>X</div>
