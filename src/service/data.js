@@ -9,7 +9,6 @@ export const CreateProduct = async (e) => {
                 'Content-Type': 'application/json',
                 'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
             },
-            cache: 'no-store',
             body: JSON.stringify(e),
         });
         const data = await res.json()
@@ -28,8 +27,7 @@ export const GetProduct = async () => {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
-            },
-            cache: 'no-store'
+            }
         });
         const data = await res.json()
         return data
@@ -48,7 +46,6 @@ export const GetSearchProduct = async (e) => {
                 'Content-Type': 'application/json',
                 'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
             },
-            cache: 'no-store'
         });
         const data = await res.json()
         return data
@@ -68,7 +65,6 @@ export const PostLogProduct = async (e) => {
                 'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
             },
             body: JSON.stringify(e),
-            cache: 'no-store'
         });
         const data = await res.json()
         return data
@@ -89,8 +85,7 @@ export const UpdateIncrement = async (e) => {
                 'Content-Type': 'application/json',
                 'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
             },
-            body: JSON.stringify(e),
-            cache: 'no-store'
+            body: JSON.stringify(e)
         });
         const data = await res.json()
         return data
@@ -110,7 +105,6 @@ export const UpdateDecrement = async (e) => {
                 'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
             },
             body: JSON.stringify(e),
-            cache: 'no-store'
         });
         const data = await res.json()
         return data

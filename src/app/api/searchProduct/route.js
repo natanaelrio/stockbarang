@@ -14,8 +14,10 @@ export async function GET(req) {
             }
         });
 
+        const dataLength = data.length
+
         const authorization = req.headers.get('authorization')
-        const res = await ResponseData(data, authorization)
+        const res = await ResponseData(data, authorization, { dataLength: dataLength == 0 ? 'Tidak ada Produk' : dataLength })
         return res
 
     } else {

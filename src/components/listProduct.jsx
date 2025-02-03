@@ -2,11 +2,13 @@
 import { useState, useEffect, useRef } from 'react';
 import JsBarcode from 'jsbarcode';
 import styles from '@/components/listProduct.module.css';
-import { BrowserMultiFormatReader, BrowserBarcodeReader } from "@zxing/library";
-import BarcodeScanner from './barcode';
-import { GetSearchProduct } from '@/service/data';
+import BarcodeScanner from '@/components/barcode';
+import { GetSearchProduct, UpdateDecrement, UpdateIncrement } from '@/service/data';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 export default function ListProduct({ data }) {
+    const router = useRouter()
     const [input, setInput] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(false);
     const barcodeRefs = useRef({});
@@ -39,10 +41,14 @@ export default function ListProduct({ data }) {
         setSelectedProduct(product);
     };
 
+
+    const [valueIdBarang, setValueIdBarang] = useState('')
     const [scannedData, setScannedData] = useState("");
     const [cameraBarcode, setCameraBarcode] = useState(false)
     const [dataBarcode, setDataBarcode] = useState([])
+    const [Nodata, setNoData] = useState('')
     const [isLoading, setIsLoading] = useState(false)
+    const [hiddenCamera, setHiddenCamera] = useState(true)
     useEffect(() => {
         const FetchData = async () => {
             setIsLoading(true)
@@ -53,11 +59,56 @@ export default function ListProduct({ data }) {
         FetchData()
     }, [scannedData])
 
+    const handleIdBarang = async (e) => {
+        e.preventDefault()
+        setHiddenCamera(false)
+        setIsLoading(true)
+        const data = await GetSearchProduct(valueIdBarang)
+        setDataBarcode(data.data)
+        setNoData(data.dataLength)
+        setIsLoading(false)
+    }
 
+    const [isTambahKurang, setIsTambahKurang] = useState(null)
+    const [valueTambahKurang, setValueTambahKurang] = useState('')
+
+    const handleTambahKurang = async (e) => {
+        e.preventDefault()
+        setIsLoading(true)
+        const FetchData = async () => {
+            isTambahKurang ? await UpdateIncrement({
+                id: dataBarcode[0]?.id,
+                stock: valueTambahKurang
+            }) : await UpdateDecrement({
+                id: dataBarcode[0]?.id,
+                stock: valueTambahKurang
+            })
+        }
+        toast.promise(
+            FetchData(),
+            {
+                loading: 'Saving...',
+                success: <b>Settings saved!</b>,
+                error: <b>Could not save.</b>,
+            }
+        );
+        router.refresh()
+        setCameraBarcode(!cameraBarcode)
+        setIsLoading(false)
+    }
+
+    const TombolScan = () => {
+        setCameraBarcode(!input)
+        setDataBarcode([])
+        setIsTambahKurang(null)
+        setHiddenCamera(true)
+        setIsLoading(false),
+            setNoData('')
+    }
 
     return (
         <>
-            <button className={styles.tombolscan} onClick={() => { setCameraBarcode(!input), setDataBarcode([]) }}>Scan</button>
+            <button className={styles.tombolscan} onClick={TombolScan}>Scan</button>
             <button className={styles.tambahproduct} onClick={() => setInput(!input)}>Tambahkan Product</button>
             <div className={styles.tableContainer}>
                 <table className={styles.productTable}>
@@ -125,17 +176,32 @@ export default function ListProduct({ data }) {
                 <>
                     <div className={styles.bghitam} onClick={() => setCameraBarcode(null)}></div>
                     <div className={styles.inputbarang}>
-                        <BarcodeScanner onScan={(data) => setScannedData(data)} />
+                        {hiddenCamera && <BarcodeScanner onScan={(data) => setScannedData(data)} />}
+                        <form className={styles.inputkamera}>
+                            <input disabled={isLoading} onChange={(e) => setValueIdBarang(e.target.value)} type='text' placeholder='ID Barang' name='IdBarang' />
+                            <button onClick={handleIdBarang} disabled={isLoading} type='submit'>Cari</button>
+                        </form>
                         {isLoading && <p><strong>Loading...</strong></p>}
+                        {Nodata == 'Tidak ada Produk' && Nodata}
                         {Boolean(dataBarcode.length) &&
                             <>
                                 <h3>Detail Produk</h3>
-                                <p><strong>ID: {scannedData}</strong></p>
+                                <p><strong>ID: {dataBarcode[0]?.id}</strong></p>
                                 <p><strong>Nama Barang:{dataBarcode[0]?.name_barang}</strong></p>
                                 <p><strong>Stok Barang:{dataBarcode[0]?.stock_barang}</strong></p>
+                                <span>
+                                    <button onClick={() => setIsTambahKurang(true)}>Tambah +</button>
+                                    <button onClick={() => setIsTambahKurang(false)}>Kurang -</button>
+                                    {isTambahKurang !== null &&
+                                        <form className={styles.inputkamera}>
+                                            <input disabled={isLoading} onChange={(e) => setValueTambahKurang(e.target.value)} type='text' placeholder={isTambahKurang ? 'Tambahi ++' : 'Kurangi--'} name='IdBarang' />
+                                            <button disabled={isLoading} onClick={handleTambahKurang} type='submit'>Submit</button>
+                                        </form>
+                                    }
+                                </span>
                             </>
                         }
-                        <button onClick={() => setCameraBarcode(null)}>Tutup</button>
+                        <div className={styles.close} onClick={() => setCameraBarcode(null)}>X</div>
                     </div>
                 </>
             )}
