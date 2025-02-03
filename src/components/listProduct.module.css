@@ -1,0 +1,129 @@
+.tableContainer {
+    padding: 20px;
+    max-width: 100%;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+}
+
+.productTable {
+    width: var(--max-width);
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.productTable th, .productTable td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.productTable th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+
+.productTable td:nth-child(3) {
+    width: 5px;
+}
+
+.productTable td:nth-child(2) {
+    width: fit-content;
+}
+
+.productTable td:nth-child(4) {
+    width: 110px !important;
+}
+
+.productTable td svg {
+    width: 110px !important;
+    height: fit-content;
+}
+
+
+.bghitam {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100dvh;
+    background-color: black;
+    opacity: 0.5;
+}
+
+.inputbarang {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    z-index: 200;
+    width: 500px;
+    height: fit-content;
+    border-radius: 12px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #ddd;
+}
+
+.inputbarang input {
+    padding: 20px;
+}
+
+.inputbarang button {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.inputbarang .close {
+    position: absolute;
+    top: -15px;
+    right: -10px;
+    background-color: red;
+    font-weight: 1000;
+    padding: 10px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.tambahproduct {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.scanvideo {
+    position: fixed;
+    top: 0;
+}
+
+.tombolscan {
+    position: fixed;
+    bottom: 82px;
+    right: 30px;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 20;
+}
+
+
+@media (max-width: 768px) {
+    .tableContainer {
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch;
+        justify-content: flex-start;
+    }
+
+    .productTable {
+        min-width: 500px;
+    }
+}

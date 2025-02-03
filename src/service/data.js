@@ -1,0 +1,122 @@
+'use server'
+import { revalidatePath } from 'next/cache';
+
+export const CreateProduct = async (e) => {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/createProduct`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
+            },
+            cache: 'no-store',
+            body: JSON.stringify(e),
+        });
+        const data = await res.json()
+        return data
+    }
+    catch (err) {
+        console.log(err);
+    }
+    revalidatePath('/')
+}
+
+export const GetProduct = async () => {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/getProduct`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
+            },
+            cache: 'no-store'
+        });
+        const data = await res.json()
+        return data
+    }
+    catch (err) {
+        console.log(err);
+    }
+    revalidatePath('/')
+}
+
+export const GetSearchProduct = async (e) => {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/searchProduct?query=${e}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
+            },
+            cache: 'no-store'
+        });
+        const data = await res.json()
+        return data
+    }
+    catch (err) {
+        console.log(err);
+    }
+    revalidatePath('/')
+}
+
+export const PostLogProduct = async (e) => {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/createLogProduct`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
+            },
+            body: JSON.stringify(e),
+            cache: 'no-store'
+        });
+        const data = await res.json()
+        return data
+    }
+    catch (err) {
+        console.log(err);
+    }
+    revalidatePath('/')
+}
+
+
+
+export const UpdateIncrement = async (e) => {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/updateProductIncrement`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
+            },
+            body: JSON.stringify(e),
+            cache: 'no-store'
+        });
+        const data = await res.json()
+        return data
+    }
+    catch (err) {
+        console.log(err);
+    }
+    revalidatePath('/')
+}
+
+export const UpdateDecrement = async (e) => {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/updateProductDecrement`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
+            },
+            body: JSON.stringify(e),
+            cache: 'no-store'
+        });
+        const data = await res.json()
+        return data
+    }
+    catch (err) {
+        console.log(err);
+    }
+    revalidatePath('/')
+}
