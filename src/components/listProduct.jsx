@@ -1,16 +1,16 @@
-"use client"
+'use client'
 import { useState, useEffect, useRef } from 'react';
 import JsBarcode from 'jsbarcode';
+import jsQR from 'jsqr'; // Import pustaka jsQR untuk membaca barcode dari video
 import styles from '@/components/listProduct.module.css';
-import jsQR from 'jsqr'; // Import pustaka jsQR untuk membaca barcode dari stream video
 
 export default function ListProduct({ data }) {
     const [input, setInput] = useState(false);
-    const [selectedProduct, setSelectedProduct] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState(null);
     const barcodeRefs = useRef({});
-    const videoRef = useRef(null); // Ref untuk video stream
-    const canvasRef = useRef(null); // Ref untuk canvas untuk membaca QR/Barcode
-    const [isScanning, setIsScanning] = useState(false); // Mengatur status pemindaian
+    const videoRef = useRef(null);
+    const canvasRef = useRef(null);
+    const [isScanning, setIsScanning] = useState(false);
 
     useEffect(() => {
         data.forEach((product) => {
@@ -25,31 +25,22 @@ export default function ListProduct({ data }) {
     }, [data]);
 
     useEffect(() => {
-        if (selectedProduct) {
-            const barcodeElement = barcodeRefs.current[selectedProduct.id];
-            if (barcodeElement) {
-                JsBarcode(barcodeElement, selectedProduct.id, {
-                    format: 'CODE128',
-                    displayValue: true,
-                });
-            }
+        if (isScanning) {
+            startScanner();
+        } else {
+            stopScanner();
         }
-    }, [selectedProduct]);
-
-    const handleBarcodeClick = (product) => {
-        setSelectedProduct(product);
-    };
+    }, [isScanning]);
 
     const startScanner = () => {
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             navigator.mediaDevices.getUserMedia({
-                video: { facingMode: { exact: "environment" } } // Menggunakan kamera belakang
+                video: { facingMode: "environment" } // Menggunakan kamera belakang
             })
                 .then((stream) => {
                     videoRef.current.srcObject = stream;
                     videoRef.current.play();
-                    setIsScanning(true);
-                    scanBarcode(); // Mulai pemindaian setelah stream dimulai
+                    scanBarcode(); // Mulai scanning saat kamera aktif
                 })
                 .catch((err) => {
                     console.error("Tidak bisa mengakses kamera", err);
@@ -58,40 +49,38 @@ export default function ListProduct({ data }) {
     };
 
     const stopScanner = () => {
-        const stream = videoRef.current.srcObject;
-        const tracks = stream?.getTracks();
-        tracks?.forEach((track) => track.stop());
-        setIsScanning(false);
+        if (videoRef.current?.srcObject) {
+            const tracks = videoRef.current.srcObject.getTracks();
+            tracks.forEach(track => track.stop());
+        }
     };
 
     const scanBarcode = () => {
-        if (isScanning && videoRef.current && canvasRef.current) {
-            const video = videoRef.current;
-            const canvas = canvasRef.current;
-            const context = canvas.getContext('2d');
+        if (!isScanning || !videoRef.current || !canvasRef.current) return;
 
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        const video = videoRef.current;
+        const canvas = canvasRef.current;
+        const context = canvas.getContext('2d');
 
-            const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-            const code = jsQR(imageData.data, canvas.width, canvas.height, {
-                inversionAttempts: 'dontInvert',
-            });
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-            console.log(code);
-            if (code) {
-                // Temukan produk berdasarkan data barcode yang dipindai
-                const product = data.find((item) => item.id === code.data);
-                if (product) {
-                    setSelectedProduct(product);
-                    stopScanner(); // Berhenti setelah menemukan barcode
-                }
-            } else {
-                // Lanjutkan pemindaian jika barcode tidak ditemukan
-                requestAnimationFrame(scanBarcode);
+        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        const code = jsQR(imageData.data, canvas.width, canvas.height, {
+            inversionAttempts: 'dontInvert',
+        });
+
+        if (code) {
+            const product = data.find((item) => item.id === code.data);
+            if (product) {
+                setSelectedProduct(product);
+                setIsScanning(false); // Berhenti scanning setelah menemukan barcode
+                return;
             }
         }
+
+        requestAnimationFrame(scanBarcode);
     };
 
     return (
@@ -118,7 +107,6 @@ export default function ListProduct({ data }) {
                                         width={100}
                                         ref={(el) => barcodeRefs.current[product.id] = el}
                                         data-id={product.id}
-                                        onClick={() => handleBarcodeClick(product)}
                                     ></svg>
                                 </td>
                             </tr>
@@ -149,10 +137,7 @@ export default function ListProduct({ data }) {
                         <p><strong>Stok Barang:</strong> {selectedProduct.stock_barang}</p>
                         <div>
                             <strong>Barcode:</strong>
-                            <svg
-                                width={100}
-                                ref={(el) => barcodeRefs.current[selectedProduct.id] = el}
-                            ></svg>
+                            <svg width={100} ref={(el) => barcodeRefs.current[selectedProduct.id] = el}></svg>
                         </div>
                         <button onClick={() => setSelectedProduct(null)}>Tutup</button>
                     </div>
@@ -160,12 +145,11 @@ export default function ListProduct({ data }) {
             )}
 
             {!isScanning ? (
-                <button onClick={startScanner} className={styles.tombolscan}>Mulai Pemindaian Barcode</button>
+                <button onClick={() => setIsScanning(true)} className={styles.tombolscan}>Mulai Pemindaian Barcode</button>
             ) : (
-                <button onClick={stopScanner} className={styles.tombolscan}>Berhenti Pemindaian</button>
+                <button onClick={() => setIsScanning(false)} className={styles.tombolscan}>Berhenti Pemindaian</button>
             )}
 
-            {/* Elemen Video dan Canvas untuk Pemindaian Barcode */}
             <div style={{ display: isScanning ? 'block' : 'none' }}>
                 <div className={styles.scanvideo}>
                     <video ref={videoRef} style={{ width: '100%' }} />
