@@ -9,6 +9,9 @@ export const CreateProduct = async (e) => {
                 'Content-Type': 'application/json',
                 'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
             },
+            next: {
+                revalidate: 0
+            },
             body: JSON.stringify(e),
         });
         const data = await res.json()
@@ -91,7 +94,10 @@ export const UpdateIncrement = async (e) => {
                 'Content-Type': 'application/json',
                 'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
             },
-            body: JSON.stringify(e)
+            body: JSON.stringify(e),
+            next: {
+                revalidate: 0
+            }
         });
         const data = await res.json()
         return data
@@ -111,6 +117,9 @@ export const UpdateDecrement = async (e) => {
                 'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
             },
             body: JSON.stringify(e),
+            next: {
+                revalidate: 0
+            }
         });
         const data = await res.json()
         return data

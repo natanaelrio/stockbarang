@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import JsBarcode from 'jsbarcode';
 import styles from '@/components/listProduct.module.css';
 import BarcodeScanner from '@/components/barcode';
-import { GetSearchProduct, UpdateDecrement, UpdateIncrement } from '@/service/data';
+import { CreateProduct, GetSearchProduct, UpdateDecrement, UpdateIncrement } from '@/service/data';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 
@@ -42,6 +42,34 @@ export default function ListProduct({ data }) {
     };
 
 
+    // inputBarang
+    const [idInput, setIdInput] = useState('')
+    const [namaBarangInput, setNamaBarangInput] = useState('')
+    const [isLoadingInput, setIsLoadingInput] = useState(false)
+
+    const handleBarangInput = async () => {
+        const FetchData = async () => {
+            setIsLoadingInput(true)
+            await CreateProduct({
+                "id": idInput,
+                "name_barang": namaBarangInput,
+                "stock_barang": 0
+            })
+            setIsLoadingInput(false)
+        }
+        toast.promise(
+            FetchData(),
+            {
+                loading: 'Saving...',
+                success: <b>{namaBarangInput}, Berhasil ditambakan!</b>,
+                error: <b>Could not save.</b>,
+            }
+        );
+        router.refresh()
+        setInput(!input)
+    }
+
+    //Lainnya
     const [valueIdBarang, setValueIdBarang] = useState('')
     const [scannedData, setScannedData] = useState("");
     const [cameraBarcode, setCameraBarcode] = useState(false)
@@ -89,11 +117,11 @@ export default function ListProduct({ data }) {
             FetchData(),
             {
                 loading: 'Saving...',
-                success: <b>Settings saved!</b>,
+                success: <b>Berhasil {isTambahKurang ? 'ditambahkan' : 'dikurangi'} {valueTambahKurang}!</b>,
                 error: <b>Could not save.</b>,
             }
         );
-        // router.refresh()
+        router.refresh()
         setCameraBarcode(!cameraBarcode)
         setIsLoading(false)
     }
@@ -145,9 +173,10 @@ export default function ListProduct({ data }) {
                 <>
                     <div className={styles.bghitam} onClick={() => setInput(!input)}></div>
                     <form className={styles.inputbarang}>
-                        <input type='text' placeholder='ID BARANG' name='idBarang' />
-                        <input type='text' placeholder='NAMA BARANG' name='namaBarang' />
-                        <button type='submit'>Submit</button>
+                        <BarcodeScanner onScan={(data) => setScannedData(data)} />
+                        <input disabled={isLoadingInput} type='text' value={scannedData} onChange={(e) => setIdInput(e.target.value)} placeholder='ID BARANG' name='idBarang' />
+                        <input disabled={isLoadingInput} type='text' onChange={(e) => setNamaBarangInput(e.target.value)} placeholder='NAMA BARANG' name='namaBarang' />
+                        <button disabled={isLoadingInput} onClick={handleBarangInput} type='submit'>Submit</button>
                         <div className={styles.close} onClick={() => setInput(!input)}>X</div>
                     </form>
                 </>

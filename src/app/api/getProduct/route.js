@@ -5,7 +5,11 @@ import { ResponseData } from "@/controllers/ResponseData";
 export async function GET(req) {
     const authorization = req.headers.get('authorization')
     if (authorization == process.env.NEXT_PUBLIC_SECREET) {
-        const data = await prisma.product.findMany();
+        const data = await prisma.product.findMany({
+            orderBy: {
+                start: 'desc'
+            }
+        });
         const authorization = req.headers.get('authorization')
         const res = await ResponseData(data, authorization)
         return res

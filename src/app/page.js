@@ -1,8 +1,8 @@
 import ListProduct from '@/components/listProduct'
-import HandleGetProduct from '@/service/handleGetProduct'
+import { GetProduct } from '@/service/data'
 
 export default async function Home() {
-  const data = await HandleGetProduct()
+  const data = await GetProduct()
   return (
     <>
       <ListProduct data={data.data} />
