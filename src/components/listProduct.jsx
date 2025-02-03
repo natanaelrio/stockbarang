@@ -125,8 +125,8 @@ export default function ListProduct({ data }) {
                             <>
                                 <h3>Detail Produk</h3>
                                 <p><strong>ID: {scannedData}</strong></p>
-                                <p><strong>Nama Barang:{dataBarcode.name_barang}</strong></p>
-                                <p><strong>Stok Barang:{dataBarcode.stock_barang}</strong></p>
+                                <p><strong>Nama Barang:{dataBarcode?.name_barang}</strong></p>
+                                <p><strong>Stok Barang:{dataBarcode?.stock_barang}</strong></p>
                             </>
                         }
                         <button onClick={() => setCameraBarcode(null)}>Tutup</button>
