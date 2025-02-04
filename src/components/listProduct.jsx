@@ -90,7 +90,6 @@ export default function ListProduct({ data }) {
         FetchData()
     }, [scannedData])
 
-    console.log(scannedData);
 
     const handleIdBarang = async (e) => {
         e.preventDefault()
