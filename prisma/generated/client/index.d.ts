@@ -23,6 +23,11 @@ export type product = $Result.DefaultSelection<Prisma.$productPayload>
  * 
  */
 export type pendingProduct = $Result.DefaultSelection<Prisma.$pendingProductPayload>
+/**
+ * Model logUser
+ * 
+ */
+export type logUser = $Result.DefaultSelection<Prisma.$logUserPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -166,6 +171,16 @@ export class PrismaClient<
     * ```
     */
   get pendingProduct(): Prisma.pendingProductDelegate<ExtArgs>;
+
+  /**
+   * `prisma.logUser`: Exposes CRUD operations for the **logUser** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LogUsers
+    * const logUsers = await prisma.logUser.findMany()
+    * ```
+    */
+  get logUser(): Prisma.logUserDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -608,7 +623,8 @@ export namespace Prisma {
 
   export const ModelName: {
     product: 'product',
-    pendingProduct: 'pendingProduct'
+    pendingProduct: 'pendingProduct',
+    logUser: 'logUser'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -624,7 +640,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "product" | "pendingProduct"
+      modelProps: "product" | "pendingProduct" | "logUser"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -765,6 +781,76 @@ export namespace Prisma {
           count: {
             args: Prisma.pendingProductCountArgs<ExtArgs>
             result: $Utils.Optional<PendingProductCountAggregateOutputType> | number
+          }
+        }
+      }
+      logUser: {
+        payload: Prisma.$logUserPayload<ExtArgs>
+        fields: Prisma.logUserFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.logUserFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$logUserPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.logUserFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$logUserPayload>
+          }
+          findFirst: {
+            args: Prisma.logUserFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$logUserPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.logUserFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$logUserPayload>
+          }
+          findMany: {
+            args: Prisma.logUserFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$logUserPayload>[]
+          }
+          create: {
+            args: Prisma.logUserCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$logUserPayload>
+          }
+          createMany: {
+            args: Prisma.logUserCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.logUserCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$logUserPayload>[]
+          }
+          delete: {
+            args: Prisma.logUserDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$logUserPayload>
+          }
+          update: {
+            args: Prisma.logUserUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$logUserPayload>
+          }
+          deleteMany: {
+            args: Prisma.logUserDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.logUserUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.logUserUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$logUserPayload>
+          }
+          aggregate: {
+            args: Prisma.LogUserAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLogUser>
+          }
+          groupBy: {
+            args: Prisma.logUserGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LogUserGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.logUserCountArgs<ExtArgs>
+            result: $Utils.Optional<LogUserCountAggregateOutputType> | number
           }
         }
       }
@@ -2979,6 +3065,884 @@ export namespace Prisma {
 
 
   /**
+   * Model logUser
+   */
+
+  export type AggregateLogUser = {
+    _count: LogUserCountAggregateOutputType | null
+    _min: LogUserMinAggregateOutputType | null
+    _max: LogUserMaxAggregateOutputType | null
+  }
+
+  export type LogUserMinAggregateOutputType = {
+    id: string | null
+    start: Date | null
+    end: Date | null
+    userActivity: string | null
+    activity: string | null
+  }
+
+  export type LogUserMaxAggregateOutputType = {
+    id: string | null
+    start: Date | null
+    end: Date | null
+    userActivity: string | null
+    activity: string | null
+  }
+
+  export type LogUserCountAggregateOutputType = {
+    id: number
+    start: number
+    end: number
+    userActivity: number
+    activity: number
+    _all: number
+  }
+
+
+  export type LogUserMinAggregateInputType = {
+    id?: true
+    start?: true
+    end?: true
+    userActivity?: true
+    activity?: true
+  }
+
+  export type LogUserMaxAggregateInputType = {
+    id?: true
+    start?: true
+    end?: true
+    userActivity?: true
+    activity?: true
+  }
+
+  export type LogUserCountAggregateInputType = {
+    id?: true
+    start?: true
+    end?: true
+    userActivity?: true
+    activity?: true
+    _all?: true
+  }
+
+  export type LogUserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which logUser to aggregate.
+     */
+    where?: logUserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of logUsers to fetch.
+     */
+    orderBy?: logUserOrderByWithRelationInput | logUserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: logUserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` logUsers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` logUsers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned logUsers
+    **/
+    _count?: true | LogUserCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LogUserMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LogUserMaxAggregateInputType
+  }
+
+  export type GetLogUserAggregateType<T extends LogUserAggregateArgs> = {
+        [P in keyof T & keyof AggregateLogUser]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLogUser[P]>
+      : GetScalarType<T[P], AggregateLogUser[P]>
+  }
+
+
+
+
+  export type logUserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: logUserWhereInput
+    orderBy?: logUserOrderByWithAggregationInput | logUserOrderByWithAggregationInput[]
+    by: LogUserScalarFieldEnum[] | LogUserScalarFieldEnum
+    having?: logUserScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LogUserCountAggregateInputType | true
+    _min?: LogUserMinAggregateInputType
+    _max?: LogUserMaxAggregateInputType
+  }
+
+  export type LogUserGroupByOutputType = {
+    id: string
+    start: Date
+    end: Date | null
+    userActivity: string | null
+    activity: string | null
+    _count: LogUserCountAggregateOutputType | null
+    _min: LogUserMinAggregateOutputType | null
+    _max: LogUserMaxAggregateOutputType | null
+  }
+
+  type GetLogUserGroupByPayload<T extends logUserGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LogUserGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LogUserGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LogUserGroupByOutputType[P]>
+            : GetScalarType<T[P], LogUserGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type logUserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    start?: boolean
+    end?: boolean
+    userActivity?: boolean
+    activity?: boolean
+  }, ExtArgs["result"]["logUser"]>
+
+  export type logUserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    start?: boolean
+    end?: boolean
+    userActivity?: boolean
+    activity?: boolean
+  }, ExtArgs["result"]["logUser"]>
+
+  export type logUserSelectScalar = {
+    id?: boolean
+    start?: boolean
+    end?: boolean
+    userActivity?: boolean
+    activity?: boolean
+  }
+
+
+  export type $logUserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "logUser"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      start: Date
+      end: Date | null
+      userActivity: string | null
+      activity: string | null
+    }, ExtArgs["result"]["logUser"]>
+    composites: {}
+  }
+
+  type logUserGetPayload<S extends boolean | null | undefined | logUserDefaultArgs> = $Result.GetResult<Prisma.$logUserPayload, S>
+
+  type logUserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<logUserFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: LogUserCountAggregateInputType | true
+    }
+
+  export interface logUserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['logUser'], meta: { name: 'logUser' } }
+    /**
+     * Find zero or one LogUser that matches the filter.
+     * @param {logUserFindUniqueArgs} args - Arguments to find a LogUser
+     * @example
+     * // Get one LogUser
+     * const logUser = await prisma.logUser.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends logUserFindUniqueArgs>(args: SelectSubset<T, logUserFindUniqueArgs<ExtArgs>>): Prisma__logUserClient<$Result.GetResult<Prisma.$logUserPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one LogUser that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {logUserFindUniqueOrThrowArgs} args - Arguments to find a LogUser
+     * @example
+     * // Get one LogUser
+     * const logUser = await prisma.logUser.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends logUserFindUniqueOrThrowArgs>(args: SelectSubset<T, logUserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__logUserClient<$Result.GetResult<Prisma.$logUserPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first LogUser that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {logUserFindFirstArgs} args - Arguments to find a LogUser
+     * @example
+     * // Get one LogUser
+     * const logUser = await prisma.logUser.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends logUserFindFirstArgs>(args?: SelectSubset<T, logUserFindFirstArgs<ExtArgs>>): Prisma__logUserClient<$Result.GetResult<Prisma.$logUserPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first LogUser that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {logUserFindFirstOrThrowArgs} args - Arguments to find a LogUser
+     * @example
+     * // Get one LogUser
+     * const logUser = await prisma.logUser.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends logUserFindFirstOrThrowArgs>(args?: SelectSubset<T, logUserFindFirstOrThrowArgs<ExtArgs>>): Prisma__logUserClient<$Result.GetResult<Prisma.$logUserPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more LogUsers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {logUserFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LogUsers
+     * const logUsers = await prisma.logUser.findMany()
+     * 
+     * // Get first 10 LogUsers
+     * const logUsers = await prisma.logUser.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const logUserWithIdOnly = await prisma.logUser.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends logUserFindManyArgs>(args?: SelectSubset<T, logUserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$logUserPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a LogUser.
+     * @param {logUserCreateArgs} args - Arguments to create a LogUser.
+     * @example
+     * // Create one LogUser
+     * const LogUser = await prisma.logUser.create({
+     *   data: {
+     *     // ... data to create a LogUser
+     *   }
+     * })
+     * 
+     */
+    create<T extends logUserCreateArgs>(args: SelectSubset<T, logUserCreateArgs<ExtArgs>>): Prisma__logUserClient<$Result.GetResult<Prisma.$logUserPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many LogUsers.
+     * @param {logUserCreateManyArgs} args - Arguments to create many LogUsers.
+     * @example
+     * // Create many LogUsers
+     * const logUser = await prisma.logUser.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends logUserCreateManyArgs>(args?: SelectSubset<T, logUserCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LogUsers and returns the data saved in the database.
+     * @param {logUserCreateManyAndReturnArgs} args - Arguments to create many LogUsers.
+     * @example
+     * // Create many LogUsers
+     * const logUser = await prisma.logUser.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LogUsers and only return the `id`
+     * const logUserWithIdOnly = await prisma.logUser.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends logUserCreateManyAndReturnArgs>(args?: SelectSubset<T, logUserCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$logUserPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a LogUser.
+     * @param {logUserDeleteArgs} args - Arguments to delete one LogUser.
+     * @example
+     * // Delete one LogUser
+     * const LogUser = await prisma.logUser.delete({
+     *   where: {
+     *     // ... filter to delete one LogUser
+     *   }
+     * })
+     * 
+     */
+    delete<T extends logUserDeleteArgs>(args: SelectSubset<T, logUserDeleteArgs<ExtArgs>>): Prisma__logUserClient<$Result.GetResult<Prisma.$logUserPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one LogUser.
+     * @param {logUserUpdateArgs} args - Arguments to update one LogUser.
+     * @example
+     * // Update one LogUser
+     * const logUser = await prisma.logUser.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends logUserUpdateArgs>(args: SelectSubset<T, logUserUpdateArgs<ExtArgs>>): Prisma__logUserClient<$Result.GetResult<Prisma.$logUserPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more LogUsers.
+     * @param {logUserDeleteManyArgs} args - Arguments to filter LogUsers to delete.
+     * @example
+     * // Delete a few LogUsers
+     * const { count } = await prisma.logUser.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends logUserDeleteManyArgs>(args?: SelectSubset<T, logUserDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LogUsers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {logUserUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LogUsers
+     * const logUser = await prisma.logUser.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends logUserUpdateManyArgs>(args: SelectSubset<T, logUserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one LogUser.
+     * @param {logUserUpsertArgs} args - Arguments to update or create a LogUser.
+     * @example
+     * // Update or create a LogUser
+     * const logUser = await prisma.logUser.upsert({
+     *   create: {
+     *     // ... data to create a LogUser
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LogUser we want to update
+     *   }
+     * })
+     */
+    upsert<T extends logUserUpsertArgs>(args: SelectSubset<T, logUserUpsertArgs<ExtArgs>>): Prisma__logUserClient<$Result.GetResult<Prisma.$logUserPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of LogUsers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {logUserCountArgs} args - Arguments to filter LogUsers to count.
+     * @example
+     * // Count the number of LogUsers
+     * const count = await prisma.logUser.count({
+     *   where: {
+     *     // ... the filter for the LogUsers we want to count
+     *   }
+     * })
+    **/
+    count<T extends logUserCountArgs>(
+      args?: Subset<T, logUserCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LogUserCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LogUser.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LogUserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LogUserAggregateArgs>(args: Subset<T, LogUserAggregateArgs>): Prisma.PrismaPromise<GetLogUserAggregateType<T>>
+
+    /**
+     * Group by LogUser.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {logUserGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends logUserGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: logUserGroupByArgs['orderBy'] }
+        : { orderBy?: logUserGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, logUserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLogUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the logUser model
+   */
+  readonly fields: logUserFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for logUser.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__logUserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the logUser model
+   */ 
+  interface logUserFieldRefs {
+    readonly id: FieldRef<"logUser", 'String'>
+    readonly start: FieldRef<"logUser", 'DateTime'>
+    readonly end: FieldRef<"logUser", 'DateTime'>
+    readonly userActivity: FieldRef<"logUser", 'String'>
+    readonly activity: FieldRef<"logUser", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * logUser findUnique
+   */
+  export type logUserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logUser
+     */
+    select?: logUserSelect<ExtArgs> | null
+    /**
+     * Filter, which logUser to fetch.
+     */
+    where: logUserWhereUniqueInput
+  }
+
+  /**
+   * logUser findUniqueOrThrow
+   */
+  export type logUserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logUser
+     */
+    select?: logUserSelect<ExtArgs> | null
+    /**
+     * Filter, which logUser to fetch.
+     */
+    where: logUserWhereUniqueInput
+  }
+
+  /**
+   * logUser findFirst
+   */
+  export type logUserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logUser
+     */
+    select?: logUserSelect<ExtArgs> | null
+    /**
+     * Filter, which logUser to fetch.
+     */
+    where?: logUserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of logUsers to fetch.
+     */
+    orderBy?: logUserOrderByWithRelationInput | logUserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for logUsers.
+     */
+    cursor?: logUserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` logUsers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` logUsers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of logUsers.
+     */
+    distinct?: LogUserScalarFieldEnum | LogUserScalarFieldEnum[]
+  }
+
+  /**
+   * logUser findFirstOrThrow
+   */
+  export type logUserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logUser
+     */
+    select?: logUserSelect<ExtArgs> | null
+    /**
+     * Filter, which logUser to fetch.
+     */
+    where?: logUserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of logUsers to fetch.
+     */
+    orderBy?: logUserOrderByWithRelationInput | logUserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for logUsers.
+     */
+    cursor?: logUserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` logUsers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` logUsers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of logUsers.
+     */
+    distinct?: LogUserScalarFieldEnum | LogUserScalarFieldEnum[]
+  }
+
+  /**
+   * logUser findMany
+   */
+  export type logUserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logUser
+     */
+    select?: logUserSelect<ExtArgs> | null
+    /**
+     * Filter, which logUsers to fetch.
+     */
+    where?: logUserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of logUsers to fetch.
+     */
+    orderBy?: logUserOrderByWithRelationInput | logUserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing logUsers.
+     */
+    cursor?: logUserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` logUsers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` logUsers.
+     */
+    skip?: number
+    distinct?: LogUserScalarFieldEnum | LogUserScalarFieldEnum[]
+  }
+
+  /**
+   * logUser create
+   */
+  export type logUserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logUser
+     */
+    select?: logUserSelect<ExtArgs> | null
+    /**
+     * The data needed to create a logUser.
+     */
+    data?: XOR<logUserCreateInput, logUserUncheckedCreateInput>
+  }
+
+  /**
+   * logUser createMany
+   */
+  export type logUserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many logUsers.
+     */
+    data: logUserCreateManyInput | logUserCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * logUser createManyAndReturn
+   */
+  export type logUserCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logUser
+     */
+    select?: logUserSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many logUsers.
+     */
+    data: logUserCreateManyInput | logUserCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * logUser update
+   */
+  export type logUserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logUser
+     */
+    select?: logUserSelect<ExtArgs> | null
+    /**
+     * The data needed to update a logUser.
+     */
+    data: XOR<logUserUpdateInput, logUserUncheckedUpdateInput>
+    /**
+     * Choose, which logUser to update.
+     */
+    where: logUserWhereUniqueInput
+  }
+
+  /**
+   * logUser updateMany
+   */
+  export type logUserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update logUsers.
+     */
+    data: XOR<logUserUpdateManyMutationInput, logUserUncheckedUpdateManyInput>
+    /**
+     * Filter which logUsers to update
+     */
+    where?: logUserWhereInput
+  }
+
+  /**
+   * logUser upsert
+   */
+  export type logUserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logUser
+     */
+    select?: logUserSelect<ExtArgs> | null
+    /**
+     * The filter to search for the logUser to update in case it exists.
+     */
+    where: logUserWhereUniqueInput
+    /**
+     * In case the logUser found by the `where` argument doesn't exist, create a new logUser with this data.
+     */
+    create: XOR<logUserCreateInput, logUserUncheckedCreateInput>
+    /**
+     * In case the logUser was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<logUserUpdateInput, logUserUncheckedUpdateInput>
+  }
+
+  /**
+   * logUser delete
+   */
+  export type logUserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logUser
+     */
+    select?: logUserSelect<ExtArgs> | null
+    /**
+     * Filter which logUser to delete.
+     */
+    where: logUserWhereUniqueInput
+  }
+
+  /**
+   * logUser deleteMany
+   */
+  export type logUserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which logUsers to delete
+     */
+    where?: logUserWhereInput
+  }
+
+  /**
+   * logUser without action
+   */
+  export type logUserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the logUser
+     */
+    select?: logUserSelect<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -3014,6 +3978,17 @@ export namespace Prisma {
   };
 
   export type PendingProductScalarFieldEnum = (typeof PendingProductScalarFieldEnum)[keyof typeof PendingProductScalarFieldEnum]
+
+
+  export const LogUserScalarFieldEnum: {
+    id: 'id',
+    start: 'start',
+    end: 'end',
+    userActivity: 'userActivity',
+    activity: 'activity'
+  };
+
+  export type LogUserScalarFieldEnum = (typeof LogUserScalarFieldEnum)[keyof typeof LogUserScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3235,6 +4210,58 @@ export namespace Prisma {
     statusProduct?: BoolWithAggregatesFilter<"pendingProduct"> | boolean
   }
 
+  export type logUserWhereInput = {
+    AND?: logUserWhereInput | logUserWhereInput[]
+    OR?: logUserWhereInput[]
+    NOT?: logUserWhereInput | logUserWhereInput[]
+    id?: StringFilter<"logUser"> | string
+    start?: DateTimeFilter<"logUser"> | Date | string
+    end?: DateTimeNullableFilter<"logUser"> | Date | string | null
+    userActivity?: StringNullableFilter<"logUser"> | string | null
+    activity?: StringNullableFilter<"logUser"> | string | null
+  }
+
+  export type logUserOrderByWithRelationInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrderInput | SortOrder
+    userActivity?: SortOrderInput | SortOrder
+    activity?: SortOrderInput | SortOrder
+  }
+
+  export type logUserWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: logUserWhereInput | logUserWhereInput[]
+    OR?: logUserWhereInput[]
+    NOT?: logUserWhereInput | logUserWhereInput[]
+    start?: DateTimeFilter<"logUser"> | Date | string
+    end?: DateTimeNullableFilter<"logUser"> | Date | string | null
+    userActivity?: StringNullableFilter<"logUser"> | string | null
+    activity?: StringNullableFilter<"logUser"> | string | null
+  }, "id">
+
+  export type logUserOrderByWithAggregationInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrderInput | SortOrder
+    userActivity?: SortOrderInput | SortOrder
+    activity?: SortOrderInput | SortOrder
+    _count?: logUserCountOrderByAggregateInput
+    _max?: logUserMaxOrderByAggregateInput
+    _min?: logUserMinOrderByAggregateInput
+  }
+
+  export type logUserScalarWhereWithAggregatesInput = {
+    AND?: logUserScalarWhereWithAggregatesInput | logUserScalarWhereWithAggregatesInput[]
+    OR?: logUserScalarWhereWithAggregatesInput[]
+    NOT?: logUserScalarWhereWithAggregatesInput | logUserScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"logUser"> | string
+    start?: DateTimeWithAggregatesFilter<"logUser"> | Date | string
+    end?: DateTimeNullableWithAggregatesFilter<"logUser"> | Date | string | null
+    userActivity?: StringNullableWithAggregatesFilter<"logUser"> | string | null
+    activity?: StringNullableWithAggregatesFilter<"logUser"> | string | null
+  }
+
   export type productCreateInput = {
     id?: string
     start?: Date | string
@@ -3367,6 +4394,62 @@ export namespace Prisma {
     user?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type logUserCreateInput = {
+    id?: string
+    start?: Date | string
+    end?: Date | string | null
+    userActivity?: string | null
+    activity?: string | null
+  }
+
+  export type logUserUncheckedCreateInput = {
+    id?: string
+    start?: Date | string
+    end?: Date | string | null
+    userActivity?: string | null
+    activity?: string | null
+  }
+
+  export type logUserUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    userActivity?: NullableStringFieldUpdateOperationsInput | string | null
+    activity?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type logUserUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    userActivity?: NullableStringFieldUpdateOperationsInput | string | null
+    activity?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type logUserCreateManyInput = {
+    id?: string
+    start?: Date | string
+    end?: Date | string | null
+    userActivity?: string | null
+    activity?: string | null
+  }
+
+  export type logUserUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    userActivity?: NullableStringFieldUpdateOperationsInput | string | null
+    activity?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type logUserUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    userActivity?: NullableStringFieldUpdateOperationsInput | string | null
+    activity?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -3618,6 +4701,30 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type logUserCountOrderByAggregateInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrder
+    userActivity?: SortOrder
+    activity?: SortOrder
+  }
+
+  export type logUserMaxOrderByAggregateInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrder
+    userActivity?: SortOrder
+    activity?: SortOrder
+  }
+
+  export type logUserMinOrderByAggregateInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrder
+    userActivity?: SortOrder
+    activity?: SortOrder
   }
 
   export type pendingProductCreateNestedManyWithoutProductsInput = {
@@ -4075,6 +5182,10 @@ export namespace Prisma {
      * @deprecated Use pendingProductDefaultArgs instead
      */
     export type pendingProductArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = pendingProductDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use logUserDefaultArgs instead
+     */
+    export type logUserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = logUserDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

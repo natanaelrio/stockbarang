@@ -1,4 +1,3 @@
-
 import { prisma } from "@/controllers/prisma"
 import { ResponseData } from "@/controllers/ResponseData";
 

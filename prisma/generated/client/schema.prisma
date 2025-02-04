@@ -28,3 +28,11 @@ model pendingProduct {
   statusProduct Boolean   @default(false)
   products      product[] @relation("PendingProduct")
 }
+
+model logUser {
+  id           String    @id @default(uuid())
+  start        DateTime  @default(now())
+  end          DateTime? @updatedAt
+  userActivity String?
+  activity     String?
+}

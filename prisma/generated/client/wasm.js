@@ -140,6 +140,14 @@ exports.Prisma.PendingProductScalarFieldEnum = {
   statusProduct: 'statusProduct'
 };
 
+exports.Prisma.LogUserScalarFieldEnum = {
+  id: 'id',
+  start: 'start',
+  end: 'end',
+  userActivity: 'userActivity',
+  activity: 'activity'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -158,7 +166,8 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   product: 'product',
-  pendingProduct: 'pendingProduct'
+  pendingProduct: 'pendingProduct',
+  logUser: 'logUser'
 };
 
 /**

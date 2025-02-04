@@ -18,12 +18,16 @@ export default function Pending({ data }) {
                             id: product.products[0]?.id,
                             stock: product.stock_barang,
                             idPending: product?.id,
-                            statusProduct: !product?.statusProduct
+                            statusProduct: !product?.statusProduct,
+                            user: 'rio',
+                            userActivity: 'belum ada'
                         }) : await UpdateIncrement({
                             id: product.products[0]?.id,
                             stock: product.stock_barang,
                             idPending: product?.id,
-                            statusProduct: !product?.statusProduct
+                            statusProduct: !product?.statusProduct,
+                            user: 'rio',
+                            userActivity: 'belum ada'
                         })
                 } catch (e) {
                     throw new Error("Server error, gagal menyimpan produk.");

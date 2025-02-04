@@ -53,7 +53,9 @@ export default function ListProduct({ data }) {
             const res = await CreateProduct({
                 "id": idInput,
                 "name_barang": namaBarangInput,
-                "stock_barang": 0
+                "stock_barang": 0,
+                user: 'rio',
+                userActivity: 'belum ada'
             })
             if (!res || res.status === 500) {
                 throw new Error("Server error, gagal menyimpan produk.");
@@ -111,13 +113,16 @@ export default function ListProduct({ data }) {
             try {
                 isTambahKurang && await UpdateIncrement({
                     id: dataBarcode[0]?.id,
-                    stock: valueTambahKurang
+                    stock: valueTambahKurang,
+                    user: 'rio',
+                    userActivity: 'belum ada'
                 })
                 !isTambahKurang && await CreateProductPendding({
                     stock_barang: valueTambahKurang,
                     note: 'tidak ada',
                     produkid: dataBarcode[0]?.id,
-                    user: 'rio'
+                    user: 'rio',
+                    userActivity: 'belum ada'
                 })
             } catch (e) {
                 throw new Error("Server error, gagal update stock.");
