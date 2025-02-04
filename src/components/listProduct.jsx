@@ -50,14 +50,16 @@ export default function ListProduct({ data }) {
     const handleBarangInput = () => {
         setIsLoadingInput(true)
         const FetchData = async () => {
-            const res = await CreateProduct({
-                "id": idInput,
-                "name_barang": namaBarangInput,
-                "stock_barang": 0,
-                user: 'rio',
-                userActivity: 'belum ada'
-            })
-            if (!res || res.status === 500) {
+            try {
+                await CreateProduct({
+                    id: idInput,
+                    name_barang: namaBarangInput,
+                    stock_barang: 0,
+                    userActivity: 'rio',
+                    activity: `Penambahan Product ${namaBarangInput} ( ${idInput} )`
+                })
+            }
+            catch (e) {
                 throw new Error("Server error, gagal menyimpan produk.");
             }
         }
@@ -114,15 +116,16 @@ export default function ListProduct({ data }) {
                 isTambahKurang && await UpdateIncrement({
                     id: dataBarcode[0]?.id,
                     stock: valueTambahKurang,
-                    user: 'rio',
-                    userActivity: 'belum ada'
+                    userActivity: 'rio',
+                    activity: `Update Tambah ${valueTambahKurang} stock - ${dataBarcode[0]?.name_barang} ( ${dataBarcode[0]?.id} ) `
                 })
                 !isTambahKurang && await CreateProductPendding({
                     stock_barang: valueTambahKurang,
                     note: 'tidak ada',
                     produkid: dataBarcode[0]?.id,
                     user: 'rio',
-                    userActivity: 'belum ada'
+                    userActivity: 'rio',
+                    activity: `Request ${valueTambahKurang} stock - ${dataBarcode[0]?.name_barang} ( ${dataBarcode[0]?.id} ) `
                 })
             } catch (e) {
                 throw new Error("Server error, gagal update stock.");
