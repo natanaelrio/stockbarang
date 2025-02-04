@@ -130,10 +130,11 @@ exports.Prisma.ProductScalarFieldEnum = {
   stock_barang: 'stock_barang'
 };
 
-exports.Prisma.LogActScalarFieldEnum = {
+exports.Prisma.PendingScalarFieldEnum = {
   id: 'id',
   start: 'start',
   end: 'end',
+  stock_barang: 'stock_barang',
   user: 'user',
   note: 'note',
   status: 'status'
@@ -157,7 +158,7 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   product: 'product',
-  logAct: 'logAct'
+  pending: 'pending'
 };
 
 /**

@@ -23,6 +23,28 @@ export const CreateProduct = async (e) => {
     revalidatePath('/')
 }
 
+export const CreateProductPendding = async (e) => {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/createPending`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
+            },
+            next: {
+                revalidate: 0
+            },
+            body: JSON.stringify(e),
+        });
+        const data = await res.json()
+        return data
+    }
+    catch (err) {
+        console.log(err);
+    }
+    revalidatePath('/')
+}
+
 export const GetProduct = async () => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/getProduct`, {
@@ -64,27 +86,6 @@ export const GetSearchProduct = async (e) => {
     }
     revalidatePath('/')
 }
-
-export const PostLogProduct = async (e) => {
-    try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/createLogProduct`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
-            },
-            body: JSON.stringify(e),
-        });
-        const data = await res.json()
-        return data
-    }
-    catch (err) {
-        console.log(err);
-    }
-    revalidatePath('/')
-}
-
-
 
 export const UpdateIncrement = async (e) => {
     try {

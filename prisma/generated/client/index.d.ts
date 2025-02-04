@@ -19,10 +19,10 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type product = $Result.DefaultSelection<Prisma.$productPayload>
 /**
- * Model logAct
+ * Model pending
  * 
  */
-export type logAct = $Result.DefaultSelection<Prisma.$logActPayload>
+export type pending = $Result.DefaultSelection<Prisma.$pendingPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -158,14 +158,14 @@ export class PrismaClient<
   get product(): Prisma.productDelegate<ExtArgs>;
 
   /**
-   * `prisma.logAct`: Exposes CRUD operations for the **logAct** model.
+   * `prisma.pending`: Exposes CRUD operations for the **pending** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more LogActs
-    * const logActs = await prisma.logAct.findMany()
+    * // Fetch zero or more Pendings
+    * const pendings = await prisma.pending.findMany()
     * ```
     */
-  get logAct(): Prisma.logActDelegate<ExtArgs>;
+  get pending(): Prisma.pendingDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -608,7 +608,7 @@ export namespace Prisma {
 
   export const ModelName: {
     product: 'product',
-    logAct: 'logAct'
+    pending: 'pending'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -624,7 +624,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "product" | "logAct"
+      modelProps: "product" | "pending"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -698,73 +698,73 @@ export namespace Prisma {
           }
         }
       }
-      logAct: {
-        payload: Prisma.$logActPayload<ExtArgs>
-        fields: Prisma.logActFieldRefs
+      pending: {
+        payload: Prisma.$pendingPayload<ExtArgs>
+        fields: Prisma.pendingFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.logActFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$logActPayload> | null
+            args: Prisma.pendingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pendingPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.logActFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$logActPayload>
+            args: Prisma.pendingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pendingPayload>
           }
           findFirst: {
-            args: Prisma.logActFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$logActPayload> | null
+            args: Prisma.pendingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pendingPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.logActFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$logActPayload>
+            args: Prisma.pendingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pendingPayload>
           }
           findMany: {
-            args: Prisma.logActFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$logActPayload>[]
+            args: Prisma.pendingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pendingPayload>[]
           }
           create: {
-            args: Prisma.logActCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$logActPayload>
+            args: Prisma.pendingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pendingPayload>
           }
           createMany: {
-            args: Prisma.logActCreateManyArgs<ExtArgs>
+            args: Prisma.pendingCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.logActCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$logActPayload>[]
+            args: Prisma.pendingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pendingPayload>[]
           }
           delete: {
-            args: Prisma.logActDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$logActPayload>
+            args: Prisma.pendingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pendingPayload>
           }
           update: {
-            args: Prisma.logActUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$logActPayload>
+            args: Prisma.pendingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pendingPayload>
           }
           deleteMany: {
-            args: Prisma.logActDeleteManyArgs<ExtArgs>
+            args: Prisma.pendingDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.logActUpdateManyArgs<ExtArgs>
+            args: Prisma.pendingUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.logActUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$logActPayload>
+            args: Prisma.pendingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pendingPayload>
           }
           aggregate: {
-            args: Prisma.LogActAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateLogAct>
+            args: Prisma.PendingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePending>
           }
           groupBy: {
-            args: Prisma.logActGroupByArgs<ExtArgs>
-            result: $Utils.Optional<LogActGroupByOutputType>[]
+            args: Prisma.pendingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PendingGroupByOutputType>[]
           }
           count: {
-            args: Prisma.logActCountArgs<ExtArgs>
-            result: $Utils.Optional<LogActCountAggregateOutputType> | number
+            args: Prisma.pendingCountArgs<ExtArgs>
+            result: $Utils.Optional<PendingCountAggregateOutputType> | number
           }
         }
       }
@@ -929,11 +929,11 @@ export namespace Prisma {
    */
 
   export type ProductCountOutputType = {
-    logActs: number
+    pending: number
   }
 
   export type ProductCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    logActs?: boolean | ProductCountOutputTypeCountLogActsArgs
+    pending?: boolean | ProductCountOutputTypeCountPendingArgs
   }
 
   // Custom InputTypes
@@ -950,38 +950,38 @@ export namespace Prisma {
   /**
    * ProductCountOutputType without action
    */
-  export type ProductCountOutputTypeCountLogActsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: logActWhereInput
+  export type ProductCountOutputTypeCountPendingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: pendingWhereInput
   }
 
 
   /**
-   * Count Type LogActCountOutputType
+   * Count Type PendingCountOutputType
    */
 
-  export type LogActCountOutputType = {
+  export type PendingCountOutputType = {
     products: number
   }
 
-  export type LogActCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    products?: boolean | LogActCountOutputTypeCountProductsArgs
+  export type PendingCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    products?: boolean | PendingCountOutputTypeCountProductsArgs
   }
 
   // Custom InputTypes
   /**
-   * LogActCountOutputType without action
+   * PendingCountOutputType without action
    */
-  export type LogActCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PendingCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the LogActCountOutputType
+     * Select specific fields to fetch from the PendingCountOutputType
      */
-    select?: LogActCountOutputTypeSelect<ExtArgs> | null
+    select?: PendingCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * LogActCountOutputType without action
+   * PendingCountOutputType without action
    */
-  export type LogActCountOutputTypeCountProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PendingCountOutputTypeCountProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: productWhereInput
   }
 
@@ -1188,7 +1188,7 @@ export namespace Prisma {
     end?: boolean
     name_barang?: boolean
     stock_barang?: boolean
-    logActs?: boolean | product$logActsArgs<ExtArgs>
+    pending?: boolean | product$pendingArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
@@ -1209,7 +1209,7 @@ export namespace Prisma {
   }
 
   export type productInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    logActs?: boolean | product$logActsArgs<ExtArgs>
+    pending?: boolean | product$pendingArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type productIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1217,7 +1217,7 @@ export namespace Prisma {
   export type $productPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "product"
     objects: {
-      logActs: Prisma.$logActPayload<ExtArgs>[]
+      pending: Prisma.$pendingPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1589,7 +1589,7 @@ export namespace Prisma {
    */
   export interface Prisma__productClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    logActs<T extends product$logActsArgs<ExtArgs> = {}>(args?: Subset<T, product$logActsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$logActPayload<ExtArgs>, T, "findMany"> | Null>
+    pending<T extends product$pendingArgs<ExtArgs> = {}>(args?: Subset<T, product$pendingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pendingPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1938,23 +1938,23 @@ export namespace Prisma {
   }
 
   /**
-   * product.logActs
+   * product.pending
    */
-  export type product$logActsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type product$pendingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the logAct
+     * Select specific fields to fetch from the pending
      */
-    select?: logActSelect<ExtArgs> | null
+    select?: pendingSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: logActInclude<ExtArgs> | null
-    where?: logActWhereInput
-    orderBy?: logActOrderByWithRelationInput | logActOrderByWithRelationInput[]
-    cursor?: logActWhereUniqueInput
+    include?: pendingInclude<ExtArgs> | null
+    where?: pendingWhereInput
+    orderBy?: pendingOrderByWithRelationInput | pendingOrderByWithRelationInput[]
+    cursor?: pendingWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: LogActScalarFieldEnum | LogActScalarFieldEnum[]
+    distinct?: PendingScalarFieldEnum | PendingScalarFieldEnum[]
   }
 
   /**
@@ -1973,37 +1973,50 @@ export namespace Prisma {
 
 
   /**
-   * Model logAct
+   * Model pending
    */
 
-  export type AggregateLogAct = {
-    _count: LogActCountAggregateOutputType | null
-    _min: LogActMinAggregateOutputType | null
-    _max: LogActMaxAggregateOutputType | null
+  export type AggregatePending = {
+    _count: PendingCountAggregateOutputType | null
+    _avg: PendingAvgAggregateOutputType | null
+    _sum: PendingSumAggregateOutputType | null
+    _min: PendingMinAggregateOutputType | null
+    _max: PendingMaxAggregateOutputType | null
   }
 
-  export type LogActMinAggregateOutputType = {
+  export type PendingAvgAggregateOutputType = {
+    stock_barang: number | null
+  }
+
+  export type PendingSumAggregateOutputType = {
+    stock_barang: number | null
+  }
+
+  export type PendingMinAggregateOutputType = {
     id: string | null
     start: Date | null
     end: Date | null
+    stock_barang: number | null
     user: string | null
     note: string | null
-    status: string | null
+    status: boolean | null
   }
 
-  export type LogActMaxAggregateOutputType = {
+  export type PendingMaxAggregateOutputType = {
     id: string | null
     start: Date | null
     end: Date | null
+    stock_barang: number | null
     user: string | null
     note: string | null
-    status: string | null
+    status: boolean | null
   }
 
-  export type LogActCountAggregateOutputType = {
+  export type PendingCountAggregateOutputType = {
     id: number
     start: number
     end: number
+    stock_barang: number
     user: number
     note: number
     status: number
@@ -2011,169 +2024,200 @@ export namespace Prisma {
   }
 
 
-  export type LogActMinAggregateInputType = {
+  export type PendingAvgAggregateInputType = {
+    stock_barang?: true
+  }
+
+  export type PendingSumAggregateInputType = {
+    stock_barang?: true
+  }
+
+  export type PendingMinAggregateInputType = {
     id?: true
     start?: true
     end?: true
+    stock_barang?: true
     user?: true
     note?: true
     status?: true
   }
 
-  export type LogActMaxAggregateInputType = {
+  export type PendingMaxAggregateInputType = {
     id?: true
     start?: true
     end?: true
+    stock_barang?: true
     user?: true
     note?: true
     status?: true
   }
 
-  export type LogActCountAggregateInputType = {
+  export type PendingCountAggregateInputType = {
     id?: true
     start?: true
     end?: true
+    stock_barang?: true
     user?: true
     note?: true
     status?: true
     _all?: true
   }
 
-  export type LogActAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PendingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which logAct to aggregate.
+     * Filter which pending to aggregate.
      */
-    where?: logActWhereInput
+    where?: pendingWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of logActs to fetch.
+     * Determine the order of pendings to fetch.
      */
-    orderBy?: logActOrderByWithRelationInput | logActOrderByWithRelationInput[]
+    orderBy?: pendingOrderByWithRelationInput | pendingOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: logActWhereUniqueInput
+    cursor?: pendingWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` logActs from the position of the cursor.
+     * Take `±n` pendings from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` logActs.
+     * Skip the first `n` pendings.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned logActs
+     * Count returned pendings
     **/
-    _count?: true | LogActCountAggregateInputType
+    _count?: true | PendingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PendingAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PendingSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: LogActMinAggregateInputType
+    _min?: PendingMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: LogActMaxAggregateInputType
+    _max?: PendingMaxAggregateInputType
   }
 
-  export type GetLogActAggregateType<T extends LogActAggregateArgs> = {
-        [P in keyof T & keyof AggregateLogAct]: P extends '_count' | 'count'
+  export type GetPendingAggregateType<T extends PendingAggregateArgs> = {
+        [P in keyof T & keyof AggregatePending]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregateLogAct[P]>
-      : GetScalarType<T[P], AggregateLogAct[P]>
+        : GetScalarType<T[P], AggregatePending[P]>
+      : GetScalarType<T[P], AggregatePending[P]>
   }
 
 
 
 
-  export type logActGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: logActWhereInput
-    orderBy?: logActOrderByWithAggregationInput | logActOrderByWithAggregationInput[]
-    by: LogActScalarFieldEnum[] | LogActScalarFieldEnum
-    having?: logActScalarWhereWithAggregatesInput
+  export type pendingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: pendingWhereInput
+    orderBy?: pendingOrderByWithAggregationInput | pendingOrderByWithAggregationInput[]
+    by: PendingScalarFieldEnum[] | PendingScalarFieldEnum
+    having?: pendingScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: LogActCountAggregateInputType | true
-    _min?: LogActMinAggregateInputType
-    _max?: LogActMaxAggregateInputType
+    _count?: PendingCountAggregateInputType | true
+    _avg?: PendingAvgAggregateInputType
+    _sum?: PendingSumAggregateInputType
+    _min?: PendingMinAggregateInputType
+    _max?: PendingMaxAggregateInputType
   }
 
-  export type LogActGroupByOutputType = {
+  export type PendingGroupByOutputType = {
     id: string
     start: Date
     end: Date | null
+    stock_barang: number | null
     user: string | null
     note: string | null
-    status: string | null
-    _count: LogActCountAggregateOutputType | null
-    _min: LogActMinAggregateOutputType | null
-    _max: LogActMaxAggregateOutputType | null
+    status: boolean
+    _count: PendingCountAggregateOutputType | null
+    _avg: PendingAvgAggregateOutputType | null
+    _sum: PendingSumAggregateOutputType | null
+    _min: PendingMinAggregateOutputType | null
+    _max: PendingMaxAggregateOutputType | null
   }
 
-  type GetLogActGroupByPayload<T extends logActGroupByArgs> = Prisma.PrismaPromise<
+  type GetPendingGroupByPayload<T extends pendingGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<LogActGroupByOutputType, T['by']> &
+      PickEnumerable<PendingGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof LogActGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof PendingGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], LogActGroupByOutputType[P]>
-            : GetScalarType<T[P], LogActGroupByOutputType[P]>
+              : GetScalarType<T[P], PendingGroupByOutputType[P]>
+            : GetScalarType<T[P], PendingGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type logActSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type pendingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     start?: boolean
     end?: boolean
+    stock_barang?: boolean
     user?: boolean
     note?: boolean
     status?: boolean
-    products?: boolean | logAct$productsArgs<ExtArgs>
-    _count?: boolean | LogActCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["logAct"]>
+    products?: boolean | pending$productsArgs<ExtArgs>
+    _count?: boolean | PendingCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["pending"]>
 
-  export type logActSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type pendingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     start?: boolean
     end?: boolean
+    stock_barang?: boolean
     user?: boolean
     note?: boolean
     status?: boolean
-  }, ExtArgs["result"]["logAct"]>
+  }, ExtArgs["result"]["pending"]>
 
-  export type logActSelectScalar = {
+  export type pendingSelectScalar = {
     id?: boolean
     start?: boolean
     end?: boolean
+    stock_barang?: boolean
     user?: boolean
     note?: boolean
     status?: boolean
   }
 
-  export type logActInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    products?: boolean | logAct$productsArgs<ExtArgs>
-    _count?: boolean | LogActCountOutputTypeDefaultArgs<ExtArgs>
+  export type pendingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    products?: boolean | pending$productsArgs<ExtArgs>
+    _count?: boolean | PendingCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type logActIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type pendingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
-  export type $logActPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "logAct"
+  export type $pendingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "pending"
     objects: {
       products: Prisma.$productPayload<ExtArgs>[]
     }
@@ -2181,139 +2225,140 @@ export namespace Prisma {
       id: string
       start: Date
       end: Date | null
+      stock_barang: number | null
       user: string | null
       note: string | null
-      status: string | null
-    }, ExtArgs["result"]["logAct"]>
+      status: boolean
+    }, ExtArgs["result"]["pending"]>
     composites: {}
   }
 
-  type logActGetPayload<S extends boolean | null | undefined | logActDefaultArgs> = $Result.GetResult<Prisma.$logActPayload, S>
+  type pendingGetPayload<S extends boolean | null | undefined | pendingDefaultArgs> = $Result.GetResult<Prisma.$pendingPayload, S>
 
-  type logActCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<logActFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: LogActCountAggregateInputType | true
+  type pendingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<pendingFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: PendingCountAggregateInputType | true
     }
 
-  export interface logActDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['logAct'], meta: { name: 'logAct' } }
+  export interface pendingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['pending'], meta: { name: 'pending' } }
     /**
-     * Find zero or one LogAct that matches the filter.
-     * @param {logActFindUniqueArgs} args - Arguments to find a LogAct
+     * Find zero or one Pending that matches the filter.
+     * @param {pendingFindUniqueArgs} args - Arguments to find a Pending
      * @example
-     * // Get one LogAct
-     * const logAct = await prisma.logAct.findUnique({
+     * // Get one Pending
+     * const pending = await prisma.pending.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends logActFindUniqueArgs>(args: SelectSubset<T, logActFindUniqueArgs<ExtArgs>>): Prisma__logActClient<$Result.GetResult<Prisma.$logActPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends pendingFindUniqueArgs>(args: SelectSubset<T, pendingFindUniqueArgs<ExtArgs>>): Prisma__pendingClient<$Result.GetResult<Prisma.$pendingPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
 
     /**
-     * Find one LogAct that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one Pending that matches the filter or throw an error with `error.code='P2025'` 
      * if no matches were found.
-     * @param {logActFindUniqueOrThrowArgs} args - Arguments to find a LogAct
+     * @param {pendingFindUniqueOrThrowArgs} args - Arguments to find a Pending
      * @example
-     * // Get one LogAct
-     * const logAct = await prisma.logAct.findUniqueOrThrow({
+     * // Get one Pending
+     * const pending = await prisma.pending.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends logActFindUniqueOrThrowArgs>(args: SelectSubset<T, logActFindUniqueOrThrowArgs<ExtArgs>>): Prisma__logActClient<$Result.GetResult<Prisma.$logActPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends pendingFindUniqueOrThrowArgs>(args: SelectSubset<T, pendingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__pendingClient<$Result.GetResult<Prisma.$pendingPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
 
     /**
-     * Find the first LogAct that matches the filter.
+     * Find the first Pending that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {logActFindFirstArgs} args - Arguments to find a LogAct
+     * @param {pendingFindFirstArgs} args - Arguments to find a Pending
      * @example
-     * // Get one LogAct
-     * const logAct = await prisma.logAct.findFirst({
+     * // Get one Pending
+     * const pending = await prisma.pending.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends logActFindFirstArgs>(args?: SelectSubset<T, logActFindFirstArgs<ExtArgs>>): Prisma__logActClient<$Result.GetResult<Prisma.$logActPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends pendingFindFirstArgs>(args?: SelectSubset<T, pendingFindFirstArgs<ExtArgs>>): Prisma__pendingClient<$Result.GetResult<Prisma.$pendingPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
 
     /**
-     * Find the first LogAct that matches the filter or
+     * Find the first Pending that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {logActFindFirstOrThrowArgs} args - Arguments to find a LogAct
+     * @param {pendingFindFirstOrThrowArgs} args - Arguments to find a Pending
      * @example
-     * // Get one LogAct
-     * const logAct = await prisma.logAct.findFirstOrThrow({
+     * // Get one Pending
+     * const pending = await prisma.pending.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends logActFindFirstOrThrowArgs>(args?: SelectSubset<T, logActFindFirstOrThrowArgs<ExtArgs>>): Prisma__logActClient<$Result.GetResult<Prisma.$logActPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends pendingFindFirstOrThrowArgs>(args?: SelectSubset<T, pendingFindFirstOrThrowArgs<ExtArgs>>): Prisma__pendingClient<$Result.GetResult<Prisma.$pendingPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
 
     /**
-     * Find zero or more LogActs that matches the filter.
+     * Find zero or more Pendings that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {logActFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {pendingFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all LogActs
-     * const logActs = await prisma.logAct.findMany()
+     * // Get all Pendings
+     * const pendings = await prisma.pending.findMany()
      * 
-     * // Get first 10 LogActs
-     * const logActs = await prisma.logAct.findMany({ take: 10 })
+     * // Get first 10 Pendings
+     * const pendings = await prisma.pending.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const logActWithIdOnly = await prisma.logAct.findMany({ select: { id: true } })
+     * const pendingWithIdOnly = await prisma.pending.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends logActFindManyArgs>(args?: SelectSubset<T, logActFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$logActPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends pendingFindManyArgs>(args?: SelectSubset<T, pendingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pendingPayload<ExtArgs>, T, "findMany">>
 
     /**
-     * Create a LogAct.
-     * @param {logActCreateArgs} args - Arguments to create a LogAct.
+     * Create a Pending.
+     * @param {pendingCreateArgs} args - Arguments to create a Pending.
      * @example
-     * // Create one LogAct
-     * const LogAct = await prisma.logAct.create({
+     * // Create one Pending
+     * const Pending = await prisma.pending.create({
      *   data: {
-     *     // ... data to create a LogAct
+     *     // ... data to create a Pending
      *   }
      * })
      * 
      */
-    create<T extends logActCreateArgs>(args: SelectSubset<T, logActCreateArgs<ExtArgs>>): Prisma__logActClient<$Result.GetResult<Prisma.$logActPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends pendingCreateArgs>(args: SelectSubset<T, pendingCreateArgs<ExtArgs>>): Prisma__pendingClient<$Result.GetResult<Prisma.$pendingPayload<ExtArgs>, T, "create">, never, ExtArgs>
 
     /**
-     * Create many LogActs.
-     * @param {logActCreateManyArgs} args - Arguments to create many LogActs.
+     * Create many Pendings.
+     * @param {pendingCreateManyArgs} args - Arguments to create many Pendings.
      * @example
-     * // Create many LogActs
-     * const logAct = await prisma.logAct.createMany({
+     * // Create many Pendings
+     * const pending = await prisma.pending.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends logActCreateManyArgs>(args?: SelectSubset<T, logActCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends pendingCreateManyArgs>(args?: SelectSubset<T, pendingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many LogActs and returns the data saved in the database.
-     * @param {logActCreateManyAndReturnArgs} args - Arguments to create many LogActs.
+     * Create many Pendings and returns the data saved in the database.
+     * @param {pendingCreateManyAndReturnArgs} args - Arguments to create many Pendings.
      * @example
-     * // Create many LogActs
-     * const logAct = await prisma.logAct.createManyAndReturn({
+     * // Create many Pendings
+     * const pending = await prisma.pending.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many LogActs and only return the `id`
-     * const logActWithIdOnly = await prisma.logAct.createManyAndReturn({ 
+     * // Create many Pendings and only return the `id`
+     * const pendingWithIdOnly = await prisma.pending.createManyAndReturn({ 
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -2323,28 +2368,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends logActCreateManyAndReturnArgs>(args?: SelectSubset<T, logActCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$logActPayload<ExtArgs>, T, "createManyAndReturn">>
+    createManyAndReturn<T extends pendingCreateManyAndReturnArgs>(args?: SelectSubset<T, pendingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pendingPayload<ExtArgs>, T, "createManyAndReturn">>
 
     /**
-     * Delete a LogAct.
-     * @param {logActDeleteArgs} args - Arguments to delete one LogAct.
+     * Delete a Pending.
+     * @param {pendingDeleteArgs} args - Arguments to delete one Pending.
      * @example
-     * // Delete one LogAct
-     * const LogAct = await prisma.logAct.delete({
+     * // Delete one Pending
+     * const Pending = await prisma.pending.delete({
      *   where: {
-     *     // ... filter to delete one LogAct
+     *     // ... filter to delete one Pending
      *   }
      * })
      * 
      */
-    delete<T extends logActDeleteArgs>(args: SelectSubset<T, logActDeleteArgs<ExtArgs>>): Prisma__logActClient<$Result.GetResult<Prisma.$logActPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends pendingDeleteArgs>(args: SelectSubset<T, pendingDeleteArgs<ExtArgs>>): Prisma__pendingClient<$Result.GetResult<Prisma.$pendingPayload<ExtArgs>, T, "delete">, never, ExtArgs>
 
     /**
-     * Update one LogAct.
-     * @param {logActUpdateArgs} args - Arguments to update one LogAct.
+     * Update one Pending.
+     * @param {pendingUpdateArgs} args - Arguments to update one Pending.
      * @example
-     * // Update one LogAct
-     * const logAct = await prisma.logAct.update({
+     * // Update one Pending
+     * const pending = await prisma.pending.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2354,30 +2399,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends logActUpdateArgs>(args: SelectSubset<T, logActUpdateArgs<ExtArgs>>): Prisma__logActClient<$Result.GetResult<Prisma.$logActPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends pendingUpdateArgs>(args: SelectSubset<T, pendingUpdateArgs<ExtArgs>>): Prisma__pendingClient<$Result.GetResult<Prisma.$pendingPayload<ExtArgs>, T, "update">, never, ExtArgs>
 
     /**
-     * Delete zero or more LogActs.
-     * @param {logActDeleteManyArgs} args - Arguments to filter LogActs to delete.
+     * Delete zero or more Pendings.
+     * @param {pendingDeleteManyArgs} args - Arguments to filter Pendings to delete.
      * @example
-     * // Delete a few LogActs
-     * const { count } = await prisma.logAct.deleteMany({
+     * // Delete a few Pendings
+     * const { count } = await prisma.pending.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends logActDeleteManyArgs>(args?: SelectSubset<T, logActDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends pendingDeleteManyArgs>(args?: SelectSubset<T, pendingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more LogActs.
+     * Update zero or more Pendings.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {logActUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {pendingUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many LogActs
-     * const logAct = await prisma.logAct.updateMany({
+     * // Update many Pendings
+     * const pending = await prisma.pending.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2387,56 +2432,56 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends logActUpdateManyArgs>(args: SelectSubset<T, logActUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends pendingUpdateManyArgs>(args: SelectSubset<T, pendingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one LogAct.
-     * @param {logActUpsertArgs} args - Arguments to update or create a LogAct.
+     * Create or update one Pending.
+     * @param {pendingUpsertArgs} args - Arguments to update or create a Pending.
      * @example
-     * // Update or create a LogAct
-     * const logAct = await prisma.logAct.upsert({
+     * // Update or create a Pending
+     * const pending = await prisma.pending.upsert({
      *   create: {
-     *     // ... data to create a LogAct
+     *     // ... data to create a Pending
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the LogAct we want to update
+     *     // ... the filter for the Pending we want to update
      *   }
      * })
      */
-    upsert<T extends logActUpsertArgs>(args: SelectSubset<T, logActUpsertArgs<ExtArgs>>): Prisma__logActClient<$Result.GetResult<Prisma.$logActPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends pendingUpsertArgs>(args: SelectSubset<T, pendingUpsertArgs<ExtArgs>>): Prisma__pendingClient<$Result.GetResult<Prisma.$pendingPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
 
 
     /**
-     * Count the number of LogActs.
+     * Count the number of Pendings.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {logActCountArgs} args - Arguments to filter LogActs to count.
+     * @param {pendingCountArgs} args - Arguments to filter Pendings to count.
      * @example
-     * // Count the number of LogActs
-     * const count = await prisma.logAct.count({
+     * // Count the number of Pendings
+     * const count = await prisma.pending.count({
      *   where: {
-     *     // ... the filter for the LogActs we want to count
+     *     // ... the filter for the Pendings we want to count
      *   }
      * })
     **/
-    count<T extends logActCountArgs>(
-      args?: Subset<T, logActCountArgs>,
+    count<T extends pendingCountArgs>(
+      args?: Subset<T, pendingCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], LogActCountAggregateOutputType>
+          : GetScalarType<T['select'], PendingCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a LogAct.
+     * Allows you to perform aggregations operations on a Pending.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {LogActAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {PendingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -2456,13 +2501,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends LogActAggregateArgs>(args: Subset<T, LogActAggregateArgs>): Prisma.PrismaPromise<GetLogActAggregateType<T>>
+    aggregate<T extends PendingAggregateArgs>(args: Subset<T, PendingAggregateArgs>): Prisma.PrismaPromise<GetPendingAggregateType<T>>
 
     /**
-     * Group by LogAct.
+     * Group by Pending.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {logActGroupByArgs} args - Group by arguments.
+     * @param {pendingGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -2477,14 +2522,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends logActGroupByArgs,
+      T extends pendingGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: logActGroupByArgs['orderBy'] }
-        : { orderBy?: logActGroupByArgs['orderBy'] },
+        ? { orderBy: pendingGroupByArgs['orderBy'] }
+        : { orderBy?: pendingGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -2533,22 +2578,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, logActGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLogActGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, pendingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPendingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the logAct model
+   * Fields of the pending model
    */
-  readonly fields: logActFieldRefs;
+  readonly fields: pendingFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for logAct.
+   * The delegate class that acts as a "Promise-like" for pending.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__logActClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__pendingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    products<T extends logAct$productsArgs<ExtArgs> = {}>(args?: Subset<T, logAct$productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$productPayload<ExtArgs>, T, "findMany"> | Null>
+    products<T extends pending$productsArgs<ExtArgs> = {}>(args?: Subset<T, pending$productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$productPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2575,332 +2620,333 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the logAct model
+   * Fields of the pending model
    */ 
-  interface logActFieldRefs {
-    readonly id: FieldRef<"logAct", 'String'>
-    readonly start: FieldRef<"logAct", 'DateTime'>
-    readonly end: FieldRef<"logAct", 'DateTime'>
-    readonly user: FieldRef<"logAct", 'String'>
-    readonly note: FieldRef<"logAct", 'String'>
-    readonly status: FieldRef<"logAct", 'String'>
+  interface pendingFieldRefs {
+    readonly id: FieldRef<"pending", 'String'>
+    readonly start: FieldRef<"pending", 'DateTime'>
+    readonly end: FieldRef<"pending", 'DateTime'>
+    readonly stock_barang: FieldRef<"pending", 'Int'>
+    readonly user: FieldRef<"pending", 'String'>
+    readonly note: FieldRef<"pending", 'String'>
+    readonly status: FieldRef<"pending", 'Boolean'>
   }
     
 
   // Custom InputTypes
   /**
-   * logAct findUnique
+   * pending findUnique
    */
-  export type logActFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the logAct
+     * Select specific fields to fetch from the pending
      */
-    select?: logActSelect<ExtArgs> | null
+    select?: pendingSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: logActInclude<ExtArgs> | null
+    include?: pendingInclude<ExtArgs> | null
     /**
-     * Filter, which logAct to fetch.
+     * Filter, which pending to fetch.
      */
-    where: logActWhereUniqueInput
+    where: pendingWhereUniqueInput
   }
 
   /**
-   * logAct findUniqueOrThrow
+   * pending findUniqueOrThrow
    */
-  export type logActFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the logAct
+     * Select specific fields to fetch from the pending
      */
-    select?: logActSelect<ExtArgs> | null
+    select?: pendingSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: logActInclude<ExtArgs> | null
+    include?: pendingInclude<ExtArgs> | null
     /**
-     * Filter, which logAct to fetch.
+     * Filter, which pending to fetch.
      */
-    where: logActWhereUniqueInput
+    where: pendingWhereUniqueInput
   }
 
   /**
-   * logAct findFirst
+   * pending findFirst
    */
-  export type logActFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the logAct
+     * Select specific fields to fetch from the pending
      */
-    select?: logActSelect<ExtArgs> | null
+    select?: pendingSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: logActInclude<ExtArgs> | null
+    include?: pendingInclude<ExtArgs> | null
     /**
-     * Filter, which logAct to fetch.
+     * Filter, which pending to fetch.
      */
-    where?: logActWhereInput
+    where?: pendingWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of logActs to fetch.
+     * Determine the order of pendings to fetch.
      */
-    orderBy?: logActOrderByWithRelationInput | logActOrderByWithRelationInput[]
+    orderBy?: pendingOrderByWithRelationInput | pendingOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for logActs.
+     * Sets the position for searching for pendings.
      */
-    cursor?: logActWhereUniqueInput
+    cursor?: pendingWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` logActs from the position of the cursor.
+     * Take `±n` pendings from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` logActs.
+     * Skip the first `n` pendings.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of logActs.
+     * Filter by unique combinations of pendings.
      */
-    distinct?: LogActScalarFieldEnum | LogActScalarFieldEnum[]
+    distinct?: PendingScalarFieldEnum | PendingScalarFieldEnum[]
   }
 
   /**
-   * logAct findFirstOrThrow
+   * pending findFirstOrThrow
    */
-  export type logActFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the logAct
+     * Select specific fields to fetch from the pending
      */
-    select?: logActSelect<ExtArgs> | null
+    select?: pendingSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: logActInclude<ExtArgs> | null
+    include?: pendingInclude<ExtArgs> | null
     /**
-     * Filter, which logAct to fetch.
+     * Filter, which pending to fetch.
      */
-    where?: logActWhereInput
+    where?: pendingWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of logActs to fetch.
+     * Determine the order of pendings to fetch.
      */
-    orderBy?: logActOrderByWithRelationInput | logActOrderByWithRelationInput[]
+    orderBy?: pendingOrderByWithRelationInput | pendingOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for logActs.
+     * Sets the position for searching for pendings.
      */
-    cursor?: logActWhereUniqueInput
+    cursor?: pendingWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` logActs from the position of the cursor.
+     * Take `±n` pendings from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` logActs.
+     * Skip the first `n` pendings.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of logActs.
+     * Filter by unique combinations of pendings.
      */
-    distinct?: LogActScalarFieldEnum | LogActScalarFieldEnum[]
+    distinct?: PendingScalarFieldEnum | PendingScalarFieldEnum[]
   }
 
   /**
-   * logAct findMany
+   * pending findMany
    */
-  export type logActFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the logAct
+     * Select specific fields to fetch from the pending
      */
-    select?: logActSelect<ExtArgs> | null
+    select?: pendingSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: logActInclude<ExtArgs> | null
+    include?: pendingInclude<ExtArgs> | null
     /**
-     * Filter, which logActs to fetch.
+     * Filter, which pendings to fetch.
      */
-    where?: logActWhereInput
+    where?: pendingWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of logActs to fetch.
+     * Determine the order of pendings to fetch.
      */
-    orderBy?: logActOrderByWithRelationInput | logActOrderByWithRelationInput[]
+    orderBy?: pendingOrderByWithRelationInput | pendingOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing logActs.
+     * Sets the position for listing pendings.
      */
-    cursor?: logActWhereUniqueInput
+    cursor?: pendingWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` logActs from the position of the cursor.
+     * Take `±n` pendings from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` logActs.
+     * Skip the first `n` pendings.
      */
     skip?: number
-    distinct?: LogActScalarFieldEnum | LogActScalarFieldEnum[]
+    distinct?: PendingScalarFieldEnum | PendingScalarFieldEnum[]
   }
 
   /**
-   * logAct create
+   * pending create
    */
-  export type logActCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the logAct
+     * Select specific fields to fetch from the pending
      */
-    select?: logActSelect<ExtArgs> | null
+    select?: pendingSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: logActInclude<ExtArgs> | null
+    include?: pendingInclude<ExtArgs> | null
     /**
-     * The data needed to create a logAct.
+     * The data needed to create a pending.
      */
-    data?: XOR<logActCreateInput, logActUncheckedCreateInput>
+    data?: XOR<pendingCreateInput, pendingUncheckedCreateInput>
   }
 
   /**
-   * logAct createMany
+   * pending createMany
    */
-  export type logActCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many logActs.
+     * The data used to create many pendings.
      */
-    data: logActCreateManyInput | logActCreateManyInput[]
+    data: pendingCreateManyInput | pendingCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * logAct createManyAndReturn
+   * pending createManyAndReturn
    */
-  export type logActCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the logAct
+     * Select specific fields to fetch from the pending
      */
-    select?: logActSelectCreateManyAndReturn<ExtArgs> | null
+    select?: pendingSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * The data used to create many logActs.
+     * The data used to create many pendings.
      */
-    data: logActCreateManyInput | logActCreateManyInput[]
+    data: pendingCreateManyInput | pendingCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * logAct update
+   * pending update
    */
-  export type logActUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the logAct
+     * Select specific fields to fetch from the pending
      */
-    select?: logActSelect<ExtArgs> | null
+    select?: pendingSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: logActInclude<ExtArgs> | null
+    include?: pendingInclude<ExtArgs> | null
     /**
-     * The data needed to update a logAct.
+     * The data needed to update a pending.
      */
-    data: XOR<logActUpdateInput, logActUncheckedUpdateInput>
+    data: XOR<pendingUpdateInput, pendingUncheckedUpdateInput>
     /**
-     * Choose, which logAct to update.
+     * Choose, which pending to update.
      */
-    where: logActWhereUniqueInput
+    where: pendingWhereUniqueInput
   }
 
   /**
-   * logAct updateMany
+   * pending updateMany
    */
-  export type logActUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update logActs.
+     * The data used to update pendings.
      */
-    data: XOR<logActUpdateManyMutationInput, logActUncheckedUpdateManyInput>
+    data: XOR<pendingUpdateManyMutationInput, pendingUncheckedUpdateManyInput>
     /**
-     * Filter which logActs to update
+     * Filter which pendings to update
      */
-    where?: logActWhereInput
+    where?: pendingWhereInput
   }
 
   /**
-   * logAct upsert
+   * pending upsert
    */
-  export type logActUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the logAct
+     * Select specific fields to fetch from the pending
      */
-    select?: logActSelect<ExtArgs> | null
+    select?: pendingSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: logActInclude<ExtArgs> | null
+    include?: pendingInclude<ExtArgs> | null
     /**
-     * The filter to search for the logAct to update in case it exists.
+     * The filter to search for the pending to update in case it exists.
      */
-    where: logActWhereUniqueInput
+    where: pendingWhereUniqueInput
     /**
-     * In case the logAct found by the `where` argument doesn't exist, create a new logAct with this data.
+     * In case the pending found by the `where` argument doesn't exist, create a new pending with this data.
      */
-    create: XOR<logActCreateInput, logActUncheckedCreateInput>
+    create: XOR<pendingCreateInput, pendingUncheckedCreateInput>
     /**
-     * In case the logAct was found with the provided `where` argument, update it with this data.
+     * In case the pending was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<logActUpdateInput, logActUncheckedUpdateInput>
+    update: XOR<pendingUpdateInput, pendingUncheckedUpdateInput>
   }
 
   /**
-   * logAct delete
+   * pending delete
    */
-  export type logActDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the logAct
+     * Select specific fields to fetch from the pending
      */
-    select?: logActSelect<ExtArgs> | null
+    select?: pendingSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: logActInclude<ExtArgs> | null
+    include?: pendingInclude<ExtArgs> | null
     /**
-     * Filter which logAct to delete.
+     * Filter which pending to delete.
      */
-    where: logActWhereUniqueInput
+    where: pendingWhereUniqueInput
   }
 
   /**
-   * logAct deleteMany
+   * pending deleteMany
    */
-  export type logActDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which logActs to delete
+     * Filter which pendings to delete
      */
-    where?: logActWhereInput
+    where?: pendingWhereInput
   }
 
   /**
-   * logAct.products
+   * pending.products
    */
-  export type logAct$productsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pending$productsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the product
      */
@@ -2918,17 +2964,17 @@ export namespace Prisma {
   }
 
   /**
-   * logAct without action
+   * pending without action
    */
-  export type logActDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the logAct
+     * Select specific fields to fetch from the pending
      */
-    select?: logActSelect<ExtArgs> | null
+    select?: pendingSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: logActInclude<ExtArgs> | null
+    include?: pendingInclude<ExtArgs> | null
   }
 
 
@@ -2957,16 +3003,17 @@ export namespace Prisma {
   export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
 
 
-  export const LogActScalarFieldEnum: {
+  export const PendingScalarFieldEnum: {
     id: 'id',
     start: 'start',
     end: 'end',
+    stock_barang: 'stock_barang',
     user: 'user',
     note: 'note',
     status: 'status'
   };
 
-  export type LogActScalarFieldEnum = (typeof LogActScalarFieldEnum)[keyof typeof LogActScalarFieldEnum]
+  export type PendingScalarFieldEnum = (typeof PendingScalarFieldEnum)[keyof typeof PendingScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3041,6 +3088,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -3066,7 +3120,7 @@ export namespace Prisma {
     end?: DateTimeNullableFilter<"product"> | Date | string | null
     name_barang?: StringNullableFilter<"product"> | string | null
     stock_barang?: IntNullableFilter<"product"> | number | null
-    logActs?: LogActListRelationFilter
+    pending?: PendingListRelationFilter
   }
 
   export type productOrderByWithRelationInput = {
@@ -3075,7 +3129,7 @@ export namespace Prisma {
     end?: SortOrderInput | SortOrder
     name_barang?: SortOrderInput | SortOrder
     stock_barang?: SortOrderInput | SortOrder
-    logActs?: logActOrderByRelationAggregateInput
+    pending?: pendingOrderByRelationAggregateInput
   }
 
   export type productWhereUniqueInput = Prisma.AtLeast<{
@@ -3087,7 +3141,7 @@ export namespace Prisma {
     end?: DateTimeNullableFilter<"product"> | Date | string | null
     name_barang?: StringNullableFilter<"product"> | string | null
     stock_barang?: IntNullableFilter<"product"> | number | null
-    logActs?: LogActListRelationFilter
+    pending?: PendingListRelationFilter
   }, "id">
 
   export type productOrderByWithAggregationInput = {
@@ -3114,64 +3168,71 @@ export namespace Prisma {
     stock_barang?: IntNullableWithAggregatesFilter<"product"> | number | null
   }
 
-  export type logActWhereInput = {
-    AND?: logActWhereInput | logActWhereInput[]
-    OR?: logActWhereInput[]
-    NOT?: logActWhereInput | logActWhereInput[]
-    id?: StringFilter<"logAct"> | string
-    start?: DateTimeFilter<"logAct"> | Date | string
-    end?: DateTimeNullableFilter<"logAct"> | Date | string | null
-    user?: StringNullableFilter<"logAct"> | string | null
-    note?: StringNullableFilter<"logAct"> | string | null
-    status?: StringNullableFilter<"logAct"> | string | null
+  export type pendingWhereInput = {
+    AND?: pendingWhereInput | pendingWhereInput[]
+    OR?: pendingWhereInput[]
+    NOT?: pendingWhereInput | pendingWhereInput[]
+    id?: StringFilter<"pending"> | string
+    start?: DateTimeFilter<"pending"> | Date | string
+    end?: DateTimeNullableFilter<"pending"> | Date | string | null
+    stock_barang?: IntNullableFilter<"pending"> | number | null
+    user?: StringNullableFilter<"pending"> | string | null
+    note?: StringNullableFilter<"pending"> | string | null
+    status?: BoolFilter<"pending"> | boolean
     products?: ProductListRelationFilter
   }
 
-  export type logActOrderByWithRelationInput = {
+  export type pendingOrderByWithRelationInput = {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrderInput | SortOrder
+    stock_barang?: SortOrderInput | SortOrder
     user?: SortOrderInput | SortOrder
     note?: SortOrderInput | SortOrder
-    status?: SortOrderInput | SortOrder
+    status?: SortOrder
     products?: productOrderByRelationAggregateInput
   }
 
-  export type logActWhereUniqueInput = Prisma.AtLeast<{
+  export type pendingWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: logActWhereInput | logActWhereInput[]
-    OR?: logActWhereInput[]
-    NOT?: logActWhereInput | logActWhereInput[]
-    start?: DateTimeFilter<"logAct"> | Date | string
-    end?: DateTimeNullableFilter<"logAct"> | Date | string | null
-    user?: StringNullableFilter<"logAct"> | string | null
-    note?: StringNullableFilter<"logAct"> | string | null
-    status?: StringNullableFilter<"logAct"> | string | null
+    AND?: pendingWhereInput | pendingWhereInput[]
+    OR?: pendingWhereInput[]
+    NOT?: pendingWhereInput | pendingWhereInput[]
+    start?: DateTimeFilter<"pending"> | Date | string
+    end?: DateTimeNullableFilter<"pending"> | Date | string | null
+    stock_barang?: IntNullableFilter<"pending"> | number | null
+    user?: StringNullableFilter<"pending"> | string | null
+    note?: StringNullableFilter<"pending"> | string | null
+    status?: BoolFilter<"pending"> | boolean
     products?: ProductListRelationFilter
   }, "id">
 
-  export type logActOrderByWithAggregationInput = {
+  export type pendingOrderByWithAggregationInput = {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrderInput | SortOrder
+    stock_barang?: SortOrderInput | SortOrder
     user?: SortOrderInput | SortOrder
     note?: SortOrderInput | SortOrder
-    status?: SortOrderInput | SortOrder
-    _count?: logActCountOrderByAggregateInput
-    _max?: logActMaxOrderByAggregateInput
-    _min?: logActMinOrderByAggregateInput
+    status?: SortOrder
+    _count?: pendingCountOrderByAggregateInput
+    _avg?: pendingAvgOrderByAggregateInput
+    _max?: pendingMaxOrderByAggregateInput
+    _min?: pendingMinOrderByAggregateInput
+    _sum?: pendingSumOrderByAggregateInput
   }
 
-  export type logActScalarWhereWithAggregatesInput = {
-    AND?: logActScalarWhereWithAggregatesInput | logActScalarWhereWithAggregatesInput[]
-    OR?: logActScalarWhereWithAggregatesInput[]
-    NOT?: logActScalarWhereWithAggregatesInput | logActScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"logAct"> | string
-    start?: DateTimeWithAggregatesFilter<"logAct"> | Date | string
-    end?: DateTimeNullableWithAggregatesFilter<"logAct"> | Date | string | null
-    user?: StringNullableWithAggregatesFilter<"logAct"> | string | null
-    note?: StringNullableWithAggregatesFilter<"logAct"> | string | null
-    status?: StringNullableWithAggregatesFilter<"logAct"> | string | null
+  export type pendingScalarWhereWithAggregatesInput = {
+    AND?: pendingScalarWhereWithAggregatesInput | pendingScalarWhereWithAggregatesInput[]
+    OR?: pendingScalarWhereWithAggregatesInput[]
+    NOT?: pendingScalarWhereWithAggregatesInput | pendingScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"pending"> | string
+    start?: DateTimeWithAggregatesFilter<"pending"> | Date | string
+    end?: DateTimeNullableWithAggregatesFilter<"pending"> | Date | string | null
+    stock_barang?: IntNullableWithAggregatesFilter<"pending"> | number | null
+    user?: StringNullableWithAggregatesFilter<"pending"> | string | null
+    note?: StringNullableWithAggregatesFilter<"pending"> | string | null
+    status?: BoolWithAggregatesFilter<"pending"> | boolean
   }
 
   export type productCreateInput = {
@@ -3180,7 +3241,7 @@ export namespace Prisma {
     end?: Date | string | null
     name_barang?: string | null
     stock_barang?: number | null
-    logActs?: logActCreateNestedManyWithoutProductsInput
+    pending?: pendingCreateNestedManyWithoutProductsInput
   }
 
   export type productUncheckedCreateInput = {
@@ -3189,7 +3250,7 @@ export namespace Prisma {
     end?: Date | string | null
     name_barang?: string | null
     stock_barang?: number | null
-    logActs?: logActUncheckedCreateNestedManyWithoutProductsInput
+    pending?: pendingUncheckedCreateNestedManyWithoutProductsInput
   }
 
   export type productUpdateInput = {
@@ -3198,7 +3259,7 @@ export namespace Prisma {
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     name_barang?: NullableStringFieldUpdateOperationsInput | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
-    logActs?: logActUpdateManyWithoutProductsNestedInput
+    pending?: pendingUpdateManyWithoutProductsNestedInput
   }
 
   export type productUncheckedUpdateInput = {
@@ -3207,7 +3268,7 @@ export namespace Prisma {
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     name_barang?: NullableStringFieldUpdateOperationsInput | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
-    logActs?: logActUncheckedUpdateManyWithoutProductsNestedInput
+    pending?: pendingUncheckedUpdateManyWithoutProductsNestedInput
   }
 
   export type productCreateManyInput = {
@@ -3234,71 +3295,78 @@ export namespace Prisma {
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type logActCreateInput = {
+  export type pendingCreateInput = {
     id?: string
     start?: Date | string
     end?: Date | string | null
+    stock_barang?: number | null
     user?: string | null
     note?: string | null
-    status?: string | null
-    products?: productCreateNestedManyWithoutLogActsInput
+    status?: boolean
+    products?: productCreateNestedManyWithoutPendingInput
   }
 
-  export type logActUncheckedCreateInput = {
+  export type pendingUncheckedCreateInput = {
     id?: string
     start?: Date | string
     end?: Date | string | null
+    stock_barang?: number | null
     user?: string | null
     note?: string | null
-    status?: string | null
-    products?: productUncheckedCreateNestedManyWithoutLogActsInput
+    status?: boolean
+    products?: productUncheckedCreateNestedManyWithoutPendingInput
   }
 
-  export type logActUpdateInput = {
+  export type pendingUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: NullableStringFieldUpdateOperationsInput | string | null
-    products?: productUpdateManyWithoutLogActsNestedInput
+    status?: BoolFieldUpdateOperationsInput | boolean
+    products?: productUpdateManyWithoutPendingNestedInput
   }
 
-  export type logActUncheckedUpdateInput = {
+  export type pendingUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: NullableStringFieldUpdateOperationsInput | string | null
-    products?: productUncheckedUpdateManyWithoutLogActsNestedInput
+    status?: BoolFieldUpdateOperationsInput | boolean
+    products?: productUncheckedUpdateManyWithoutPendingNestedInput
   }
 
-  export type logActCreateManyInput = {
+  export type pendingCreateManyInput = {
     id?: string
     start?: Date | string
     end?: Date | string | null
+    stock_barang?: number | null
     user?: string | null
     note?: string | null
-    status?: string | null
+    status?: boolean
   }
 
-  export type logActUpdateManyMutationInput = {
+  export type pendingUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type logActUncheckedUpdateManyInput = {
+  export type pendingUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -3364,10 +3432,10 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type LogActListRelationFilter = {
-    every?: logActWhereInput
-    some?: logActWhereInput
-    none?: logActWhereInput
+  export type PendingListRelationFilter = {
+    every?: pendingWhereInput
+    some?: pendingWhereInput
+    none?: pendingWhereInput
   }
 
   export type SortOrderInput = {
@@ -3375,7 +3443,7 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type logActOrderByRelationAggregateInput = {
+  export type pendingOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -3491,6 +3559,11 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type ProductListRelationFilter = {
     every?: productWhereInput
     some?: productWhereInput
@@ -3501,43 +3574,62 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type logActCountOrderByAggregateInput = {
+  export type pendingCountOrderByAggregateInput = {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrder
+    stock_barang?: SortOrder
     user?: SortOrder
     note?: SortOrder
     status?: SortOrder
   }
 
-  export type logActMaxOrderByAggregateInput = {
+  export type pendingAvgOrderByAggregateInput = {
+    stock_barang?: SortOrder
+  }
+
+  export type pendingMaxOrderByAggregateInput = {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrder
+    stock_barang?: SortOrder
     user?: SortOrder
     note?: SortOrder
     status?: SortOrder
   }
 
-  export type logActMinOrderByAggregateInput = {
+  export type pendingMinOrderByAggregateInput = {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrder
+    stock_barang?: SortOrder
     user?: SortOrder
     note?: SortOrder
     status?: SortOrder
   }
 
-  export type logActCreateNestedManyWithoutProductsInput = {
-    create?: XOR<logActCreateWithoutProductsInput, logActUncheckedCreateWithoutProductsInput> | logActCreateWithoutProductsInput[] | logActUncheckedCreateWithoutProductsInput[]
-    connectOrCreate?: logActCreateOrConnectWithoutProductsInput | logActCreateOrConnectWithoutProductsInput[]
-    connect?: logActWhereUniqueInput | logActWhereUniqueInput[]
+  export type pendingSumOrderByAggregateInput = {
+    stock_barang?: SortOrder
   }
 
-  export type logActUncheckedCreateNestedManyWithoutProductsInput = {
-    create?: XOR<logActCreateWithoutProductsInput, logActUncheckedCreateWithoutProductsInput> | logActCreateWithoutProductsInput[] | logActUncheckedCreateWithoutProductsInput[]
-    connectOrCreate?: logActCreateOrConnectWithoutProductsInput | logActCreateOrConnectWithoutProductsInput[]
-    connect?: logActWhereUniqueInput | logActWhereUniqueInput[]
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type pendingCreateNestedManyWithoutProductsInput = {
+    create?: XOR<pendingCreateWithoutProductsInput, pendingUncheckedCreateWithoutProductsInput> | pendingCreateWithoutProductsInput[] | pendingUncheckedCreateWithoutProductsInput[]
+    connectOrCreate?: pendingCreateOrConnectWithoutProductsInput | pendingCreateOrConnectWithoutProductsInput[]
+    connect?: pendingWhereUniqueInput | pendingWhereUniqueInput[]
+  }
+
+  export type pendingUncheckedCreateNestedManyWithoutProductsInput = {
+    create?: XOR<pendingCreateWithoutProductsInput, pendingUncheckedCreateWithoutProductsInput> | pendingCreateWithoutProductsInput[] | pendingUncheckedCreateWithoutProductsInput[]
+    connectOrCreate?: pendingCreateOrConnectWithoutProductsInput | pendingCreateOrConnectWithoutProductsInput[]
+    connect?: pendingWhereUniqueInput | pendingWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -3564,67 +3656,71 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type logActUpdateManyWithoutProductsNestedInput = {
-    create?: XOR<logActCreateWithoutProductsInput, logActUncheckedCreateWithoutProductsInput> | logActCreateWithoutProductsInput[] | logActUncheckedCreateWithoutProductsInput[]
-    connectOrCreate?: logActCreateOrConnectWithoutProductsInput | logActCreateOrConnectWithoutProductsInput[]
-    upsert?: logActUpsertWithWhereUniqueWithoutProductsInput | logActUpsertWithWhereUniqueWithoutProductsInput[]
-    set?: logActWhereUniqueInput | logActWhereUniqueInput[]
-    disconnect?: logActWhereUniqueInput | logActWhereUniqueInput[]
-    delete?: logActWhereUniqueInput | logActWhereUniqueInput[]
-    connect?: logActWhereUniqueInput | logActWhereUniqueInput[]
-    update?: logActUpdateWithWhereUniqueWithoutProductsInput | logActUpdateWithWhereUniqueWithoutProductsInput[]
-    updateMany?: logActUpdateManyWithWhereWithoutProductsInput | logActUpdateManyWithWhereWithoutProductsInput[]
-    deleteMany?: logActScalarWhereInput | logActScalarWhereInput[]
+  export type pendingUpdateManyWithoutProductsNestedInput = {
+    create?: XOR<pendingCreateWithoutProductsInput, pendingUncheckedCreateWithoutProductsInput> | pendingCreateWithoutProductsInput[] | pendingUncheckedCreateWithoutProductsInput[]
+    connectOrCreate?: pendingCreateOrConnectWithoutProductsInput | pendingCreateOrConnectWithoutProductsInput[]
+    upsert?: pendingUpsertWithWhereUniqueWithoutProductsInput | pendingUpsertWithWhereUniqueWithoutProductsInput[]
+    set?: pendingWhereUniqueInput | pendingWhereUniqueInput[]
+    disconnect?: pendingWhereUniqueInput | pendingWhereUniqueInput[]
+    delete?: pendingWhereUniqueInput | pendingWhereUniqueInput[]
+    connect?: pendingWhereUniqueInput | pendingWhereUniqueInput[]
+    update?: pendingUpdateWithWhereUniqueWithoutProductsInput | pendingUpdateWithWhereUniqueWithoutProductsInput[]
+    updateMany?: pendingUpdateManyWithWhereWithoutProductsInput | pendingUpdateManyWithWhereWithoutProductsInput[]
+    deleteMany?: pendingScalarWhereInput | pendingScalarWhereInput[]
   }
 
-  export type logActUncheckedUpdateManyWithoutProductsNestedInput = {
-    create?: XOR<logActCreateWithoutProductsInput, logActUncheckedCreateWithoutProductsInput> | logActCreateWithoutProductsInput[] | logActUncheckedCreateWithoutProductsInput[]
-    connectOrCreate?: logActCreateOrConnectWithoutProductsInput | logActCreateOrConnectWithoutProductsInput[]
-    upsert?: logActUpsertWithWhereUniqueWithoutProductsInput | logActUpsertWithWhereUniqueWithoutProductsInput[]
-    set?: logActWhereUniqueInput | logActWhereUniqueInput[]
-    disconnect?: logActWhereUniqueInput | logActWhereUniqueInput[]
-    delete?: logActWhereUniqueInput | logActWhereUniqueInput[]
-    connect?: logActWhereUniqueInput | logActWhereUniqueInput[]
-    update?: logActUpdateWithWhereUniqueWithoutProductsInput | logActUpdateWithWhereUniqueWithoutProductsInput[]
-    updateMany?: logActUpdateManyWithWhereWithoutProductsInput | logActUpdateManyWithWhereWithoutProductsInput[]
-    deleteMany?: logActScalarWhereInput | logActScalarWhereInput[]
+  export type pendingUncheckedUpdateManyWithoutProductsNestedInput = {
+    create?: XOR<pendingCreateWithoutProductsInput, pendingUncheckedCreateWithoutProductsInput> | pendingCreateWithoutProductsInput[] | pendingUncheckedCreateWithoutProductsInput[]
+    connectOrCreate?: pendingCreateOrConnectWithoutProductsInput | pendingCreateOrConnectWithoutProductsInput[]
+    upsert?: pendingUpsertWithWhereUniqueWithoutProductsInput | pendingUpsertWithWhereUniqueWithoutProductsInput[]
+    set?: pendingWhereUniqueInput | pendingWhereUniqueInput[]
+    disconnect?: pendingWhereUniqueInput | pendingWhereUniqueInput[]
+    delete?: pendingWhereUniqueInput | pendingWhereUniqueInput[]
+    connect?: pendingWhereUniqueInput | pendingWhereUniqueInput[]
+    update?: pendingUpdateWithWhereUniqueWithoutProductsInput | pendingUpdateWithWhereUniqueWithoutProductsInput[]
+    updateMany?: pendingUpdateManyWithWhereWithoutProductsInput | pendingUpdateManyWithWhereWithoutProductsInput[]
+    deleteMany?: pendingScalarWhereInput | pendingScalarWhereInput[]
   }
 
-  export type productCreateNestedManyWithoutLogActsInput = {
-    create?: XOR<productCreateWithoutLogActsInput, productUncheckedCreateWithoutLogActsInput> | productCreateWithoutLogActsInput[] | productUncheckedCreateWithoutLogActsInput[]
-    connectOrCreate?: productCreateOrConnectWithoutLogActsInput | productCreateOrConnectWithoutLogActsInput[]
+  export type productCreateNestedManyWithoutPendingInput = {
+    create?: XOR<productCreateWithoutPendingInput, productUncheckedCreateWithoutPendingInput> | productCreateWithoutPendingInput[] | productUncheckedCreateWithoutPendingInput[]
+    connectOrCreate?: productCreateOrConnectWithoutPendingInput | productCreateOrConnectWithoutPendingInput[]
     connect?: productWhereUniqueInput | productWhereUniqueInput[]
   }
 
-  export type productUncheckedCreateNestedManyWithoutLogActsInput = {
-    create?: XOR<productCreateWithoutLogActsInput, productUncheckedCreateWithoutLogActsInput> | productCreateWithoutLogActsInput[] | productUncheckedCreateWithoutLogActsInput[]
-    connectOrCreate?: productCreateOrConnectWithoutLogActsInput | productCreateOrConnectWithoutLogActsInput[]
+  export type productUncheckedCreateNestedManyWithoutPendingInput = {
+    create?: XOR<productCreateWithoutPendingInput, productUncheckedCreateWithoutPendingInput> | productCreateWithoutPendingInput[] | productUncheckedCreateWithoutPendingInput[]
+    connectOrCreate?: productCreateOrConnectWithoutPendingInput | productCreateOrConnectWithoutPendingInput[]
     connect?: productWhereUniqueInput | productWhereUniqueInput[]
   }
 
-  export type productUpdateManyWithoutLogActsNestedInput = {
-    create?: XOR<productCreateWithoutLogActsInput, productUncheckedCreateWithoutLogActsInput> | productCreateWithoutLogActsInput[] | productUncheckedCreateWithoutLogActsInput[]
-    connectOrCreate?: productCreateOrConnectWithoutLogActsInput | productCreateOrConnectWithoutLogActsInput[]
-    upsert?: productUpsertWithWhereUniqueWithoutLogActsInput | productUpsertWithWhereUniqueWithoutLogActsInput[]
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type productUpdateManyWithoutPendingNestedInput = {
+    create?: XOR<productCreateWithoutPendingInput, productUncheckedCreateWithoutPendingInput> | productCreateWithoutPendingInput[] | productUncheckedCreateWithoutPendingInput[]
+    connectOrCreate?: productCreateOrConnectWithoutPendingInput | productCreateOrConnectWithoutPendingInput[]
+    upsert?: productUpsertWithWhereUniqueWithoutPendingInput | productUpsertWithWhereUniqueWithoutPendingInput[]
     set?: productWhereUniqueInput | productWhereUniqueInput[]
     disconnect?: productWhereUniqueInput | productWhereUniqueInput[]
     delete?: productWhereUniqueInput | productWhereUniqueInput[]
     connect?: productWhereUniqueInput | productWhereUniqueInput[]
-    update?: productUpdateWithWhereUniqueWithoutLogActsInput | productUpdateWithWhereUniqueWithoutLogActsInput[]
-    updateMany?: productUpdateManyWithWhereWithoutLogActsInput | productUpdateManyWithWhereWithoutLogActsInput[]
+    update?: productUpdateWithWhereUniqueWithoutPendingInput | productUpdateWithWhereUniqueWithoutPendingInput[]
+    updateMany?: productUpdateManyWithWhereWithoutPendingInput | productUpdateManyWithWhereWithoutPendingInput[]
     deleteMany?: productScalarWhereInput | productScalarWhereInput[]
   }
 
-  export type productUncheckedUpdateManyWithoutLogActsNestedInput = {
-    create?: XOR<productCreateWithoutLogActsInput, productUncheckedCreateWithoutLogActsInput> | productCreateWithoutLogActsInput[] | productUncheckedCreateWithoutLogActsInput[]
-    connectOrCreate?: productCreateOrConnectWithoutLogActsInput | productCreateOrConnectWithoutLogActsInput[]
-    upsert?: productUpsertWithWhereUniqueWithoutLogActsInput | productUpsertWithWhereUniqueWithoutLogActsInput[]
+  export type productUncheckedUpdateManyWithoutPendingNestedInput = {
+    create?: XOR<productCreateWithoutPendingInput, productUncheckedCreateWithoutPendingInput> | productCreateWithoutPendingInput[] | productUncheckedCreateWithoutPendingInput[]
+    connectOrCreate?: productCreateOrConnectWithoutPendingInput | productCreateOrConnectWithoutPendingInput[]
+    upsert?: productUpsertWithWhereUniqueWithoutPendingInput | productUpsertWithWhereUniqueWithoutPendingInput[]
     set?: productWhereUniqueInput | productWhereUniqueInput[]
     disconnect?: productWhereUniqueInput | productWhereUniqueInput[]
     delete?: productWhereUniqueInput | productWhereUniqueInput[]
     connect?: productWhereUniqueInput | productWhereUniqueInput[]
-    update?: productUpdateWithWhereUniqueWithoutLogActsInput | productUpdateWithWhereUniqueWithoutLogActsInput[]
-    updateMany?: productUpdateManyWithWhereWithoutLogActsInput | productUpdateManyWithWhereWithoutLogActsInput[]
+    update?: productUpdateWithWhereUniqueWithoutPendingInput | productUpdateWithWhereUniqueWithoutPendingInput[]
+    updateMany?: productUpdateManyWithWhereWithoutPendingInput | productUpdateManyWithWhereWithoutPendingInput[]
     deleteMany?: productScalarWhereInput | productScalarWhereInput[]
   }
 
@@ -3789,58 +3885,74 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
-  export type logActCreateWithoutProductsInput = {
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type pendingCreateWithoutProductsInput = {
     id?: string
     start?: Date | string
     end?: Date | string | null
+    stock_barang?: number | null
     user?: string | null
     note?: string | null
-    status?: string | null
+    status?: boolean
   }
 
-  export type logActUncheckedCreateWithoutProductsInput = {
+  export type pendingUncheckedCreateWithoutProductsInput = {
     id?: string
     start?: Date | string
     end?: Date | string | null
+    stock_barang?: number | null
     user?: string | null
     note?: string | null
-    status?: string | null
+    status?: boolean
   }
 
-  export type logActCreateOrConnectWithoutProductsInput = {
-    where: logActWhereUniqueInput
-    create: XOR<logActCreateWithoutProductsInput, logActUncheckedCreateWithoutProductsInput>
+  export type pendingCreateOrConnectWithoutProductsInput = {
+    where: pendingWhereUniqueInput
+    create: XOR<pendingCreateWithoutProductsInput, pendingUncheckedCreateWithoutProductsInput>
   }
 
-  export type logActUpsertWithWhereUniqueWithoutProductsInput = {
-    where: logActWhereUniqueInput
-    update: XOR<logActUpdateWithoutProductsInput, logActUncheckedUpdateWithoutProductsInput>
-    create: XOR<logActCreateWithoutProductsInput, logActUncheckedCreateWithoutProductsInput>
+  export type pendingUpsertWithWhereUniqueWithoutProductsInput = {
+    where: pendingWhereUniqueInput
+    update: XOR<pendingUpdateWithoutProductsInput, pendingUncheckedUpdateWithoutProductsInput>
+    create: XOR<pendingCreateWithoutProductsInput, pendingUncheckedCreateWithoutProductsInput>
   }
 
-  export type logActUpdateWithWhereUniqueWithoutProductsInput = {
-    where: logActWhereUniqueInput
-    data: XOR<logActUpdateWithoutProductsInput, logActUncheckedUpdateWithoutProductsInput>
+  export type pendingUpdateWithWhereUniqueWithoutProductsInput = {
+    where: pendingWhereUniqueInput
+    data: XOR<pendingUpdateWithoutProductsInput, pendingUncheckedUpdateWithoutProductsInput>
   }
 
-  export type logActUpdateManyWithWhereWithoutProductsInput = {
-    where: logActScalarWhereInput
-    data: XOR<logActUpdateManyMutationInput, logActUncheckedUpdateManyWithoutProductsInput>
+  export type pendingUpdateManyWithWhereWithoutProductsInput = {
+    where: pendingScalarWhereInput
+    data: XOR<pendingUpdateManyMutationInput, pendingUncheckedUpdateManyWithoutProductsInput>
   }
 
-  export type logActScalarWhereInput = {
-    AND?: logActScalarWhereInput | logActScalarWhereInput[]
-    OR?: logActScalarWhereInput[]
-    NOT?: logActScalarWhereInput | logActScalarWhereInput[]
-    id?: StringFilter<"logAct"> | string
-    start?: DateTimeFilter<"logAct"> | Date | string
-    end?: DateTimeNullableFilter<"logAct"> | Date | string | null
-    user?: StringNullableFilter<"logAct"> | string | null
-    note?: StringNullableFilter<"logAct"> | string | null
-    status?: StringNullableFilter<"logAct"> | string | null
+  export type pendingScalarWhereInput = {
+    AND?: pendingScalarWhereInput | pendingScalarWhereInput[]
+    OR?: pendingScalarWhereInput[]
+    NOT?: pendingScalarWhereInput | pendingScalarWhereInput[]
+    id?: StringFilter<"pending"> | string
+    start?: DateTimeFilter<"pending"> | Date | string
+    end?: DateTimeNullableFilter<"pending"> | Date | string | null
+    stock_barang?: IntNullableFilter<"pending"> | number | null
+    user?: StringNullableFilter<"pending"> | string | null
+    note?: StringNullableFilter<"pending"> | string | null
+    status?: BoolFilter<"pending"> | boolean
   }
 
-  export type productCreateWithoutLogActsInput = {
+  export type productCreateWithoutPendingInput = {
     id?: string
     start?: Date | string
     end?: Date | string | null
@@ -3848,7 +3960,7 @@ export namespace Prisma {
     stock_barang?: number | null
   }
 
-  export type productUncheckedCreateWithoutLogActsInput = {
+  export type productUncheckedCreateWithoutPendingInput = {
     id?: string
     start?: Date | string
     end?: Date | string | null
@@ -3856,25 +3968,25 @@ export namespace Prisma {
     stock_barang?: number | null
   }
 
-  export type productCreateOrConnectWithoutLogActsInput = {
+  export type productCreateOrConnectWithoutPendingInput = {
     where: productWhereUniqueInput
-    create: XOR<productCreateWithoutLogActsInput, productUncheckedCreateWithoutLogActsInput>
+    create: XOR<productCreateWithoutPendingInput, productUncheckedCreateWithoutPendingInput>
   }
 
-  export type productUpsertWithWhereUniqueWithoutLogActsInput = {
+  export type productUpsertWithWhereUniqueWithoutPendingInput = {
     where: productWhereUniqueInput
-    update: XOR<productUpdateWithoutLogActsInput, productUncheckedUpdateWithoutLogActsInput>
-    create: XOR<productCreateWithoutLogActsInput, productUncheckedCreateWithoutLogActsInput>
+    update: XOR<productUpdateWithoutPendingInput, productUncheckedUpdateWithoutPendingInput>
+    create: XOR<productCreateWithoutPendingInput, productUncheckedCreateWithoutPendingInput>
   }
 
-  export type productUpdateWithWhereUniqueWithoutLogActsInput = {
+  export type productUpdateWithWhereUniqueWithoutPendingInput = {
     where: productWhereUniqueInput
-    data: XOR<productUpdateWithoutLogActsInput, productUncheckedUpdateWithoutLogActsInput>
+    data: XOR<productUpdateWithoutPendingInput, productUncheckedUpdateWithoutPendingInput>
   }
 
-  export type productUpdateManyWithWhereWithoutLogActsInput = {
+  export type productUpdateManyWithWhereWithoutPendingInput = {
     where: productScalarWhereInput
-    data: XOR<productUpdateManyMutationInput, productUncheckedUpdateManyWithoutLogActsInput>
+    data: XOR<productUpdateManyMutationInput, productUncheckedUpdateManyWithoutPendingInput>
   }
 
   export type productScalarWhereInput = {
@@ -3888,34 +4000,37 @@ export namespace Prisma {
     stock_barang?: IntNullableFilter<"product"> | number | null
   }
 
-  export type logActUpdateWithoutProductsInput = {
+  export type pendingUpdateWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type logActUncheckedUpdateWithoutProductsInput = {
+  export type pendingUncheckedUpdateWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type logActUncheckedUpdateManyWithoutProductsInput = {
+  export type pendingUncheckedUpdateManyWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type productUpdateWithoutLogActsInput = {
+  export type productUpdateWithoutPendingInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3923,7 +4038,7 @@ export namespace Prisma {
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type productUncheckedUpdateWithoutLogActsInput = {
+  export type productUncheckedUpdateWithoutPendingInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3931,7 +4046,7 @@ export namespace Prisma {
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type productUncheckedUpdateManyWithoutLogActsInput = {
+  export type productUncheckedUpdateManyWithoutPendingInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -3949,17 +4064,17 @@ export namespace Prisma {
      */
     export type ProductCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ProductCountOutputTypeDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use LogActCountOutputTypeDefaultArgs instead
+     * @deprecated Use PendingCountOutputTypeDefaultArgs instead
      */
-    export type LogActCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = LogActCountOutputTypeDefaultArgs<ExtArgs>
+    export type PendingCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PendingCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use productDefaultArgs instead
      */
     export type productArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = productDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use logActDefaultArgs instead
+     * @deprecated Use pendingDefaultArgs instead
      */
-    export type logActArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = logActDefaultArgs<ExtArgs>
+    export type pendingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = pendingDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import JsBarcode from 'jsbarcode';
 import styles from '@/components/listProduct.module.css';
 import BarcodeScanner from '@/components/barcode';
-import { CreateProduct, GetSearchProduct, UpdateDecrement, UpdateIncrement } from '@/service/data';
+import { CreateProduct, CreateProductPendding, GetSearchProduct, UpdateDecrement, UpdateIncrement } from '@/service/data';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 
@@ -114,10 +114,16 @@ export default function ListProduct({ data }) {
                     id: dataBarcode[0]?.id,
                     stock: valueTambahKurang
                 })
-                !isTambahKurang && await UpdateDecrement({
-                    id: dataBarcode[0]?.id,
-                    stock: valueTambahKurang
+                !isTambahKurang && await CreateProductPendding({
+                    stock_barang: valueTambahKurang,
+                    note: 'tidak ada',
+                    products: dataBarcode[0]?.id,
+                    user: 'rio'
                 })
+                // await UpdateDecrement({
+                //     id: dataBarcode[0]?.id,
+                //     stock: valueTambahKurang
+                // })
             } catch (e) {
                 throw new Error("Server error, gagal update stock.");
             }
