@@ -2,7 +2,8 @@ import { prisma } from "@/controllers/prisma"
 import { ResponseData } from "@/controllers/ResponseData";
 
 export async function PUT(req) {
-    const { id, stock, idPending, statusProduct, userActivity, activity } = await req.json()
+    const { id, stock, idPending, statusProduct } = await req.json()
+
     BigInt.prototype.toJSON = function () {
         return this.toString();
     };
@@ -10,7 +11,7 @@ export async function PUT(req) {
     const authorization = req.headers.get('authorization')
     if (authorization == process.env.NEXT_PUBLIC_SECREET) {
         try {
-            const dataUtama = await prisma.product.update({
+            const data = await prisma.product.update({
                 where: {
                     id, // ID produk yang ingin diupdate
                 },
@@ -29,15 +30,6 @@ export async function PUT(req) {
                     }
                 },
             });
-
-            const logUser = await prisma.logUser.create({
-                data: {
-                    userActivity,
-                    activity
-                }
-            })
-
-            const data = await prisma.$transaction([dataUtama, logUser])
 
             const res = await ResponseData(data, authorization)
             return res

@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import JsBarcode from 'jsbarcode';
 import styles from '@/components/listProduct.module.css';
 import BarcodeScanner from '@/components/barcode';
-import { CreateProduct, CreateProductPendding, GetSearchProduct, UpdateDecrement, UpdateIncrement } from '@/service/data';
+import { CreateActivity, CreateProduct, CreateProductPendding, GetSearchProduct, UpdateDecrement, UpdateIncrement } from '@/service/data';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 
@@ -55,6 +55,8 @@ export default function ListProduct({ data }) {
                     id: idInput,
                     name_barang: namaBarangInput,
                     stock_barang: 0,
+                })
+                await CreateActivity({
                     userActivity: 'rio',
                     activity: `Penambahan Product ${namaBarangInput} ( ${idInput} )`
                 })
@@ -107,6 +109,7 @@ export default function ListProduct({ data }) {
 
     const [isTambahKurang, setIsTambahKurang] = useState(null)
     const [valueTambahKurang, setValueTambahKurang] = useState('')
+    const [valueNoteBarang, setValueNoteBarang] = useState('tidak ada')
 
     const handleTambahKurang = async (e) => {
         e.preventDefault()
@@ -121,12 +124,22 @@ export default function ListProduct({ data }) {
                 })
                 !isTambahKurang && await CreateProductPendding({
                     stock_barang: valueTambahKurang,
-                    note: 'tidak ada',
+                    note: valueNoteBarang,
                     produkid: dataBarcode[0]?.id,
                     user: 'rio',
                     userActivity: 'rio',
                     activity: `Request ${valueTambahKurang} stock - ${dataBarcode[0]?.name_barang} ( ${dataBarcode[0]?.id} ) `
                 })
+
+                isTambahKurang && await CreateActivity({
+                    userActivity: 'rio',
+                    activity: `Update Tambah ${valueTambahKurang} stock - ${dataBarcode[0]?.name_barang} ( ${dataBarcode[0]?.id} ) `
+                })
+                !isTambahKurang && await CreateActivity({
+                    userActivity: 'rio',
+                    activity: `Request ${valueTambahKurang} stock - ${dataBarcode[0]?.name_barang} ( ${dataBarcode[0]?.id} ) `
+                })
+
             } catch (e) {
                 throw new Error("Server error, gagal update stock.");
             }
@@ -135,7 +148,7 @@ export default function ListProduct({ data }) {
             FetchData(),
             {
                 loading: 'Saving...',
-                success: <b>Berhasil {isTambahKurang ? 'ditambahkan' : 'dikurangi'} {valueTambahKurang}!</b>,
+                success: <b>Berhasil Request {isTambahKurang ? 'ditambahkan' : 'dikurangi'} {valueTambahKurang}!</b>,
                 error: <b>Could not save.</b>,
             }
         );
@@ -255,8 +268,9 @@ export default function ListProduct({ data }) {
                                     <button onClick={() => setIsTambahKurang(false)}>Kurang -</button>
                                     {isTambahKurang !== null &&
                                         <form className={styles.inputkamera}>
-                                            <input disabled={isLoading} onChange={(e) => setValueTambahKurang(e.target.value)} type='text' placeholder={isTambahKurang ? 'Tambahi ++' : 'Kurangi--'} name='IdBarang' />
-                                            <button disabled={isLoading} onClick={handleTambahKurang} type='submit'>Submit</button>
+                                            <input disabled={isLoading} onChange={(e) => setValueTambahKurang(e.target.value)} type='number' placeholder={isTambahKurang ? 'Tambahi ++' : 'Kurangi--'} name='IdBarang' />
+                                            {!isTambahKurang && <input onChange={(e) => setValueNoteBarang(e.target.value)} type="text" placeholder='Note' />}
+                                            <button disabled={isLoading} onClick={handleTambahKurang} type='submit'>Submit{isTambahKurang ? ' (Tambah)' : ' (Kurangi)'}</button>
                                         </form>
                                     }
                                 </span>

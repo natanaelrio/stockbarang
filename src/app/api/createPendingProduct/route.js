@@ -2,7 +2,8 @@ import { prisma } from "@/controllers/prisma"
 import { ResponseData } from "@/controllers/ResponseData";
 
 export async function POST(req) {
-    const { note, stock_barang, produkid, user, userActivity, activity } = await req.json()
+    const { note, stock_barang, produkid, user } = await req.json()
+
     BigInt.prototype.toJSON = function () {
         return this.toString();
     };
@@ -10,7 +11,7 @@ export async function POST(req) {
     const authorization = req.headers.get('authorization')
     if (authorization == process.env.NEXT_PUBLIC_SECREET) {
         try {
-            const dataUtama = await prisma.pendingProduct.create({
+            const data = await prisma.pendingProduct.create({
                 data: {
                     note,
                     stock_barang: Number(stock_barang),
@@ -22,16 +23,6 @@ export async function POST(req) {
                     },
                 }
             })
-
-            const logUser = await prisma.logUser.create({
-                data: {
-                    userActivity,
-                    activity
-                }
-            })
-
-            const data = await prisma.$transaction([dataUtama, logUser])
-
             const res = await ResponseData(data, authorization)
             return res
         } catch (error) {

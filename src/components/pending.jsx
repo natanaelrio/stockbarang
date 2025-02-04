@@ -1,7 +1,7 @@
 "use client"
 import styles from '@/components/listProduct.module.css';
 import { TimeConverter } from '@/utils/formatMoment';
-import { UpdateDecrement, UpdateIncrement } from '@/service/data';
+import { CreateActivity, UpdateDecrement, UpdateIncrement } from '@/service/data';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 
@@ -19,13 +19,19 @@ export default function Pending({ data }) {
                             stock: product.stock_barang,
                             idPending: product?.id,
                             statusProduct: !product?.statusProduct,
-                            userActivity: 'rio final',
-                            activity: `Update Kurang ${product.stock_barang} stock - ${product.products[0]?.name_barang} ( ${product.products[0]?.id} ) `
                         }) : await UpdateIncrement({
                             id: product.products[0]?.id,
                             stock: product.stock_barang,
                             idPending: product?.id,
                             statusProduct: !product?.statusProduct,
+                        })
+
+                    !product.statusProduct ?
+                        await CreateActivity({
+                            userActivity: 'rio final',
+                            activity: `Update Kurang ${product.stock_barang} stock - ${product.products[0]?.name_barang} ( ${product.products[0]?.id} ) `
+                        }) :
+                        await CreateActivity({
                             userActivity: 'rio final',
                             activity: `Update Tambah ${product.stock_barang} stock - ${product.products[0]?.name_barang} ( ${product.products[0]?.id} ) `
                         })
@@ -50,11 +56,12 @@ export default function Pending({ data }) {
             <table className={styles.productTable}>
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Tgl/hari</th>
+                        <th>ID</th>
                         <th>Name Barang</th>
                         <th>User</th>
                         <th>Pengurangan</th>
+                        <th>Note</th>
                         <th>Validasi</th>
                     </tr>
                 </thead>
@@ -62,11 +69,12 @@ export default function Pending({ data }) {
                     {data?.map((product) => {
                         return (
                             <tr style={product?.statusProduct ? { background: '#00afb9', fontWeight: 700 } : { background: '#f07167', fontWeight: 700 }} key={product.id}>
-                                <td>{product?.products[0].id}</td>
                                 <td>{TimeConverter(product?.start)}</td>
+                                <td>{product?.products[0].id}</td>
                                 <td>{product?.products[0].name_barang}</td>
                                 <td>{product?.user}</td>
                                 <td>{product?.stock_barang}</td>
+                                <td>{product?.note}</td>
                                 <td>
                                     <button onClick={() => handleConfirm(product)}>{product?.statusProduct ? 'Batalkan' : 'Konfirmasi'}</button>
                                 </td>
