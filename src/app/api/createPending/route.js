@@ -2,7 +2,7 @@ import { prisma } from "@/controllers/prisma"
 import { ResponseData } from "@/controllers/ResponseData";
 
 export async function POST(req) {
-    const { id, note, stock_barang, produkid, user } = await req.json()
+    const { note, stock_barang, produkid, user } = await req.json()
 
     BigInt.prototype.toJSON = function () {
         return this.toString();
@@ -13,7 +13,6 @@ export async function POST(req) {
         try {
             const data = await prisma.pending.create({
                 data: {
-                    id: id,
                     note,
                     stock_barang,
                     user,
