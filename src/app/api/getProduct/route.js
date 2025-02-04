@@ -5,7 +5,7 @@ export async function GET(req) {
     const authorization = req.headers.get('authorization')
     if (authorization == process.env.NEXT_PUBLIC_SECREET) {
         const data = await prisma.product.findMany({
-            take: 10,
+            take: 17,
             orderBy: {
                 start: 'desc'
             }
