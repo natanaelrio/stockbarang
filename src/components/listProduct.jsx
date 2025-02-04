@@ -116,13 +116,9 @@ export default function ListProduct({ data }) {
                 !isTambahKurang && await CreateProductPendding({
                     stock_barang: valueTambahKurang,
                     note: 'tidak ada',
-                    products: dataBarcode[0]?.id,
+                    produkid: dataBarcode[0]?.id,
                     user: 'rio'
                 })
-                // await UpdateDecrement({
-                //     id: dataBarcode[0]?.id,
-                //     stock: valueTambahKurang
-                // })
             } catch (e) {
                 throw new Error("Server error, gagal update stock.");
             }

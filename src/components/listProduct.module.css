@@ -24,13 +24,13 @@
 }
 
 
-.productTable td:nth-child(3) {
+/* .productTable td:nth-child(3) {
     width: 5px;
 }
 
 .productTable td:nth-child(2) {
     width: fit-content;
-}
+} */
 
 .productTable td:nth-child(4) {
     width: 110px !important;

@@ -130,14 +130,14 @@ exports.Prisma.ProductScalarFieldEnum = {
   stock_barang: 'stock_barang'
 };
 
-exports.Prisma.PendingScalarFieldEnum = {
+exports.Prisma.PendingProductScalarFieldEnum = {
   id: 'id',
   start: 'start',
   end: 'end',
   stock_barang: 'stock_barang',
   user: 'user',
   note: 'note',
-  status: 'status'
+  statusProduct: 'statusProduct'
 };
 
 exports.Prisma.SortOrder = {
@@ -158,7 +158,7 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   product: 'product',
-  pending: 'pending'
+  pendingProduct: 'pendingProduct'
 };
 
 /**

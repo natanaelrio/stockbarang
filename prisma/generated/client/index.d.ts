@@ -19,10 +19,10 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type product = $Result.DefaultSelection<Prisma.$productPayload>
 /**
- * Model pending
+ * Model pendingProduct
  * 
  */
-export type pending = $Result.DefaultSelection<Prisma.$pendingPayload>
+export type pendingProduct = $Result.DefaultSelection<Prisma.$pendingProductPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -158,14 +158,14 @@ export class PrismaClient<
   get product(): Prisma.productDelegate<ExtArgs>;
 
   /**
-   * `prisma.pending`: Exposes CRUD operations for the **pending** model.
+   * `prisma.pendingProduct`: Exposes CRUD operations for the **pendingProduct** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Pendings
-    * const pendings = await prisma.pending.findMany()
+    * // Fetch zero or more PendingProducts
+    * const pendingProducts = await prisma.pendingProduct.findMany()
     * ```
     */
-  get pending(): Prisma.pendingDelegate<ExtArgs>;
+  get pendingProduct(): Prisma.pendingProductDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -608,7 +608,7 @@ export namespace Prisma {
 
   export const ModelName: {
     product: 'product',
-    pending: 'pending'
+    pendingProduct: 'pendingProduct'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -624,7 +624,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "product" | "pending"
+      modelProps: "product" | "pendingProduct"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -698,73 +698,73 @@ export namespace Prisma {
           }
         }
       }
-      pending: {
-        payload: Prisma.$pendingPayload<ExtArgs>
-        fields: Prisma.pendingFieldRefs
+      pendingProduct: {
+        payload: Prisma.$pendingProductPayload<ExtArgs>
+        fields: Prisma.pendingProductFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.pendingFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$pendingPayload> | null
+            args: Prisma.pendingProductFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pendingProductPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.pendingFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$pendingPayload>
+            args: Prisma.pendingProductFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pendingProductPayload>
           }
           findFirst: {
-            args: Prisma.pendingFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$pendingPayload> | null
+            args: Prisma.pendingProductFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pendingProductPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.pendingFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$pendingPayload>
+            args: Prisma.pendingProductFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pendingProductPayload>
           }
           findMany: {
-            args: Prisma.pendingFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$pendingPayload>[]
+            args: Prisma.pendingProductFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pendingProductPayload>[]
           }
           create: {
-            args: Prisma.pendingCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$pendingPayload>
+            args: Prisma.pendingProductCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pendingProductPayload>
           }
           createMany: {
-            args: Prisma.pendingCreateManyArgs<ExtArgs>
+            args: Prisma.pendingProductCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.pendingCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$pendingPayload>[]
+            args: Prisma.pendingProductCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pendingProductPayload>[]
           }
           delete: {
-            args: Prisma.pendingDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$pendingPayload>
+            args: Prisma.pendingProductDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pendingProductPayload>
           }
           update: {
-            args: Prisma.pendingUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$pendingPayload>
+            args: Prisma.pendingProductUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pendingProductPayload>
           }
           deleteMany: {
-            args: Prisma.pendingDeleteManyArgs<ExtArgs>
+            args: Prisma.pendingProductDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.pendingUpdateManyArgs<ExtArgs>
+            args: Prisma.pendingProductUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           upsert: {
-            args: Prisma.pendingUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$pendingPayload>
+            args: Prisma.pendingProductUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$pendingProductPayload>
           }
           aggregate: {
-            args: Prisma.PendingAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregatePending>
+            args: Prisma.PendingProductAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePendingProduct>
           }
           groupBy: {
-            args: Prisma.pendingGroupByArgs<ExtArgs>
-            result: $Utils.Optional<PendingGroupByOutputType>[]
+            args: Prisma.pendingProductGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PendingProductGroupByOutputType>[]
           }
           count: {
-            args: Prisma.pendingCountArgs<ExtArgs>
-            result: $Utils.Optional<PendingCountAggregateOutputType> | number
+            args: Prisma.pendingProductCountArgs<ExtArgs>
+            result: $Utils.Optional<PendingProductCountAggregateOutputType> | number
           }
         }
       }
@@ -929,11 +929,11 @@ export namespace Prisma {
    */
 
   export type ProductCountOutputType = {
-    pending: number
+    pendingProduct: number
   }
 
   export type ProductCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    pending?: boolean | ProductCountOutputTypeCountPendingArgs
+    pendingProduct?: boolean | ProductCountOutputTypeCountPendingProductArgs
   }
 
   // Custom InputTypes
@@ -950,38 +950,38 @@ export namespace Prisma {
   /**
    * ProductCountOutputType without action
    */
-  export type ProductCountOutputTypeCountPendingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: pendingWhereInput
+  export type ProductCountOutputTypeCountPendingProductArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: pendingProductWhereInput
   }
 
 
   /**
-   * Count Type PendingCountOutputType
+   * Count Type PendingProductCountOutputType
    */
 
-  export type PendingCountOutputType = {
+  export type PendingProductCountOutputType = {
     products: number
   }
 
-  export type PendingCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    products?: boolean | PendingCountOutputTypeCountProductsArgs
+  export type PendingProductCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    products?: boolean | PendingProductCountOutputTypeCountProductsArgs
   }
 
   // Custom InputTypes
   /**
-   * PendingCountOutputType without action
+   * PendingProductCountOutputType without action
    */
-  export type PendingCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PendingProductCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the PendingCountOutputType
+     * Select specific fields to fetch from the PendingProductCountOutputType
      */
-    select?: PendingCountOutputTypeSelect<ExtArgs> | null
+    select?: PendingProductCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * PendingCountOutputType without action
+   * PendingProductCountOutputType without action
    */
-  export type PendingCountOutputTypeCountProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PendingProductCountOutputTypeCountProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: productWhereInput
   }
 
@@ -1188,7 +1188,7 @@ export namespace Prisma {
     end?: boolean
     name_barang?: boolean
     stock_barang?: boolean
-    pending?: boolean | product$pendingArgs<ExtArgs>
+    pendingProduct?: boolean | product$pendingProductArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
@@ -1209,7 +1209,7 @@ export namespace Prisma {
   }
 
   export type productInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    pending?: boolean | product$pendingArgs<ExtArgs>
+    pendingProduct?: boolean | product$pendingProductArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type productIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1217,7 +1217,7 @@ export namespace Prisma {
   export type $productPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "product"
     objects: {
-      pending: Prisma.$pendingPayload<ExtArgs>[]
+      pendingProduct: Prisma.$pendingProductPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1589,7 +1589,7 @@ export namespace Prisma {
    */
   export interface Prisma__productClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    pending<T extends product$pendingArgs<ExtArgs> = {}>(args?: Subset<T, product$pendingArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pendingPayload<ExtArgs>, T, "findMany"> | Null>
+    pendingProduct<T extends product$pendingProductArgs<ExtArgs> = {}>(args?: Subset<T, product$pendingProductArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pendingProductPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1938,23 +1938,23 @@ export namespace Prisma {
   }
 
   /**
-   * product.pending
+   * product.pendingProduct
    */
-  export type product$pendingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type product$pendingProductArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the pending
+     * Select specific fields to fetch from the pendingProduct
      */
-    select?: pendingSelect<ExtArgs> | null
+    select?: pendingProductSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: pendingInclude<ExtArgs> | null
-    where?: pendingWhereInput
-    orderBy?: pendingOrderByWithRelationInput | pendingOrderByWithRelationInput[]
-    cursor?: pendingWhereUniqueInput
+    include?: pendingProductInclude<ExtArgs> | null
+    where?: pendingProductWhereInput
+    orderBy?: pendingProductOrderByWithRelationInput | pendingProductOrderByWithRelationInput[]
+    cursor?: pendingProductWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: PendingScalarFieldEnum | PendingScalarFieldEnum[]
+    distinct?: PendingProductScalarFieldEnum | PendingProductScalarFieldEnum[]
   }
 
   /**
@@ -1973,251 +1973,251 @@ export namespace Prisma {
 
 
   /**
-   * Model pending
+   * Model pendingProduct
    */
 
-  export type AggregatePending = {
-    _count: PendingCountAggregateOutputType | null
-    _avg: PendingAvgAggregateOutputType | null
-    _sum: PendingSumAggregateOutputType | null
-    _min: PendingMinAggregateOutputType | null
-    _max: PendingMaxAggregateOutputType | null
+  export type AggregatePendingProduct = {
+    _count: PendingProductCountAggregateOutputType | null
+    _avg: PendingProductAvgAggregateOutputType | null
+    _sum: PendingProductSumAggregateOutputType | null
+    _min: PendingProductMinAggregateOutputType | null
+    _max: PendingProductMaxAggregateOutputType | null
   }
 
-  export type PendingAvgAggregateOutputType = {
+  export type PendingProductAvgAggregateOutputType = {
     stock_barang: number | null
   }
 
-  export type PendingSumAggregateOutputType = {
+  export type PendingProductSumAggregateOutputType = {
     stock_barang: number | null
   }
 
-  export type PendingMinAggregateOutputType = {
+  export type PendingProductMinAggregateOutputType = {
     id: string | null
     start: Date | null
     end: Date | null
     stock_barang: number | null
     user: string | null
     note: string | null
-    status: boolean | null
+    statusProduct: boolean | null
   }
 
-  export type PendingMaxAggregateOutputType = {
+  export type PendingProductMaxAggregateOutputType = {
     id: string | null
     start: Date | null
     end: Date | null
     stock_barang: number | null
     user: string | null
     note: string | null
-    status: boolean | null
+    statusProduct: boolean | null
   }
 
-  export type PendingCountAggregateOutputType = {
+  export type PendingProductCountAggregateOutputType = {
     id: number
     start: number
     end: number
     stock_barang: number
     user: number
     note: number
-    status: number
+    statusProduct: number
     _all: number
   }
 
 
-  export type PendingAvgAggregateInputType = {
+  export type PendingProductAvgAggregateInputType = {
     stock_barang?: true
   }
 
-  export type PendingSumAggregateInputType = {
+  export type PendingProductSumAggregateInputType = {
     stock_barang?: true
   }
 
-  export type PendingMinAggregateInputType = {
+  export type PendingProductMinAggregateInputType = {
     id?: true
     start?: true
     end?: true
     stock_barang?: true
     user?: true
     note?: true
-    status?: true
+    statusProduct?: true
   }
 
-  export type PendingMaxAggregateInputType = {
+  export type PendingProductMaxAggregateInputType = {
     id?: true
     start?: true
     end?: true
     stock_barang?: true
     user?: true
     note?: true
-    status?: true
+    statusProduct?: true
   }
 
-  export type PendingCountAggregateInputType = {
+  export type PendingProductCountAggregateInputType = {
     id?: true
     start?: true
     end?: true
     stock_barang?: true
     user?: true
     note?: true
-    status?: true
+    statusProduct?: true
     _all?: true
   }
 
-  export type PendingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PendingProductAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which pending to aggregate.
+     * Filter which pendingProduct to aggregate.
      */
-    where?: pendingWhereInput
+    where?: pendingProductWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of pendings to fetch.
+     * Determine the order of pendingProducts to fetch.
      */
-    orderBy?: pendingOrderByWithRelationInput | pendingOrderByWithRelationInput[]
+    orderBy?: pendingProductOrderByWithRelationInput | pendingProductOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: pendingWhereUniqueInput
+    cursor?: pendingProductWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` pendings from the position of the cursor.
+     * Take `±n` pendingProducts from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` pendings.
+     * Skip the first `n` pendingProducts.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned pendings
+     * Count returned pendingProducts
     **/
-    _count?: true | PendingCountAggregateInputType
+    _count?: true | PendingProductCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: PendingAvgAggregateInputType
+    _avg?: PendingProductAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: PendingSumAggregateInputType
+    _sum?: PendingProductSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: PendingMinAggregateInputType
+    _min?: PendingProductMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: PendingMaxAggregateInputType
+    _max?: PendingProductMaxAggregateInputType
   }
 
-  export type GetPendingAggregateType<T extends PendingAggregateArgs> = {
-        [P in keyof T & keyof AggregatePending]: P extends '_count' | 'count'
+  export type GetPendingProductAggregateType<T extends PendingProductAggregateArgs> = {
+        [P in keyof T & keyof AggregatePendingProduct]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregatePending[P]>
-      : GetScalarType<T[P], AggregatePending[P]>
+        : GetScalarType<T[P], AggregatePendingProduct[P]>
+      : GetScalarType<T[P], AggregatePendingProduct[P]>
   }
 
 
 
 
-  export type pendingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: pendingWhereInput
-    orderBy?: pendingOrderByWithAggregationInput | pendingOrderByWithAggregationInput[]
-    by: PendingScalarFieldEnum[] | PendingScalarFieldEnum
-    having?: pendingScalarWhereWithAggregatesInput
+  export type pendingProductGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: pendingProductWhereInput
+    orderBy?: pendingProductOrderByWithAggregationInput | pendingProductOrderByWithAggregationInput[]
+    by: PendingProductScalarFieldEnum[] | PendingProductScalarFieldEnum
+    having?: pendingProductScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: PendingCountAggregateInputType | true
-    _avg?: PendingAvgAggregateInputType
-    _sum?: PendingSumAggregateInputType
-    _min?: PendingMinAggregateInputType
-    _max?: PendingMaxAggregateInputType
+    _count?: PendingProductCountAggregateInputType | true
+    _avg?: PendingProductAvgAggregateInputType
+    _sum?: PendingProductSumAggregateInputType
+    _min?: PendingProductMinAggregateInputType
+    _max?: PendingProductMaxAggregateInputType
   }
 
-  export type PendingGroupByOutputType = {
+  export type PendingProductGroupByOutputType = {
     id: string
     start: Date
     end: Date | null
     stock_barang: number | null
     user: string | null
     note: string | null
-    status: boolean
-    _count: PendingCountAggregateOutputType | null
-    _avg: PendingAvgAggregateOutputType | null
-    _sum: PendingSumAggregateOutputType | null
-    _min: PendingMinAggregateOutputType | null
-    _max: PendingMaxAggregateOutputType | null
+    statusProduct: boolean
+    _count: PendingProductCountAggregateOutputType | null
+    _avg: PendingProductAvgAggregateOutputType | null
+    _sum: PendingProductSumAggregateOutputType | null
+    _min: PendingProductMinAggregateOutputType | null
+    _max: PendingProductMaxAggregateOutputType | null
   }
 
-  type GetPendingGroupByPayload<T extends pendingGroupByArgs> = Prisma.PrismaPromise<
+  type GetPendingProductGroupByPayload<T extends pendingProductGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<PendingGroupByOutputType, T['by']> &
+      PickEnumerable<PendingProductGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof PendingGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof PendingProductGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], PendingGroupByOutputType[P]>
-            : GetScalarType<T[P], PendingGroupByOutputType[P]>
+              : GetScalarType<T[P], PendingProductGroupByOutputType[P]>
+            : GetScalarType<T[P], PendingProductGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type pendingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type pendingProductSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     start?: boolean
     end?: boolean
     stock_barang?: boolean
     user?: boolean
     note?: boolean
-    status?: boolean
-    products?: boolean | pending$productsArgs<ExtArgs>
-    _count?: boolean | PendingCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["pending"]>
+    statusProduct?: boolean
+    products?: boolean | pendingProduct$productsArgs<ExtArgs>
+    _count?: boolean | PendingProductCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["pendingProduct"]>
 
-  export type pendingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type pendingProductSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     start?: boolean
     end?: boolean
     stock_barang?: boolean
     user?: boolean
     note?: boolean
-    status?: boolean
-  }, ExtArgs["result"]["pending"]>
+    statusProduct?: boolean
+  }, ExtArgs["result"]["pendingProduct"]>
 
-  export type pendingSelectScalar = {
+  export type pendingProductSelectScalar = {
     id?: boolean
     start?: boolean
     end?: boolean
     stock_barang?: boolean
     user?: boolean
     note?: boolean
-    status?: boolean
+    statusProduct?: boolean
   }
 
-  export type pendingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    products?: boolean | pending$productsArgs<ExtArgs>
-    _count?: boolean | PendingCountOutputTypeDefaultArgs<ExtArgs>
+  export type pendingProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    products?: boolean | pendingProduct$productsArgs<ExtArgs>
+    _count?: boolean | PendingProductCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type pendingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type pendingProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
-  export type $pendingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "pending"
+  export type $pendingProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "pendingProduct"
     objects: {
       products: Prisma.$productPayload<ExtArgs>[]
     }
@@ -2228,137 +2228,137 @@ export namespace Prisma {
       stock_barang: number | null
       user: string | null
       note: string | null
-      status: boolean
-    }, ExtArgs["result"]["pending"]>
+      statusProduct: boolean
+    }, ExtArgs["result"]["pendingProduct"]>
     composites: {}
   }
 
-  type pendingGetPayload<S extends boolean | null | undefined | pendingDefaultArgs> = $Result.GetResult<Prisma.$pendingPayload, S>
+  type pendingProductGetPayload<S extends boolean | null | undefined | pendingProductDefaultArgs> = $Result.GetResult<Prisma.$pendingProductPayload, S>
 
-  type pendingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
-    Omit<pendingFindManyArgs, 'select' | 'include' | 'distinct'> & {
-      select?: PendingCountAggregateInputType | true
+  type pendingProductCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<pendingProductFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: PendingProductCountAggregateInputType | true
     }
 
-  export interface pendingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['pending'], meta: { name: 'pending' } }
+  export interface pendingProductDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['pendingProduct'], meta: { name: 'pendingProduct' } }
     /**
-     * Find zero or one Pending that matches the filter.
-     * @param {pendingFindUniqueArgs} args - Arguments to find a Pending
+     * Find zero or one PendingProduct that matches the filter.
+     * @param {pendingProductFindUniqueArgs} args - Arguments to find a PendingProduct
      * @example
-     * // Get one Pending
-     * const pending = await prisma.pending.findUnique({
+     * // Get one PendingProduct
+     * const pendingProduct = await prisma.pendingProduct.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends pendingFindUniqueArgs>(args: SelectSubset<T, pendingFindUniqueArgs<ExtArgs>>): Prisma__pendingClient<$Result.GetResult<Prisma.$pendingPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+    findUnique<T extends pendingProductFindUniqueArgs>(args: SelectSubset<T, pendingProductFindUniqueArgs<ExtArgs>>): Prisma__pendingProductClient<$Result.GetResult<Prisma.$pendingProductPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
 
     /**
-     * Find one Pending that matches the filter or throw an error with `error.code='P2025'` 
+     * Find one PendingProduct that matches the filter or throw an error with `error.code='P2025'` 
      * if no matches were found.
-     * @param {pendingFindUniqueOrThrowArgs} args - Arguments to find a Pending
+     * @param {pendingProductFindUniqueOrThrowArgs} args - Arguments to find a PendingProduct
      * @example
-     * // Get one Pending
-     * const pending = await prisma.pending.findUniqueOrThrow({
+     * // Get one PendingProduct
+     * const pendingProduct = await prisma.pendingProduct.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends pendingFindUniqueOrThrowArgs>(args: SelectSubset<T, pendingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__pendingClient<$Result.GetResult<Prisma.$pendingPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+    findUniqueOrThrow<T extends pendingProductFindUniqueOrThrowArgs>(args: SelectSubset<T, pendingProductFindUniqueOrThrowArgs<ExtArgs>>): Prisma__pendingProductClient<$Result.GetResult<Prisma.$pendingProductPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
 
     /**
-     * Find the first Pending that matches the filter.
+     * Find the first PendingProduct that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {pendingFindFirstArgs} args - Arguments to find a Pending
+     * @param {pendingProductFindFirstArgs} args - Arguments to find a PendingProduct
      * @example
-     * // Get one Pending
-     * const pending = await prisma.pending.findFirst({
+     * // Get one PendingProduct
+     * const pendingProduct = await prisma.pendingProduct.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends pendingFindFirstArgs>(args?: SelectSubset<T, pendingFindFirstArgs<ExtArgs>>): Prisma__pendingClient<$Result.GetResult<Prisma.$pendingPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+    findFirst<T extends pendingProductFindFirstArgs>(args?: SelectSubset<T, pendingProductFindFirstArgs<ExtArgs>>): Prisma__pendingProductClient<$Result.GetResult<Prisma.$pendingProductPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
 
     /**
-     * Find the first Pending that matches the filter or
+     * Find the first PendingProduct that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {pendingFindFirstOrThrowArgs} args - Arguments to find a Pending
+     * @param {pendingProductFindFirstOrThrowArgs} args - Arguments to find a PendingProduct
      * @example
-     * // Get one Pending
-     * const pending = await prisma.pending.findFirstOrThrow({
+     * // Get one PendingProduct
+     * const pendingProduct = await prisma.pendingProduct.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends pendingFindFirstOrThrowArgs>(args?: SelectSubset<T, pendingFindFirstOrThrowArgs<ExtArgs>>): Prisma__pendingClient<$Result.GetResult<Prisma.$pendingPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+    findFirstOrThrow<T extends pendingProductFindFirstOrThrowArgs>(args?: SelectSubset<T, pendingProductFindFirstOrThrowArgs<ExtArgs>>): Prisma__pendingProductClient<$Result.GetResult<Prisma.$pendingProductPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
 
     /**
-     * Find zero or more Pendings that matches the filter.
+     * Find zero or more PendingProducts that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {pendingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {pendingProductFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Pendings
-     * const pendings = await prisma.pending.findMany()
+     * // Get all PendingProducts
+     * const pendingProducts = await prisma.pendingProduct.findMany()
      * 
-     * // Get first 10 Pendings
-     * const pendings = await prisma.pending.findMany({ take: 10 })
+     * // Get first 10 PendingProducts
+     * const pendingProducts = await prisma.pendingProduct.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const pendingWithIdOnly = await prisma.pending.findMany({ select: { id: true } })
+     * const pendingProductWithIdOnly = await prisma.pendingProduct.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends pendingFindManyArgs>(args?: SelectSubset<T, pendingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pendingPayload<ExtArgs>, T, "findMany">>
+    findMany<T extends pendingProductFindManyArgs>(args?: SelectSubset<T, pendingProductFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pendingProductPayload<ExtArgs>, T, "findMany">>
 
     /**
-     * Create a Pending.
-     * @param {pendingCreateArgs} args - Arguments to create a Pending.
+     * Create a PendingProduct.
+     * @param {pendingProductCreateArgs} args - Arguments to create a PendingProduct.
      * @example
-     * // Create one Pending
-     * const Pending = await prisma.pending.create({
+     * // Create one PendingProduct
+     * const PendingProduct = await prisma.pendingProduct.create({
      *   data: {
-     *     // ... data to create a Pending
+     *     // ... data to create a PendingProduct
      *   }
      * })
      * 
      */
-    create<T extends pendingCreateArgs>(args: SelectSubset<T, pendingCreateArgs<ExtArgs>>): Prisma__pendingClient<$Result.GetResult<Prisma.$pendingPayload<ExtArgs>, T, "create">, never, ExtArgs>
+    create<T extends pendingProductCreateArgs>(args: SelectSubset<T, pendingProductCreateArgs<ExtArgs>>): Prisma__pendingProductClient<$Result.GetResult<Prisma.$pendingProductPayload<ExtArgs>, T, "create">, never, ExtArgs>
 
     /**
-     * Create many Pendings.
-     * @param {pendingCreateManyArgs} args - Arguments to create many Pendings.
+     * Create many PendingProducts.
+     * @param {pendingProductCreateManyArgs} args - Arguments to create many PendingProducts.
      * @example
-     * // Create many Pendings
-     * const pending = await prisma.pending.createMany({
+     * // Create many PendingProducts
+     * const pendingProduct = await prisma.pendingProduct.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends pendingCreateManyArgs>(args?: SelectSubset<T, pendingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends pendingProductCreateManyArgs>(args?: SelectSubset<T, pendingProductCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Pendings and returns the data saved in the database.
-     * @param {pendingCreateManyAndReturnArgs} args - Arguments to create many Pendings.
+     * Create many PendingProducts and returns the data saved in the database.
+     * @param {pendingProductCreateManyAndReturnArgs} args - Arguments to create many PendingProducts.
      * @example
-     * // Create many Pendings
-     * const pending = await prisma.pending.createManyAndReturn({
+     * // Create many PendingProducts
+     * const pendingProduct = await prisma.pendingProduct.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Pendings and only return the `id`
-     * const pendingWithIdOnly = await prisma.pending.createManyAndReturn({ 
+     * // Create many PendingProducts and only return the `id`
+     * const pendingProductWithIdOnly = await prisma.pendingProduct.createManyAndReturn({ 
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -2368,28 +2368,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends pendingCreateManyAndReturnArgs>(args?: SelectSubset<T, pendingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pendingPayload<ExtArgs>, T, "createManyAndReturn">>
+    createManyAndReturn<T extends pendingProductCreateManyAndReturnArgs>(args?: SelectSubset<T, pendingProductCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pendingProductPayload<ExtArgs>, T, "createManyAndReturn">>
 
     /**
-     * Delete a Pending.
-     * @param {pendingDeleteArgs} args - Arguments to delete one Pending.
+     * Delete a PendingProduct.
+     * @param {pendingProductDeleteArgs} args - Arguments to delete one PendingProduct.
      * @example
-     * // Delete one Pending
-     * const Pending = await prisma.pending.delete({
+     * // Delete one PendingProduct
+     * const PendingProduct = await prisma.pendingProduct.delete({
      *   where: {
-     *     // ... filter to delete one Pending
+     *     // ... filter to delete one PendingProduct
      *   }
      * })
      * 
      */
-    delete<T extends pendingDeleteArgs>(args: SelectSubset<T, pendingDeleteArgs<ExtArgs>>): Prisma__pendingClient<$Result.GetResult<Prisma.$pendingPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+    delete<T extends pendingProductDeleteArgs>(args: SelectSubset<T, pendingProductDeleteArgs<ExtArgs>>): Prisma__pendingProductClient<$Result.GetResult<Prisma.$pendingProductPayload<ExtArgs>, T, "delete">, never, ExtArgs>
 
     /**
-     * Update one Pending.
-     * @param {pendingUpdateArgs} args - Arguments to update one Pending.
+     * Update one PendingProduct.
+     * @param {pendingProductUpdateArgs} args - Arguments to update one PendingProduct.
      * @example
-     * // Update one Pending
-     * const pending = await prisma.pending.update({
+     * // Update one PendingProduct
+     * const pendingProduct = await prisma.pendingProduct.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2399,30 +2399,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends pendingUpdateArgs>(args: SelectSubset<T, pendingUpdateArgs<ExtArgs>>): Prisma__pendingClient<$Result.GetResult<Prisma.$pendingPayload<ExtArgs>, T, "update">, never, ExtArgs>
+    update<T extends pendingProductUpdateArgs>(args: SelectSubset<T, pendingProductUpdateArgs<ExtArgs>>): Prisma__pendingProductClient<$Result.GetResult<Prisma.$pendingProductPayload<ExtArgs>, T, "update">, never, ExtArgs>
 
     /**
-     * Delete zero or more Pendings.
-     * @param {pendingDeleteManyArgs} args - Arguments to filter Pendings to delete.
+     * Delete zero or more PendingProducts.
+     * @param {pendingProductDeleteManyArgs} args - Arguments to filter PendingProducts to delete.
      * @example
-     * // Delete a few Pendings
-     * const { count } = await prisma.pending.deleteMany({
+     * // Delete a few PendingProducts
+     * const { count } = await prisma.pendingProduct.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends pendingDeleteManyArgs>(args?: SelectSubset<T, pendingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends pendingProductDeleteManyArgs>(args?: SelectSubset<T, pendingProductDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Pendings.
+     * Update zero or more PendingProducts.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {pendingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {pendingProductUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Pendings
-     * const pending = await prisma.pending.updateMany({
+     * // Update many PendingProducts
+     * const pendingProduct = await prisma.pendingProduct.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -2432,56 +2432,56 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends pendingUpdateManyArgs>(args: SelectSubset<T, pendingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends pendingProductUpdateManyArgs>(args: SelectSubset<T, pendingProductUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create or update one Pending.
-     * @param {pendingUpsertArgs} args - Arguments to update or create a Pending.
+     * Create or update one PendingProduct.
+     * @param {pendingProductUpsertArgs} args - Arguments to update or create a PendingProduct.
      * @example
-     * // Update or create a Pending
-     * const pending = await prisma.pending.upsert({
+     * // Update or create a PendingProduct
+     * const pendingProduct = await prisma.pendingProduct.upsert({
      *   create: {
-     *     // ... data to create a Pending
+     *     // ... data to create a PendingProduct
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Pending we want to update
+     *     // ... the filter for the PendingProduct we want to update
      *   }
      * })
      */
-    upsert<T extends pendingUpsertArgs>(args: SelectSubset<T, pendingUpsertArgs<ExtArgs>>): Prisma__pendingClient<$Result.GetResult<Prisma.$pendingPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+    upsert<T extends pendingProductUpsertArgs>(args: SelectSubset<T, pendingProductUpsertArgs<ExtArgs>>): Prisma__pendingProductClient<$Result.GetResult<Prisma.$pendingProductPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
 
 
     /**
-     * Count the number of Pendings.
+     * Count the number of PendingProducts.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {pendingCountArgs} args - Arguments to filter Pendings to count.
+     * @param {pendingProductCountArgs} args - Arguments to filter PendingProducts to count.
      * @example
-     * // Count the number of Pendings
-     * const count = await prisma.pending.count({
+     * // Count the number of PendingProducts
+     * const count = await prisma.pendingProduct.count({
      *   where: {
-     *     // ... the filter for the Pendings we want to count
+     *     // ... the filter for the PendingProducts we want to count
      *   }
      * })
     **/
-    count<T extends pendingCountArgs>(
-      args?: Subset<T, pendingCountArgs>,
+    count<T extends pendingProductCountArgs>(
+      args?: Subset<T, pendingProductCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], PendingCountAggregateOutputType>
+          : GetScalarType<T['select'], PendingProductCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Pending.
+     * Allows you to perform aggregations operations on a PendingProduct.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PendingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {PendingProductAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -2501,13 +2501,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends PendingAggregateArgs>(args: Subset<T, PendingAggregateArgs>): Prisma.PrismaPromise<GetPendingAggregateType<T>>
+    aggregate<T extends PendingProductAggregateArgs>(args: Subset<T, PendingProductAggregateArgs>): Prisma.PrismaPromise<GetPendingProductAggregateType<T>>
 
     /**
-     * Group by Pending.
+     * Group by PendingProduct.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {pendingGroupByArgs} args - Group by arguments.
+     * @param {pendingProductGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -2522,14 +2522,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends pendingGroupByArgs,
+      T extends pendingProductGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: pendingGroupByArgs['orderBy'] }
-        : { orderBy?: pendingGroupByArgs['orderBy'] },
+        ? { orderBy: pendingProductGroupByArgs['orderBy'] }
+        : { orderBy?: pendingProductGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -2578,22 +2578,22 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, pendingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPendingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, pendingProductGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPendingProductGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the pending model
+   * Fields of the pendingProduct model
    */
-  readonly fields: pendingFieldRefs;
+  readonly fields: pendingProductFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for pending.
+   * The delegate class that acts as a "Promise-like" for pendingProduct.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__pendingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__pendingProductClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    products<T extends pending$productsArgs<ExtArgs> = {}>(args?: Subset<T, pending$productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$productPayload<ExtArgs>, T, "findMany"> | Null>
+    products<T extends pendingProduct$productsArgs<ExtArgs> = {}>(args?: Subset<T, pendingProduct$productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$productPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2620,333 +2620,333 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the pending model
+   * Fields of the pendingProduct model
    */ 
-  interface pendingFieldRefs {
-    readonly id: FieldRef<"pending", 'String'>
-    readonly start: FieldRef<"pending", 'DateTime'>
-    readonly end: FieldRef<"pending", 'DateTime'>
-    readonly stock_barang: FieldRef<"pending", 'Int'>
-    readonly user: FieldRef<"pending", 'String'>
-    readonly note: FieldRef<"pending", 'String'>
-    readonly status: FieldRef<"pending", 'Boolean'>
+  interface pendingProductFieldRefs {
+    readonly id: FieldRef<"pendingProduct", 'String'>
+    readonly start: FieldRef<"pendingProduct", 'DateTime'>
+    readonly end: FieldRef<"pendingProduct", 'DateTime'>
+    readonly stock_barang: FieldRef<"pendingProduct", 'Int'>
+    readonly user: FieldRef<"pendingProduct", 'String'>
+    readonly note: FieldRef<"pendingProduct", 'String'>
+    readonly statusProduct: FieldRef<"pendingProduct", 'Boolean'>
   }
     
 
   // Custom InputTypes
   /**
-   * pending findUnique
+   * pendingProduct findUnique
    */
-  export type pendingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingProductFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the pending
+     * Select specific fields to fetch from the pendingProduct
      */
-    select?: pendingSelect<ExtArgs> | null
+    select?: pendingProductSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: pendingInclude<ExtArgs> | null
+    include?: pendingProductInclude<ExtArgs> | null
     /**
-     * Filter, which pending to fetch.
+     * Filter, which pendingProduct to fetch.
      */
-    where: pendingWhereUniqueInput
+    where: pendingProductWhereUniqueInput
   }
 
   /**
-   * pending findUniqueOrThrow
+   * pendingProduct findUniqueOrThrow
    */
-  export type pendingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingProductFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the pending
+     * Select specific fields to fetch from the pendingProduct
      */
-    select?: pendingSelect<ExtArgs> | null
+    select?: pendingProductSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: pendingInclude<ExtArgs> | null
+    include?: pendingProductInclude<ExtArgs> | null
     /**
-     * Filter, which pending to fetch.
+     * Filter, which pendingProduct to fetch.
      */
-    where: pendingWhereUniqueInput
+    where: pendingProductWhereUniqueInput
   }
 
   /**
-   * pending findFirst
+   * pendingProduct findFirst
    */
-  export type pendingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingProductFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the pending
+     * Select specific fields to fetch from the pendingProduct
      */
-    select?: pendingSelect<ExtArgs> | null
+    select?: pendingProductSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: pendingInclude<ExtArgs> | null
+    include?: pendingProductInclude<ExtArgs> | null
     /**
-     * Filter, which pending to fetch.
+     * Filter, which pendingProduct to fetch.
      */
-    where?: pendingWhereInput
+    where?: pendingProductWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of pendings to fetch.
+     * Determine the order of pendingProducts to fetch.
      */
-    orderBy?: pendingOrderByWithRelationInput | pendingOrderByWithRelationInput[]
+    orderBy?: pendingProductOrderByWithRelationInput | pendingProductOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for pendings.
+     * Sets the position for searching for pendingProducts.
      */
-    cursor?: pendingWhereUniqueInput
+    cursor?: pendingProductWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` pendings from the position of the cursor.
+     * Take `±n` pendingProducts from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` pendings.
+     * Skip the first `n` pendingProducts.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of pendings.
+     * Filter by unique combinations of pendingProducts.
      */
-    distinct?: PendingScalarFieldEnum | PendingScalarFieldEnum[]
+    distinct?: PendingProductScalarFieldEnum | PendingProductScalarFieldEnum[]
   }
 
   /**
-   * pending findFirstOrThrow
+   * pendingProduct findFirstOrThrow
    */
-  export type pendingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingProductFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the pending
+     * Select specific fields to fetch from the pendingProduct
      */
-    select?: pendingSelect<ExtArgs> | null
+    select?: pendingProductSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: pendingInclude<ExtArgs> | null
+    include?: pendingProductInclude<ExtArgs> | null
     /**
-     * Filter, which pending to fetch.
+     * Filter, which pendingProduct to fetch.
      */
-    where?: pendingWhereInput
+    where?: pendingProductWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of pendings to fetch.
+     * Determine the order of pendingProducts to fetch.
      */
-    orderBy?: pendingOrderByWithRelationInput | pendingOrderByWithRelationInput[]
+    orderBy?: pendingProductOrderByWithRelationInput | pendingProductOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for pendings.
+     * Sets the position for searching for pendingProducts.
      */
-    cursor?: pendingWhereUniqueInput
+    cursor?: pendingProductWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` pendings from the position of the cursor.
+     * Take `±n` pendingProducts from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` pendings.
+     * Skip the first `n` pendingProducts.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of pendings.
+     * Filter by unique combinations of pendingProducts.
      */
-    distinct?: PendingScalarFieldEnum | PendingScalarFieldEnum[]
+    distinct?: PendingProductScalarFieldEnum | PendingProductScalarFieldEnum[]
   }
 
   /**
-   * pending findMany
+   * pendingProduct findMany
    */
-  export type pendingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingProductFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the pending
+     * Select specific fields to fetch from the pendingProduct
      */
-    select?: pendingSelect<ExtArgs> | null
+    select?: pendingProductSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: pendingInclude<ExtArgs> | null
+    include?: pendingProductInclude<ExtArgs> | null
     /**
-     * Filter, which pendings to fetch.
+     * Filter, which pendingProducts to fetch.
      */
-    where?: pendingWhereInput
+    where?: pendingProductWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of pendings to fetch.
+     * Determine the order of pendingProducts to fetch.
      */
-    orderBy?: pendingOrderByWithRelationInput | pendingOrderByWithRelationInput[]
+    orderBy?: pendingProductOrderByWithRelationInput | pendingProductOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing pendings.
+     * Sets the position for listing pendingProducts.
      */
-    cursor?: pendingWhereUniqueInput
+    cursor?: pendingProductWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` pendings from the position of the cursor.
+     * Take `±n` pendingProducts from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` pendings.
+     * Skip the first `n` pendingProducts.
      */
     skip?: number
-    distinct?: PendingScalarFieldEnum | PendingScalarFieldEnum[]
+    distinct?: PendingProductScalarFieldEnum | PendingProductScalarFieldEnum[]
   }
 
   /**
-   * pending create
+   * pendingProduct create
    */
-  export type pendingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingProductCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the pending
+     * Select specific fields to fetch from the pendingProduct
      */
-    select?: pendingSelect<ExtArgs> | null
+    select?: pendingProductSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: pendingInclude<ExtArgs> | null
+    include?: pendingProductInclude<ExtArgs> | null
     /**
-     * The data needed to create a pending.
+     * The data needed to create a pendingProduct.
      */
-    data?: XOR<pendingCreateInput, pendingUncheckedCreateInput>
+    data?: XOR<pendingProductCreateInput, pendingProductUncheckedCreateInput>
   }
 
   /**
-   * pending createMany
+   * pendingProduct createMany
    */
-  export type pendingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingProductCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many pendings.
+     * The data used to create many pendingProducts.
      */
-    data: pendingCreateManyInput | pendingCreateManyInput[]
+    data: pendingProductCreateManyInput | pendingProductCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * pending createManyAndReturn
+   * pendingProduct createManyAndReturn
    */
-  export type pendingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingProductCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the pending
+     * Select specific fields to fetch from the pendingProduct
      */
-    select?: pendingSelectCreateManyAndReturn<ExtArgs> | null
+    select?: pendingProductSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * The data used to create many pendings.
+     * The data used to create many pendingProducts.
      */
-    data: pendingCreateManyInput | pendingCreateManyInput[]
+    data: pendingProductCreateManyInput | pendingProductCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * pending update
+   * pendingProduct update
    */
-  export type pendingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingProductUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the pending
+     * Select specific fields to fetch from the pendingProduct
      */
-    select?: pendingSelect<ExtArgs> | null
+    select?: pendingProductSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: pendingInclude<ExtArgs> | null
+    include?: pendingProductInclude<ExtArgs> | null
     /**
-     * The data needed to update a pending.
+     * The data needed to update a pendingProduct.
      */
-    data: XOR<pendingUpdateInput, pendingUncheckedUpdateInput>
+    data: XOR<pendingProductUpdateInput, pendingProductUncheckedUpdateInput>
     /**
-     * Choose, which pending to update.
+     * Choose, which pendingProduct to update.
      */
-    where: pendingWhereUniqueInput
+    where: pendingProductWhereUniqueInput
   }
 
   /**
-   * pending updateMany
+   * pendingProduct updateMany
    */
-  export type pendingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingProductUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update pendings.
+     * The data used to update pendingProducts.
      */
-    data: XOR<pendingUpdateManyMutationInput, pendingUncheckedUpdateManyInput>
+    data: XOR<pendingProductUpdateManyMutationInput, pendingProductUncheckedUpdateManyInput>
     /**
-     * Filter which pendings to update
+     * Filter which pendingProducts to update
      */
-    where?: pendingWhereInput
+    where?: pendingProductWhereInput
   }
 
   /**
-   * pending upsert
+   * pendingProduct upsert
    */
-  export type pendingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingProductUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the pending
+     * Select specific fields to fetch from the pendingProduct
      */
-    select?: pendingSelect<ExtArgs> | null
+    select?: pendingProductSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: pendingInclude<ExtArgs> | null
+    include?: pendingProductInclude<ExtArgs> | null
     /**
-     * The filter to search for the pending to update in case it exists.
+     * The filter to search for the pendingProduct to update in case it exists.
      */
-    where: pendingWhereUniqueInput
+    where: pendingProductWhereUniqueInput
     /**
-     * In case the pending found by the `where` argument doesn't exist, create a new pending with this data.
+     * In case the pendingProduct found by the `where` argument doesn't exist, create a new pendingProduct with this data.
      */
-    create: XOR<pendingCreateInput, pendingUncheckedCreateInput>
+    create: XOR<pendingProductCreateInput, pendingProductUncheckedCreateInput>
     /**
-     * In case the pending was found with the provided `where` argument, update it with this data.
+     * In case the pendingProduct was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<pendingUpdateInput, pendingUncheckedUpdateInput>
+    update: XOR<pendingProductUpdateInput, pendingProductUncheckedUpdateInput>
   }
 
   /**
-   * pending delete
+   * pendingProduct delete
    */
-  export type pendingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingProductDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the pending
+     * Select specific fields to fetch from the pendingProduct
      */
-    select?: pendingSelect<ExtArgs> | null
+    select?: pendingProductSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: pendingInclude<ExtArgs> | null
+    include?: pendingProductInclude<ExtArgs> | null
     /**
-     * Filter which pending to delete.
+     * Filter which pendingProduct to delete.
      */
-    where: pendingWhereUniqueInput
+    where: pendingProductWhereUniqueInput
   }
 
   /**
-   * pending deleteMany
+   * pendingProduct deleteMany
    */
-  export type pendingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingProductDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which pendings to delete
+     * Filter which pendingProducts to delete
      */
-    where?: pendingWhereInput
+    where?: pendingProductWhereInput
   }
 
   /**
-   * pending.products
+   * pendingProduct.products
    */
-  export type pending$productsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingProduct$productsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the product
      */
@@ -2964,17 +2964,17 @@ export namespace Prisma {
   }
 
   /**
-   * pending without action
+   * pendingProduct without action
    */
-  export type pendingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type pendingProductDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the pending
+     * Select specific fields to fetch from the pendingProduct
      */
-    select?: pendingSelect<ExtArgs> | null
+    select?: pendingProductSelect<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: pendingInclude<ExtArgs> | null
+    include?: pendingProductInclude<ExtArgs> | null
   }
 
 
@@ -3003,17 +3003,17 @@ export namespace Prisma {
   export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
 
 
-  export const PendingScalarFieldEnum: {
+  export const PendingProductScalarFieldEnum: {
     id: 'id',
     start: 'start',
     end: 'end',
     stock_barang: 'stock_barang',
     user: 'user',
     note: 'note',
-    status: 'status'
+    statusProduct: 'statusProduct'
   };
 
-  export type PendingScalarFieldEnum = (typeof PendingScalarFieldEnum)[keyof typeof PendingScalarFieldEnum]
+  export type PendingProductScalarFieldEnum = (typeof PendingProductScalarFieldEnum)[keyof typeof PendingProductScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -3120,7 +3120,7 @@ export namespace Prisma {
     end?: DateTimeNullableFilter<"product"> | Date | string | null
     name_barang?: StringNullableFilter<"product"> | string | null
     stock_barang?: IntNullableFilter<"product"> | number | null
-    pending?: PendingListRelationFilter
+    pendingProduct?: PendingProductListRelationFilter
   }
 
   export type productOrderByWithRelationInput = {
@@ -3129,7 +3129,7 @@ export namespace Prisma {
     end?: SortOrderInput | SortOrder
     name_barang?: SortOrderInput | SortOrder
     stock_barang?: SortOrderInput | SortOrder
-    pending?: pendingOrderByRelationAggregateInput
+    pendingProduct?: pendingProductOrderByRelationAggregateInput
   }
 
   export type productWhereUniqueInput = Prisma.AtLeast<{
@@ -3141,7 +3141,7 @@ export namespace Prisma {
     end?: DateTimeNullableFilter<"product"> | Date | string | null
     name_barang?: StringNullableFilter<"product"> | string | null
     stock_barang?: IntNullableFilter<"product"> | number | null
-    pending?: PendingListRelationFilter
+    pendingProduct?: PendingProductListRelationFilter
   }, "id">
 
   export type productOrderByWithAggregationInput = {
@@ -3168,71 +3168,71 @@ export namespace Prisma {
     stock_barang?: IntNullableWithAggregatesFilter<"product"> | number | null
   }
 
-  export type pendingWhereInput = {
-    AND?: pendingWhereInput | pendingWhereInput[]
-    OR?: pendingWhereInput[]
-    NOT?: pendingWhereInput | pendingWhereInput[]
-    id?: StringFilter<"pending"> | string
-    start?: DateTimeFilter<"pending"> | Date | string
-    end?: DateTimeNullableFilter<"pending"> | Date | string | null
-    stock_barang?: IntNullableFilter<"pending"> | number | null
-    user?: StringNullableFilter<"pending"> | string | null
-    note?: StringNullableFilter<"pending"> | string | null
-    status?: BoolFilter<"pending"> | boolean
+  export type pendingProductWhereInput = {
+    AND?: pendingProductWhereInput | pendingProductWhereInput[]
+    OR?: pendingProductWhereInput[]
+    NOT?: pendingProductWhereInput | pendingProductWhereInput[]
+    id?: StringFilter<"pendingProduct"> | string
+    start?: DateTimeFilter<"pendingProduct"> | Date | string
+    end?: DateTimeNullableFilter<"pendingProduct"> | Date | string | null
+    stock_barang?: IntNullableFilter<"pendingProduct"> | number | null
+    user?: StringNullableFilter<"pendingProduct"> | string | null
+    note?: StringNullableFilter<"pendingProduct"> | string | null
+    statusProduct?: BoolFilter<"pendingProduct"> | boolean
     products?: ProductListRelationFilter
   }
 
-  export type pendingOrderByWithRelationInput = {
+  export type pendingProductOrderByWithRelationInput = {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrderInput | SortOrder
     stock_barang?: SortOrderInput | SortOrder
     user?: SortOrderInput | SortOrder
     note?: SortOrderInput | SortOrder
-    status?: SortOrder
+    statusProduct?: SortOrder
     products?: productOrderByRelationAggregateInput
   }
 
-  export type pendingWhereUniqueInput = Prisma.AtLeast<{
+  export type pendingProductWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    AND?: pendingWhereInput | pendingWhereInput[]
-    OR?: pendingWhereInput[]
-    NOT?: pendingWhereInput | pendingWhereInput[]
-    start?: DateTimeFilter<"pending"> | Date | string
-    end?: DateTimeNullableFilter<"pending"> | Date | string | null
-    stock_barang?: IntNullableFilter<"pending"> | number | null
-    user?: StringNullableFilter<"pending"> | string | null
-    note?: StringNullableFilter<"pending"> | string | null
-    status?: BoolFilter<"pending"> | boolean
+    AND?: pendingProductWhereInput | pendingProductWhereInput[]
+    OR?: pendingProductWhereInput[]
+    NOT?: pendingProductWhereInput | pendingProductWhereInput[]
+    start?: DateTimeFilter<"pendingProduct"> | Date | string
+    end?: DateTimeNullableFilter<"pendingProduct"> | Date | string | null
+    stock_barang?: IntNullableFilter<"pendingProduct"> | number | null
+    user?: StringNullableFilter<"pendingProduct"> | string | null
+    note?: StringNullableFilter<"pendingProduct"> | string | null
+    statusProduct?: BoolFilter<"pendingProduct"> | boolean
     products?: ProductListRelationFilter
   }, "id">
 
-  export type pendingOrderByWithAggregationInput = {
+  export type pendingProductOrderByWithAggregationInput = {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrderInput | SortOrder
     stock_barang?: SortOrderInput | SortOrder
     user?: SortOrderInput | SortOrder
     note?: SortOrderInput | SortOrder
-    status?: SortOrder
-    _count?: pendingCountOrderByAggregateInput
-    _avg?: pendingAvgOrderByAggregateInput
-    _max?: pendingMaxOrderByAggregateInput
-    _min?: pendingMinOrderByAggregateInput
-    _sum?: pendingSumOrderByAggregateInput
+    statusProduct?: SortOrder
+    _count?: pendingProductCountOrderByAggregateInput
+    _avg?: pendingProductAvgOrderByAggregateInput
+    _max?: pendingProductMaxOrderByAggregateInput
+    _min?: pendingProductMinOrderByAggregateInput
+    _sum?: pendingProductSumOrderByAggregateInput
   }
 
-  export type pendingScalarWhereWithAggregatesInput = {
-    AND?: pendingScalarWhereWithAggregatesInput | pendingScalarWhereWithAggregatesInput[]
-    OR?: pendingScalarWhereWithAggregatesInput[]
-    NOT?: pendingScalarWhereWithAggregatesInput | pendingScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"pending"> | string
-    start?: DateTimeWithAggregatesFilter<"pending"> | Date | string
-    end?: DateTimeNullableWithAggregatesFilter<"pending"> | Date | string | null
-    stock_barang?: IntNullableWithAggregatesFilter<"pending"> | number | null
-    user?: StringNullableWithAggregatesFilter<"pending"> | string | null
-    note?: StringNullableWithAggregatesFilter<"pending"> | string | null
-    status?: BoolWithAggregatesFilter<"pending"> | boolean
+  export type pendingProductScalarWhereWithAggregatesInput = {
+    AND?: pendingProductScalarWhereWithAggregatesInput | pendingProductScalarWhereWithAggregatesInput[]
+    OR?: pendingProductScalarWhereWithAggregatesInput[]
+    NOT?: pendingProductScalarWhereWithAggregatesInput | pendingProductScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"pendingProduct"> | string
+    start?: DateTimeWithAggregatesFilter<"pendingProduct"> | Date | string
+    end?: DateTimeNullableWithAggregatesFilter<"pendingProduct"> | Date | string | null
+    stock_barang?: IntNullableWithAggregatesFilter<"pendingProduct"> | number | null
+    user?: StringNullableWithAggregatesFilter<"pendingProduct"> | string | null
+    note?: StringNullableWithAggregatesFilter<"pendingProduct"> | string | null
+    statusProduct?: BoolWithAggregatesFilter<"pendingProduct"> | boolean
   }
 
   export type productCreateInput = {
@@ -3241,7 +3241,7 @@ export namespace Prisma {
     end?: Date | string | null
     name_barang?: string | null
     stock_barang?: number | null
-    pending?: pendingCreateNestedManyWithoutProductsInput
+    pendingProduct?: pendingProductCreateNestedManyWithoutProductsInput
   }
 
   export type productUncheckedCreateInput = {
@@ -3250,7 +3250,7 @@ export namespace Prisma {
     end?: Date | string | null
     name_barang?: string | null
     stock_barang?: number | null
-    pending?: pendingUncheckedCreateNestedManyWithoutProductsInput
+    pendingProduct?: pendingProductUncheckedCreateNestedManyWithoutProductsInput
   }
 
   export type productUpdateInput = {
@@ -3259,7 +3259,7 @@ export namespace Prisma {
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     name_barang?: NullableStringFieldUpdateOperationsInput | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
-    pending?: pendingUpdateManyWithoutProductsNestedInput
+    pendingProduct?: pendingProductUpdateManyWithoutProductsNestedInput
   }
 
   export type productUncheckedUpdateInput = {
@@ -3268,7 +3268,7 @@ export namespace Prisma {
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     name_barang?: NullableStringFieldUpdateOperationsInput | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
-    pending?: pendingUncheckedUpdateManyWithoutProductsNestedInput
+    pendingProduct?: pendingProductUncheckedUpdateManyWithoutProductsNestedInput
   }
 
   export type productCreateManyInput = {
@@ -3295,78 +3295,78 @@ export namespace Prisma {
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type pendingCreateInput = {
+  export type pendingProductCreateInput = {
     id?: string
     start?: Date | string
     end?: Date | string | null
     stock_barang?: number | null
     user?: string | null
     note?: string | null
-    status?: boolean
-    products?: productCreateNestedManyWithoutPendingInput
+    statusProduct?: boolean
+    products?: productCreateNestedManyWithoutPendingProductInput
   }
 
-  export type pendingUncheckedCreateInput = {
+  export type pendingProductUncheckedCreateInput = {
     id?: string
     start?: Date | string
     end?: Date | string | null
     stock_barang?: number | null
     user?: string | null
     note?: string | null
-    status?: boolean
-    products?: productUncheckedCreateNestedManyWithoutPendingInput
+    statusProduct?: boolean
+    products?: productUncheckedCreateNestedManyWithoutPendingProductInput
   }
 
-  export type pendingUpdateInput = {
+  export type pendingProductUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: BoolFieldUpdateOperationsInput | boolean
-    products?: productUpdateManyWithoutPendingNestedInput
+    statusProduct?: BoolFieldUpdateOperationsInput | boolean
+    products?: productUpdateManyWithoutPendingProductNestedInput
   }
 
-  export type pendingUncheckedUpdateInput = {
+  export type pendingProductUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: BoolFieldUpdateOperationsInput | boolean
-    products?: productUncheckedUpdateManyWithoutPendingNestedInput
+    statusProduct?: BoolFieldUpdateOperationsInput | boolean
+    products?: productUncheckedUpdateManyWithoutPendingProductNestedInput
   }
 
-  export type pendingCreateManyInput = {
+  export type pendingProductCreateManyInput = {
     id?: string
     start?: Date | string
     end?: Date | string | null
     stock_barang?: number | null
     user?: string | null
     note?: string | null
-    status?: boolean
+    statusProduct?: boolean
   }
 
-  export type pendingUpdateManyMutationInput = {
+  export type pendingProductUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: BoolFieldUpdateOperationsInput | boolean
+    statusProduct?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type pendingUncheckedUpdateManyInput = {
+  export type pendingProductUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: BoolFieldUpdateOperationsInput | boolean
+    statusProduct?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -3432,10 +3432,10 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type PendingListRelationFilter = {
-    every?: pendingWhereInput
-    some?: pendingWhereInput
-    none?: pendingWhereInput
+  export type PendingProductListRelationFilter = {
+    every?: pendingProductWhereInput
+    some?: pendingProductWhereInput
+    none?: pendingProductWhereInput
   }
 
   export type SortOrderInput = {
@@ -3443,7 +3443,7 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type pendingOrderByRelationAggregateInput = {
+  export type pendingProductOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -3574,41 +3574,41 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type pendingCountOrderByAggregateInput = {
+  export type pendingProductCountOrderByAggregateInput = {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrder
     stock_barang?: SortOrder
     user?: SortOrder
     note?: SortOrder
-    status?: SortOrder
+    statusProduct?: SortOrder
   }
 
-  export type pendingAvgOrderByAggregateInput = {
+  export type pendingProductAvgOrderByAggregateInput = {
     stock_barang?: SortOrder
   }
 
-  export type pendingMaxOrderByAggregateInput = {
+  export type pendingProductMaxOrderByAggregateInput = {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrder
     stock_barang?: SortOrder
     user?: SortOrder
     note?: SortOrder
-    status?: SortOrder
+    statusProduct?: SortOrder
   }
 
-  export type pendingMinOrderByAggregateInput = {
+  export type pendingProductMinOrderByAggregateInput = {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrder
     stock_barang?: SortOrder
     user?: SortOrder
     note?: SortOrder
-    status?: SortOrder
+    statusProduct?: SortOrder
   }
 
-  export type pendingSumOrderByAggregateInput = {
+  export type pendingProductSumOrderByAggregateInput = {
     stock_barang?: SortOrder
   }
 
@@ -3620,16 +3620,16 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type pendingCreateNestedManyWithoutProductsInput = {
-    create?: XOR<pendingCreateWithoutProductsInput, pendingUncheckedCreateWithoutProductsInput> | pendingCreateWithoutProductsInput[] | pendingUncheckedCreateWithoutProductsInput[]
-    connectOrCreate?: pendingCreateOrConnectWithoutProductsInput | pendingCreateOrConnectWithoutProductsInput[]
-    connect?: pendingWhereUniqueInput | pendingWhereUniqueInput[]
+  export type pendingProductCreateNestedManyWithoutProductsInput = {
+    create?: XOR<pendingProductCreateWithoutProductsInput, pendingProductUncheckedCreateWithoutProductsInput> | pendingProductCreateWithoutProductsInput[] | pendingProductUncheckedCreateWithoutProductsInput[]
+    connectOrCreate?: pendingProductCreateOrConnectWithoutProductsInput | pendingProductCreateOrConnectWithoutProductsInput[]
+    connect?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
   }
 
-  export type pendingUncheckedCreateNestedManyWithoutProductsInput = {
-    create?: XOR<pendingCreateWithoutProductsInput, pendingUncheckedCreateWithoutProductsInput> | pendingCreateWithoutProductsInput[] | pendingUncheckedCreateWithoutProductsInput[]
-    connectOrCreate?: pendingCreateOrConnectWithoutProductsInput | pendingCreateOrConnectWithoutProductsInput[]
-    connect?: pendingWhereUniqueInput | pendingWhereUniqueInput[]
+  export type pendingProductUncheckedCreateNestedManyWithoutProductsInput = {
+    create?: XOR<pendingProductCreateWithoutProductsInput, pendingProductUncheckedCreateWithoutProductsInput> | pendingProductCreateWithoutProductsInput[] | pendingProductUncheckedCreateWithoutProductsInput[]
+    connectOrCreate?: pendingProductCreateOrConnectWithoutProductsInput | pendingProductCreateOrConnectWithoutProductsInput[]
+    connect?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -3656,41 +3656,41 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type pendingUpdateManyWithoutProductsNestedInput = {
-    create?: XOR<pendingCreateWithoutProductsInput, pendingUncheckedCreateWithoutProductsInput> | pendingCreateWithoutProductsInput[] | pendingUncheckedCreateWithoutProductsInput[]
-    connectOrCreate?: pendingCreateOrConnectWithoutProductsInput | pendingCreateOrConnectWithoutProductsInput[]
-    upsert?: pendingUpsertWithWhereUniqueWithoutProductsInput | pendingUpsertWithWhereUniqueWithoutProductsInput[]
-    set?: pendingWhereUniqueInput | pendingWhereUniqueInput[]
-    disconnect?: pendingWhereUniqueInput | pendingWhereUniqueInput[]
-    delete?: pendingWhereUniqueInput | pendingWhereUniqueInput[]
-    connect?: pendingWhereUniqueInput | pendingWhereUniqueInput[]
-    update?: pendingUpdateWithWhereUniqueWithoutProductsInput | pendingUpdateWithWhereUniqueWithoutProductsInput[]
-    updateMany?: pendingUpdateManyWithWhereWithoutProductsInput | pendingUpdateManyWithWhereWithoutProductsInput[]
-    deleteMany?: pendingScalarWhereInput | pendingScalarWhereInput[]
+  export type pendingProductUpdateManyWithoutProductsNestedInput = {
+    create?: XOR<pendingProductCreateWithoutProductsInput, pendingProductUncheckedCreateWithoutProductsInput> | pendingProductCreateWithoutProductsInput[] | pendingProductUncheckedCreateWithoutProductsInput[]
+    connectOrCreate?: pendingProductCreateOrConnectWithoutProductsInput | pendingProductCreateOrConnectWithoutProductsInput[]
+    upsert?: pendingProductUpsertWithWhereUniqueWithoutProductsInput | pendingProductUpsertWithWhereUniqueWithoutProductsInput[]
+    set?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
+    disconnect?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
+    delete?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
+    connect?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
+    update?: pendingProductUpdateWithWhereUniqueWithoutProductsInput | pendingProductUpdateWithWhereUniqueWithoutProductsInput[]
+    updateMany?: pendingProductUpdateManyWithWhereWithoutProductsInput | pendingProductUpdateManyWithWhereWithoutProductsInput[]
+    deleteMany?: pendingProductScalarWhereInput | pendingProductScalarWhereInput[]
   }
 
-  export type pendingUncheckedUpdateManyWithoutProductsNestedInput = {
-    create?: XOR<pendingCreateWithoutProductsInput, pendingUncheckedCreateWithoutProductsInput> | pendingCreateWithoutProductsInput[] | pendingUncheckedCreateWithoutProductsInput[]
-    connectOrCreate?: pendingCreateOrConnectWithoutProductsInput | pendingCreateOrConnectWithoutProductsInput[]
-    upsert?: pendingUpsertWithWhereUniqueWithoutProductsInput | pendingUpsertWithWhereUniqueWithoutProductsInput[]
-    set?: pendingWhereUniqueInput | pendingWhereUniqueInput[]
-    disconnect?: pendingWhereUniqueInput | pendingWhereUniqueInput[]
-    delete?: pendingWhereUniqueInput | pendingWhereUniqueInput[]
-    connect?: pendingWhereUniqueInput | pendingWhereUniqueInput[]
-    update?: pendingUpdateWithWhereUniqueWithoutProductsInput | pendingUpdateWithWhereUniqueWithoutProductsInput[]
-    updateMany?: pendingUpdateManyWithWhereWithoutProductsInput | pendingUpdateManyWithWhereWithoutProductsInput[]
-    deleteMany?: pendingScalarWhereInput | pendingScalarWhereInput[]
+  export type pendingProductUncheckedUpdateManyWithoutProductsNestedInput = {
+    create?: XOR<pendingProductCreateWithoutProductsInput, pendingProductUncheckedCreateWithoutProductsInput> | pendingProductCreateWithoutProductsInput[] | pendingProductUncheckedCreateWithoutProductsInput[]
+    connectOrCreate?: pendingProductCreateOrConnectWithoutProductsInput | pendingProductCreateOrConnectWithoutProductsInput[]
+    upsert?: pendingProductUpsertWithWhereUniqueWithoutProductsInput | pendingProductUpsertWithWhereUniqueWithoutProductsInput[]
+    set?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
+    disconnect?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
+    delete?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
+    connect?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
+    update?: pendingProductUpdateWithWhereUniqueWithoutProductsInput | pendingProductUpdateWithWhereUniqueWithoutProductsInput[]
+    updateMany?: pendingProductUpdateManyWithWhereWithoutProductsInput | pendingProductUpdateManyWithWhereWithoutProductsInput[]
+    deleteMany?: pendingProductScalarWhereInput | pendingProductScalarWhereInput[]
   }
 
-  export type productCreateNestedManyWithoutPendingInput = {
-    create?: XOR<productCreateWithoutPendingInput, productUncheckedCreateWithoutPendingInput> | productCreateWithoutPendingInput[] | productUncheckedCreateWithoutPendingInput[]
-    connectOrCreate?: productCreateOrConnectWithoutPendingInput | productCreateOrConnectWithoutPendingInput[]
+  export type productCreateNestedManyWithoutPendingProductInput = {
+    create?: XOR<productCreateWithoutPendingProductInput, productUncheckedCreateWithoutPendingProductInput> | productCreateWithoutPendingProductInput[] | productUncheckedCreateWithoutPendingProductInput[]
+    connectOrCreate?: productCreateOrConnectWithoutPendingProductInput | productCreateOrConnectWithoutPendingProductInput[]
     connect?: productWhereUniqueInput | productWhereUniqueInput[]
   }
 
-  export type productUncheckedCreateNestedManyWithoutPendingInput = {
-    create?: XOR<productCreateWithoutPendingInput, productUncheckedCreateWithoutPendingInput> | productCreateWithoutPendingInput[] | productUncheckedCreateWithoutPendingInput[]
-    connectOrCreate?: productCreateOrConnectWithoutPendingInput | productCreateOrConnectWithoutPendingInput[]
+  export type productUncheckedCreateNestedManyWithoutPendingProductInput = {
+    create?: XOR<productCreateWithoutPendingProductInput, productUncheckedCreateWithoutPendingProductInput> | productCreateWithoutPendingProductInput[] | productUncheckedCreateWithoutPendingProductInput[]
+    connectOrCreate?: productCreateOrConnectWithoutPendingProductInput | productCreateOrConnectWithoutPendingProductInput[]
     connect?: productWhereUniqueInput | productWhereUniqueInput[]
   }
 
@@ -3698,29 +3698,29 @@ export namespace Prisma {
     set?: boolean
   }
 
-  export type productUpdateManyWithoutPendingNestedInput = {
-    create?: XOR<productCreateWithoutPendingInput, productUncheckedCreateWithoutPendingInput> | productCreateWithoutPendingInput[] | productUncheckedCreateWithoutPendingInput[]
-    connectOrCreate?: productCreateOrConnectWithoutPendingInput | productCreateOrConnectWithoutPendingInput[]
-    upsert?: productUpsertWithWhereUniqueWithoutPendingInput | productUpsertWithWhereUniqueWithoutPendingInput[]
+  export type productUpdateManyWithoutPendingProductNestedInput = {
+    create?: XOR<productCreateWithoutPendingProductInput, productUncheckedCreateWithoutPendingProductInput> | productCreateWithoutPendingProductInput[] | productUncheckedCreateWithoutPendingProductInput[]
+    connectOrCreate?: productCreateOrConnectWithoutPendingProductInput | productCreateOrConnectWithoutPendingProductInput[]
+    upsert?: productUpsertWithWhereUniqueWithoutPendingProductInput | productUpsertWithWhereUniqueWithoutPendingProductInput[]
     set?: productWhereUniqueInput | productWhereUniqueInput[]
     disconnect?: productWhereUniqueInput | productWhereUniqueInput[]
     delete?: productWhereUniqueInput | productWhereUniqueInput[]
     connect?: productWhereUniqueInput | productWhereUniqueInput[]
-    update?: productUpdateWithWhereUniqueWithoutPendingInput | productUpdateWithWhereUniqueWithoutPendingInput[]
-    updateMany?: productUpdateManyWithWhereWithoutPendingInput | productUpdateManyWithWhereWithoutPendingInput[]
+    update?: productUpdateWithWhereUniqueWithoutPendingProductInput | productUpdateWithWhereUniqueWithoutPendingProductInput[]
+    updateMany?: productUpdateManyWithWhereWithoutPendingProductInput | productUpdateManyWithWhereWithoutPendingProductInput[]
     deleteMany?: productScalarWhereInput | productScalarWhereInput[]
   }
 
-  export type productUncheckedUpdateManyWithoutPendingNestedInput = {
-    create?: XOR<productCreateWithoutPendingInput, productUncheckedCreateWithoutPendingInput> | productCreateWithoutPendingInput[] | productUncheckedCreateWithoutPendingInput[]
-    connectOrCreate?: productCreateOrConnectWithoutPendingInput | productCreateOrConnectWithoutPendingInput[]
-    upsert?: productUpsertWithWhereUniqueWithoutPendingInput | productUpsertWithWhereUniqueWithoutPendingInput[]
+  export type productUncheckedUpdateManyWithoutPendingProductNestedInput = {
+    create?: XOR<productCreateWithoutPendingProductInput, productUncheckedCreateWithoutPendingProductInput> | productCreateWithoutPendingProductInput[] | productUncheckedCreateWithoutPendingProductInput[]
+    connectOrCreate?: productCreateOrConnectWithoutPendingProductInput | productCreateOrConnectWithoutPendingProductInput[]
+    upsert?: productUpsertWithWhereUniqueWithoutPendingProductInput | productUpsertWithWhereUniqueWithoutPendingProductInput[]
     set?: productWhereUniqueInput | productWhereUniqueInput[]
     disconnect?: productWhereUniqueInput | productWhereUniqueInput[]
     delete?: productWhereUniqueInput | productWhereUniqueInput[]
     connect?: productWhereUniqueInput | productWhereUniqueInput[]
-    update?: productUpdateWithWhereUniqueWithoutPendingInput | productUpdateWithWhereUniqueWithoutPendingInput[]
-    updateMany?: productUpdateManyWithWhereWithoutPendingInput | productUpdateManyWithWhereWithoutPendingInput[]
+    update?: productUpdateWithWhereUniqueWithoutPendingProductInput | productUpdateWithWhereUniqueWithoutPendingProductInput[]
+    updateMany?: productUpdateManyWithWhereWithoutPendingProductInput | productUpdateManyWithWhereWithoutPendingProductInput[]
     deleteMany?: productScalarWhereInput | productScalarWhereInput[]
   }
 
@@ -3898,61 +3898,61 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
-  export type pendingCreateWithoutProductsInput = {
+  export type pendingProductCreateWithoutProductsInput = {
     id?: string
     start?: Date | string
     end?: Date | string | null
     stock_barang?: number | null
     user?: string | null
     note?: string | null
-    status?: boolean
+    statusProduct?: boolean
   }
 
-  export type pendingUncheckedCreateWithoutProductsInput = {
+  export type pendingProductUncheckedCreateWithoutProductsInput = {
     id?: string
     start?: Date | string
     end?: Date | string | null
     stock_barang?: number | null
     user?: string | null
     note?: string | null
-    status?: boolean
+    statusProduct?: boolean
   }
 
-  export type pendingCreateOrConnectWithoutProductsInput = {
-    where: pendingWhereUniqueInput
-    create: XOR<pendingCreateWithoutProductsInput, pendingUncheckedCreateWithoutProductsInput>
+  export type pendingProductCreateOrConnectWithoutProductsInput = {
+    where: pendingProductWhereUniqueInput
+    create: XOR<pendingProductCreateWithoutProductsInput, pendingProductUncheckedCreateWithoutProductsInput>
   }
 
-  export type pendingUpsertWithWhereUniqueWithoutProductsInput = {
-    where: pendingWhereUniqueInput
-    update: XOR<pendingUpdateWithoutProductsInput, pendingUncheckedUpdateWithoutProductsInput>
-    create: XOR<pendingCreateWithoutProductsInput, pendingUncheckedCreateWithoutProductsInput>
+  export type pendingProductUpsertWithWhereUniqueWithoutProductsInput = {
+    where: pendingProductWhereUniqueInput
+    update: XOR<pendingProductUpdateWithoutProductsInput, pendingProductUncheckedUpdateWithoutProductsInput>
+    create: XOR<pendingProductCreateWithoutProductsInput, pendingProductUncheckedCreateWithoutProductsInput>
   }
 
-  export type pendingUpdateWithWhereUniqueWithoutProductsInput = {
-    where: pendingWhereUniqueInput
-    data: XOR<pendingUpdateWithoutProductsInput, pendingUncheckedUpdateWithoutProductsInput>
+  export type pendingProductUpdateWithWhereUniqueWithoutProductsInput = {
+    where: pendingProductWhereUniqueInput
+    data: XOR<pendingProductUpdateWithoutProductsInput, pendingProductUncheckedUpdateWithoutProductsInput>
   }
 
-  export type pendingUpdateManyWithWhereWithoutProductsInput = {
-    where: pendingScalarWhereInput
-    data: XOR<pendingUpdateManyMutationInput, pendingUncheckedUpdateManyWithoutProductsInput>
+  export type pendingProductUpdateManyWithWhereWithoutProductsInput = {
+    where: pendingProductScalarWhereInput
+    data: XOR<pendingProductUpdateManyMutationInput, pendingProductUncheckedUpdateManyWithoutProductsInput>
   }
 
-  export type pendingScalarWhereInput = {
-    AND?: pendingScalarWhereInput | pendingScalarWhereInput[]
-    OR?: pendingScalarWhereInput[]
-    NOT?: pendingScalarWhereInput | pendingScalarWhereInput[]
-    id?: StringFilter<"pending"> | string
-    start?: DateTimeFilter<"pending"> | Date | string
-    end?: DateTimeNullableFilter<"pending"> | Date | string | null
-    stock_barang?: IntNullableFilter<"pending"> | number | null
-    user?: StringNullableFilter<"pending"> | string | null
-    note?: StringNullableFilter<"pending"> | string | null
-    status?: BoolFilter<"pending"> | boolean
+  export type pendingProductScalarWhereInput = {
+    AND?: pendingProductScalarWhereInput | pendingProductScalarWhereInput[]
+    OR?: pendingProductScalarWhereInput[]
+    NOT?: pendingProductScalarWhereInput | pendingProductScalarWhereInput[]
+    id?: StringFilter<"pendingProduct"> | string
+    start?: DateTimeFilter<"pendingProduct"> | Date | string
+    end?: DateTimeNullableFilter<"pendingProduct"> | Date | string | null
+    stock_barang?: IntNullableFilter<"pendingProduct"> | number | null
+    user?: StringNullableFilter<"pendingProduct"> | string | null
+    note?: StringNullableFilter<"pendingProduct"> | string | null
+    statusProduct?: BoolFilter<"pendingProduct"> | boolean
   }
 
-  export type productCreateWithoutPendingInput = {
+  export type productCreateWithoutPendingProductInput = {
     id?: string
     start?: Date | string
     end?: Date | string | null
@@ -3960,7 +3960,7 @@ export namespace Prisma {
     stock_barang?: number | null
   }
 
-  export type productUncheckedCreateWithoutPendingInput = {
+  export type productUncheckedCreateWithoutPendingProductInput = {
     id?: string
     start?: Date | string
     end?: Date | string | null
@@ -3968,25 +3968,25 @@ export namespace Prisma {
     stock_barang?: number | null
   }
 
-  export type productCreateOrConnectWithoutPendingInput = {
+  export type productCreateOrConnectWithoutPendingProductInput = {
     where: productWhereUniqueInput
-    create: XOR<productCreateWithoutPendingInput, productUncheckedCreateWithoutPendingInput>
+    create: XOR<productCreateWithoutPendingProductInput, productUncheckedCreateWithoutPendingProductInput>
   }
 
-  export type productUpsertWithWhereUniqueWithoutPendingInput = {
+  export type productUpsertWithWhereUniqueWithoutPendingProductInput = {
     where: productWhereUniqueInput
-    update: XOR<productUpdateWithoutPendingInput, productUncheckedUpdateWithoutPendingInput>
-    create: XOR<productCreateWithoutPendingInput, productUncheckedCreateWithoutPendingInput>
+    update: XOR<productUpdateWithoutPendingProductInput, productUncheckedUpdateWithoutPendingProductInput>
+    create: XOR<productCreateWithoutPendingProductInput, productUncheckedCreateWithoutPendingProductInput>
   }
 
-  export type productUpdateWithWhereUniqueWithoutPendingInput = {
+  export type productUpdateWithWhereUniqueWithoutPendingProductInput = {
     where: productWhereUniqueInput
-    data: XOR<productUpdateWithoutPendingInput, productUncheckedUpdateWithoutPendingInput>
+    data: XOR<productUpdateWithoutPendingProductInput, productUncheckedUpdateWithoutPendingProductInput>
   }
 
-  export type productUpdateManyWithWhereWithoutPendingInput = {
+  export type productUpdateManyWithWhereWithoutPendingProductInput = {
     where: productScalarWhereInput
-    data: XOR<productUpdateManyMutationInput, productUncheckedUpdateManyWithoutPendingInput>
+    data: XOR<productUpdateManyMutationInput, productUncheckedUpdateManyWithoutPendingProductInput>
   }
 
   export type productScalarWhereInput = {
@@ -4000,37 +4000,37 @@ export namespace Prisma {
     stock_barang?: IntNullableFilter<"product"> | number | null
   }
 
-  export type pendingUpdateWithoutProductsInput = {
+  export type pendingProductUpdateWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: BoolFieldUpdateOperationsInput | boolean
+    statusProduct?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type pendingUncheckedUpdateWithoutProductsInput = {
+  export type pendingProductUncheckedUpdateWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: BoolFieldUpdateOperationsInput | boolean
+    statusProduct?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type pendingUncheckedUpdateManyWithoutProductsInput = {
+  export type pendingProductUncheckedUpdateManyWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: BoolFieldUpdateOperationsInput | boolean
+    statusProduct?: BoolFieldUpdateOperationsInput | boolean
   }
 
-  export type productUpdateWithoutPendingInput = {
+  export type productUpdateWithoutPendingProductInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4038,7 +4038,7 @@ export namespace Prisma {
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type productUncheckedUpdateWithoutPendingInput = {
+  export type productUncheckedUpdateWithoutPendingProductInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4046,7 +4046,7 @@ export namespace Prisma {
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type productUncheckedUpdateManyWithoutPendingInput = {
+  export type productUncheckedUpdateManyWithoutPendingProductInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -4064,17 +4064,17 @@ export namespace Prisma {
      */
     export type ProductCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ProductCountOutputTypeDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use PendingCountOutputTypeDefaultArgs instead
+     * @deprecated Use PendingProductCountOutputTypeDefaultArgs instead
      */
-    export type PendingCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PendingCountOutputTypeDefaultArgs<ExtArgs>
+    export type PendingProductCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PendingProductCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use productDefaultArgs instead
      */
     export type productArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = productDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use pendingDefaultArgs instead
+     * @deprecated Use pendingProductDefaultArgs instead
      */
-    export type pendingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = pendingDefaultArgs<ExtArgs>
+    export type pendingProductArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = pendingProductDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

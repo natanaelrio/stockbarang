@@ -15,25 +15,16 @@ model product {
   name_barang  String?
   stock_barang Int?
 
-  logActs logAct[]  @relation("ProductLog")
-  pending pending[] @relation("PendingProduct")
+  pendingProduct pendingProduct[] @relation("PendingProduct")
 }
 
-model pending {
-  id           String    @id @default(uuid())
-  start        DateTime  @default(now())
-  end          DateTime? @updatedAt
-  stock_barang Int?
-  note         String?
-  products     product[] @relation("PendingProduct")
-}
-
-model logAct {
-  id       String    @id @default(uuid())
-  start    DateTime  @default(now())
-  end      DateTime? @updatedAt
-  user     String?
-  note     String?
-  status   String?
-  products product[] @relation("ProductLog")
+model pendingProduct {
+  id            String    @id @default(uuid())
+  start         DateTime  @default(now())
+  end           DateTime? @updatedAt
+  stock_barang  Int?
+  user          String?
+  note          String?
+  statusProduct Boolean   @default(false)
+  products      product[] @relation("PendingProduct")
 }

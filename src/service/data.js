@@ -25,7 +25,7 @@ export const CreateProduct = async (e) => {
 
 export const CreateProductPendding = async (e) => {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/createPending`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/createPendingProduct`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

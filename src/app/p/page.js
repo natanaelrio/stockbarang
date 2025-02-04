@@ -1,11 +1,11 @@
-import ListProduct from '@/components/listProduct'
+import Pending from '@/components/pending'
 import { GetPendingProduct } from '@/service/data'
 
 export default async function Page() {
     const data = await GetPendingProduct()
     return (
         <>
-            <ListProduct data={data.data} />
+            <Pending data={data.data} />
         </>
     )
 }

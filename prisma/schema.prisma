@@ -15,16 +15,16 @@ model product {
   name_barang  String?
   stock_barang Int?
 
-  pending pending[] @relation("PendingProduct")
+  pendingProduct pendingProduct[] @relation("PendingProduct")
 }
 
-model pending {
-  id           String    @id @default(uuid())
-  start        DateTime  @default(now())
-  end          DateTime? @updatedAt
-  stock_barang Int?
-  user         String?
-  note         String?
-  status       Boolean   @default(false)
-  products     product[] @relation("PendingProduct")
+model pendingProduct {
+  id            String    @id @default(uuid())
+  start         DateTime  @default(now())
+  end           DateTime? @updatedAt
+  stock_barang  Int?
+  user          String?
+  note          String?
+  statusProduct Boolean   @default(false)
+  products      product[] @relation("PendingProduct")
 }

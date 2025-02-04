@@ -3,7 +3,6 @@ import { ResponseData } from "@/controllers/ResponseData";
 
 export async function POST(req) {
     const { note, stock_barang, produkid, user } = await req.json()
-
     BigInt.prototype.toJSON = function () {
         return this.toString();
     };
@@ -11,10 +10,10 @@ export async function POST(req) {
     const authorization = req.headers.get('authorization')
     if (authorization == process.env.NEXT_PUBLIC_SECREET) {
         try {
-            const data = await prisma.pending.create({
+            const data = await prisma.pendingProduct.create({
                 data: {
                     note,
-                    stock_barang,
+                    stock_barang: Number(stock_barang),
                     user,
                     products: {
                         connect: [

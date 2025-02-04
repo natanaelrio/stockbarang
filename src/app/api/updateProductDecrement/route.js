@@ -2,7 +2,7 @@ import { prisma } from "@/controllers/prisma"
 import { ResponseData } from "@/controllers/ResponseData";
 
 export async function PUT(req) {
-    const { id, stock } = await req.json()
+    const { id, stock, idPending, statusProduct } = await req.json()
     BigInt.prototype.toJSON = function () {
         return this.toString();
     };
@@ -18,6 +18,15 @@ export async function PUT(req) {
                     stock_barang: {
                         decrement: Number(stock), // Mengurangi 5 dari stok produk
                     },
+                    pendingProduct: {
+                        update: {
+                            where: {
+                                id: idPending
+                            }, data: {
+                                statusProduct: Boolean(statusProduct)
+                            }
+                        }
+                    }
                 },
             });
 
