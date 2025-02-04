@@ -136,6 +136,7 @@ exports.Prisma.PendingProductScalarFieldEnum = {
   end: 'end',
   stock_barang: 'stock_barang',
   user: 'user',
+  role: 'role',
   note: 'note',
   statusProduct: 'statusProduct'
 };

@@ -2084,6 +2084,7 @@ export namespace Prisma {
     end: Date | null
     stock_barang: number | null
     user: string | null
+    role: string | null
     note: string | null
     statusProduct: boolean | null
   }
@@ -2094,6 +2095,7 @@ export namespace Prisma {
     end: Date | null
     stock_barang: number | null
     user: string | null
+    role: string | null
     note: string | null
     statusProduct: boolean | null
   }
@@ -2104,6 +2106,7 @@ export namespace Prisma {
     end: number
     stock_barang: number
     user: number
+    role: number
     note: number
     statusProduct: number
     _all: number
@@ -2124,6 +2127,7 @@ export namespace Prisma {
     end?: true
     stock_barang?: true
     user?: true
+    role?: true
     note?: true
     statusProduct?: true
   }
@@ -2134,6 +2138,7 @@ export namespace Prisma {
     end?: true
     stock_barang?: true
     user?: true
+    role?: true
     note?: true
     statusProduct?: true
   }
@@ -2144,6 +2149,7 @@ export namespace Prisma {
     end?: true
     stock_barang?: true
     user?: true
+    role?: true
     note?: true
     statusProduct?: true
     _all?: true
@@ -2241,6 +2247,7 @@ export namespace Prisma {
     end: Date | null
     stock_barang: number | null
     user: string | null
+    role: string | null
     note: string | null
     statusProduct: boolean
     _count: PendingProductCountAggregateOutputType | null
@@ -2270,6 +2277,7 @@ export namespace Prisma {
     end?: boolean
     stock_barang?: boolean
     user?: boolean
+    role?: boolean
     note?: boolean
     statusProduct?: boolean
     products?: boolean | pendingProduct$productsArgs<ExtArgs>
@@ -2282,6 +2290,7 @@ export namespace Prisma {
     end?: boolean
     stock_barang?: boolean
     user?: boolean
+    role?: boolean
     note?: boolean
     statusProduct?: boolean
   }, ExtArgs["result"]["pendingProduct"]>
@@ -2292,6 +2301,7 @@ export namespace Prisma {
     end?: boolean
     stock_barang?: boolean
     user?: boolean
+    role?: boolean
     note?: boolean
     statusProduct?: boolean
   }
@@ -2313,6 +2323,7 @@ export namespace Prisma {
       end: Date | null
       stock_barang: number | null
       user: string | null
+      role: string | null
       note: string | null
       statusProduct: boolean
     }, ExtArgs["result"]["pendingProduct"]>
@@ -2714,6 +2725,7 @@ export namespace Prisma {
     readonly end: FieldRef<"pendingProduct", 'DateTime'>
     readonly stock_barang: FieldRef<"pendingProduct", 'Int'>
     readonly user: FieldRef<"pendingProduct", 'String'>
+    readonly role: FieldRef<"pendingProduct", 'String'>
     readonly note: FieldRef<"pendingProduct", 'String'>
     readonly statusProduct: FieldRef<"pendingProduct", 'Boolean'>
   }
@@ -3973,6 +3985,7 @@ export namespace Prisma {
     end: 'end',
     stock_barang: 'stock_barang',
     user: 'user',
+    role: 'role',
     note: 'note',
     statusProduct: 'statusProduct'
   };
@@ -4152,6 +4165,7 @@ export namespace Prisma {
     end?: DateTimeNullableFilter<"pendingProduct"> | Date | string | null
     stock_barang?: IntNullableFilter<"pendingProduct"> | number | null
     user?: StringNullableFilter<"pendingProduct"> | string | null
+    role?: StringNullableFilter<"pendingProduct"> | string | null
     note?: StringNullableFilter<"pendingProduct"> | string | null
     statusProduct?: BoolFilter<"pendingProduct"> | boolean
     products?: ProductListRelationFilter
@@ -4163,6 +4177,7 @@ export namespace Prisma {
     end?: SortOrderInput | SortOrder
     stock_barang?: SortOrderInput | SortOrder
     user?: SortOrderInput | SortOrder
+    role?: SortOrderInput | SortOrder
     note?: SortOrderInput | SortOrder
     statusProduct?: SortOrder
     products?: productOrderByRelationAggregateInput
@@ -4177,6 +4192,7 @@ export namespace Prisma {
     end?: DateTimeNullableFilter<"pendingProduct"> | Date | string | null
     stock_barang?: IntNullableFilter<"pendingProduct"> | number | null
     user?: StringNullableFilter<"pendingProduct"> | string | null
+    role?: StringNullableFilter<"pendingProduct"> | string | null
     note?: StringNullableFilter<"pendingProduct"> | string | null
     statusProduct?: BoolFilter<"pendingProduct"> | boolean
     products?: ProductListRelationFilter
@@ -4188,6 +4204,7 @@ export namespace Prisma {
     end?: SortOrderInput | SortOrder
     stock_barang?: SortOrderInput | SortOrder
     user?: SortOrderInput | SortOrder
+    role?: SortOrderInput | SortOrder
     note?: SortOrderInput | SortOrder
     statusProduct?: SortOrder
     _count?: pendingProductCountOrderByAggregateInput
@@ -4206,6 +4223,7 @@ export namespace Prisma {
     end?: DateTimeNullableWithAggregatesFilter<"pendingProduct"> | Date | string | null
     stock_barang?: IntNullableWithAggregatesFilter<"pendingProduct"> | number | null
     user?: StringNullableWithAggregatesFilter<"pendingProduct"> | string | null
+    role?: StringNullableWithAggregatesFilter<"pendingProduct"> | string | null
     note?: StringNullableWithAggregatesFilter<"pendingProduct"> | string | null
     statusProduct?: BoolWithAggregatesFilter<"pendingProduct"> | boolean
   }
@@ -4328,6 +4346,7 @@ export namespace Prisma {
     end?: Date | string | null
     stock_barang?: number | null
     user?: string | null
+    role?: string | null
     note?: string | null
     statusProduct?: boolean
     products?: productCreateNestedManyWithoutPendingProductInput
@@ -4339,6 +4358,7 @@ export namespace Prisma {
     end?: Date | string | null
     stock_barang?: number | null
     user?: string | null
+    role?: string | null
     note?: string | null
     statusProduct?: boolean
     products?: productUncheckedCreateNestedManyWithoutPendingProductInput
@@ -4350,6 +4370,7 @@ export namespace Prisma {
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
     products?: productUpdateManyWithoutPendingProductNestedInput
@@ -4361,6 +4382,7 @@ export namespace Prisma {
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
     products?: productUncheckedUpdateManyWithoutPendingProductNestedInput
@@ -4372,6 +4394,7 @@ export namespace Prisma {
     end?: Date | string | null
     stock_barang?: number | null
     user?: string | null
+    role?: string | null
     note?: string | null
     statusProduct?: boolean
   }
@@ -4382,6 +4405,7 @@ export namespace Prisma {
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -4392,6 +4416,7 @@ export namespace Prisma {
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -4663,6 +4688,7 @@ export namespace Prisma {
     end?: SortOrder
     stock_barang?: SortOrder
     user?: SortOrder
+    role?: SortOrder
     note?: SortOrder
     statusProduct?: SortOrder
   }
@@ -4677,6 +4703,7 @@ export namespace Prisma {
     end?: SortOrder
     stock_barang?: SortOrder
     user?: SortOrder
+    role?: SortOrder
     note?: SortOrder
     statusProduct?: SortOrder
   }
@@ -4687,6 +4714,7 @@ export namespace Prisma {
     end?: SortOrder
     stock_barang?: SortOrder
     user?: SortOrder
+    role?: SortOrder
     note?: SortOrder
     statusProduct?: SortOrder
   }
@@ -5011,6 +5039,7 @@ export namespace Prisma {
     end?: Date | string | null
     stock_barang?: number | null
     user?: string | null
+    role?: string | null
     note?: string | null
     statusProduct?: boolean
   }
@@ -5021,6 +5050,7 @@ export namespace Prisma {
     end?: Date | string | null
     stock_barang?: number | null
     user?: string | null
+    role?: string | null
     note?: string | null
     statusProduct?: boolean
   }
@@ -5055,6 +5085,7 @@ export namespace Prisma {
     end?: DateTimeNullableFilter<"pendingProduct"> | Date | string | null
     stock_barang?: IntNullableFilter<"pendingProduct"> | number | null
     user?: StringNullableFilter<"pendingProduct"> | string | null
+    role?: StringNullableFilter<"pendingProduct"> | string | null
     note?: StringNullableFilter<"pendingProduct"> | string | null
     statusProduct?: BoolFilter<"pendingProduct"> | boolean
   }
@@ -5113,6 +5144,7 @@ export namespace Prisma {
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -5123,6 +5155,7 @@ export namespace Prisma {
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
   }
@@ -5133,6 +5166,7 @@ export namespace Prisma {
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
   }

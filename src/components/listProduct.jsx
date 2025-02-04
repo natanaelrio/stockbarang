@@ -119,16 +119,13 @@ export default function ListProduct({ data }) {
                 isTambahKurang && await UpdateIncrement({
                     id: dataBarcode[0]?.id,
                     stock: valueTambahKurang,
-                    userActivity: 'rio',
-                    activity: `Update Tambah ${valueTambahKurang} stock - ${dataBarcode[0]?.name_barang} ( ${dataBarcode[0]?.id} ) `
                 })
                 !isTambahKurang && await CreateProductPendding({
                     stock_barang: valueTambahKurang,
                     note: valueNoteBarang,
                     produkid: dataBarcode[0]?.id,
                     user: 'rio',
-                    userActivity: 'rio',
-                    activity: `Request ${valueTambahKurang} stock - ${dataBarcode[0]?.name_barang} ( ${dataBarcode[0]?.id} ) `
+                    role: 'admin'
                 })
 
                 isTambahKurang && await CreateActivity({

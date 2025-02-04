@@ -24,6 +24,7 @@ model pendingProduct {
   end           DateTime? @updatedAt
   stock_barang  Int?
   user          String?
+  role          String?
   note          String?
   statusProduct Boolean   @default(false)
   products      product[] @relation("PendingProduct")
