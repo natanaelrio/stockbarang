@@ -137,7 +137,7 @@ export default function ListProduct({ data }) {
                 })
                 !isTambahKurang && await CreateActivity({
                     userActivity: 'rio',
-                    activity: `Request ${valueTambahKurang} stock - ${dataBarcode[0]?.name_barang} ( ${dataBarcode[0]?.id} ) `
+                    activity: `Request ${valueTambahKurang} stock - ${dataBarcode[0]?.name_barang} ( ${dataBarcode[0]?.id}) - (note: ${valueNoteBarang}) ) `
                 })
 
             } catch (e) {

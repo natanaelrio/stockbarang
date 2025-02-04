@@ -29,11 +29,11 @@ export default function Pending({ data }) {
                     !product.statusProduct ?
                         await CreateActivity({
                             userActivity: 'rio final',
-                            activity: `Konfirmasi Update Kurang ${product.stock_barang} stock - ${product.products[0]?.name_barang} ( ${product.products[0]?.id} ) `
+                            activity: `Konfirmasi Pengurangan ${product.stock_barang} stock - ${product.products[0]?.name_barang} ( ${product.products[0]?.id} ) `
                         }) :
                         await CreateActivity({
                             userActivity: 'rio final',
-                            activity: `Konfirmasi Update Tambah ${product.stock_barang} stock - ${product.products[0]?.name_barang} ( ${product.products[0]?.id} ) `
+                            activity: `Konfirmasi Pembatalan ${product.stock_barang} stock - ${product.products[0]?.name_barang} ( ${product.products[0]?.id} ) `
                         })
                 } catch (e) {
                     throw new Error("Server error, gagal menyimpan produk.");
@@ -43,7 +43,7 @@ export default function Pending({ data }) {
                 FetchData(),
                 {
                     loading: 'Saving...',
-                    success: <b>{product.products[0].name_barang}, Berhasil!</b>,
+                    success: <b>{product.products[0].name_barang}, Berhasil diUpdate!</b>,
                     error: <b>ID : {product.products[0]?.id} syudah adaww....</b>,
                 }
             );
