@@ -6,6 +6,9 @@ export async function GET(req) {
     const authorization = req.headers.get('authorization')
     if (authorization == process.env.NEXT_PUBLIC_SECREET) {
         const data = await prisma.pendingProduct.findMany({
+            orderBy: {
+                start: 'desc'
+            },
             include: {
                 products: true
             }
