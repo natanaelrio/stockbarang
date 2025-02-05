@@ -2,7 +2,7 @@
 import styles from '@/components/listProduct.module.css';
 import { useBearStore } from '@/zustand/data';
 import { useEffect } from 'react';
-import { GetProduct } from '@/service/data'
+import { GetProduct } from '@/service/dataClient'
 
 export default function ListProduct({ data }) {
     const setShowSelectedProduct = useBearStore((state) => state.setShowSelectedProduct);

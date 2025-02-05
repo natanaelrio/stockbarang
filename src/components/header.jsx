@@ -2,7 +2,7 @@
 import { signOut } from "next-auth/react";
 import styles from '@/components/header.module.css';
 import { useState } from 'react';
-import { GetSearchProduct } from "@/service/data";
+import { GetSearchProduct } from "@/service/dataClient";
 import { useBearStore } from '@/zustand/data';
 
 export default function Header({ session }) {
