@@ -14,6 +14,7 @@ export default function Footer({ session }) {
     const KondisiSessionTambah = roles.includes('tambah')
     const KondisiSessionVermin = roles.includes('vermin')
     const KondisiSessionVerPlus = roles.includes('verplus')
+    const KondisiSessionVerMinPlus = roles.includes('verminplus')
     const setScannedData = useBearStore((state) => state.setScannedData)
     const setShowInputBarang = useBearStore((state) => state.setShowInputBarang)
     const setScanShowCameraBarcode = useBearStore((state) => state.setScanShowCameraBarcode);
@@ -44,7 +45,7 @@ export default function Footer({ session }) {
                         <div><LuScanSearch size={39} /></div>
                         <span>Scan</span>
                     </button>
-                    {KondisiSessionVermin || KondisiSessionVerPlus &&
+                    {KondisiSessionVermin || KondisiSessionVerPlus || KondisiSessionVerMinPlus &&
                         <Link href={'/ver'} className={styles.tombolver}>
                             <div>
                                 <FaSquarePen size={39} />
