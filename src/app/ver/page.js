@@ -6,18 +6,23 @@ import Login from '@/components/login'
 import Header from '@/components/header';
 
 export default async function Page() {
-    const data = await GetPendingProduct()
     const session = await getServerSession(authOptions)
     const roles = session?.role || [];
+    const verMin = roles.includes('vermin')
+    const verPlus = roles.includes('verplus')
+    const verMinPlus = roles.includes('verminplus')
+
+    const data = await GetPendingProduct(verMin && 'vermin' || verPlus && 'verplus' || verMinPlus && null)
 
     return (
         <>
-            {roles.includes('ver') ?
+            {roles.includes('vermin') || roles.includes('verplus') || roles.includes('verminplus') ?
                 <>
                     <Header />
                     <Pending data={data.data} />
                 </>
                 : <Login />}
+
         </>
     )
 }

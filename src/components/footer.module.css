@@ -1,0 +1,79 @@
+.container {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    background-color: white;
+    bottom: 0;
+    padding: 5px 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px -1px 3px, rgba(0, 0, 0, 0.06) 0px -1px 2px;
+    justify-content: center;
+}
+
+.dalamcontainer {
+    width: var(--max-width);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
+    gap: 10px;
+}
+
+.dalamcontainer span {
+    font-size: 10px;
+}
+
+
+.container .tombolver {
+    padding: 0 18px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.container .tambahproduct {
+    padding: 0 18px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+.container .tombolscan {
+    position: absolute;
+    top: -13px;
+    right: 0;
+    left: 0;
+    margin: auto;
+    background-color: #37318d;
+    padding: 0 18px;
+    height: 74px;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    z-index: 9;
+    width: -moz-fit-content;
+    width: 84px;
+    border-radius: 64px;
+    color: white;
+    font-weight: 600;
+}
+
+.transparan {
+    width: 50%;
+}
+
+@media (max-width: 1000px) {
+    .dalamcontainer {
+        width: 100%;
+        justify-content: center;
+    }
+}

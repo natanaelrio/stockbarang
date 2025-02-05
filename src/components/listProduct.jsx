@@ -3,28 +3,10 @@ import { useEffect, useRef } from 'react';
 import JsBarcode from 'jsbarcode';
 import styles from '@/components/listProduct.module.css';
 import { useBearStore } from '@/zustand/data';
-import InputBarang from '@/components/inputBarang';
-import SelectProduct from '@/components/selectProduct';
-import ScanCameraBarcode from '@/components/scanCameraBarcode';
-import { useSession } from "next-auth/react";
+
 export default function ListProduct({ data }) {
-    const { data: session } = useSession();
-    const roles = session?.role || [];
-    const KondisiSessionTambah = roles.includes('tambah')
-
-    const scannedData = useBearStore((state) => state.scannedData)
-    const setScannedData = useBearStore((state) => state.setScannedData)
-
-    const showInputBarang = useBearStore((state) => state.showInputBarang)
-    const setShowInputBarang = useBearStore((state) => state.setShowInputBarang)
-
     const setShowSelectedProduct = useBearStore((state) => state.setShowSelectedProduct);
-    const showSelectedProduct = useBearStore((state) => state.showSelectedProduct);
-    const setScanShowCameraBarcode = useBearStore((state) => state.setScanShowCameraBarcode);
-    const showScanCameraBarcode = useBearStore((state) => state.showScanCameraBarcode);
-
     const setDataSelectedProduct = useBearStore((state) => state.setDataSelectedProduct);
-
     const barcodeRefs = useRef({});
 
     useEffect(() => {
@@ -45,20 +27,8 @@ export default function ListProduct({ data }) {
         setDataSelectedProduct(product);
     };
 
-
-    const TombolScan = () => {
-        setScanShowCameraBarcode()
-    }
-
-    const TombolTambahkan = () => {
-        setShowInputBarang()
-        setScannedData(null)
-    }
-
     return (
         <>
-            <button className={styles.tombolscan} onClick={TombolScan}>Scan</button>
-            {KondisiSessionTambah && <button className={styles.tambahproduct} onClick={TombolTambahkan}>Tambahkan Product</button>}
             <div className={styles.tableContainer}>
                 <table className={styles.productTable}>
                     <thead>
@@ -89,12 +59,7 @@ export default function ListProduct({ data }) {
                 </table>
             </div>
 
-            {showInputBarang && <InputBarang />}
 
-            {showSelectedProduct && <SelectProduct />}
-
-            {showScanCameraBarcode && <ScanCameraBarcode />
-            }
         </>
     );
 }

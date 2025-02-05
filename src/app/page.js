@@ -4,6 +4,7 @@ import { GetProduct } from '@/service/data'
 import { authOptions } from '@/controllers/auth';
 import { getServerSession } from "next-auth";
 import Header from '@/components/header';
+import Footer from '@/components/footer';
 
 export default async function Home() {
   const data = await GetProduct()
@@ -15,6 +16,7 @@ export default async function Home() {
         <>
           <Header />
           <ListProduct data={data.data} />
+          <Footer />
         </>
         : <Login />}
     </>

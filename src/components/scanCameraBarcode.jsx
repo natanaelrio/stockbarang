@@ -13,6 +13,8 @@ export default function ScanCameraBarcode() {
     const roles = session?.role || [];
     const KondisiSessionTambah = roles.includes('tambah')
     const KondisiSessionPending = roles.includes('pending')
+    const verMin = roles.includes('vermin')
+    const verPlus = roles.includes('verplus')
 
     const router = useRouter()
     const setScanShowCameraBarcode = useBearStore((state) => state.setScanShowCameraBarcode);
@@ -62,7 +64,7 @@ export default function ScanCameraBarcode() {
                     note: valueNoteBarang,
                     produkid: dataBarcode[0]?.id,
                     user: session.username,
-                    role: 'admin'
+                    role: verMin && 'vermin' || verPlus && 'verplus'
                 })
 
                 isTambahKurang && await CreateActivity({

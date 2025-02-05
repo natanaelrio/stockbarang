@@ -86,9 +86,9 @@ export const GetProduct = async () => {
     }
     revalidatePath('/')
 }
-export const GetPendingProduct = async () => {
+export const GetPendingProduct = async (role) => {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/getPendingProduct`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/getPendingProduct?role=${role}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
