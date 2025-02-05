@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { CreateActivity, CreateProduct } from '@/service/data';
 import { useState } from 'react';
+import { GetCurrentDateTimeGMT7 } from '@/utils/getCurrentDateTimeGMT7';
 
 export default function InputBarang() {
     const router = useRouter();
@@ -18,7 +19,7 @@ export default function InputBarang() {
 
     const formik = useFormik({
         initialValues: {
-            idBarang: scannedData ? scannedData : '',
+            idBarang: scannedData ? scannedData : GetCurrentDateTimeGMT7(),
             namaBarang: '',
         },
         validationSchema: Yup.object({
