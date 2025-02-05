@@ -26,7 +26,7 @@ export const authOptions = {
                     { id: "2", email: "purchfitri@pelangiteknik.com", password: "purshfitri1x23", username: "Fitri ( Purchasing )", role: ['tambah', 'verplus'] },
                     { id: "3", email: "adminsin@pelangiteknik.com", password: "adminsin12e3", username: "Sin ( Admin )", role: ['pending'] },
                     { id: "4", email: "spvirfan@pelangiteknik.com", password: "spvirfan12k3", username: "Irfan (SPV)", role: ['vermin'] },
-                    { id: "3", email: "help@pelangiteknik.com", password: "123", username: "rrr ( help )", role: ['tambah'] },
+                    { id: "5", email: "help@pelangiteknik.com", password: "123", username: "rrr ( help )", role: ['tambah'] },
                 ];
 
                 // Cari pengguna berdasarkan email dan password
