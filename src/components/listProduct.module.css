@@ -1,3 +1,8 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
 .tableContainer {
     padding: 20px;
     max-width: 100%;
@@ -172,6 +177,7 @@
         overflow-x: scroll;
         -webkit-overflow-scrolling: touch;
         justify-content: flex-start;
+        flex-direction: column
     }
 
     .productTable {

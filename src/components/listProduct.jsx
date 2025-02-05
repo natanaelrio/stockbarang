@@ -26,11 +26,12 @@ export default function ListProduct({ data }) {
                 setDataProduk(data)
             }
             catch (e) {
-                setIsLoadingProduk(true)
+                setIsLoadingProduk(false)
             }
         }
         FetchData()
     }, [])
+
 
     return (
         <>
