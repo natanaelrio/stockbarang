@@ -41,15 +41,15 @@ export default function ListProduct({ data }) {
                     </thead>
                     <tbody>
                         {data?.map((product) => (
-                            <tr key={product.id}>
-                                <td>{product.id}</td>
-                                <td>{product.name_barang}</td>
-                                <td>{product.stock_barang}</td>
+                            <tr key={product?.id}>
+                                <td>{product?.id}</td>
+                                <td>{product?.name_barang}</td>
+                                <td>{product?.stock_barang}</td>
                                 <td>
                                     <svg
                                         width={100}
-                                        ref={(el) => barcodeRefs.current[product.id] = el}
-                                        data-id={product.id}
+                                        ref={(el) => barcodeRefs.current[product?.id] = el}
+                                        data-id={product?.id}
                                         onClick={() => handleBarcodeClick(product)}
                                     ></svg>
                                 </td>

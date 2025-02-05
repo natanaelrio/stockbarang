@@ -8,24 +8,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model kategori {
-  id    String   @id @default(uuid())
-  start DateTime @default(now())
-  name  String   @unique
-
-  products product[]
-}
-
 model product {
-  id             String           @id @default(uuid())
-  start          DateTime         @default(now())
-  end            DateTime?        @updatedAt
-  name_barang    String?
-  stock_barang   Int?
-  note           String?
+  id           String    @id @default(uuid())
+  start        DateTime  @default(now())
+  end          DateTime? @updatedAt
+  name_barang  String?
+  stock_barang Int?
+
   pendingProduct pendingProduct[] @relation("PendingProduct")
-  kategori       kategori?        @relation(fields: [kategoriId], references: [id])
-  kategoriId     String?
 }
 
 model pendingProduct {
