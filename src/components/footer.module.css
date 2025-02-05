@@ -16,6 +16,7 @@
     align-items: center;
     overflow: hidden;
     gap: 10px;
+    height: 60px;
 }
 
 .dalamcontainer span {

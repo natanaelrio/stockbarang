@@ -31,7 +31,7 @@ export default function ListProduct({ data }) {
         <>
             <div className={styles.tableContainer}>
                 <div styleName={styles.datalength}>
-                    {dataProduk.dataLength}
+                    {dataProduk?.dataLength}
                 </div>
                 {isLoadingProduk ?
                     <table className={styles.productTable}>

@@ -40,7 +40,7 @@ export default function ScanCameraBarcode({ session }) {
         setIsLoading(true)
         const data = await GetSearchProductID(valueIdBarang)
         setDataBarcode(data.data)
-        setNoData(data.dataLength)
+        setNoData(data?.dataLength)
         setIsLoading(false)
     }
 

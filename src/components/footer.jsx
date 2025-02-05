@@ -12,6 +12,8 @@ import Link from 'next/link';
 export default function Footer({ session }) {
     const roles = session?.role || [];
     const KondisiSessionTambah = roles.includes('tambah')
+    const KondisiSessionVermin = roles.includes('vermin')
+    const KondisiSessionVerPlus = roles.includes('verplus')
     const setScannedData = useBearStore((state) => state.setScannedData)
     const setShowInputBarang = useBearStore((state) => state.setShowInputBarang)
     const setScanShowCameraBarcode = useBearStore((state) => state.setScanShowCameraBarcode);
@@ -42,20 +44,23 @@ export default function Footer({ session }) {
                         <div><LuScanSearch size={39} /></div>
                         <span>Scan</span>
                     </button>
-                    <Link href={'/ver'} className={styles.tombolver}>
-                        <div>
-                            <FaSquarePen size={39} />
-                        </div>
-                        <span>Verivikasi</span>
-                    </Link>
-
+                    {KondisiSessionVermin || KondisiSessionVerPlus &&
+                        <Link href={'/ver'} className={styles.tombolver}>
+                            <div>
+                                <FaSquarePen size={39} />
+                            </div>
+                            <span>Verivikasi</span>
+                        </Link>
+                    }
                 </div>
-            </div>
-            {showInputBarang && <InputBarang session={session} />}
+            </div >
+            {showInputBarang && <InputBarang session={session} />
+            }
 
             {showSelectedProduct && <SelectProduct />}
 
-            {showScanCameraBarcode && <ScanCameraBarcode session={session} />
+            {
+                showScanCameraBarcode && <ScanCameraBarcode session={session} />
             }
         </>
 
