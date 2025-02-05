@@ -2,13 +2,14 @@
 import styles from '@/components/footer.module.css';
 import { useSession } from "next-auth/react";
 import { useBearStore } from '@/zustand/data';
-import { useRouter } from 'nextjs-toploader/app';
+// import { useRouter } from 'nextjs-toploader/app';
 import InputBarang from '@/components/inputBarang';
 import SelectProduct from '@/components/selectProduct';
 import ScanCameraBarcode from '@/components/scanCameraBarcode';
 import { FaSquarePen } from "react-icons/fa6";
 import { IoMdAdd } from "react-icons/io";
 import { LuScanSearch } from "react-icons/lu";
+import { useRouter } from 'next/navigation';
 
 export default function Footer() {
     const router = useRouter()

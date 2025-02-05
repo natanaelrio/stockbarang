@@ -2,7 +2,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import Toasterrr from '@/components/Toaster'
 import SessionProviderr from '@/controllers/SessionProviderr'
-import NextTopLoader from 'nextjs-toploader';
+// import NextTopLoader from 'nextjs-toploader';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
     <SessionProviderr>
       <html lang="en">
         <Toasterrr />
-        <NextTopLoader
+        {/* <NextTopLoader
           color="#2299DD"
           initialPosition={0.08}
           crawlSpeed={200}
@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
   <div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
           zIndex={1600}
           showAtBottom={false}
-        />
+        /> */}
         <body className={inter.className}>{children}</body>
       </html>
     </SessionProviderr>
