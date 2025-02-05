@@ -13,24 +13,42 @@
     width: var(--max-width);
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     overflow: hidden;
     gap: 10px;
 }
 
-.atas button {
+.atas .logout {
     background-color: rgb(206, 88, 88);
-    border-radius: 10px;
-    padding: 10px;
+    border-radius: 7px;
+    padding: 9px;
     outline: 0;
     border: 0;
     color: white;
     cursor: pointer;
+    width: fit-content;
+}
+
+.atas button {
+    padding: 8px;
+    background-color: rgb(206, 88, 88);
+    outline: 0;
+    border: 1px solid rgb(206, 88, 88);
+    ;
+    border-radius: 0 7px 7px 0;
+    color: white;
+    cursor: pointer;
+
+}
+
+.atas input {
+    padding: 8px;
+    outline: 0;
+    border: 1px solid rgb(206, 88, 88);
 }
 
 .atas .user {
-    font-size: 20px;
-    font-weight: 1000;
+    font-size: 12px;
 }
 
 
@@ -43,6 +61,6 @@
 
 @media (max-width: 480px) {
     .atas .user {
-        font-size: 18px;
+        font-size: 12px;
     }
 }

@@ -4,6 +4,9 @@ export const useBearStore = create((set) => ({
     scannedData: null,
     setScannedData: (e) => set((state) => ({ scannedData: e })),
 
+    isLoadingProduk: false,
+    setIsLoadingProduk: (e) => set((state) => ({ isLoadingProduk: e ? e : !state.isLoadingProduk })),
+
     showInputBarang: false,
     setShowInputBarang: (e) => set((state) => ({ showInputBarang: e ? e : !state.showInputBarang })),
 
@@ -15,4 +18,7 @@ export const useBearStore = create((set) => ({
 
     dataSelectedProduct: false,
     setDataSelectedProduct: (e) => set((state) => ({ dataSelectedProduct: e })),
+
+    dataProduk: [],
+    setDataProduk: (e) => set((state) => ({ dataProduk: e })),
 }))

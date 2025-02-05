@@ -12,12 +12,16 @@ import { GetCurrentDateTimeGMT7 } from '@/utils/getCurrentDateTimeGMT7';
 
 export default function InputBarang({ session }) {
     const router = useRouter();
+    const roles = session?.role || [];
+
     const id = GetCurrentDateTimeGMT7()
     const setShowInputBarang = useBearStore((state) => state.setShowInputBarang);
     const scannedData = useBearStore((state) => state.scannedData);
     const setScannedData = useBearStore((state) => state.setScannedData);
     const [showScan, setShowScan] = useState(false)
     const [showIndent, setShowIndent] = useState(false)
+    const KondisiSessionTambah = roles.includes('verplus')
+    const KondisiSessionTambahKurang = roles.includes('verminplus')
 
     const formik = useFormik({
         initialValues: {
@@ -119,30 +123,30 @@ export default function InputBarang({ session }) {
                 />
                 {formik.touched.stockBarang && formik.errors.stockBarang ? <div className={styles.error}>{formik.errors.stockBarang}</div> : null}
 
-                <div className={styles.radioGroup}>
+                {KondisiSessionTambah || KondisiSessionTambahKurang &&
+                    <div className={styles.radioGroup}>
+                        <input
+                            type="radio"
+                            id="langsung"
+                            name="jenisBarang"
+                            value="Langsung"
+                            onClick={() => setShowIndent(!showIndent)}
+                            checked={formik.values.jenisBarang === "Langsung"}
+                            onChange={formik.handleChange}
+                        />
+                        <label htmlFor="langsung">Langsung</label>
+                        <input
+                            type="radio"
+                            id="indent"
+                            name="jenisBarang"
+                            value="Indent"
+                            onClick={() => setShowIndent(!showIndent)}
+                            checked={formik.values.jenisBarang === "Indent"}
+                            onChange={formik.handleChange}
+                        />
+                        <label htmlFor="indent">Indent</label>
 
-                    <input
-                        type="radio"
-                        id="langsung"
-                        name="jenisBarang"
-                        value="Langsung"
-                        onClick={() => setShowIndent(!showIndent)}
-                        checked={formik.values.jenisBarang === "Langsung"}
-                        onChange={formik.handleChange}
-                    />
-                    <label htmlFor="langsung">Langsung</label>
-                    <input
-                        type="radio"
-                        id="indent"
-                        name="jenisBarang"
-                        value="Indent"
-                        onClick={() => setShowIndent(!showIndent)}
-                        checked={formik.values.jenisBarang === "Indent"}
-                        onChange={formik.handleChange}
-                    />
-                    <label htmlFor="indent">Indent</label>
-
-                </div>
+                    </div>}
 
                 {showIndent && <input
                     type='text'

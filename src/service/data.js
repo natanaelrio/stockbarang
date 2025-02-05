@@ -107,6 +107,26 @@ export const GetPendingProduct = async (role) => {
     revalidatePath('/')
 }
 
+export const GetSearchProductID = async (e) => {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/searchProductID?query=${e}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
+            },
+            next: {
+                revalidate: 0
+            }
+        });
+        const data = await res.json()
+        return data
+    }
+    catch (err) {
+        console.log(err);
+    }
+    revalidatePath('/')
+}
 export const GetSearchProduct = async (e) => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/searchProduct?query=${e}`, {

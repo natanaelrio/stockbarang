@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from '@/components/listProduct.module.css';
 import BarcodeScanner from '@/components/barcode';
-import { CreateActivity, CreateProductPendding, GetSearchProduct, UpdateIncrement } from '@/service/data';
+import { CreateActivity, CreateProductPendding, GetSearchProductID, UpdateIncrement } from '@/service/data';
 import toast from 'react-hot-toast';
 import { useBearStore } from '@/zustand/data';
 import { useRouter } from 'next/navigation';
@@ -27,7 +27,7 @@ export default function ScanCameraBarcode({ session }) {
     useEffect(() => {
         const FetchData = async () => {
             setIsLoading(true)
-            const data = await GetSearchProduct(scannedData)
+            const data = await GetSearchProductID(scannedData)
             setDataBarcode(data.data)
             setIsLoading(false)
         }
@@ -38,7 +38,7 @@ export default function ScanCameraBarcode({ session }) {
         e.preventDefault()
         // setHiddenCamera(false)
         setIsLoading(true)
-        const data = await GetSearchProduct(valueIdBarang)
+        const data = await GetSearchProductID(valueIdBarang)
         setDataBarcode(data.data)
         setNoData(data.dataLength)
         setIsLoading(false)

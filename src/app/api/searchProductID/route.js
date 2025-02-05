@@ -10,10 +10,7 @@ export async function GET(req) {
     if (authorization == process.env.NEXT_PUBLIC_SECREET) {
         const data = await prisma.product.findMany({
             where: {
-                name_barang: {
-                    contains: query,
-                    mode: 'insensitive'
-                }
+                id: query
             }
         });
 
