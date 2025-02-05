@@ -6,54 +6,72 @@ import BarcodeScanner from '@/components/barcode';
 import { useBearStore } from '@/zustand/data';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
-import { CreateActivity, CreateProduct } from '@/service/data';
+import { CreateActivity, CreateProduct, CreateProductPendding } from '@/service/data';
 import { useState } from 'react';
 import { GetCurrentDateTimeGMT7 } from '@/utils/getCurrentDateTimeGMT7';
 
 export default function InputBarang({ session }) {
     const router = useRouter();
-
+    const id = GetCurrentDateTimeGMT7()
     const setShowInputBarang = useBearStore((state) => state.setShowInputBarang);
     const scannedData = useBearStore((state) => state.scannedData);
     const setScannedData = useBearStore((state) => state.setScannedData);
     const [showScan, setShowScan] = useState(false)
+    const [showIndent, setShowIndent] = useState(false)
 
     const formik = useFormik({
         initialValues: {
-            idBarang: scannedData ? scannedData : GetCurrentDateTimeGMT7(),
+            idBarang: scannedData ? scannedData : id,
             namaBarang: '',
+            stockBarang: '',
+            jenisBarang: 'Langsung',
+            catatanIndent: '',
         },
         validationSchema: Yup.object({
             idBarang: Yup.string().required('ID Barang wajib diisi'),
             namaBarang: Yup.string().required('Nama Barang wajib diisi'),
+            stockBarang: Yup.number().required('Stock Barang wajib diisi'),
+            jenisBarang: Yup.string().oneOf(['Indent', 'Langsung']).required('Jenis Barang wajib dipilih'),
         }),
         onSubmit: async (values, { setSubmitting }) => {
+
             try {
-                const FetchData = async () => {
+                const FetchDataNormal = async () => {
                     const dataProduct = await CreateProduct({
                         id: values.idBarang,
                         name_barang: values.namaBarang,
-                        stock_barang: 0,
+                        stock_barang: values.jenisBarang == 'Langsung' ? values.stockBarang : 0,
+                        jenis_barang: values.jenisBarang,
                     });
+
+
                     if (dataProduct.status == '500') {
-                        throw new Error(`id ${values.idBarang} sudah ada !!`);
-                        return
+                        throw new Error(`ID ${values.idBarang} sudah ada !!`);
                     }
+
+                    values.jenisBarang == 'Indent' && await CreateProductPendding({
+                        stock_barang: values.stockBarang,
+                        note: values.catatanIndent,
+                        produkid: values.idBarang,
+                        user: session.username,
+                        role: 'verplus'
+                    })
                     await CreateActivity({
                         userActivity: session.username,
-                        activity: `Penambahan Product ${values.namaBarang} ( ${values.idBarang} )`
+                        activity: `Penambahan Product ${values.namaBarang} ( ${values.idBarang} ) ${values.jenisBarang == 'Indent' && '( INDENT )'}`,
                     });
-                }
+                };
                 toast.promise(
-                    FetchData(),
+                    FetchDataNormal(),
                     {
                         loading: 'Saving...',
                         success: <b>Berhasil {values.namaBarang} ditambahkan !</b>,
-                        error: `id ${values.idBarang} sudah ada !!`,
+                        error: `ID ${values.idBarang} sudah ada !!`,
                     }
                 );
+
                 router.refresh();
-                setShowInputBarang();
+                // setShowInputBarang();
             } catch (error) {
                 toast.error(`ID: ${values.idBarang} sudah ada!`);
             } finally {
@@ -67,7 +85,7 @@ export default function InputBarang({ session }) {
             <div className={styles.bghitam} onClick={() => setShowInputBarang()}></div>
             <form className={styles.inputbarang} onSubmit={formik.handleSubmit}>
                 {!scannedData && showScan && <BarcodeScanner onScan={(data) => setScannedData(data)} />}
-                <button onClick={() => setShowScan(!showScan)} >{!showScan ? 'Input ID SCAN' : 'Tutup Input ID SCAN'}</button>
+                <button onClick={() => setShowScan(!showScan)}>{!showScan ? 'Input ID SCAN' : 'Tutup Input ID SCAN'}</button>
                 <input
                     type='text'
                     name='idBarang'
@@ -89,6 +107,54 @@ export default function InputBarang({ session }) {
                     disabled={formik.isSubmitting}
                 />
                 {formik.touched.namaBarang && formik.errors.namaBarang ? <div className={styles.error}>{formik.errors.namaBarang}</div> : null}
+
+                <input
+                    type='number'
+                    name='stockBarang'
+                    placeholder='STOCK BARANG'
+                    value={formik.values.stockBarang}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    disabled={formik.isSubmitting}
+                />
+                {formik.touched.stockBarang && formik.errors.stockBarang ? <div className={styles.error}>{formik.errors.stockBarang}</div> : null}
+
+                <div className={styles.radioGroup}>
+
+                    <input
+                        type="radio"
+                        id="langsung"
+                        name="jenisBarang"
+                        value="Langsung"
+                        onClick={() => setShowIndent(!showIndent)}
+                        checked={formik.values.jenisBarang === "Langsung"}
+                        onChange={formik.handleChange}
+                    />
+                    <label htmlFor="langsung">Langsung</label>
+                    <input
+                        type="radio"
+                        id="indent"
+                        name="jenisBarang"
+                        value="Indent"
+                        onClick={() => setShowIndent(!showIndent)}
+                        checked={formik.values.jenisBarang === "Indent"}
+                        onChange={formik.handleChange}
+                    />
+                    <label htmlFor="indent">Indent</label>
+
+                </div>
+
+                {showIndent && <input
+                    type='text'
+                    name='catatanIndent'
+                    placeholder='Catatan'
+                    value={formik.values.catatanIndent}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    disabled={formik.isSubmitting}
+                />}
+
+                {formik.touched.jenisBarang && formik.errors.jenisBarang ? <div className={styles.error}>{formik.errors.jenisBarang}</div> : null}
 
                 <button type='submit' disabled={formik.isSubmitting}>Submit</button>
                 <div className={styles.close} onClick={() => setShowInputBarang()}>X</div>

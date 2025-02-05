@@ -82,6 +82,26 @@
     padding: 20px;
 }
 
+.radioGroup {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.radioGroup label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+}
+
+.radioGroup input[type="radio"] {
+    width: 18px;
+    height: 18px;
+}
+
 .inputbarang .inputkamera {
     margin-top: 20px;
     display: flex;

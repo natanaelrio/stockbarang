@@ -12,7 +12,7 @@ export default function Header({ session }) {
                     {session?.username}
                 </div>
                 <button onClick={() => { signOut(), setLoading(!isLoading) }} >
-                    {isLoading ? 'Loading...' : 'Logout'}
+                    {isLoading ? 'Loading...' : '< Logout'}
                 </button>
             </div>
         </div>

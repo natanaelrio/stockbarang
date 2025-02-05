@@ -23,7 +23,7 @@ export const authOptions = {
 
                 const users = [
                     { id: "1", email: "rio@pelangiteknik.com", password: "developer", username: "Rio ( Developer )", role: ['tambah', 'pending', 'verminplus', 'log'] },
-                    { id: "2", email: "purchfitri@pelangiteknik.com", password: "purshfitri1x23", username: "Fitri ( Purchasing )", role: ['tambah', 'pending', 'verplus'] },
+                    { id: "2", email: "purchfitri@pelangiteknik.com", password: "purshfitri1x23", username: "Fitri ( Purchasing )", role: ['tambah', 'verplus'] },
                     { id: "3", email: "adminsin@pelangiteknik.com", password: "adminsin12e3", username: "Sin ( Admin )", role: ['pending'] },
                     { id: "4", email: "spvirfan@pelangiteknik.com", password: "spvirfan12k3", username: "Irfan (SPV)", role: ['vermin'] },
                 ];

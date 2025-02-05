@@ -7,11 +7,17 @@ import { useRouter } from 'next/navigation';
 
 export default function Pending({ data, session }) {
     const router = useRouter()
+    const roles = session?.role || [];
+    const KondisiSessionTambah = roles.includes('verplus')
+    const KondisiSessionKurang = roles.includes('vermin')
 
     const handleConfirm = async (product) => {
+        const KondisiPlus = product.role == 'verplus'
+        const KondisiMin = product.role == 'vermin'
+
         const isConfirmed = window.confirm(`Apakah Anda yakin ingin mengonfirmasi ${product.products[0].name_barang}?`);
         if (isConfirmed) {
-            const FetchData = async () => {
+            const FetchDataNormal = async () => {
                 try {
                     !product.statusProduct ?
                         await UpdateDecrement({
@@ -39,8 +45,46 @@ export default function Pending({ data, session }) {
                     throw new Error("Server error, gagal menyimpan produk.");
                 }
             }
-            toast.promise(
-                FetchData(),
+            KondisiMin && toast.promise(
+                FetchDataNormal(),
+                {
+                    loading: 'Saving...',
+                    success: <b>{product.products[0].name_barang}, Berhasil diUpdate!</b>,
+                    error: <b>ID : {product.products[0]?.id} syudah adaww....</b>,
+                }
+            );
+
+            const FetchDataPlus = async () => {
+                try {
+                    !product.statusProduct ?
+                        await UpdateIncrement({
+                            id: product.products[0]?.id,
+                            stock: product.stock_barang,
+                            idPending: product?.id,
+                            statusProduct: !product?.statusProduct
+                        }) : await UpdateDecrement({
+                            id: product.products[0]?.id,
+                            stock: product.stock_barang,
+                            idPending: product?.id,
+                            statusProduct: !product?.statusProduct,
+                        })
+
+                    !product.statusProduct ?
+                        await CreateActivity({
+                            userActivity: session.username,
+                            activity: `Konfirmasi Tambah(indent) ${product.stock_barang} stock - ${product.products[0]?.name_barang} ( ${product.products[0]?.id} ) `
+                        }) :
+                        await CreateActivity({
+                            userActivity: session.username,
+                            activity: `Konfirmasi Pembatalan(indent) ${product.stock_barang} stock - ${product.products[0]?.name_barang} ( ${product.products[0]?.id} ) `
+                        })
+
+                } catch (e) {
+                    throw new Error("Server error, gagal menyimpan produk.");
+                }
+            }
+            KondisiPlus && toast.promise(
+                FetchDataPlus(),
                 {
                     loading: 'Saving...',
                     success: <b>{product.products[0].name_barang}, Berhasil diUpdate!</b>,
@@ -60,7 +104,7 @@ export default function Pending({ data, session }) {
                         <th>ID</th>
                         <th>Name Barang</th>
                         <th>User</th>
-                        <th>Pengurangan</th>
+                        <th>{KondisiSessionTambah && 'Pertambahan'}{KondisiSessionKurang && 'Pengurangan'}{KondisiSessionKurang || KondisiSessionTambah || '+/-'}</th>
                         <th>Note</th>
                         <th>Validasi</th>
                     </tr>
