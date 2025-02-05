@@ -10,12 +10,12 @@ export default function Header() {
     return (
         <div className={styles.atas}>
             <div className={styles.dalamcontainer}>
-                <button onClick={() => { signOut(), setLoading(!isLoading) }} >
-                    {isLoading ? 'Loading...' : 'Logout'}
-                </button>
                 <div className={styles.user}>
                     {session?.username}
                 </div>
+                <button onClick={() => { signOut(), setLoading(!isLoading) }} >
+                    {isLoading ? 'Loading...' : 'Logout'}
+                </button>
             </div>
         </div>
     )
