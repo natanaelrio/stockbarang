@@ -19,9 +19,9 @@ export default function ListProduct({ data }) {
 
     useEffect(() => {
         const FetchData = async () => {
-            setIsLoadingProduk(true)
-            const data = await GetProduct()
             setIsLoadingProduk(false)
+            const data = await GetProduct()
+            setIsLoadingProduk(true)
             setDataProduk(data)
         }
         FetchData()
@@ -33,7 +33,7 @@ export default function ListProduct({ data }) {
                 <div styleName={styles.datalength}>
                     {dataProduk?.dataLength}
                 </div>
-                {!isLoadingProduk ?
+                {isLoadingProduk ?
                     <table className={styles.productTable}>
                         <thead>
                             <tr>
