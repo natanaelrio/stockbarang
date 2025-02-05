@@ -61,16 +61,16 @@ export default function ScanCameraBarcode() {
                     stock_barang: valueTambahKurang,
                     note: valueNoteBarang,
                     produkid: dataBarcode[0]?.id,
-                    user: 'rio',
+                    user: session.username,
                     role: 'admin'
                 })
 
                 isTambahKurang && await CreateActivity({
-                    userActivity: 'rio',
+                    userActivity: session.username,
                     activity: `Update Tambah ${valueTambahKurang} stock - ${dataBarcode[0]?.name_barang} ( ${dataBarcode[0]?.id} ) `
                 })
                 !isTambahKurang && await CreateActivity({
-                    userActivity: 'rio',
+                    userActivity: session.username,
                     activity: `Request ${valueTambahKurang} stock - ${dataBarcode[0]?.name_barang} ( ${dataBarcode[0]?.id}) - (note: ${valueNoteBarang}) ) `
                 })
 

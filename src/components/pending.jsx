@@ -4,8 +4,10 @@ import { TimeConverter } from '@/utils/formatMoment';
 import { CreateActivity, UpdateDecrement, UpdateIncrement } from '@/service/data';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import { useSession } from "next-auth/react";
 
 export default function Pending({ data }) {
+    const { data: session } = useSession();
     const router = useRouter()
 
     const handleConfirm = async (product) => {
@@ -28,11 +30,11 @@ export default function Pending({ data }) {
 
                     !product.statusProduct ?
                         await CreateActivity({
-                            userActivity: 'rio final',
+                            userActivity: session.username,
                             activity: `Konfirmasi Pengurangan ${product.stock_barang} stock - ${product.products[0]?.name_barang} ( ${product.products[0]?.id} ) `
                         }) :
                         await CreateActivity({
-                            userActivity: 'rio final',
+                            userActivity: session.username,
                             activity: `Konfirmasi Pembatalan ${product.stock_barang} stock - ${product.products[0]?.name_barang} ( ${product.products[0]?.id} ) `
                         })
                 } catch (e) {

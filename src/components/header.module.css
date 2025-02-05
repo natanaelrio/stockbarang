@@ -1,0 +1,47 @@
+.atas {
+    display: flex;
+    position: sticky;
+    width: 100%;
+    background-color: white;
+    top: 0;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px, rgba(0, 0, 0, 0.06) 0px 1px 2px;
+    justify-content: center;
+}
+
+.dalamcontainer {
+    width: var(--max-width);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    gap: 10px;
+}
+
+.atas button {
+    background-color: red;
+    border-radius: 10px;
+    padding: 10px;
+    outline: 0;
+    border: 0;
+    color: white;
+}
+
+.atas .user {
+    font-size: 20px;
+    font-weight: 1000;
+}
+
+
+@media (max-width: 1000px) {
+    .dalamcontainer {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .atas .user {
+        font-size: 14px;
+    }
+}

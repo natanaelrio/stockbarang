@@ -2,6 +2,8 @@ import Pending from '@/components/pending'
 import { GetPendingProduct } from '@/service/data'
 import { authOptions } from '@/controllers/auth';
 import { getServerSession } from "next-auth";
+import Login from '@/components/login'
+import Header from '@/components/header';
 
 export default async function Page() {
     const data = await GetPendingProduct()
@@ -10,7 +12,12 @@ export default async function Page() {
 
     return (
         <>
-            {roles.includes('ver') && <Pending data={data.data} />}
+            {roles.includes('ver') ?
+                <>
+                    <Header />
+                    <Pending data={data.data} />
+                </>
+                : <Login />}
         </>
     )
 }

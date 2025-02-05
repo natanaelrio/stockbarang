@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #2a1c2c, #a969a7);
     /* font-family: 'Poppins', sans-serif; */
 }
 
@@ -53,7 +53,7 @@
 }
 
 .formGroup input:focus {
-    border-color: #764ba2;
+    border-color: #7d3757;
     outline: none;
 }
 
@@ -61,7 +61,7 @@
 .loginBtn {
     width: 100%;
     padding: 15px;
-    background: #764ba2;
+    background: #7d3757;
     color: white;
     border: none;
     border-radius: 5px;

@@ -7,7 +7,6 @@ import InputBarang from '@/components/inputBarang';
 import SelectProduct from '@/components/selectProduct';
 import ScanCameraBarcode from '@/components/scanCameraBarcode';
 import { useSession } from "next-auth/react";
-import { signOut } from "next-auth/react";
 export default function ListProduct({ data }) {
     const { data: session } = useSession();
     const roles = session?.role || [];
@@ -58,9 +57,6 @@ export default function ListProduct({ data }) {
 
     return (
         <>
-            <button onClick={() => signOut()} style={{ padding: '10px', backgroundColor: 'red', color: 'white', border: 'none', cursor: 'pointer' }}>
-                Logout
-            </button>
             <button className={styles.tombolscan} onClick={TombolScan}>Scan</button>
             {KondisiSessionTambah && <button className={styles.tambahproduct} onClick={TombolTambahkan}>Tambahkan Product</button>}
             <div className={styles.tableContainer}>

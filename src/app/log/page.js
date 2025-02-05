@@ -2,6 +2,8 @@ import Activity from '@/components/activity'
 import { GetLogActivity } from '@/service/data'
 import { authOptions } from '@/controllers/auth';
 import { getServerSession } from "next-auth";
+import Login from '@/components/login'
+import Header from '@/components/header';
 
 export default async function Page() {
     const data = await GetLogActivity()
@@ -10,7 +12,12 @@ export default async function Page() {
 
     return (
         <>
-            {roles.includes('log') && <Activity data={data.data} />}
+            {roles.includes('log') ?
+                <>
+                    <Header />
+                    <Activity data={data.data} />
+                </>
+                : <Login />}
         </>
     )
 }
