@@ -1,11 +1,9 @@
 'use client'
 import { signOut } from "next-auth/react";
-import { useSession } from "next-auth/react";
 import styles from '@/components/header.module.css';
 import { useState } from 'react';
 
-export default function Header() {
-    const { data: session } = useSession();
+export default function Header({ session }) {
     const [isLoading, setLoading] = useState(false)
     return (
         <div className={styles.atas}>

@@ -14,9 +14,9 @@ export default async function Home() {
     <>
       {session ?
         <>
-          <Header />
+          <Header session={session} />
           <ListProduct data={data.data} />
-          <Footer />
+          <Footer session={session} />
         </>
         : <Login />}
     </>

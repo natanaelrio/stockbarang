@@ -1,19 +1,15 @@
 'use client'
 import styles from '@/components/footer.module.css';
-import { useSession } from "next-auth/react";
 import { useBearStore } from '@/zustand/data';
-// import { useRouter } from 'nextjs-toploader/app';
 import InputBarang from '@/components/inputBarang';
 import SelectProduct from '@/components/selectProduct';
 import ScanCameraBarcode from '@/components/scanCameraBarcode';
 import { FaSquarePen } from "react-icons/fa6";
-import { IoMdAdd } from "react-icons/io";
+import { FaPlusSquare } from "react-icons/fa";
 import { LuScanSearch } from "react-icons/lu";
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
-export default function Footer() {
-    const router = useRouter()
-    const { data: session } = useSession();
+export default function Footer({ session }) {
     const roles = session?.role || [];
     const KondisiSessionTambah = roles.includes('tambah')
     const setScannedData = useBearStore((state) => state.setScannedData)
@@ -35,23 +31,24 @@ export default function Footer() {
         <>
             <div className={styles.container}>
                 <div className={styles.dalamcontainer}>
-                    <button className={styles.tombolver} onClick={() => router.push('/ver')}>
+                    {KondisiSessionTambah && <button className={styles.tambahproduct} onClick={TombolTambahkan}>
                         <div>
-                            <FaSquarePen size={39} />
+                            <FaPlusSquare size={39} />
                         </div>
-                        <span>Verivikasi</span>
-                    </button>
+                        <span>Product</span>
+                    </button>}
                     <div className={styles.transparan}></div>
                     <button className={styles.tombolscan} onClick={TombolScan}>
                         <div><LuScanSearch size={39} /></div>
                         <span>Scan</span>
                     </button>
-                    {KondisiSessionTambah && <button className={styles.tambahproduct} onClick={TombolTambahkan}>
+                    <Link href={'/ver'} className={styles.tombolver}>
                         <div>
-                            <IoMdAdd size={39} />
+                            <FaSquarePen size={39} />
                         </div>
-                        <span>Product</span>
-                    </button>}
+                        <span>Verivikasi</span>
+                    </Link>
+
                 </div>
             </div>
             {showInputBarang && <InputBarang />}

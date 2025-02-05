@@ -14,7 +14,7 @@ export default async function Page() {
         <>
             {roles.includes('log') ?
                 <>
-                    <Header />
+                    <Header session={session} />
                     <Activity data={data.data} />
                 </>
                 : <Login />}

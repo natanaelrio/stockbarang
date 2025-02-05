@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useRef } from 'react';
-import JsBarcode from 'jsbarcode';
+// import JsBarcode from 'jsbarcode';
 import styles from '@/components/listProduct.module.css';
 import { useBearStore } from '@/zustand/data';
 
@@ -9,17 +9,17 @@ export default function ListProduct({ data }) {
     const setDataSelectedProduct = useBearStore((state) => state.setDataSelectedProduct);
     const barcodeRefs = useRef({});
 
-    useEffect(() => {
-        data.forEach((product) => {
-            const barcodeElement = barcodeRefs.current[product.id];
-            if (barcodeElement) {
-                JsBarcode(barcodeElement, product.id, {
-                    format: 'CODE128',
-                    displayValue: true,
-                });
-            }
-        });
-    }, [data]);
+    // useEffect(() => {
+    //     data.forEach((product) => {
+    //         const barcodeElement = barcodeRefs.current[product.id];
+    //         if (barcodeElement) {
+    //             JsBarcode(barcodeElement, product.id, {
+    //                 format: 'CODE128',
+    //                 displayValue: true,
+    //             });
+    //         }
+    //     });
+    // }, [data]);
 
 
     const handleBarcodeClick = (product) => {
@@ -33,26 +33,28 @@ export default function ListProduct({ data }) {
                 <table className={styles.productTable}>
                     <thead>
                         <tr>
+                            <th>NO</th>
                             <th>ID</th>
                             <th>Name Barang</th>
                             <th>Stock Barang</th>
-                            <th>Barcode</th>
+                            {/* <th>Barcode</th> */}
                         </tr>
                     </thead>
                     <tbody>
-                        {data?.map((product) => (
-                            <tr key={product?.id}>
+                        {data?.map((product, i) => (
+                            <tr key={product?.id} onClick={() => handleBarcodeClick(product)}>
+                                <td>{i + 1}</td>
                                 <td>{product?.id}</td>
                                 <td>{product?.name_barang}</td>
                                 <td>{product?.stock_barang}</td>
-                                <td>
+                                {/* <td>
                                     <svg
                                         width={100}
                                         ref={(el) => barcodeRefs.current[product?.id] = el}
                                         data-id={product?.id}
                                         onClick={() => handleBarcodeClick(product)}
                                     ></svg>
-                                </td>
+                                </td> */}
                             </tr>
                         ))}
                     </tbody>

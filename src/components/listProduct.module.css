@@ -18,8 +18,12 @@
     text-align: left;
 }
 
-.productTable th:hover {
-    background-color: #f4f4f4;
+.productTable tr {
+    cursor: pointer;
+}
+
+.productTable tr:hover {
+    background-color: #a594d0;
 }
 
 .productTable th {

@@ -4,10 +4,8 @@ import { TimeConverter } from '@/utils/formatMoment';
 import { CreateActivity, UpdateDecrement, UpdateIncrement } from '@/service/data';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
-import { useSession } from "next-auth/react";
 
-export default function Pending({ data }) {
-    const { data: session } = useSession();
+export default function Pending({ data, session }) {
     const router = useRouter()
 
     const handleConfirm = async (product) => {
