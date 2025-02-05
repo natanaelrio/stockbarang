@@ -12,6 +12,7 @@ import { GetCurrentDateTimeGMT7 } from '@/utils/getCurrentDateTimeGMT7';
 
 export default function InputBarang() {
     const router = useRouter();
+
     const setShowInputBarang = useBearStore((state) => state.setShowInputBarang);
     const scannedData = useBearStore((state) => state.scannedData);
     const setScannedData = useBearStore((state) => state.setScannedData);

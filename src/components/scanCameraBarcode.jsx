@@ -6,8 +6,14 @@ import { CreateActivity, CreateProductPendding, GetSearchProduct, UpdateIncremen
 import toast from 'react-hot-toast';
 import { useBearStore } from '@/zustand/data';
 import { useRouter } from 'next/navigation';
+import { useSession } from "next-auth/react";
 
 export default function ScanCameraBarcode() {
+    const { data: session } = useSession();
+    const roles = session?.role || [];
+    const KondisiSessionTambah = roles.includes('tambah')
+    const KondisiSessionPending = roles.includes('pending')
+
     const router = useRouter()
     const setScanShowCameraBarcode = useBearStore((state) => state.setScanShowCameraBarcode);
     const scannedData = useBearStore((state) => state.scannedData);
@@ -108,8 +114,8 @@ export default function ScanCameraBarcode() {
                         <p><strong>Nama Barang:{dataBarcode[0]?.name_barang}</strong></p>
                         <p><strong>Stok Barang:{dataBarcode[0]?.stock_barang}</strong></p>
                         <span>
-                            <button onClick={() => setIsTambahKurang(true)}>Tambah +</button>
-                            <button onClick={() => setIsTambahKurang(false)}>Kurang -</button>
+                            {KondisiSessionTambah && <button onClick={() => setIsTambahKurang(true)}>Tambah +</button>}
+                            {KondisiSessionPending && <button onClick={() => setIsTambahKurang(false)}>Kurang -</button>}
                             {isTambahKurang !== null &&
                                 <form className={styles.inputkamera}>
                                     <input disabled={isLoading} onChange={(e) => setValueTambahKurang(e.target.value)} type='number' placeholder={isTambahKurang ? 'Tambahi ++' : 'Kurangi--'} name='IdBarang' />

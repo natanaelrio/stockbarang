@@ -3,11 +3,16 @@ import { useEffect, useRef } from 'react';
 import JsBarcode from 'jsbarcode';
 import styles from '@/components/listProduct.module.css';
 import { useBearStore } from '@/zustand/data';
-import InputBarang from './InputBarang';
-import SelectProduct from './selectProduct';
-import ScanCameraBarcode from './scanCameraBarcode';
-
+import InputBarang from '@/components/inputBarang';
+import SelectProduct from '@/components/selectProduct';
+import ScanCameraBarcode from '@/components/scanCameraBarcode';
+import { useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 export default function ListProduct({ data }) {
+    const { data: session } = useSession();
+    const roles = session?.role || [];
+    const KondisiSessionTambah = roles.includes('tambah')
+
     const scannedData = useBearStore((state) => state.scannedData)
     const setScannedData = useBearStore((state) => state.setScannedData)
 
@@ -53,8 +58,11 @@ export default function ListProduct({ data }) {
 
     return (
         <>
+            <button onClick={() => signOut()} style={{ padding: '10px', backgroundColor: 'red', color: 'white', border: 'none', cursor: 'pointer' }}>
+                Logout
+            </button>
             <button className={styles.tombolscan} onClick={TombolScan}>Scan</button>
-            <button className={styles.tambahproduct} onClick={TombolTambahkan}>Tambahkan Product</button>
+            {KondisiSessionTambah && <button className={styles.tambahproduct} onClick={TombolTambahkan}>Tambahkan Product</button>}
             <div className={styles.tableContainer}>
                 <table className={styles.productTable}>
                     <thead>
