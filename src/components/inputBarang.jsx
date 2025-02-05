@@ -9,11 +9,9 @@ import { useRouter } from 'next/navigation';
 import { CreateActivity, CreateProduct } from '@/service/data';
 import { useState } from 'react';
 import { GetCurrentDateTimeGMT7 } from '@/utils/getCurrentDateTimeGMT7';
-import { useSession } from "next-auth/react";
 
-export default function InputBarang() {
+export default function InputBarang({ session }) {
     const router = useRouter();
-    const { data: session } = useSession();
 
     const setShowInputBarang = useBearStore((state) => state.setShowInputBarang);
     const scannedData = useBearStore((state) => state.scannedData);

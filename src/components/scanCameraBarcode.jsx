@@ -6,10 +6,8 @@ import { CreateActivity, CreateProductPendding, GetSearchProduct, UpdateIncremen
 import toast from 'react-hot-toast';
 import { useBearStore } from '@/zustand/data';
 import { useRouter } from 'next/navigation';
-import { useSession } from "next-auth/react";
 
-export default function ScanCameraBarcode() {
-    const { data: session } = useSession();
+export default function ScanCameraBarcode({ session }) {
     const roles = session?.role || [];
     const KondisiSessionTambah = roles.includes('tambah')
     const KondisiSessionPending = roles.includes('pending')

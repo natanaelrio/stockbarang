@@ -51,11 +51,11 @@ export default function Footer({ session }) {
 
                 </div>
             </div>
-            {showInputBarang && <InputBarang />}
+            {showInputBarang && <InputBarang session={session} />}
 
             {showSelectedProduct && <SelectProduct />}
 
-            {showScanCameraBarcode && <ScanCameraBarcode />
+            {showScanCameraBarcode && <ScanCameraBarcode session={session} />
             }
         </>
 
