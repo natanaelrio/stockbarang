@@ -35,7 +35,7 @@ export default function Footer({ session }) {
                         <div>
                             <FaPlusSquare size={39} />
                         </div>
-                        <span>Product</span>
+                        <span>New Product</span>
                     </button>}
                     <div className={styles.transparan}></div>
                     <button className={styles.tombolscan} onClick={TombolScan}>
