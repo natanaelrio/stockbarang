@@ -19,10 +19,15 @@ export default function ListProduct({ data }) {
 
     useEffect(() => {
         const FetchData = async () => {
-            setIsLoadingProduk(false)
-            const data = await GetProduct()
-            setIsLoadingProduk(true)
-            setDataProduk(data)
+            try {
+                setIsLoadingProduk(false)
+                const data = await GetProduct()
+                setIsLoadingProduk(true)
+                setDataProduk(data)
+            }
+            catch (e) {
+                setIsLoadingProduk(true)
+            }
         }
         FetchData()
     }, [])
