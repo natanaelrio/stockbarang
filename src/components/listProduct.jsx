@@ -4,7 +4,7 @@ import { useBearStore } from '@/zustand/data';
 import { useEffect } from 'react';
 import { GetProduct } from '@/service/dataClient'
 
-export default function ListProduct({ data }) {
+export default function ListProduct() {
     const setShowSelectedProduct = useBearStore((state) => state.setShowSelectedProduct);
     const setDataSelectedProduct = useBearStore((state) => state.setDataSelectedProduct);
     const dataProduk = useBearStore((state) => state.dataProduk);
