@@ -30,42 +30,42 @@ export default function ListProduct() {
             }
         }
         FetchData()
-    }, [])
+    }, [setDataProduk, setIsLoadingProduk])
 
 
     return (
         <>
-            <div className={styles.tableContainer}>
-                <div styleName={styles.datalength}>
-                    {dataProduk?.dataLength}
-                </div>
-                {!isLoadingProduk ?
-                    <table className={styles.productTable}>
-                        <thead>
-                            <tr>
-                                <th>NO</th>
-                                <th>ID</th>
-                                <th>Name Barang</th>
-                                <th>Stock Barang</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {dataProduk.data?.map((product, i) => (
-                                <tr key={product?.id} onClick={() => handleBarcodeClick(product)}>
-                                    <td>{i + 1}</td>
-                                    <td>{product?.id}</td>
-                                    <td>{product?.name_barang}</td>
-                                    <td>{product?.stock_barang}</td>
+            <div className={styles.containerlist}>
+                <div className={styles.tableContainer}>
+                    <div styleName={styles.datalength}>
+                        {dataProduk?.dataLength}
+                    </div>
+                    {true ?
+                        <table className={styles.productTable}>
+                            <thead>
+                                <tr>
+                                    <th>NO</th>
+                                    <th>ID</th>
+                                    <th>Name Barang</th>
+                                    <th>Stock Barang</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table> :
-                    <div>Loading...</div>
-                }
+                            </thead>
+                            <tbody>
+                                {dataProduk?.data?.map((product, i) => (
+                                    <tr key={product?.id} onClick={() => handleBarcodeClick(product)}>
+                                        <td>{i + 1}</td>
+                                        <td>{product?.id}</td>
+                                        <td>{product?.name_barang}</td>
+                                        <td>{product?.stock_barang}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table> :
+                        <div>Loading...</div>
+                    }
 
+                </div>
             </div>
-
-
         </>
     );
 }

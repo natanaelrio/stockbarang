@@ -22,11 +22,47 @@ export const authOptions = {
                 if (!credentials?.email || !credentials.password) return null
 
                 const users = [
-                    { id: "1", email: "rio@pelangiteknik.com", password: "developer", username: "Rio ( Developer )", role: ['tambah', 'pending', 'verminplus', 'log'] },
-                    { id: "2", email: "purchfitri@pelangiteknik.com", password: "purshfitri1x23", username: "Fitri ( Purchasing )", role: ['tambah', 'verplus'] },
-                    { id: "3", email: "adminsin@pelangiteknik.com", password: "adminsin12e3", username: "Sin ( Admin )", role: ['pending'] },
-                    { id: "4", email: "spvirfan@pelangiteknik.com", password: "spvirfan12k3", username: "Irfan (SPV)", role: ['vermin'] },
-                    { id: "5", email: "help@pelangiteknik.com", password: "123", username: "rrr ( help )", role: ['tambah'] },
+                    {
+                        id: "1",
+                        email: "rio@pelangiteknik.com",
+                        password: "developer",
+                        namaUser: "Rio ( Developer )",
+                        username: 'riodev',
+                        role: ['tambahindent', 'pending', 'verminplus', 'log']
+                    },
+                    {
+                        id: "2",
+                        email:
+                            "purchfitri@pelangiteknik.com",
+                        password: "purshfitri1x23",
+                        namaUser: "Fitri ( Purchasing )",
+                        username: 'fitripurcha',
+                        role: ['tambahindent', 'verplus']
+                    },
+                    {
+                        id: "3",
+                        email: "adminsin@pelangiteknik.com",
+                        password: "adminsin12e3",
+                        namaUser: "Sin ( Admin )",
+                        username: 'adminsin',
+                        role: ['pending', 'nopending']
+                    },
+                    {
+                        id: "4",
+                        email: "spvirfan@pelangiteknik.com",
+                        password: "spvirfan12k3",
+                        namaUser: "Irfan (SPV)",
+                        username: 'irfanspv',
+                        role: ['vermin']
+                    },
+                    {
+                        id: "5",
+                        email: "selesdhita@pelangiteknik.com",
+                        password: "selesdhitav123",
+                        namaUser: "Dhita (Sales)",
+                        username: 'dhitasales',
+                        role: ['sales']
+                    },
                 ];
 
                 // Cari pengguna berdasarkan email dan password
@@ -44,6 +80,7 @@ export const authOptions = {
                     id: user.id,
                     email: user.email,
                     username: user.username,
+                    namaUser: user.namaUser,
                     role: user.role
                 };
             }
@@ -52,7 +89,13 @@ export const authOptions = {
     ], callbacks: {
         jwt({ token, user }) {
             if (!user) return token
-            return { ...token, id: user.id, username: user.username, role: user.role }
+            return {
+                ...token,
+                id: user.id,
+                username: user.username,
+                namaUser: user.namaUser,
+                role: user.role
+            }
         },
         session({ session, token }) {
             return {
@@ -60,6 +103,7 @@ export const authOptions = {
                 id: token.id,
                 email: token.email,
                 username: token.username,
+                namaUser: token.namaUser,
                 role: token.role,
             }
         }

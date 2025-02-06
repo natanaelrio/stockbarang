@@ -3,16 +3,23 @@
     flex-direction: column;
 }
 
-.tableContainer {
+.containerlist {
     padding: 20px;
-    max-width: 100%;
+    width: 100%;
     overflow-x: hidden;
     display: flex;
     justify-content: center;
 }
 
-.productTable {
+.tableContainer {
     width: var(--max-width);
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.productTable {
     border-collapse: collapse;
     margin-bottom: 20px;
     text-align: left;
@@ -41,6 +48,11 @@
     font-weight: bold;
 }
 
+
+.productTable td button {
+    padding: 10px;
+    cursor: pointer;
+}
 
 /* .productTable td:nth-child(3) {
     width: 5px;
@@ -173,7 +185,7 @@
 
 
 @media (max-width: 768px) {
-    .tableContainer {
+    .containerlist {
         overflow-x: scroll;
         -webkit-overflow-scrolling: touch;
         justify-content: flex-start;

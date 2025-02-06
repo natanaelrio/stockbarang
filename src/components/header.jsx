@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { GetSearchProduct } from "@/service/dataClient";
 import { useBearStore } from '@/zustand/data';
 
-export default function Header({ session }) {
+export default function Header({ session, Ksearch }) {
     const [isLoading, setLoading] = useState(false);
     const [isLoadingCari, setLoadingCari] = useState(false);
     const [search, setSearch] = useState('');
@@ -29,17 +29,19 @@ export default function Header({ session }) {
         <div className={styles.atas}>
             <div className={styles.dalamcontainer}>
                 <div>
-                    {session?.username} {isLoadingCari && 'Loading...'}
-                    <form onSubmit={handleSearch} className={styles.searchForm}>
-                        <input
-                            type="text"
-                            placeholder="Nama Barang..."
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
-                            className={styles.searchInput}
-                        />
-                        <button disabled={isLoadingCari} type="submit">Cari</button>
-                    </form>
+                    {session?.namaUser} {isLoadingCari && 'Loading...'}
+                    {Ksearch &&
+                        <form onSubmit={handleSearch} className={styles.searchForm}>
+                            <input
+                                type="text"
+                                placeholder="Nama Barang..."
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                                className={styles.searchInput}
+                            />
+                            <button disabled={isLoadingCari} type="submit">Cari</button>
+                        </form>
+                    }
                 </div>
                 <div className={styles.user}>
                     <div className={styles.logout} onClick={() => {

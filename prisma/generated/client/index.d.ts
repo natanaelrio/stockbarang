@@ -24,6 +24,11 @@ export type product = $Result.DefaultSelection<Prisma.$productPayload>
  */
 export type pendingProduct = $Result.DefaultSelection<Prisma.$pendingProductPayload>
 /**
+ * Model notifUser
+ * 
+ */
+export type notifUser = $Result.DefaultSelection<Prisma.$notifUserPayload>
+/**
  * Model logUser
  * 
  */
@@ -171,6 +176,16 @@ export class PrismaClient<
     * ```
     */
   get pendingProduct(): Prisma.pendingProductDelegate<ExtArgs>;
+
+  /**
+   * `prisma.notifUser`: Exposes CRUD operations for the **notifUser** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more NotifUsers
+    * const notifUsers = await prisma.notifUser.findMany()
+    * ```
+    */
+  get notifUser(): Prisma.notifUserDelegate<ExtArgs>;
 
   /**
    * `prisma.logUser`: Exposes CRUD operations for the **logUser** model.
@@ -624,6 +639,7 @@ export namespace Prisma {
   export const ModelName: {
     product: 'product',
     pendingProduct: 'pendingProduct',
+    notifUser: 'notifUser',
     logUser: 'logUser'
   };
 
@@ -640,7 +656,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "product" | "pendingProduct" | "logUser"
+      modelProps: "product" | "pendingProduct" | "notifUser" | "logUser"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -781,6 +797,76 @@ export namespace Prisma {
           count: {
             args: Prisma.pendingProductCountArgs<ExtArgs>
             result: $Utils.Optional<PendingProductCountAggregateOutputType> | number
+          }
+        }
+      }
+      notifUser: {
+        payload: Prisma.$notifUserPayload<ExtArgs>
+        fields: Prisma.notifUserFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.notifUserFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notifUserPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.notifUserFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notifUserPayload>
+          }
+          findFirst: {
+            args: Prisma.notifUserFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notifUserPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.notifUserFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notifUserPayload>
+          }
+          findMany: {
+            args: Prisma.notifUserFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notifUserPayload>[]
+          }
+          create: {
+            args: Prisma.notifUserCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notifUserPayload>
+          }
+          createMany: {
+            args: Prisma.notifUserCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.notifUserCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notifUserPayload>[]
+          }
+          delete: {
+            args: Prisma.notifUserDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notifUserPayload>
+          }
+          update: {
+            args: Prisma.notifUserUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notifUserPayload>
+          }
+          deleteMany: {
+            args: Prisma.notifUserDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.notifUserUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.notifUserUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$notifUserPayload>
+          }
+          aggregate: {
+            args: Prisma.NotifUserAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNotifUser>
+          }
+          groupBy: {
+            args: Prisma.notifUserGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NotifUserGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.notifUserCountArgs<ExtArgs>
+            result: $Utils.Optional<NotifUserCountAggregateOutputType> | number
           }
         }
       }
@@ -2084,8 +2170,10 @@ export namespace Prisma {
     end: Date | null
     stock_barang: number | null
     user: string | null
+    username: string | null
     role: string | null
     note: string | null
+    jenisBarang: string | null
     statusProduct: boolean | null
   }
 
@@ -2095,8 +2183,10 @@ export namespace Prisma {
     end: Date | null
     stock_barang: number | null
     user: string | null
+    username: string | null
     role: string | null
     note: string | null
+    jenisBarang: string | null
     statusProduct: boolean | null
   }
 
@@ -2106,8 +2196,10 @@ export namespace Prisma {
     end: number
     stock_barang: number
     user: number
+    username: number
     role: number
     note: number
+    jenisBarang: number
     statusProduct: number
     _all: number
   }
@@ -2127,8 +2219,10 @@ export namespace Prisma {
     end?: true
     stock_barang?: true
     user?: true
+    username?: true
     role?: true
     note?: true
+    jenisBarang?: true
     statusProduct?: true
   }
 
@@ -2138,8 +2232,10 @@ export namespace Prisma {
     end?: true
     stock_barang?: true
     user?: true
+    username?: true
     role?: true
     note?: true
+    jenisBarang?: true
     statusProduct?: true
   }
 
@@ -2149,8 +2245,10 @@ export namespace Prisma {
     end?: true
     stock_barang?: true
     user?: true
+    username?: true
     role?: true
     note?: true
+    jenisBarang?: true
     statusProduct?: true
     _all?: true
   }
@@ -2247,8 +2345,10 @@ export namespace Prisma {
     end: Date | null
     stock_barang: number | null
     user: string | null
+    username: string | null
     role: string | null
     note: string | null
+    jenisBarang: string | null
     statusProduct: boolean
     _count: PendingProductCountAggregateOutputType | null
     _avg: PendingProductAvgAggregateOutputType | null
@@ -2277,8 +2377,10 @@ export namespace Prisma {
     end?: boolean
     stock_barang?: boolean
     user?: boolean
+    username?: boolean
     role?: boolean
     note?: boolean
+    jenisBarang?: boolean
     statusProduct?: boolean
     products?: boolean | pendingProduct$productsArgs<ExtArgs>
     _count?: boolean | PendingProductCountOutputTypeDefaultArgs<ExtArgs>
@@ -2290,8 +2392,10 @@ export namespace Prisma {
     end?: boolean
     stock_barang?: boolean
     user?: boolean
+    username?: boolean
     role?: boolean
     note?: boolean
+    jenisBarang?: boolean
     statusProduct?: boolean
   }, ExtArgs["result"]["pendingProduct"]>
 
@@ -2301,8 +2405,10 @@ export namespace Prisma {
     end?: boolean
     stock_barang?: boolean
     user?: boolean
+    username?: boolean
     role?: boolean
     note?: boolean
+    jenisBarang?: boolean
     statusProduct?: boolean
   }
 
@@ -2323,8 +2429,10 @@ export namespace Prisma {
       end: Date | null
       stock_barang: number | null
       user: string | null
+      username: string | null
       role: string | null
       note: string | null
+      jenisBarang: string | null
       statusProduct: boolean
     }, ExtArgs["result"]["pendingProduct"]>
     composites: {}
@@ -2725,8 +2833,10 @@ export namespace Prisma {
     readonly end: FieldRef<"pendingProduct", 'DateTime'>
     readonly stock_barang: FieldRef<"pendingProduct", 'Int'>
     readonly user: FieldRef<"pendingProduct", 'String'>
+    readonly username: FieldRef<"pendingProduct", 'String'>
     readonly role: FieldRef<"pendingProduct", 'String'>
     readonly note: FieldRef<"pendingProduct", 'String'>
+    readonly jenisBarang: FieldRef<"pendingProduct", 'String'>
     readonly statusProduct: FieldRef<"pendingProduct", 'Boolean'>
   }
     
@@ -3073,6 +3183,942 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: pendingProductInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model notifUser
+   */
+
+  export type AggregateNotifUser = {
+    _count: NotifUserCountAggregateOutputType | null
+    _avg: NotifUserAvgAggregateOutputType | null
+    _sum: NotifUserSumAggregateOutputType | null
+    _min: NotifUserMinAggregateOutputType | null
+    _max: NotifUserMaxAggregateOutputType | null
+  }
+
+  export type NotifUserAvgAggregateOutputType = {
+    jumlahBarang: number | null
+  }
+
+  export type NotifUserSumAggregateOutputType = {
+    jumlahBarang: number | null
+  }
+
+  export type NotifUserMinAggregateOutputType = {
+    id: string | null
+    start: Date | null
+    end: Date | null
+    username: string | null
+    namaBarang: string | null
+    jumlahBarang: number | null
+    note: string | null
+  }
+
+  export type NotifUserMaxAggregateOutputType = {
+    id: string | null
+    start: Date | null
+    end: Date | null
+    username: string | null
+    namaBarang: string | null
+    jumlahBarang: number | null
+    note: string | null
+  }
+
+  export type NotifUserCountAggregateOutputType = {
+    id: number
+    start: number
+    end: number
+    username: number
+    namaBarang: number
+    jumlahBarang: number
+    note: number
+    _all: number
+  }
+
+
+  export type NotifUserAvgAggregateInputType = {
+    jumlahBarang?: true
+  }
+
+  export type NotifUserSumAggregateInputType = {
+    jumlahBarang?: true
+  }
+
+  export type NotifUserMinAggregateInputType = {
+    id?: true
+    start?: true
+    end?: true
+    username?: true
+    namaBarang?: true
+    jumlahBarang?: true
+    note?: true
+  }
+
+  export type NotifUserMaxAggregateInputType = {
+    id?: true
+    start?: true
+    end?: true
+    username?: true
+    namaBarang?: true
+    jumlahBarang?: true
+    note?: true
+  }
+
+  export type NotifUserCountAggregateInputType = {
+    id?: true
+    start?: true
+    end?: true
+    username?: true
+    namaBarang?: true
+    jumlahBarang?: true
+    note?: true
+    _all?: true
+  }
+
+  export type NotifUserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which notifUser to aggregate.
+     */
+    where?: notifUserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of notifUsers to fetch.
+     */
+    orderBy?: notifUserOrderByWithRelationInput | notifUserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: notifUserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` notifUsers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` notifUsers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned notifUsers
+    **/
+    _count?: true | NotifUserCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: NotifUserAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: NotifUserSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NotifUserMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NotifUserMaxAggregateInputType
+  }
+
+  export type GetNotifUserAggregateType<T extends NotifUserAggregateArgs> = {
+        [P in keyof T & keyof AggregateNotifUser]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNotifUser[P]>
+      : GetScalarType<T[P], AggregateNotifUser[P]>
+  }
+
+
+
+
+  export type notifUserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: notifUserWhereInput
+    orderBy?: notifUserOrderByWithAggregationInput | notifUserOrderByWithAggregationInput[]
+    by: NotifUserScalarFieldEnum[] | NotifUserScalarFieldEnum
+    having?: notifUserScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NotifUserCountAggregateInputType | true
+    _avg?: NotifUserAvgAggregateInputType
+    _sum?: NotifUserSumAggregateInputType
+    _min?: NotifUserMinAggregateInputType
+    _max?: NotifUserMaxAggregateInputType
+  }
+
+  export type NotifUserGroupByOutputType = {
+    id: string
+    start: Date
+    end: Date | null
+    username: string | null
+    namaBarang: string | null
+    jumlahBarang: number | null
+    note: string | null
+    _count: NotifUserCountAggregateOutputType | null
+    _avg: NotifUserAvgAggregateOutputType | null
+    _sum: NotifUserSumAggregateOutputType | null
+    _min: NotifUserMinAggregateOutputType | null
+    _max: NotifUserMaxAggregateOutputType | null
+  }
+
+  type GetNotifUserGroupByPayload<T extends notifUserGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NotifUserGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NotifUserGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NotifUserGroupByOutputType[P]>
+            : GetScalarType<T[P], NotifUserGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type notifUserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    start?: boolean
+    end?: boolean
+    username?: boolean
+    namaBarang?: boolean
+    jumlahBarang?: boolean
+    note?: boolean
+  }, ExtArgs["result"]["notifUser"]>
+
+  export type notifUserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    start?: boolean
+    end?: boolean
+    username?: boolean
+    namaBarang?: boolean
+    jumlahBarang?: boolean
+    note?: boolean
+  }, ExtArgs["result"]["notifUser"]>
+
+  export type notifUserSelectScalar = {
+    id?: boolean
+    start?: boolean
+    end?: boolean
+    username?: boolean
+    namaBarang?: boolean
+    jumlahBarang?: boolean
+    note?: boolean
+  }
+
+
+  export type $notifUserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "notifUser"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      start: Date
+      end: Date | null
+      username: string | null
+      namaBarang: string | null
+      jumlahBarang: number | null
+      note: string | null
+    }, ExtArgs["result"]["notifUser"]>
+    composites: {}
+  }
+
+  type notifUserGetPayload<S extends boolean | null | undefined | notifUserDefaultArgs> = $Result.GetResult<Prisma.$notifUserPayload, S>
+
+  type notifUserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<notifUserFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: NotifUserCountAggregateInputType | true
+    }
+
+  export interface notifUserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['notifUser'], meta: { name: 'notifUser' } }
+    /**
+     * Find zero or one NotifUser that matches the filter.
+     * @param {notifUserFindUniqueArgs} args - Arguments to find a NotifUser
+     * @example
+     * // Get one NotifUser
+     * const notifUser = await prisma.notifUser.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends notifUserFindUniqueArgs>(args: SelectSubset<T, notifUserFindUniqueArgs<ExtArgs>>): Prisma__notifUserClient<$Result.GetResult<Prisma.$notifUserPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one NotifUser that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {notifUserFindUniqueOrThrowArgs} args - Arguments to find a NotifUser
+     * @example
+     * // Get one NotifUser
+     * const notifUser = await prisma.notifUser.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends notifUserFindUniqueOrThrowArgs>(args: SelectSubset<T, notifUserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__notifUserClient<$Result.GetResult<Prisma.$notifUserPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first NotifUser that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {notifUserFindFirstArgs} args - Arguments to find a NotifUser
+     * @example
+     * // Get one NotifUser
+     * const notifUser = await prisma.notifUser.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends notifUserFindFirstArgs>(args?: SelectSubset<T, notifUserFindFirstArgs<ExtArgs>>): Prisma__notifUserClient<$Result.GetResult<Prisma.$notifUserPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first NotifUser that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {notifUserFindFirstOrThrowArgs} args - Arguments to find a NotifUser
+     * @example
+     * // Get one NotifUser
+     * const notifUser = await prisma.notifUser.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends notifUserFindFirstOrThrowArgs>(args?: SelectSubset<T, notifUserFindFirstOrThrowArgs<ExtArgs>>): Prisma__notifUserClient<$Result.GetResult<Prisma.$notifUserPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more NotifUsers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {notifUserFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all NotifUsers
+     * const notifUsers = await prisma.notifUser.findMany()
+     * 
+     * // Get first 10 NotifUsers
+     * const notifUsers = await prisma.notifUser.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const notifUserWithIdOnly = await prisma.notifUser.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends notifUserFindManyArgs>(args?: SelectSubset<T, notifUserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$notifUserPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a NotifUser.
+     * @param {notifUserCreateArgs} args - Arguments to create a NotifUser.
+     * @example
+     * // Create one NotifUser
+     * const NotifUser = await prisma.notifUser.create({
+     *   data: {
+     *     // ... data to create a NotifUser
+     *   }
+     * })
+     * 
+     */
+    create<T extends notifUserCreateArgs>(args: SelectSubset<T, notifUserCreateArgs<ExtArgs>>): Prisma__notifUserClient<$Result.GetResult<Prisma.$notifUserPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many NotifUsers.
+     * @param {notifUserCreateManyArgs} args - Arguments to create many NotifUsers.
+     * @example
+     * // Create many NotifUsers
+     * const notifUser = await prisma.notifUser.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends notifUserCreateManyArgs>(args?: SelectSubset<T, notifUserCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many NotifUsers and returns the data saved in the database.
+     * @param {notifUserCreateManyAndReturnArgs} args - Arguments to create many NotifUsers.
+     * @example
+     * // Create many NotifUsers
+     * const notifUser = await prisma.notifUser.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many NotifUsers and only return the `id`
+     * const notifUserWithIdOnly = await prisma.notifUser.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends notifUserCreateManyAndReturnArgs>(args?: SelectSubset<T, notifUserCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$notifUserPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a NotifUser.
+     * @param {notifUserDeleteArgs} args - Arguments to delete one NotifUser.
+     * @example
+     * // Delete one NotifUser
+     * const NotifUser = await prisma.notifUser.delete({
+     *   where: {
+     *     // ... filter to delete one NotifUser
+     *   }
+     * })
+     * 
+     */
+    delete<T extends notifUserDeleteArgs>(args: SelectSubset<T, notifUserDeleteArgs<ExtArgs>>): Prisma__notifUserClient<$Result.GetResult<Prisma.$notifUserPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one NotifUser.
+     * @param {notifUserUpdateArgs} args - Arguments to update one NotifUser.
+     * @example
+     * // Update one NotifUser
+     * const notifUser = await prisma.notifUser.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends notifUserUpdateArgs>(args: SelectSubset<T, notifUserUpdateArgs<ExtArgs>>): Prisma__notifUserClient<$Result.GetResult<Prisma.$notifUserPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more NotifUsers.
+     * @param {notifUserDeleteManyArgs} args - Arguments to filter NotifUsers to delete.
+     * @example
+     * // Delete a few NotifUsers
+     * const { count } = await prisma.notifUser.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends notifUserDeleteManyArgs>(args?: SelectSubset<T, notifUserDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more NotifUsers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {notifUserUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many NotifUsers
+     * const notifUser = await prisma.notifUser.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends notifUserUpdateManyArgs>(args: SelectSubset<T, notifUserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one NotifUser.
+     * @param {notifUserUpsertArgs} args - Arguments to update or create a NotifUser.
+     * @example
+     * // Update or create a NotifUser
+     * const notifUser = await prisma.notifUser.upsert({
+     *   create: {
+     *     // ... data to create a NotifUser
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the NotifUser we want to update
+     *   }
+     * })
+     */
+    upsert<T extends notifUserUpsertArgs>(args: SelectSubset<T, notifUserUpsertArgs<ExtArgs>>): Prisma__notifUserClient<$Result.GetResult<Prisma.$notifUserPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of NotifUsers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {notifUserCountArgs} args - Arguments to filter NotifUsers to count.
+     * @example
+     * // Count the number of NotifUsers
+     * const count = await prisma.notifUser.count({
+     *   where: {
+     *     // ... the filter for the NotifUsers we want to count
+     *   }
+     * })
+    **/
+    count<T extends notifUserCountArgs>(
+      args?: Subset<T, notifUserCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NotifUserCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a NotifUser.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotifUserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NotifUserAggregateArgs>(args: Subset<T, NotifUserAggregateArgs>): Prisma.PrismaPromise<GetNotifUserAggregateType<T>>
+
+    /**
+     * Group by NotifUser.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {notifUserGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends notifUserGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: notifUserGroupByArgs['orderBy'] }
+        : { orderBy?: notifUserGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, notifUserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNotifUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the notifUser model
+   */
+  readonly fields: notifUserFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for notifUser.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__notifUserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the notifUser model
+   */ 
+  interface notifUserFieldRefs {
+    readonly id: FieldRef<"notifUser", 'String'>
+    readonly start: FieldRef<"notifUser", 'DateTime'>
+    readonly end: FieldRef<"notifUser", 'DateTime'>
+    readonly username: FieldRef<"notifUser", 'String'>
+    readonly namaBarang: FieldRef<"notifUser", 'String'>
+    readonly jumlahBarang: FieldRef<"notifUser", 'Int'>
+    readonly note: FieldRef<"notifUser", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * notifUser findUnique
+   */
+  export type notifUserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notifUser
+     */
+    select?: notifUserSelect<ExtArgs> | null
+    /**
+     * Filter, which notifUser to fetch.
+     */
+    where: notifUserWhereUniqueInput
+  }
+
+  /**
+   * notifUser findUniqueOrThrow
+   */
+  export type notifUserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notifUser
+     */
+    select?: notifUserSelect<ExtArgs> | null
+    /**
+     * Filter, which notifUser to fetch.
+     */
+    where: notifUserWhereUniqueInput
+  }
+
+  /**
+   * notifUser findFirst
+   */
+  export type notifUserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notifUser
+     */
+    select?: notifUserSelect<ExtArgs> | null
+    /**
+     * Filter, which notifUser to fetch.
+     */
+    where?: notifUserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of notifUsers to fetch.
+     */
+    orderBy?: notifUserOrderByWithRelationInput | notifUserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for notifUsers.
+     */
+    cursor?: notifUserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` notifUsers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` notifUsers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of notifUsers.
+     */
+    distinct?: NotifUserScalarFieldEnum | NotifUserScalarFieldEnum[]
+  }
+
+  /**
+   * notifUser findFirstOrThrow
+   */
+  export type notifUserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notifUser
+     */
+    select?: notifUserSelect<ExtArgs> | null
+    /**
+     * Filter, which notifUser to fetch.
+     */
+    where?: notifUserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of notifUsers to fetch.
+     */
+    orderBy?: notifUserOrderByWithRelationInput | notifUserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for notifUsers.
+     */
+    cursor?: notifUserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` notifUsers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` notifUsers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of notifUsers.
+     */
+    distinct?: NotifUserScalarFieldEnum | NotifUserScalarFieldEnum[]
+  }
+
+  /**
+   * notifUser findMany
+   */
+  export type notifUserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notifUser
+     */
+    select?: notifUserSelect<ExtArgs> | null
+    /**
+     * Filter, which notifUsers to fetch.
+     */
+    where?: notifUserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of notifUsers to fetch.
+     */
+    orderBy?: notifUserOrderByWithRelationInput | notifUserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing notifUsers.
+     */
+    cursor?: notifUserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` notifUsers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` notifUsers.
+     */
+    skip?: number
+    distinct?: NotifUserScalarFieldEnum | NotifUserScalarFieldEnum[]
+  }
+
+  /**
+   * notifUser create
+   */
+  export type notifUserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notifUser
+     */
+    select?: notifUserSelect<ExtArgs> | null
+    /**
+     * The data needed to create a notifUser.
+     */
+    data?: XOR<notifUserCreateInput, notifUserUncheckedCreateInput>
+  }
+
+  /**
+   * notifUser createMany
+   */
+  export type notifUserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many notifUsers.
+     */
+    data: notifUserCreateManyInput | notifUserCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * notifUser createManyAndReturn
+   */
+  export type notifUserCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notifUser
+     */
+    select?: notifUserSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many notifUsers.
+     */
+    data: notifUserCreateManyInput | notifUserCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * notifUser update
+   */
+  export type notifUserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notifUser
+     */
+    select?: notifUserSelect<ExtArgs> | null
+    /**
+     * The data needed to update a notifUser.
+     */
+    data: XOR<notifUserUpdateInput, notifUserUncheckedUpdateInput>
+    /**
+     * Choose, which notifUser to update.
+     */
+    where: notifUserWhereUniqueInput
+  }
+
+  /**
+   * notifUser updateMany
+   */
+  export type notifUserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update notifUsers.
+     */
+    data: XOR<notifUserUpdateManyMutationInput, notifUserUncheckedUpdateManyInput>
+    /**
+     * Filter which notifUsers to update
+     */
+    where?: notifUserWhereInput
+  }
+
+  /**
+   * notifUser upsert
+   */
+  export type notifUserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notifUser
+     */
+    select?: notifUserSelect<ExtArgs> | null
+    /**
+     * The filter to search for the notifUser to update in case it exists.
+     */
+    where: notifUserWhereUniqueInput
+    /**
+     * In case the notifUser found by the `where` argument doesn't exist, create a new notifUser with this data.
+     */
+    create: XOR<notifUserCreateInput, notifUserUncheckedCreateInput>
+    /**
+     * In case the notifUser was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<notifUserUpdateInput, notifUserUncheckedUpdateInput>
+  }
+
+  /**
+   * notifUser delete
+   */
+  export type notifUserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notifUser
+     */
+    select?: notifUserSelect<ExtArgs> | null
+    /**
+     * Filter which notifUser to delete.
+     */
+    where: notifUserWhereUniqueInput
+  }
+
+  /**
+   * notifUser deleteMany
+   */
+  export type notifUserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which notifUsers to delete
+     */
+    where?: notifUserWhereInput
+  }
+
+  /**
+   * notifUser without action
+   */
+  export type notifUserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the notifUser
+     */
+    select?: notifUserSelect<ExtArgs> | null
   }
 
 
@@ -3985,12 +5031,27 @@ export namespace Prisma {
     end: 'end',
     stock_barang: 'stock_barang',
     user: 'user',
+    username: 'username',
     role: 'role',
     note: 'note',
+    jenisBarang: 'jenisBarang',
     statusProduct: 'statusProduct'
   };
 
   export type PendingProductScalarFieldEnum = (typeof PendingProductScalarFieldEnum)[keyof typeof PendingProductScalarFieldEnum]
+
+
+  export const NotifUserScalarFieldEnum: {
+    id: 'id',
+    start: 'start',
+    end: 'end',
+    username: 'username',
+    namaBarang: 'namaBarang',
+    jumlahBarang: 'jumlahBarang',
+    note: 'note'
+  };
+
+  export type NotifUserScalarFieldEnum = (typeof NotifUserScalarFieldEnum)[keyof typeof NotifUserScalarFieldEnum]
 
 
   export const LogUserScalarFieldEnum: {
@@ -4165,8 +5226,10 @@ export namespace Prisma {
     end?: DateTimeNullableFilter<"pendingProduct"> | Date | string | null
     stock_barang?: IntNullableFilter<"pendingProduct"> | number | null
     user?: StringNullableFilter<"pendingProduct"> | string | null
+    username?: StringNullableFilter<"pendingProduct"> | string | null
     role?: StringNullableFilter<"pendingProduct"> | string | null
     note?: StringNullableFilter<"pendingProduct"> | string | null
+    jenisBarang?: StringNullableFilter<"pendingProduct"> | string | null
     statusProduct?: BoolFilter<"pendingProduct"> | boolean
     products?: ProductListRelationFilter
   }
@@ -4177,8 +5240,10 @@ export namespace Prisma {
     end?: SortOrderInput | SortOrder
     stock_barang?: SortOrderInput | SortOrder
     user?: SortOrderInput | SortOrder
+    username?: SortOrderInput | SortOrder
     role?: SortOrderInput | SortOrder
     note?: SortOrderInput | SortOrder
+    jenisBarang?: SortOrderInput | SortOrder
     statusProduct?: SortOrder
     products?: productOrderByRelationAggregateInput
   }
@@ -4192,8 +5257,10 @@ export namespace Prisma {
     end?: DateTimeNullableFilter<"pendingProduct"> | Date | string | null
     stock_barang?: IntNullableFilter<"pendingProduct"> | number | null
     user?: StringNullableFilter<"pendingProduct"> | string | null
+    username?: StringNullableFilter<"pendingProduct"> | string | null
     role?: StringNullableFilter<"pendingProduct"> | string | null
     note?: StringNullableFilter<"pendingProduct"> | string | null
+    jenisBarang?: StringNullableFilter<"pendingProduct"> | string | null
     statusProduct?: BoolFilter<"pendingProduct"> | boolean
     products?: ProductListRelationFilter
   }, "id">
@@ -4204,8 +5271,10 @@ export namespace Prisma {
     end?: SortOrderInput | SortOrder
     stock_barang?: SortOrderInput | SortOrder
     user?: SortOrderInput | SortOrder
+    username?: SortOrderInput | SortOrder
     role?: SortOrderInput | SortOrder
     note?: SortOrderInput | SortOrder
+    jenisBarang?: SortOrderInput | SortOrder
     statusProduct?: SortOrder
     _count?: pendingProductCountOrderByAggregateInput
     _avg?: pendingProductAvgOrderByAggregateInput
@@ -4223,9 +5292,75 @@ export namespace Prisma {
     end?: DateTimeNullableWithAggregatesFilter<"pendingProduct"> | Date | string | null
     stock_barang?: IntNullableWithAggregatesFilter<"pendingProduct"> | number | null
     user?: StringNullableWithAggregatesFilter<"pendingProduct"> | string | null
+    username?: StringNullableWithAggregatesFilter<"pendingProduct"> | string | null
     role?: StringNullableWithAggregatesFilter<"pendingProduct"> | string | null
     note?: StringNullableWithAggregatesFilter<"pendingProduct"> | string | null
+    jenisBarang?: StringNullableWithAggregatesFilter<"pendingProduct"> | string | null
     statusProduct?: BoolWithAggregatesFilter<"pendingProduct"> | boolean
+  }
+
+  export type notifUserWhereInput = {
+    AND?: notifUserWhereInput | notifUserWhereInput[]
+    OR?: notifUserWhereInput[]
+    NOT?: notifUserWhereInput | notifUserWhereInput[]
+    id?: StringFilter<"notifUser"> | string
+    start?: DateTimeFilter<"notifUser"> | Date | string
+    end?: DateTimeNullableFilter<"notifUser"> | Date | string | null
+    username?: StringNullableFilter<"notifUser"> | string | null
+    namaBarang?: StringNullableFilter<"notifUser"> | string | null
+    jumlahBarang?: IntNullableFilter<"notifUser"> | number | null
+    note?: StringNullableFilter<"notifUser"> | string | null
+  }
+
+  export type notifUserOrderByWithRelationInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrderInput | SortOrder
+    username?: SortOrderInput | SortOrder
+    namaBarang?: SortOrderInput | SortOrder
+    jumlahBarang?: SortOrderInput | SortOrder
+    note?: SortOrderInput | SortOrder
+  }
+
+  export type notifUserWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: notifUserWhereInput | notifUserWhereInput[]
+    OR?: notifUserWhereInput[]
+    NOT?: notifUserWhereInput | notifUserWhereInput[]
+    start?: DateTimeFilter<"notifUser"> | Date | string
+    end?: DateTimeNullableFilter<"notifUser"> | Date | string | null
+    username?: StringNullableFilter<"notifUser"> | string | null
+    namaBarang?: StringNullableFilter<"notifUser"> | string | null
+    jumlahBarang?: IntNullableFilter<"notifUser"> | number | null
+    note?: StringNullableFilter<"notifUser"> | string | null
+  }, "id">
+
+  export type notifUserOrderByWithAggregationInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrderInput | SortOrder
+    username?: SortOrderInput | SortOrder
+    namaBarang?: SortOrderInput | SortOrder
+    jumlahBarang?: SortOrderInput | SortOrder
+    note?: SortOrderInput | SortOrder
+    _count?: notifUserCountOrderByAggregateInput
+    _avg?: notifUserAvgOrderByAggregateInput
+    _max?: notifUserMaxOrderByAggregateInput
+    _min?: notifUserMinOrderByAggregateInput
+    _sum?: notifUserSumOrderByAggregateInput
+  }
+
+  export type notifUserScalarWhereWithAggregatesInput = {
+    AND?: notifUserScalarWhereWithAggregatesInput | notifUserScalarWhereWithAggregatesInput[]
+    OR?: notifUserScalarWhereWithAggregatesInput[]
+    NOT?: notifUserScalarWhereWithAggregatesInput | notifUserScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"notifUser"> | string
+    start?: DateTimeWithAggregatesFilter<"notifUser"> | Date | string
+    end?: DateTimeNullableWithAggregatesFilter<"notifUser"> | Date | string | null
+    username?: StringNullableWithAggregatesFilter<"notifUser"> | string | null
+    namaBarang?: StringNullableWithAggregatesFilter<"notifUser"> | string | null
+    jumlahBarang?: IntNullableWithAggregatesFilter<"notifUser"> | number | null
+    note?: StringNullableWithAggregatesFilter<"notifUser"> | string | null
   }
 
   export type logUserWhereInput = {
@@ -4346,8 +5481,10 @@ export namespace Prisma {
     end?: Date | string | null
     stock_barang?: number | null
     user?: string | null
+    username?: string | null
     role?: string | null
     note?: string | null
+    jenisBarang?: string | null
     statusProduct?: boolean
     products?: productCreateNestedManyWithoutPendingProductInput
   }
@@ -4358,8 +5495,10 @@ export namespace Prisma {
     end?: Date | string | null
     stock_barang?: number | null
     user?: string | null
+    username?: string | null
     role?: string | null
     note?: string | null
+    jenisBarang?: string | null
     statusProduct?: boolean
     products?: productUncheckedCreateNestedManyWithoutPendingProductInput
   }
@@ -4370,8 +5509,10 @@ export namespace Prisma {
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
     products?: productUpdateManyWithoutPendingProductNestedInput
   }
@@ -4382,8 +5523,10 @@ export namespace Prisma {
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
     products?: productUncheckedUpdateManyWithoutPendingProductNestedInput
   }
@@ -4394,8 +5537,10 @@ export namespace Prisma {
     end?: Date | string | null
     stock_barang?: number | null
     user?: string | null
+    username?: string | null
     role?: string | null
     note?: string | null
+    jenisBarang?: string | null
     statusProduct?: boolean
   }
 
@@ -4405,8 +5550,10 @@ export namespace Prisma {
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -4416,9 +5563,81 @@ export namespace Prisma {
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type notifUserCreateInput = {
+    id?: string
+    start?: Date | string
+    end?: Date | string | null
+    username?: string | null
+    namaBarang?: string | null
+    jumlahBarang?: number | null
+    note?: string | null
+  }
+
+  export type notifUserUncheckedCreateInput = {
+    id?: string
+    start?: Date | string
+    end?: Date | string | null
+    username?: string | null
+    namaBarang?: string | null
+    jumlahBarang?: number | null
+    note?: string | null
+  }
+
+  export type notifUserUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    namaBarang?: NullableStringFieldUpdateOperationsInput | string | null
+    jumlahBarang?: NullableIntFieldUpdateOperationsInput | number | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type notifUserUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    namaBarang?: NullableStringFieldUpdateOperationsInput | string | null
+    jumlahBarang?: NullableIntFieldUpdateOperationsInput | number | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type notifUserCreateManyInput = {
+    id?: string
+    start?: Date | string
+    end?: Date | string | null
+    username?: string | null
+    namaBarang?: string | null
+    jumlahBarang?: number | null
+    note?: string | null
+  }
+
+  export type notifUserUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    namaBarang?: NullableStringFieldUpdateOperationsInput | string | null
+    jumlahBarang?: NullableIntFieldUpdateOperationsInput | number | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type notifUserUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    namaBarang?: NullableStringFieldUpdateOperationsInput | string | null
+    jumlahBarang?: NullableIntFieldUpdateOperationsInput | number | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type logUserCreateInput = {
@@ -4688,8 +5907,10 @@ export namespace Prisma {
     end?: SortOrder
     stock_barang?: SortOrder
     user?: SortOrder
+    username?: SortOrder
     role?: SortOrder
     note?: SortOrder
+    jenisBarang?: SortOrder
     statusProduct?: SortOrder
   }
 
@@ -4703,8 +5924,10 @@ export namespace Prisma {
     end?: SortOrder
     stock_barang?: SortOrder
     user?: SortOrder
+    username?: SortOrder
     role?: SortOrder
     note?: SortOrder
+    jenisBarang?: SortOrder
     statusProduct?: SortOrder
   }
 
@@ -4714,8 +5937,10 @@ export namespace Prisma {
     end?: SortOrder
     stock_barang?: SortOrder
     user?: SortOrder
+    username?: SortOrder
     role?: SortOrder
     note?: SortOrder
+    jenisBarang?: SortOrder
     statusProduct?: SortOrder
   }
 
@@ -4729,6 +5954,44 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type notifUserCountOrderByAggregateInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrder
+    username?: SortOrder
+    namaBarang?: SortOrder
+    jumlahBarang?: SortOrder
+    note?: SortOrder
+  }
+
+  export type notifUserAvgOrderByAggregateInput = {
+    jumlahBarang?: SortOrder
+  }
+
+  export type notifUserMaxOrderByAggregateInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrder
+    username?: SortOrder
+    namaBarang?: SortOrder
+    jumlahBarang?: SortOrder
+    note?: SortOrder
+  }
+
+  export type notifUserMinOrderByAggregateInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrder
+    username?: SortOrder
+    namaBarang?: SortOrder
+    jumlahBarang?: SortOrder
+    note?: SortOrder
+  }
+
+  export type notifUserSumOrderByAggregateInput = {
+    jumlahBarang?: SortOrder
   }
 
   export type logUserCountOrderByAggregateInput = {
@@ -5039,8 +6302,10 @@ export namespace Prisma {
     end?: Date | string | null
     stock_barang?: number | null
     user?: string | null
+    username?: string | null
     role?: string | null
     note?: string | null
+    jenisBarang?: string | null
     statusProduct?: boolean
   }
 
@@ -5050,8 +6315,10 @@ export namespace Prisma {
     end?: Date | string | null
     stock_barang?: number | null
     user?: string | null
+    username?: string | null
     role?: string | null
     note?: string | null
+    jenisBarang?: string | null
     statusProduct?: boolean
   }
 
@@ -5085,8 +6352,10 @@ export namespace Prisma {
     end?: DateTimeNullableFilter<"pendingProduct"> | Date | string | null
     stock_barang?: IntNullableFilter<"pendingProduct"> | number | null
     user?: StringNullableFilter<"pendingProduct"> | string | null
+    username?: StringNullableFilter<"pendingProduct"> | string | null
     role?: StringNullableFilter<"pendingProduct"> | string | null
     note?: StringNullableFilter<"pendingProduct"> | string | null
+    jenisBarang?: StringNullableFilter<"pendingProduct"> | string | null
     statusProduct?: BoolFilter<"pendingProduct"> | boolean
   }
 
@@ -5144,8 +6413,10 @@ export namespace Prisma {
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -5155,8 +6426,10 @@ export namespace Prisma {
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -5166,8 +6439,10 @@ export namespace Prisma {
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
     user?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
+    jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
   }
 
@@ -5216,6 +6491,10 @@ export namespace Prisma {
      * @deprecated Use pendingProductDefaultArgs instead
      */
     export type pendingProductArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = pendingProductDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use notifUserDefaultArgs instead
+     */
+    export type notifUserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = notifUserDefaultArgs<ExtArgs>
     /**
      * @deprecated Use logUserDefaultArgs instead
      */

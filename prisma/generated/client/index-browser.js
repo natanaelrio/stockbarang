@@ -136,9 +136,21 @@ exports.Prisma.PendingProductScalarFieldEnum = {
   end: 'end',
   stock_barang: 'stock_barang',
   user: 'user',
+  username: 'username',
   role: 'role',
   note: 'note',
+  jenisBarang: 'jenisBarang',
   statusProduct: 'statusProduct'
+};
+
+exports.Prisma.NotifUserScalarFieldEnum = {
+  id: 'id',
+  start: 'start',
+  end: 'end',
+  username: 'username',
+  namaBarang: 'namaBarang',
+  jumlahBarang: 'jumlahBarang',
+  note: 'note'
 };
 
 exports.Prisma.LogUserScalarFieldEnum = {
@@ -168,6 +180,7 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.ModelName = {
   product: 'product',
   pendingProduct: 'pendingProduct',
+  notifUser: 'notifUser',
   logUser: 'logUser'
 };
 

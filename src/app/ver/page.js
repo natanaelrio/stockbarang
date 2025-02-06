@@ -18,8 +18,8 @@ export default async function Page() {
         <>
             {roles.includes('vermin') || roles.includes('verplus') || roles.includes('verminplus') ?
                 <>
-                    <Header session={session} />
-                    <Pending data={data.data} session={session} />
+                    <Header session={session} Ksearch={false} />
+                    <Pending data={data?.data} session={session} />
                 </>
                 : <Login />}
 

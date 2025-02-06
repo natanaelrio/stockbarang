@@ -24,10 +24,22 @@ model pendingProduct {
   end           DateTime? @updatedAt
   stock_barang  Int?
   user          String?
+  username      String?
   role          String?
   note          String?
+  jenisBarang   String?
   statusProduct Boolean   @default(false)
   products      product[] @relation("PendingProduct")
+}
+
+model notifUser {
+  id           String    @id @default(uuid())
+  start        DateTime  @default(now())
+  end          DateTime? @updatedAt
+  username     String?
+  namaBarang   String?
+  jumlahBarang Int?
+  note         String?
 }
 
 model logUser {

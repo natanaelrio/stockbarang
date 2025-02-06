@@ -1,7 +1,8 @@
 "use client"
 import styles from '@/components/listProduct.module.css';
 import { TimeConverter } from '@/utils/formatMoment';
-export default function Activity({ data }) {
+
+export default function NotifikasiSales({ data }) {
     return (
         <div className={styles.containerlist}>
             <div className={styles.tableContainer}>
@@ -9,8 +10,9 @@ export default function Activity({ data }) {
                     <thead>
                         <tr>
                             <th>Tgl/hari</th>
-                            <th>User</th>
-                            <th>Activity</th>
+                            <th>Nama Barang</th>
+                            <th>Jumlah</th>
+                            <th>Note ditolak</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -18,8 +20,9 @@ export default function Activity({ data }) {
                             return (
                                 <tr key={product.id}>
                                     <td>{TimeConverter(product?.start)}</td>
-                                    <td>{product?.userActivity}</td>
-                                    <td>{product?.activity}</td>
+                                    <td>{product?.namaBarang}</td>
+                                    <td>{product?.jumlahBarang}</td>
+                                    <td>{product?.note}</td>
                                 </tr>
                             )
                         })}

@@ -13,29 +13,31 @@ import { GetCurrentDateTimeGMT7 } from '@/utils/getCurrentDateTimeGMT7';
 export default function InputBarang({ session }) {
     const router = useRouter();
     const roles = session?.role || [];
+    const KondisiSessionTambahIndent = roles.includes('tambahindent')
+    const KondisiSessionSales = roles.includes('sales')
 
     const id = GetCurrentDateTimeGMT7()
+
+    const setRefreshData = useBearStore((state) => state.setRefreshData);
     const setShowInputBarang = useBearStore((state) => state.setShowInputBarang);
     const scannedData = useBearStore((state) => state.scannedData);
     const setScannedData = useBearStore((state) => state.setScannedData);
     const [showScan, setShowScan] = useState(false)
     const [showIndent, setShowIndent] = useState(false)
-    const KondisiSessionTambah = roles.includes('verplus')
-    const KondisiSessionTambahKurang = roles.includes('verminplus')
 
     const formik = useFormik({
         initialValues: {
             idBarang: scannedData ? scannedData : id,
             namaBarang: '',
             stockBarang: '',
-            jenisBarang: 'Langsung',
+            jenisBarang: KondisiSessionSales ? 'Request' : 'Langsung',
             catatanIndent: '',
         },
         validationSchema: Yup.object({
             idBarang: Yup.string().required('ID Barang wajib diisi'),
             namaBarang: Yup.string().required('Nama Barang wajib diisi'),
             stockBarang: Yup.number().required('Stock Barang wajib diisi'),
-            jenisBarang: Yup.string().oneOf(['Indent', 'Langsung']).required('Jenis Barang wajib dipilih'),
+            jenisBarang: Yup.string().oneOf(['Indent', 'Langsung', 'Request']).required('Jenis Barang wajib dipilih'),
         }),
         onSubmit: async (values, { setSubmitting }) => {
 
@@ -45,23 +47,32 @@ export default function InputBarang({ session }) {
                         id: values.idBarang,
                         name_barang: values.namaBarang,
                         stock_barang: values.jenisBarang == 'Langsung' ? values.stockBarang : 0,
-                        jenis_barang: values.jenisBarang,
                     });
-
 
                     if (dataProduct.status == '500') {
                         throw new Error(`ID ${values.idBarang} sudah ada !!`);
                     }
 
                     values.jenisBarang == 'Indent' && await CreateProductPendding({
+                        produkid: values.idBarang,
                         stock_barang: values.stockBarang,
                         note: values.catatanIndent,
+                        jenisBarang: values.jenisBarang,
+                        user: session?.namaUser,
+                        username: session?.username,
+                        role: 'verplus'
+                    })
+                    values.jenisBarang == 'Request' && await CreateProductPendding({
                         produkid: values.idBarang,
-                        user: session.username,
+                        stock_barang: values.stockBarang,
+                        note: values.catatanIndent,
+                        jenisBarang: values.jenisBarang,
+                        user: session?.namaUser,
+                        username: session?.username,
                         role: 'verplus'
                     })
                     await CreateActivity({
-                        userActivity: session.username,
+                        userActivity: session.namaUser,
                         activity: `Penambahan Product ${values.namaBarang} ( ${values.idBarang} ) ${values.jenisBarang == 'Indent' && '( INDENT )'}`,
                     });
                 };
@@ -75,7 +86,8 @@ export default function InputBarang({ session }) {
                 );
 
                 router.refresh();
-                // setShowInputBarang();
+                setShowInputBarang();
+                setRefreshData()
             } catch (error) {
                 toast.error(`ID: ${values.idBarang} sudah ada!`);
             } finally {
@@ -123,7 +135,7 @@ export default function InputBarang({ session }) {
                 />
                 {formik.touched.stockBarang && formik.errors.stockBarang ? <div className={styles.error}>{formik.errors.stockBarang}</div> : null}
 
-                {KondisiSessionTambah || KondisiSessionTambahKurang &&
+                {KondisiSessionTambahIndent &&
                     <div className={styles.radioGroup}>
                         <input
                             type="radio"
@@ -149,6 +161,16 @@ export default function InputBarang({ session }) {
                     </div>}
 
                 {showIndent && <input
+                    type='text'
+                    name='catatanIndent'
+                    placeholder='Catatan'
+                    value={formik.values.catatanIndent}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    disabled={formik.isSubmitting}
+                />}
+
+                {KondisiSessionSales && <input
                     type='text'
                     name='catatanIndent'
                     placeholder='Catatan'

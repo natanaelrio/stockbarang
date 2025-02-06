@@ -2,8 +2,7 @@ import { prisma } from "@/controllers/prisma"
 import { ResponseData } from "@/controllers/ResponseData";
 
 export async function POST(req) {
-    const { note, stock_barang, produkid, user, role } = await req.json()
-
+    const { note, stock_barang, produkid, user, role, jenisBarang, username } = await req.json()
     BigInt.prototype.toJSON = function () {
         return this.toString();
     };
@@ -15,8 +14,10 @@ export async function POST(req) {
                 data: {
                     note,
                     role,
+                    jenisBarang,
                     stock_barang: Number(stock_barang),
                     user,
+                    username,
                     products: {
                         connect: [
                             { id: produkid }, // Ganti dengan ID produk yang ada
@@ -33,7 +34,7 @@ export async function POST(req) {
                     headers: { "Content-Type": "application/json" },
                 })
             } else {
-                res.status(500).json({ message: "Terjadi kesalahan pada server" });
+                Response.json({ status: 500, isCreated: false, contact: 'kesalahan server' })
             }
         }
     }

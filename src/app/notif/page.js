@@ -1,23 +1,25 @@
-import Activity from '@/components/activity'
-import { GetLogActivity } from '@/service/data'
+import { GetNotifikasiSales, GetPendingProduct } from '@/service/data'
 import { authOptions } from '@/controllers/auth';
 import { getServerSession } from "next-auth";
 import Login from '@/components/login'
 import Header from '@/components/header';
+import NotifikasiSales from '@/components/notifkasiSales';
 
 export default async function Page() {
-    const data = await GetLogActivity()
     const session = await getServerSession(authOptions)
     const roles = session?.role || [];
 
+    const data = await GetNotifikasiSales(session.username)
+
     return (
         <>
-            {roles.includes('log') ?
+            {roles.includes('sales') ?
                 <>
-                    <Header session={session} />
-                    <Activity data={data?.data} />
+                    <Header session={session} Ksearch={false} />
+                    <NotifikasiSales data={data?.data} session={session} />
                 </>
                 : <Login />}
+
         </>
     )
 }
