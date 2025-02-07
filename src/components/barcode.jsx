@@ -55,7 +55,8 @@ const BarcodeScanner = ({ onScan }) => {
     return () => {
       codeReader.reset();
     };
-  }, [onScan, setDataBarcode]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [onScan]);
 
   return (
     <div>
