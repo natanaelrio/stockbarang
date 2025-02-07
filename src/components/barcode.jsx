@@ -11,9 +11,6 @@ const BarcodeScanner = ({ onScan }) => {
   const setDataBarcode = useBearStore((state) => state.setDataBarcode);
   const dataBarcode = useBearStore((state) => state.dataBarcode);
 
-  console.log();
-
-
   useEffect(() => {
     const codeReader = new BrowserMultiFormatReader();
 
@@ -62,9 +59,9 @@ const BarcodeScanner = ({ onScan }) => {
   return (
     <div>
       <video ref={videoRef} style={{ width: "100%", height: "auto" }} />
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {scannedData && <p>Barcode: {scannedData}</p>}
-      {dataBarcode.data?.length && <p>Data Produk: {JSON.stringify(dataBarcode.data)}</p>}
+      {/* {error && <p style={{ color: "red" }}>{error}</p>} */}
+      {/* {scannedData && <p>Barcode: {scannedData}</p>} */}
+      {/* {dataBarcode?.data?.length ? <p>Data Produk: {JSON.stringify(dataBarcode.data)}</p> : <p>Loading...</p>} */}
     </div>
   );
 };

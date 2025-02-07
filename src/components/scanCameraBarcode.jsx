@@ -129,7 +129,7 @@ export default function ScanCameraBarcode({ session }) {
         <>
             <div className={styles.bghitam} onClick={() => { setScanShowCameraBarcode() }}></div>
             <div className={styles.inputbarang}>
-                {!Boolean(dataBarcode?.length) &&
+                {!Boolean(dataBarcode?.data?.length) &&
                     <>
                         <BarcodeScanner onScan={(data) => setScannedData(data)} />
                         {!isLoadingProduk &&
@@ -142,12 +142,12 @@ export default function ScanCameraBarcode({ session }) {
                 }
                 {isLoadingProduk && <p><strong>Loading...</strong></p>}
                 {Nodata == 'Tidak ada Produk' && Nodata}
-                {Boolean(dataBarcode?.length) &&
+                {Boolean(dataBarcode?.data?.length) &&
                     <>
                         <h3>Detail Produk</h3>
-                        <p><strong>ID: {dataBarcode[0]?.id}</strong></p>
-                        <p><strong>Nama Barang:{dataBarcode[0]?.name_barang}</strong></p>
-                        {hiddenStock && <p onClick={() => setHiddenStock(false)}><strong>Stok Barang:{dataBarcode[0]?.stock_barang}</strong></p>}
+                        <p><strong>ID: {dataBarcode?.data[0]?.id}</strong></p>
+                        <p><strong>Nama Barang:{dataBarcode?.data[0]?.name_barang}</strong></p>
+                        {hiddenStock && <p onClick={() => setHiddenStock(false)}><strong>Stok Barang:{dataBarcode?.data[0]?.stock_barang}</strong></p>}
                         <span>
                             {KondisiSessionNoPending && <button onClick={() => setIsTambahKurang('tambah')}>Tambah +</button>}
                             {KondisiSessionPending && <button onClick={() => setIsTambahKurang('kurang')}>Kurang -</button>}
