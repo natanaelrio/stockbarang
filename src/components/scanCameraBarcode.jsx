@@ -22,9 +22,11 @@ export default function ScanCameraBarcode({ session }) {
     const setScanShowCameraBarcode = useBearStore((state) => state.setScanShowCameraBarcode);
     const scannedData = useBearStore((state) => state.scannedData);
     const setScannedData = useBearStore((state) => state.setScannedData);
+    const setDataBarcode = useBearStore((state) => state.setDataBarcode);
+    const dataBarcode = useBearStore((state) => state.dataBarcode);
 
     const [hiddenStock, setHiddenStock] = useState(true)
-    const [dataBarcode, setDataBarcode] = useState(null)
+    // const [dataBarcode, setDataBarcode] = useState(null)
     const [valueIdBarang, setValueIdBarang] = useState('')
     const [Nodata, setNoData] = useState('')
     useEffect(() => {
@@ -35,7 +37,7 @@ export default function ScanCameraBarcode({ session }) {
             setIsLoadingProduk(false)
         }
         FetchData()
-    }, [scannedData, setIsLoadingProduk])
+    }, [scannedData, setDataBarcode, setIsLoadingProduk])
 
     const handleCariIdBarang = async (e) => {
         e.preventDefault()
