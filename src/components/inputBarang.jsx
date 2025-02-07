@@ -108,7 +108,7 @@ export default function InputBarang({ session }) {
         <>
             <div className={styles.bghitam} onClick={() => setShowInputBarang()}></div>
             <form className={styles.inputbarang} onSubmit={formik.handleSubmit}>
-                {!scannedData && showScan && <BarcodeScanner onScan={(data) => setScannedData(data)} kondisiInput={true} />}
+                {!scannedData && showScan && <BarcodeScanner kondisiInput={true} />}
                 <button onClick={() => setShowScan(!showScan)}>{!showScan ? 'Input ID SCAN' : 'Tutup Input ID SCAN'}</button>
                 <input
                     type='text'
