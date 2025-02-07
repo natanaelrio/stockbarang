@@ -1,7 +1,7 @@
 'use client'
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import styles from '@/components/header.module.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { GetSearchProduct } from "@/service/dataClient";
 import { useBearStore } from '@/zustand/data';
 import InputBarang from '@/components/inputBarang';
@@ -9,9 +9,7 @@ import SelectProduct from '@/components/selectProduct';
 import ScanCameraBarcode from '@/components/scanCameraBarcode';
 import NoteSales from '@/components/noteSales';
 
-export default function Header({ Ksearch }) {
-    const { data: session } = useSession();
-
+export default function Header({ session, Ksearch }) {
     const [isLoading, setLoading] = useState(false);
     const [isLoadingCari, setLoadingCari] = useState(false);
     const [search, setSearch] = useState('');
