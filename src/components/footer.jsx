@@ -20,6 +20,9 @@ export default function Footer({ session }) {
     const setShowInputBarang = useBearStore((state) => state.setShowInputBarang)
     const setScanShowCameraBarcode = useBearStore((state) => state.setScanShowCameraBarcode);
     const setIsLoadingProduk = useBearStore((state) => state.setIsLoadingProduk);
+    const isLoadingProduk = useBearStore((state) => state.isLoadingProduk);
+
+    console.log(isLoadingProduk);
 
     const TombolScan = () => {
         setScanShowCameraBarcode()
@@ -27,6 +30,7 @@ export default function Footer({ session }) {
     }
 
     const TombolTambahkan = () => {
+        setIsLoadingProduk(false)
         setShowInputBarang()
         setScannedData(null)
     }

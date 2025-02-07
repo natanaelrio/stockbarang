@@ -8,7 +8,7 @@ export const useBearStore = create((set) => ({
     setRefreshData: (e) => set((state) => ({ refreshData: e ? e : !state.refreshData })),
 
     isLoadingProduk: false,
-    setIsLoadingProduk: (e) => set((state) => ({ isLoadingProduk: e ? e : !state.isLoadingProduk })),
+    setIsLoadingProduk: (e) => set((state) => ({ isLoadingProduk: e })),
 
     showInputBarang: false,
     setShowInputBarang: (e) => set((state) => ({ showInputBarang: e ? e : !state.showInputBarang })),
