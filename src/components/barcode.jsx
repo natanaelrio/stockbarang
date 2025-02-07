@@ -3,10 +3,11 @@ import { BrowserMultiFormatReader } from "@zxing/library";
 import { GetSearchProductID } from '@/service/data';
 import { useBearStore } from '@/zustand/data';
 
-const BarcodeScanner = ({ onScan }) => {
+const BarcodeScanner = ({ onScan, kondisiInput }) => {
   const videoRef = useRef(null);
   const [error, setError] = useState(null);
   // const [scannedData, setScannedData] = useState(null);
+  const setScannedData = useBearStore((state) => state.setScannedData);
   const setDataBarcode = useBearStore((state) => state.setDataBarcode);
   // const dataBarcode = useBearStore((state) => state.dataBarcode);
   const setIsLoadingProduk = useBearStore((state) => state.setIsLoadingProduk);
@@ -31,7 +32,10 @@ const BarcodeScanner = ({ onScan }) => {
             async (result, err) => {
               if (result) {
                 const barcode = result.getText();
-                // setScannedData(barcode);
+                if (kondisiInput) {
+                  setScannedData(barcode);
+                  return
+                }
                 try {
                   setIsLoadingProduk(true)
                   const data = await GetSearchProductID(barcode);
