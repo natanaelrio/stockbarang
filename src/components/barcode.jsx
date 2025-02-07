@@ -1,49 +1,52 @@
 import { useEffect, useRef, useState } from "react";
 import { BrowserMultiFormatReader } from "@zxing/library";
+import { GetSearchProductID } from '@/service/data';
 
 const BarcodeScanner = ({ onScan }) => {
   const videoRef = useRef(null);
   const [error, setError] = useState(null);
+  const [scannedData, setScannedData] = useState(null);
+  const [productData, setProductData] = useState(null);
 
   useEffect(() => {
     const codeReader = new BrowserMultiFormatReader();
 
-    // Mengakses semua perangkat video
-    codeReader.getVideoInputDevices().then((videoInputDevices) => {
-      if (videoInputDevices.length > 0) {
-        // Cari perangkat dengan label "environment" (kamera belakang)
-        const backCamera = videoInputDevices.find((device) =>
-          device.label.toLowerCase().includes("back") ||
-          device.label.toLowerCase().includes("environment")
-        );
+    codeReader.getVideoInputDevices()
+      .then((videoInputDevices) => {
+        if (videoInputDevices.length > 0) {
+          const backCamera = videoInputDevices.find((device) =>
+            device.label.toLowerCase().includes("back") ||
+            device.label.toLowerCase().includes("environment")
+          );
 
-        // Gunakan kamera belakang jika ditemukan, jika tidak gunakan kamera pertama
-        const selectedDeviceId = backCamera ? backCamera.deviceId : videoInputDevices[0].deviceId;
+          const selectedDeviceId = backCamera ? backCamera.deviceId : videoInputDevices[0].deviceId;
 
-        // Mulai pemindaian dari kamera yang dipilih
-        codeReader.decodeFromVideoDevice(
-          selectedDeviceId,
-          videoRef.current,
-          (result, err) => {
-            if (result) {
-              const FetchData = async () => {
-                setIsLoadingProduk(true)
-                const data = await GetSearchProductID(result.getText())
-                setDataBarcode(data.data)
-                setIsLoadingProduk(false)
+          codeReader.decodeFromVideoDevice(
+            selectedDeviceId,
+            videoRef.current,
+            async (result, err) => {
+              if (result) {
+                const barcode = result.getText();
+                setScannedData(barcode);
+
+                try {
+                  const data = await GetSearchProductID(barcode);
+                  setProductData(data);
+                  onScan(data);
+                } catch (fetchError) {
+                  setError("Gagal mengambil data produk");
+                }
               }
-              FetchData()
-              onScan(result.getText());
+              if (err) {
+                setError("Gagal membaca barcode");
+              }
             }
-            if (err) {
-              setError("Gagal membaca barcode");
-            }
-          }
-        );
-      } else {
-        setError("Kamera tidak ditemukan");
-      }
-    }).catch((err) => setError("Error mengakses kamera"));
+          );
+        } else {
+          setError("Kamera tidak ditemukan");
+        }
+      })
+      .catch(() => setError("Error mengakses kamera"));
 
     return () => {
       codeReader.reset();
@@ -53,7 +56,9 @@ const BarcodeScanner = ({ onScan }) => {
   return (
     <div>
       <video ref={videoRef} style={{ width: "100%", height: "auto" }} />
-      {/* {error && <p style={{ color: "red" }}>{error}</p>} */}
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      {scannedData && <p>Barcode: {scannedData}</p>}
+      {productData && <p>Data Produk: {JSON.stringify(productData)}</p>}
     </div>
   );
 };
