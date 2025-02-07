@@ -5,7 +5,7 @@ import { FaSquarePen } from "react-icons/fa6";
 import { FaPlusSquare } from "react-icons/fa";
 import { LuScanSearch } from "react-icons/lu";
 import { FaBell } from "react-icons/fa";
-
+import { FaHistory } from "react-icons/fa";
 import Link from 'next/link';
 
 export default function Footer({ session }) {
@@ -16,6 +16,7 @@ export default function Footer({ session }) {
     const KondisiSessionVerPlus = roles.includes('verplus')
     const KondisiSessionVerMinPlus = roles.includes('verminplus')
     const KondisiSessionSales = roles.includes('sales')
+    const KondisiSessionLog = roles.includes('log')
     const setScannedData = useBearStore((state) => state.setScannedData)
     const setShowInputBarang = useBearStore((state) => state.setShowInputBarang)
     const setScanShowCameraBarcode = useBearStore((state) => state.setScanShowCameraBarcode);
@@ -73,6 +74,13 @@ export default function Footer({ session }) {
                         <FaBell size={39} />
                     </div>
                     <span>Notif</span>
+                </Link>
+                }
+                {KondisiSessionLog && <Link href={'/log'} className={styles.tombolver}>
+                    <div>
+                        <FaHistory size={39} />
+                    </div>
+                    <span>Log</span>
                 </Link>
                 }
             </div>
