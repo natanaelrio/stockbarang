@@ -1,12 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { BrowserMultiFormatReader } from "@zxing/library";
 import { GetSearchProductID } from '@/service/data';
+import { useBearStore } from '@/zustand/data';
 
 const BarcodeScanner = ({ onScan }) => {
   const videoRef = useRef(null);
   const [error, setError] = useState(null);
   const [scannedData, setScannedData] = useState(null);
   const [productData, setProductData] = useState(null);
+  const setDataBarcode = useBearStore((state) => state.setDataBarcode);
+  const dataBarcode = useBearStore((state) => state.dataBarcode);
+
 
   useEffect(() => {
     const codeReader = new BrowserMultiFormatReader();
@@ -31,7 +35,7 @@ const BarcodeScanner = ({ onScan }) => {
 
                 try {
                   const data = await GetSearchProductID(barcode);
-                  setProductData(data);
+                  setDataBarcode(data);
                   onScan(data);
                 } catch (fetchError) {
                   setError("Gagal mengambil data produk");
@@ -51,14 +55,14 @@ const BarcodeScanner = ({ onScan }) => {
     return () => {
       codeReader.reset();
     };
-  }, [onScan]);
+  }, [onScan, setDataBarcode]);
 
   return (
     <div>
       <video ref={videoRef} style={{ width: "100%", height: "auto" }} />
       {error && <p style={{ color: "red" }}>{error}</p>}
       {scannedData && <p>Barcode: {scannedData}</p>}
-      {productData && <p>Data Produk: {JSON.stringify(productData)}</p>}
+      {dataBarcode.length && <p>Data Produk: {JSON.stringify(dataBarcode)}</p>}
     </div>
   );
 };
