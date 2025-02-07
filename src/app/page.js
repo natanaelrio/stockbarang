@@ -12,7 +12,7 @@ export default async function Home() {
     <>
       {session ?
         <>
-          <Header session={session} />
+          <Header session={session} Ksearch={true} />
           <ListProduct />
           <Footer session={session} />
         </>

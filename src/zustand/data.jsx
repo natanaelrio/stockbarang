@@ -18,7 +18,7 @@ export const useBearStore = create((set) => ({
 
     showScanCameraBarcode: false,
     setScanShowCameraBarcode: (e) => set((state) => ({ showScanCameraBarcode: e ? e : !state.showScanCameraBarcode })),
-  
+
     showNoteSales: false,
     setShowNoteSales: (e) => set((state) => ({ showNoteSales: e ? e : !state.showNoteSales })),
 
@@ -27,5 +27,7 @@ export const useBearStore = create((set) => ({
 
     dataProduk: [],
     setDataProduk: (e) => set((state) => ({ dataProduk: e })),
-    
+
+    dataSales: {},
+    setDataSales: (e) => set((state) => ({ dataSales: e })),
 }))

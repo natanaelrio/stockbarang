@@ -18,6 +18,8 @@ export default function InputBarang({ session }) {
 
     const id = GetCurrentDateTimeGMT7()
 
+    const setIsLoadingProduk = useBearStore((state) => state.setIsLoadingProduk);
+    const isLoadingProduk = useBearStore((state) => state.isLoadingProduk);
     const setRefreshData = useBearStore((state) => state.setRefreshData);
     const setShowInputBarang = useBearStore((state) => state.setShowInputBarang);
     const scannedData = useBearStore((state) => state.scannedData);
@@ -43,6 +45,7 @@ export default function InputBarang({ session }) {
 
             try {
                 const FetchDataNormal = async () => {
+                    setIsLoadingProduk(true)
                     const dataProduct = await CreateProduct({
                         id: values.idBarang,
                         name_barang: values.namaBarang,
@@ -73,8 +76,12 @@ export default function InputBarang({ session }) {
                     })
                     await CreateActivity({
                         userActivity: session.namaUser,
-                        activity: `Penambahan Product ${values.namaBarang} ( ${values.idBarang} ) ${values.jenisBarang == 'Indent' && '( INDENT )'}`,
+                        activity: `Penambahan Product ${values.namaBarang} ( ${values.idBarang} ) ${values.jenisBarang == 'Indent' && '( INDENT )'} ${values.jenisBarang == 'Request' && '( REQUEST )'}`,
                     });
+                    router.refresh();
+                    setShowInputBarang();
+                    setRefreshData()
+                    setIsLoadingProduk(false)
                 };
                 toast.promise(
                     FetchDataNormal(),
@@ -85,11 +92,12 @@ export default function InputBarang({ session }) {
                     }
                 );
 
-                router.refresh();
-                setShowInputBarang();
-                setRefreshData()
+
             } catch (error) {
                 toast.error(`ID: ${values.idBarang} sudah ada!`);
+                setShowInputBarang();
+                setRefreshData()
+                setIsLoadingProduk(false)
             } finally {
                 setSubmitting(false);
             }
@@ -109,7 +117,7 @@ export default function InputBarang({ session }) {
                     value={formik.values.idBarang}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    disabled={formik.isSubmitting}
+                    disabled={isLoadingProduk}
                 />
                 {formik.touched.idBarang && formik.errors.idBarang ? <div className={styles.error}>{formik.errors.idBarang}</div> : null}
 
@@ -120,7 +128,7 @@ export default function InputBarang({ session }) {
                     value={formik.values.namaBarang}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    disabled={formik.isSubmitting}
+                    disabled={isLoadingProduk}
                 />
                 {formik.touched.namaBarang && formik.errors.namaBarang ? <div className={styles.error}>{formik.errors.namaBarang}</div> : null}
 
@@ -131,7 +139,7 @@ export default function InputBarang({ session }) {
                     value={formik.values.stockBarang}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    disabled={formik.isSubmitting}
+                    disabled={isLoadingProduk}
                 />
                 {formik.touched.stockBarang && formik.errors.stockBarang ? <div className={styles.error}>{formik.errors.stockBarang}</div> : null}
 
@@ -167,7 +175,7 @@ export default function InputBarang({ session }) {
                     value={formik.values.catatanIndent}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    disabled={formik.isSubmitting}
+                    disabled={isLoadingProduk}
                 />}
 
                 {KondisiSessionSales && <input
@@ -177,12 +185,12 @@ export default function InputBarang({ session }) {
                     value={formik.values.catatanIndent}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    disabled={formik.isSubmitting}
+                    disabled={isLoadingProduk}
                 />}
 
                 {formik.touched.jenisBarang && formik.errors.jenisBarang ? <div className={styles.error}>{formik.errors.jenisBarang}</div> : null}
 
-                <button type='submit' disabled={formik.isSubmitting}>Submit</button>
+                <button type='submit' disabled={isLoadingProduk}>{!isLoadingProduk ? 'Submit' : 'Loading...'}</button>
                 <div className={styles.close} onClick={() => setShowInputBarang()}>X</div>
             </form>
         </>

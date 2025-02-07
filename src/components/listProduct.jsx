@@ -10,7 +10,7 @@ export default function ListProduct() {
     const dataProduk = useBearStore((state) => state.dataProduk);
     const setDataProduk = useBearStore((state) => state.setDataProduk);
     const setIsLoadingProduk = useBearStore((state) => state.setIsLoadingProduk);
-    const isLoadingProduk = useBearStore((state) => state.isLoadingProduk);
+    const refreshData = useBearStore((state) => state.refreshData);
 
     const handleBarcodeClick = (product) => {
         setShowSelectedProduct()
@@ -30,7 +30,7 @@ export default function ListProduct() {
             }
         }
         FetchData()
-    }, [setDataProduk, setIsLoadingProduk])
+    }, [setDataProduk, setIsLoadingProduk, refreshData])
 
 
     return (

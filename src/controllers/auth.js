@@ -63,6 +63,14 @@ export const authOptions = {
                         username: 'dhitasales',
                         role: ['sales']
                     },
+                    {
+                        id: "6",
+                        email: "dwispert@pelangiteknik.com",
+                        password: "dwispertsv123",
+                        namaUser: "Dwi (Sparepart)",
+                        username: 'sparepartdwi',
+                        role: ['sales']
+                    },
                 ];
 
                 // Cari pengguna berdasarkan email dan password
