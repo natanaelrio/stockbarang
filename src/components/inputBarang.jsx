@@ -7,8 +7,8 @@ import { useBearStore } from '@/zustand/data';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { CreateActivity, CreateProduct, CreateProductPendding } from '@/service/data';
-import { useState } from 'react';
 import { GetCurrentDateTimeGMT7 } from '@/utils/getCurrentDateTimeGMT7';
+import { useState } from "react";
 
 export default function InputBarang({ session }) {
     const router = useRouter();
@@ -35,6 +35,7 @@ export default function InputBarang({ session }) {
             jenisBarang: KondisiSessionSales ? 'Request' : 'Langsung',
             catatanIndent: '',
         },
+        enableReinitialize: scannedData ? scannedData : false,
         validationSchema: Yup.object({
             idBarang: Yup.string().required('ID Barang wajib diisi'),
             namaBarang: Yup.string().required('Nama Barang wajib diisi'),
@@ -103,12 +104,13 @@ export default function InputBarang({ session }) {
             }
         },
     });
+    console.log(`PROD-${Date.now().toString().slice(-8)}`);
 
     return (
         <>
             <div className={styles.bghitam} onClick={() => setShowInputBarang()}></div>
             <form className={styles.inputbarang} onSubmit={formik.handleSubmit}>
-                {!scannedData && showScan && <BarcodeScanner kondisiInput={true} />}
+                {showScan && <BarcodeScanner kondisiInput={true} />}
                 <button onClick={() => setShowScan(!showScan)}>{!showScan ? 'Input ID SCAN' : 'Tutup Input ID SCAN'}</button>
                 <input
                     type='text'
