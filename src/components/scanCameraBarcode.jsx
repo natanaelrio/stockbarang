@@ -51,7 +51,7 @@ export default function ScanCameraBarcode({ session }) {
 
     const [isTambahKurang, setIsTambahKurang] = useState(null)
     const [isShowRequest, setShowRequest] = useState(null)
-    const [valueTambahKurang, setValueTambahKurang] = useState('')
+    const [valueTambahKurang, setValueTambahKurang] = useState(0)
     const [valueNoteBarang, setValueNoteBarang] = useState('tidak ada')
 
     const handleTambahKurang = async (e) => {

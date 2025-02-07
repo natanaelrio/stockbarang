@@ -69,7 +69,7 @@ export const authOptions = {
                         password: "dwispertsv123",
                         namaUser: "Dwi (Sparepart)",
                         username: 'sparepartdwi',
-                        role: ['sales']
+                        role: ['sales', 'pending', 'nopending']
                     },
                 ];
 
