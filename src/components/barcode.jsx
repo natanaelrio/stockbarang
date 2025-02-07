@@ -55,15 +55,14 @@ const BarcodeScanner = ({ onScan }) => {
     return () => {
       codeReader.reset();
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [onScan]);
+  }, [onScan, setDataBarcode]);
 
   return (
     <div>
       <video ref={videoRef} style={{ width: "100%", height: "auto" }} />
       {error && <p style={{ color: "red" }}>{error}</p>}
       {scannedData && <p>Barcode: {scannedData}</p>}
-      {dataBarcode.length && <p>Data Produk: {JSON.stringify(dataBarcode)}</p>}
+      {dataBarcode?.length && <p>Data Produk: {JSON.stringify(dataBarcode)}</p>}
     </div>
   );
 };
