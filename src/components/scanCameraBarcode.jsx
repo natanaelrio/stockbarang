@@ -32,6 +32,7 @@ export default function ScanCameraBarcode({ session }) {
     useEffect(() => {
         const FetchData = async () => {
             setIsLoadingProduk(true)
+            setDataBarcode(null);
             const data = await GetSearchProductID(scannedData)
             setDataBarcode(data.data)
             setIsLoadingProduk(false)
