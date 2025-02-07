@@ -25,9 +25,10 @@ export default function Footer({ session }) {
     const setDataBarcode = useBearStore((state) => state.setDataBarcode);
 
     const TombolScan = () => {
-        setScanShowCameraBarcode()
         setIsLoadingProduk(false)
         setDataBarcode(null)
+        setScannedData(null)
+        setScanShowCameraBarcode()
     }
 
     const TombolTambahkan = () => {

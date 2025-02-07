@@ -26,6 +26,13 @@ const BarcodeScanner = ({ onScan }) => {
           videoRef.current,
           (result, err) => {
             if (result) {
+              const FetchData = async () => {
+                setIsLoadingProduk(true)
+                const data = await GetSearchProductID(result.getText())
+                setDataBarcode(data.data)
+                setIsLoadingProduk(false)
+              }
+              FetchData()
               onScan(result.getText());
             }
             if (err) {

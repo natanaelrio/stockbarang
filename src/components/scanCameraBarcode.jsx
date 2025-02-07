@@ -25,21 +25,23 @@ export default function ScanCameraBarcode({ session }) {
     const setDataBarcode = useBearStore((state) => state.setDataBarcode);
     const dataBarcode = useBearStore((state) => state.dataBarcode);
 
+    console.log(scannedData);
+
     const [hiddenStock, setHiddenStock] = useState(true)
     // const [dataBarcode, setDataBarcode] = useState(null)
+
     const [valueIdBarang, setValueIdBarang] = useState('')
     const [Nodata, setNoData] = useState('')
-    useEffect(() => {
-        const FetchData = async () => {
-            setIsLoadingProduk(true)
-            setDataBarcode(null);
-            const data = await GetSearchProductID(scannedData)
-            setDataBarcode(data.data)
-            setIsLoadingProduk(false)
-        }
-        FetchData()
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [scannedData])
+    // useEffect(() => {
+    //     const FetchData = async () => {
+    //         setIsLoadingProduk(true)
+    //         const data = await GetSearchProductID(scannedData)
+    //         setDataBarcode(data.data)
+    //         setIsLoadingProduk(false)
+    //     }
+    //     FetchData()
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [scannedData])
 
     const handleCariIdBarang = async (e) => {
         e.preventDefault()
@@ -125,15 +127,17 @@ export default function ScanCameraBarcode({ session }) {
 
     return (
         <>
-            <div className={styles.bghitam} onClick={() => setScanShowCameraBarcode()}></div>
+            <div className={styles.bghitam} onClick={() => { setScanShowCameraBarcode() }}></div>
             <div className={styles.inputbarang}>
                 {!Boolean(dataBarcode?.length) &&
                     <>
                         <BarcodeScanner onScan={(data) => setScannedData(data)} />
-                        <form className={styles.inputkamera}>
-                            <input disabled={isLoadingProduk} onChange={(e) => setValueIdBarang(e.target.value)} type='text' placeholder='ID Barang' name='IdBarang' />
-                            <button onClick={handleCariIdBarang} disabled={isLoadingProduk} type='submit'>Cari</button>
-                        </form>
+                        {!isLoadingProduk &&
+                            <form className={styles.inputkamera}>
+                                <input disabled={isLoadingProduk} onChange={(e) => setValueIdBarang(e.target.value)} type='text' placeholder='ID Barang' name='IdBarang' />
+                                <button onClick={handleCariIdBarang} disabled={isLoadingProduk} type='submit'>Cari</button>
+                            </form>
+                        }
                     </>
                 }
                 {isLoadingProduk && <p><strong>Loading...</strong></p>}
