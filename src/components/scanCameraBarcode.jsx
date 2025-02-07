@@ -28,6 +28,7 @@ export default function ScanCameraBarcode({ session }) {
     const setNotifNoData = useBearStore((state) => state.setNotifNoData);
     const notifNoData = useBearStore((state) => state.notifNoData);
 
+
     const [hiddenStock, setHiddenStock] = useState(true)
     // const [dataBarcode, setDataBarcode] = useState(null)
 
@@ -38,7 +39,7 @@ export default function ScanCameraBarcode({ session }) {
         // setHiddenCamera(false)
         setIsLoadingProduk(true)
         const data = await GetSearchProductID(valueIdBarang)
-        setDataBarcode(data.data)
+        setDataBarcode(data)
         setNotifNoData(!data.data.length)
         setIsLoadingProduk(false)
     }
@@ -51,12 +52,13 @@ export default function ScanCameraBarcode({ session }) {
     const handleTambahKurang = async (e) => {
         e.preventDefault()
         setIsLoadingProduk(true)
+
         const FetchData = async () => {
             try {
                 isTambahKurang == 'tambah' && await CreateProductPendding({
                     stock_barang: valueTambahKurang,
                     note: valueNoteBarang,
-                    produkid: dataBarcode[0]?.id,
+                    produkid: dataBarcode?.data[0]?.id,
                     user: session.namaUser,
                     username: session.username,
                     jenisBarang: 'Langsung',
@@ -65,7 +67,7 @@ export default function ScanCameraBarcode({ session }) {
                 isTambahKurang == 'kurang' && await CreateProductPendding({
                     stock_barang: valueTambahKurang,
                     note: valueNoteBarang,
-                    produkid: dataBarcode[0]?.id,
+                    produkid: dataBarcode?.data[0]?.id,
                     user: session.namaUser,
                     username: session.username,
                     jenisBarang: 'Langsung',
@@ -74,7 +76,7 @@ export default function ScanCameraBarcode({ session }) {
                 KondisiSessionSales && await CreateProductPendding({
                     stock_barang: valueTambahKurang,
                     note: valueNoteBarang,
-                    produkid: dataBarcode[0]?.id,
+                    produkid: dataBarcode?.data[0]?.id,
                     user: session.namaUser,
                     username: session.username,
                     jenisBarang: 'Request',
@@ -83,15 +85,15 @@ export default function ScanCameraBarcode({ session }) {
 
                 isTambahKurang == 'tambah' && await CreateActivity({
                     userActivity: session.namaUser,
-                    activity: `Update Tambah ${valueTambahKurang} stock - ${dataBarcode[0]?.name_barang} ( ${dataBarcode[0]?.id} ) `
+                    activity: `Update Tambah ${valueTambahKurang} stock - ${dataBarcode?.data[0]?.name_barang} ( ${dataBarcode?.data[0]?.id} ) `
                 })
                 isTambahKurang == 'kurang' && await CreateActivity({
                     userActivity: session.namaUser,
-                    activity: `Request ${valueTambahKurang} stock - ${dataBarcode[0]?.name_barang} ( ${dataBarcode[0]?.id}) - (note: ${valueNoteBarang}) ) `
+                    activity: `Request ${valueTambahKurang} stock - ${dataBarcode?.data[0]?.name_barang} ( ${dataBarcode?.data[0]?.id}) - (note: ${valueNoteBarang}) ) `
                 })
                 KondisiSessionSales && await CreateActivity({
                     userActivity: session.namaUser,
-                    activity: `Request ${valueTambahKurang} stock - ${dataBarcode[0]?.name_barang} ( ${dataBarcode[0]?.id}) - (note: ${valueNoteBarang}) ) `
+                    activity: `Request ${valueTambahKurang} stock - ${dataBarcode?.data[0]?.name_barang} ( ${dataBarcode?.data[0]?.id}) - (note: ${valueNoteBarang}) ) `
                 })
                 router.refresh()
                 setScanShowCameraBarcode()
@@ -148,8 +150,8 @@ export default function ScanCameraBarcode({ session }) {
                         <p><strong>Nama Barang:{dataBarcode?.data[0]?.name_barang}</strong></p>
                         {hiddenStock && <p onClick={() => setHiddenStock(false)}><strong>Stok Barang:{dataBarcode?.data[0]?.stock_barang}</strong></p>}
                         <span>
-                            {KondisiSessionNoPending && <button onClick={() => setIsTambahKurang('tambah')}>Tambah +</button>}
-                            {KondisiSessionPending && <button onClick={() => setIsTambahKurang('kurang')}>Kurang -</button>}
+                            {KondisiSessionNoPending && <button disabled={isLoadingProduk} onClick={() => setIsTambahKurang('tambah')}>Tambah +</button>}
+                            {KondisiSessionPending && <button disabled={isLoadingProduk} onClick={() => setIsTambahKurang('kurang')}>Kurang -</button>}
                             {isTambahKurang !== null &&
                                 <form className={styles.inputkamera}>
                                     <input disabled={isLoadingProduk} onChange={(e) => setValueTambahKurang(e.target.value)} type='number' placeholder={isTambahKurang == 'tambah' && 'Tambahi ++' || isTambahKurang == 'kurang' && 'Kurangi--'} name='IdBarang' />

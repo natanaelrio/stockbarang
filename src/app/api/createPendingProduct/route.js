@@ -6,6 +6,7 @@ export async function POST(req) {
     BigInt.prototype.toJSON = function () {
         return this.toString();
     };
+    console.log(produkid);
 
     const authorization = req.headers.get('authorization')
     if (authorization == process.env.NEXT_PUBLIC_SECREET) {
