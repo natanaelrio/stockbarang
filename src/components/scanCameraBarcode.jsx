@@ -37,7 +37,8 @@ export default function ScanCameraBarcode({ session }) {
             setIsLoadingProduk(false)
         }
         FetchData()
-    }, [scannedData, setDataBarcode, setIsLoadingProduk])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [scannedData])
 
     const handleCariIdBarang = async (e) => {
         e.preventDefault()
