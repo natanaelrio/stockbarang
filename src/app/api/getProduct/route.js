@@ -8,6 +8,16 @@ export async function GET(req) {
             take: 17,
             orderBy: {
                 start: 'desc'
+            },
+            include: {
+                pendingProduct: {
+                    where: {
+                        jenisBarang: {
+                            contains: 'Indent',
+                            mode: 'insensitive'
+                        }
+                    }
+                }
             }
         });
         const authorization = req.headers.get('authorization')

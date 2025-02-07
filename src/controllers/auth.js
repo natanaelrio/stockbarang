@@ -34,7 +34,7 @@ export const authOptions = {
                         password: "purshfitri1x23",
                         namaUser: "Fitri ( Purchasing )",
                         username: 'fitripurcha',
-                        role: ['tambahindent', 'verplus']
+                        role: ['tambahindent', 'verplus', 'nopending']
                     },
                     {
                         id: "3",

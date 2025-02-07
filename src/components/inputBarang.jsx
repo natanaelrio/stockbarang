@@ -104,7 +104,6 @@ export default function InputBarang({ session }) {
             }
         },
     });
-    console.log(`PROD-${Date.now().toString().slice(-8)}`);
 
     return (
         <>

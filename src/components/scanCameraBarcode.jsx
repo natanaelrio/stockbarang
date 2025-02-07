@@ -13,6 +13,7 @@ export default function ScanCameraBarcode({ session }) {
     const KondisiSessionNoPending = roles.includes('nopending')
     const KondisiSessionPending = roles.includes('pending')
     const KondisiSessionSales = roles.includes('sales')
+    const KondisiSessionIndent = roles.includes('tambahindent')
     const verMin = roles.includes('vermin')
     const verPlus = roles.includes('verplus')
 
@@ -61,7 +62,7 @@ export default function ScanCameraBarcode({ session }) {
                     produkid: dataBarcode?.data[0]?.id,
                     user: session.namaUser,
                     username: session.username,
-                    jenisBarang: 'Langsung',
+                    jenisBarang: KondisiSessionIndent ? 'Indent' : 'Langsung',
                     role: 'verplus'
                 })
                 isTambahKurang == 'kurang' && await CreateProductPendding({
@@ -155,8 +156,8 @@ export default function ScanCameraBarcode({ session }) {
                             {isTambahKurang !== null &&
                                 <form className={styles.inputkamera}>
                                     <input disabled={isLoadingProduk} onChange={(e) => setValueTambahKurang(e.target.value)} type='number' placeholder={isTambahKurang == 'tambah' && 'Tambahi ++' || isTambahKurang == 'kurang' && 'Kurangi--'} name='IdBarang' />
-                                    <input onChange={(e) => setValueNoteBarang(e.target.value)} type="text" placeholder='Note' />
-                                    <button disabled={isLoadingProduk} onClick={handleTambahKurang} type='submit'>{!isLoadingProduk ? 'Submit' : 'Loading...'}{isTambahKurang == 'tambah' && '(Tambah)' || isTambahKurang == 'kurang' && '(Kurang)'}</button>
+                                    <input disabled={isLoadingProduk} onChange={(e) => setValueNoteBarang(e.target.value)} type="text" placeholder='Note' />
+                                    <button disabled={isLoadingProduk} onClick={handleTambahKurang} type='submit'>{!isLoadingProduk ? 'Submit' : 'Loading...'}{isTambahKurang == 'tambah' && '(Tambah)' || isTambahKurang == 'kurang' && '(Kurang)' || KondisiSessionIndent && '(Tambah Indent)'}</button>
                                 </form>
                             }
 
@@ -164,7 +165,7 @@ export default function ScanCameraBarcode({ session }) {
                             {isShowRequest &&
                                 <form className={styles.inputkamera}>
                                     <input disabled={isLoadingProduk} onChange={(e) => setValueTambahKurang(e.target.value)} type='number' placeholder={'Request Tambah'} name='IdBarang' />
-                                    <input onChange={(e) => setValueNoteBarang(e.target.value)} type="text" placeholder='Note' />
+                                    <input disabled={isLoadingProduk} onChange={(e) => setValueNoteBarang(e.target.value)} type="text" placeholder='Note' />
                                     <button disabled={isLoadingProduk} onClick={handleTambahKurang} type='submit'>{!isLoadingProduk ? 'Submit' : 'Loading...'}</button>
                                 </form>
                             }

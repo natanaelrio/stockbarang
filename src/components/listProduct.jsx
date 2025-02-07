@@ -12,6 +12,8 @@ export default function ListProduct() {
     const setIsLoadingProduk = useBearStore((state) => state.setIsLoadingProduk);
     const refreshData = useBearStore((state) => state.refreshData);
 
+    console.log(dataProduk);
+
     const handleBarcodeClick = (product) => {
         setShowSelectedProduct()
         setDataSelectedProduct(product);
@@ -48,6 +50,7 @@ export default function ListProduct() {
                                     <th>ID</th>
                                     <th>Name Barang</th>
                                     <th>Stock Barang</th>
+                                    <th>Indent Barang</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,6 +60,7 @@ export default function ListProduct() {
                                         <td>{product?.id}</td>
                                         <td>{product?.name_barang}</td>
                                         <td>{product?.stock_barang}</td>
+                                        <td>{product?.pendingProduct.reduce((sum, item) => sum + item.stock_barang, 0)}</td>
                                     </tr>
                                 ))}
                             </tbody>
