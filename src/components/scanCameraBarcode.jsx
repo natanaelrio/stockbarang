@@ -51,7 +51,7 @@ export default function ScanCameraBarcode({ session }) {
 
     const [isTambahKurang, setIsTambahKurang] = useState(null)
     const [isShowRequest, setShowRequest] = useState(null)
-    const [valueTambahKurang, setValueTambahKurang] = useState(0)
+    const [valueTambahKurang, setValueTambahKurang] = useState(1)
     const [valueNoteBarang, setValueNoteBarang] = useState('tidak ada')
 
     const handleTambahKurang = async (e) => {
@@ -59,7 +59,7 @@ export default function ScanCameraBarcode({ session }) {
         setIsLoadingProduk(true)
         const FetchData = async () => {
             try {
-                isTambahKurang && await CreateProductPendding({
+                isTambahKurang == 'tambah' && await CreateProductPendding({
                     stock_barang: valueTambahKurang,
                     note: valueNoteBarang,
                     produkid: dataBarcode[0]?.id,
@@ -68,7 +68,7 @@ export default function ScanCameraBarcode({ session }) {
                     jenisBarang: 'Langsung',
                     role: 'verplus'
                 })
-                !isTambahKurang && await CreateProductPendding({
+                isTambahKurang == 'kurang' && await CreateProductPendding({
                     stock_barang: valueTambahKurang,
                     note: valueNoteBarang,
                     produkid: dataBarcode[0]?.id,
@@ -87,15 +87,15 @@ export default function ScanCameraBarcode({ session }) {
                     role: 'verplus'
                 })
 
-                isTambahKurang && await CreateActivity({
+                isTambahKurang == 'tambah' && await CreateActivity({
                     userActivity: session.namaUser,
                     activity: `Update Tambah ${valueTambahKurang} stock - ${dataBarcode[0]?.name_barang} ( ${dataBarcode[0]?.id} ) `
                 })
-                !isTambahKurang && await CreateActivity({
+                isTambahKurang == 'kurang' && await CreateActivity({
                     userActivity: session.namaUser,
                     activity: `Request ${valueTambahKurang} stock - ${dataBarcode[0]?.name_barang} ( ${dataBarcode[0]?.id}) - (note: ${valueNoteBarang}) ) `
                 })
-                !KondisiSessionSales && await CreateActivity({
+                KondisiSessionSales && await CreateActivity({
                     userActivity: session.namaUser,
                     activity: `Request ${valueTambahKurang} stock - ${dataBarcode[0]?.name_barang} ( ${dataBarcode[0]?.id}) - (note: ${valueNoteBarang}) ) `
                 })
@@ -143,13 +143,13 @@ export default function ScanCameraBarcode({ session }) {
                         <p><strong>Nama Barang:{dataBarcode[0]?.name_barang}</strong></p>
                         {hiddenStock && <p onClick={() => setHiddenStock(false)}><strong>Stok Barang:{dataBarcode[0]?.stock_barang}</strong></p>}
                         <span>
-                            {KondisiSessionNoPending && <button onClick={() => setIsTambahKurang(true)}>Tambah +</button>}
-                            {KondisiSessionPending && <button onClick={() => setIsTambahKurang(false)}>Kurang -</button>}
+                            {KondisiSessionNoPending && <button onClick={() => setIsTambahKurang('tambah')}>Tambah +</button>}
+                            {KondisiSessionPending && <button onClick={() => setIsTambahKurang('kurang')}>Kurang -</button>}
                             {isTambahKurang !== null &&
                                 <form className={styles.inputkamera}>
-                                    <input disabled={isLoadingProduk} onChange={(e) => setValueTambahKurang(e.target.value)} type='number' placeholder={isTambahKurang ? 'Tambahi ++' : 'Kurangi--'} name='IdBarang' />
-                                    {!isTambahKurang && <input onChange={(e) => setValueNoteBarang(e.target.value)} type="text" placeholder='Note' />}
-                                    <button disabled={isLoadingProduk} onClick={handleTambahKurang} type='submit'>{!isLoadingProduk ? 'Submit' : 'Loading...'}{isTambahKurang ? ' (Tambah)' : ' (Kurangi)'}</button>
+                                    <input disabled={isLoadingProduk} onChange={(e) => setValueTambahKurang(e.target.value)} type='number' placeholder={isTambahKurang == 'tambah' && 'Tambahi ++' || isTambahKurang == 'kurang' && 'Kurangi--'} name='IdBarang' />
+                                    <input onChange={(e) => setValueNoteBarang(e.target.value)} type="text" placeholder='Note' />
+                                    <button disabled={isLoadingProduk} onClick={handleTambahKurang} type='submit'>{!isLoadingProduk ? 'Submit' : 'Loading...'}{isTambahKurang == 'tambah' && '(Tambah)' || isTambahKurang == 'kurang' && '(Kurang)'}</button>
                                 </form>
                             }
 

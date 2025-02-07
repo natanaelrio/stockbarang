@@ -8,6 +8,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model gudang {
+  id            String    @id @default(uuid())
+  start         DateTime  @default(now())
+  end           DateTime? @updatedAt
+  namaGudang    String?   @unique
+  gudangProduct product[] @relation("GudangProduct")
+}
+
 model product {
   id           String    @id @default(uuid())
   start        DateTime  @default(now())
@@ -15,6 +23,7 @@ model product {
   name_barang  String?
   stock_barang Int?
 
+  gudangProduct  gudang[]         @relation("GudangProduct")
   pendingProduct pendingProduct[] @relation("PendingProduct")
 }
 

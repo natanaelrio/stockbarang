@@ -3,20 +3,17 @@ import Credentials from "next-auth/providers/credentials"
 
 export const authOptions = {
     session: {
-        strategy: "jwt"
+        strategy: "jwt",
+        maxAge: 2 * 60 * 60, // 2 jam dalam detik (2 jam * 60 menit * 60 detik)
+    },
+    jwt: {
+        maxAge: 2 * 60 * 60, // 2 jam dalam detik
     },
     providers: [
         Credentials({
             credentials: {
-                email: {
-                    label: "Email",
-                    type: "Email",
-                    placeholder: "example"
-                },
-                password: {
-                    label: "password",
-                    type: "password",
-                }
+                email: { label: "Email", type: "email", placeholder: "example" },
+                password: { label: "Password", type: "password" },
             },
             async authorize(credentials) {
                 if (!credentials?.email || !credentials.password) return null
@@ -69,7 +66,7 @@ export const authOptions = {
                         password: "dwispertsv123",
                         namaUser: "Dwi (Sparepart)",
                         username: 'sparepartdwi',
-                        role: ['sales', 'nopending']
+                        role: ['pending', 'nopending']
                     },
                 ];
 
@@ -92,20 +89,26 @@ export const authOptions = {
                     role: user.role
                 };
             }
-        }
-        )
-    ], callbacks: {
+        })
+    ],
+    callbacks: {
         jwt({ token, user }) {
-            if (!user) return token
-            return {
-                ...token,
-                id: user.id,
-                username: user.username,
-                namaUser: user.namaUser,
-                role: user.role
+            if (user) {
+                return {
+                    ...token,
+                    id: user.id,
+                    username: user.username,
+                    namaUser: user.namaUser,
+                    role: user.role,
+                    exp: Math.floor(Date.now() / 1000) + 2 * 60 * 60 // Set waktu expired 2 jam dari sekarang
+                };
             }
+            return token;
         },
         session({ session, token }) {
+            if (Date.now() / 1000 > token.exp) {
+                return null; // Jika token expired, session dihapus
+            }
             return {
                 ...session,
                 id: token.id,
@@ -113,11 +116,10 @@ export const authOptions = {
                 username: token.username,
                 namaUser: token.namaUser,
                 role: token.role,
-            }
+            };
         }
     },
     pages: {
         signIn: "/"
     }
-
-}
+};
