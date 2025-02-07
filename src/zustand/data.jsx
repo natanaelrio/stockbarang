@@ -4,6 +4,9 @@ export const useBearStore = create((set) => ({
     scannedData: null,
     setScannedData: (e) => set((state) => ({ scannedData: e })),
 
+    notifNoData: false,
+    setNotifNoData: (e) => set((state) => ({ notifNoData: e })),
+
     refreshData: false,
     setRefreshData: (e) => set((state) => ({ refreshData: e ? e : !state.refreshData })),
 

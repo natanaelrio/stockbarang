@@ -184,6 +184,19 @@
 }
 
 
+.loading {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.tidakadaproduk {
+    background-color: rgb(121, 42, 42);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-weight: 700;
+}
 
 @media (max-width: 768px) {
     .containerlist {

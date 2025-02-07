@@ -23,12 +23,14 @@ export default function Footer({ session }) {
     const setIsLoadingProduk = useBearStore((state) => state.setIsLoadingProduk);
     const isLoadingProduk = useBearStore((state) => state.isLoadingProduk);
     const setDataBarcode = useBearStore((state) => state.setDataBarcode);
+    const setNotifNoData = useBearStore((state) => state.setNotifNoData);
 
     const TombolScan = () => {
         setIsLoadingProduk(false)
         setDataBarcode(null)
         setScannedData(null)
         setScanShowCameraBarcode()
+        setNotifNoData('')
     }
 
     const TombolTambahkan = () => {

@@ -6,10 +6,11 @@ import { useBearStore } from '@/zustand/data';
 const BarcodeScanner = ({ onScan }) => {
   const videoRef = useRef(null);
   const [error, setError] = useState(null);
-  const [scannedData, setScannedData] = useState(null);
-  const [productData, setProductData] = useState(null);
+  // const [scannedData, setScannedData] = useState(null);
   const setDataBarcode = useBearStore((state) => state.setDataBarcode);
-  const dataBarcode = useBearStore((state) => state.dataBarcode);
+  // const dataBarcode = useBearStore((state) => state.dataBarcode);
+  const setIsLoadingProduk = useBearStore((state) => state.setIsLoadingProduk);
+  const setNotifNoData = useBearStore((state) => state.setNotifNoData);
 
   useEffect(() => {
     const codeReader = new BrowserMultiFormatReader();
@@ -30,13 +31,16 @@ const BarcodeScanner = ({ onScan }) => {
             async (result, err) => {
               if (result) {
                 const barcode = result.getText();
-                setScannedData(barcode);
-
+                // setScannedData(barcode);
                 try {
+                  setIsLoadingProduk(true)
                   const data = await GetSearchProductID(barcode);
                   setDataBarcode(data);
+                  setNotifNoData(!data?.data?.length)
+                  setIsLoadingProduk(false)
                   onScan(data);
                 } catch (fetchError) {
+                  setIsLoadingProduk(false)
                   setError("Gagal mengambil data produk");
                 }
               }
@@ -54,14 +58,14 @@ const BarcodeScanner = ({ onScan }) => {
     return () => {
       codeReader.reset();
     };
-  }, [onScan, setDataBarcode]);
+  }, [onScan, setDataBarcode, setIsLoadingProduk, setNotifNoData]);
 
   return (
     <div>
       <video ref={videoRef} style={{ width: "100%", height: "auto" }} />
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {scannedData && <p>Barcode: {scannedData}</p>}
-      {dataBarcode?.data?.length ? <p>Data Produk: {JSON.stringify(dataBarcode.data)}</p> : <p>Loading...</p>}
+      {/* {error && <p style={{ color: "red" }}>{error}</p>} */}
+      {/* {scannedData && <p>Barcode: {scannedData}</p>} */}
+      {/* {dataBarcode?.data?.length ? <p>Data Produk: {JSON.stringify(dataBarcode.data)}</p> : <p>Loading...</p>} */}
     </div>
   );
 };

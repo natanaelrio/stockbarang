@@ -6,6 +6,7 @@ import { CreateActivity, CreateProductPendding, GetSearchProductID } from '@/ser
 import toast from 'react-hot-toast';
 import { useBearStore } from '@/zustand/data';
 import { useRouter } from 'next/navigation';
+import HashLoader from "react-spinners/HashLoader";
 
 export default function ScanCameraBarcode({ session }) {
     const roles = session?.role || [];
@@ -24,24 +25,13 @@ export default function ScanCameraBarcode({ session }) {
     const setScannedData = useBearStore((state) => state.setScannedData);
     const setDataBarcode = useBearStore((state) => state.setDataBarcode);
     const dataBarcode = useBearStore((state) => state.dataBarcode);
-
-    console.log(scannedData);
+    const setNotifNoData = useBearStore((state) => state.setNotifNoData);
+    const notifNoData = useBearStore((state) => state.notifNoData);
 
     const [hiddenStock, setHiddenStock] = useState(true)
     // const [dataBarcode, setDataBarcode] = useState(null)
 
     const [valueIdBarang, setValueIdBarang] = useState('')
-    const [Nodata, setNoData] = useState('')
-    // useEffect(() => {
-    //     const FetchData = async () => {
-    //         setIsLoadingProduk(true)
-    //         const data = await GetSearchProductID(scannedData)
-    //         setDataBarcode(data.data)
-    //         setIsLoadingProduk(false)
-    //     }
-    //     FetchData()
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [scannedData])
 
     const handleCariIdBarang = async (e) => {
         e.preventDefault()
@@ -49,7 +39,7 @@ export default function ScanCameraBarcode({ session }) {
         setIsLoadingProduk(true)
         const data = await GetSearchProductID(valueIdBarang)
         setDataBarcode(data.data)
-        setNoData(data?.dataLength)
+        setNotifNoData(!data.data.length)
         setIsLoadingProduk(false)
     }
 
@@ -127,9 +117,20 @@ export default function ScanCameraBarcode({ session }) {
 
     return (
         <>
-            <div className={styles.bghitam} onClick={() => { setScanShowCameraBarcode() }}></div>
+            <div className={styles.bghitam} onClick={() => { !isLoadingProduk ? setScanShowCameraBarcode() : '' }}></div>
             <div className={styles.inputbarang}>
-                {!Boolean(dataBarcode?.data?.length) &&
+                {isLoadingProduk &&
+                    <div className={styles.loading}>
+                        <HashLoader
+                            color={'red'}
+                            size={150}
+                            aria-label="Loading Spinner"
+                            data-testid="loader"
+                        />
+                    </div>
+                }
+                {Boolean(notifNoData) && <div className={styles.tidakadaproduk}>Tidak ada Product</div>}
+                {!isLoadingProduk && !Boolean(dataBarcode?.data?.length) &&
                     <>
                         <BarcodeScanner />
                         {!isLoadingProduk &&
@@ -140,8 +141,6 @@ export default function ScanCameraBarcode({ session }) {
                         }
                     </>
                 }
-                {isLoadingProduk && <p><strong>Loading...</strong></p>}
-                {Nodata == 'Tidak ada Produk' && Nodata}
                 {Boolean(dataBarcode?.data?.length) &&
                     <>
                         <h3>Detail Produk</h3>
@@ -170,7 +169,7 @@ export default function ScanCameraBarcode({ session }) {
                         </span>
                     </>
                 }
-                <div className={styles.close} onClick={() => setScanShowCameraBarcode()}>X</div>
+                <div className={styles.close} onClick={() => !isLoadingProduk ? setScanShowCameraBarcode() : ''}>X</div>
             </div>
         </>
     )
