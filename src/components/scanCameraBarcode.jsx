@@ -131,7 +131,7 @@ export default function ScanCameraBarcode({ session }) {
             <div className={styles.inputbarang}>
                 {!Boolean(dataBarcode?.data?.length) &&
                     <>
-                        <BarcodeScanner onScan={(data) => setScannedData(data)} />
+                        <BarcodeScanner />
                         {!isLoadingProduk &&
                             <form className={styles.inputkamera}>
                                 <input disabled={isLoadingProduk} onChange={(e) => setValueIdBarang(e.target.value)} type='text' placeholder='ID Barang' name='IdBarang' />
