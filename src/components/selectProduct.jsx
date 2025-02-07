@@ -32,7 +32,7 @@ export default function SelectProduct() {
                 <p><strong>ID:</strong> {dataSelectedProduct.id}</p>
                 <p><strong>Nama Barang:</strong> {dataSelectedProduct.name_barang}</p>
                 {hiddenStock && <p onClick={() => setHiddenStock(false)}><strong>Stok Barang:</strong> {dataSelectedProduct.stock_barang}</p>}
-                <div>
+                <div className={styles.gambarbarcode}>
                     <svg
                         width={100}
                         ref={(el) => barcodeRefs.current[dataSelectedProduct.id] = el}
