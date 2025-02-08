@@ -11,6 +11,8 @@ export async function GET(req) {
         const data = await prisma.product.findMany({
             where: {
                 id: query
+            }, include: {
+                produkGedung: true,
             }
         });
 

@@ -2,13 +2,11 @@
 import styles from '@/components/listProduct.module.css';
 import JsBarcode from 'jsbarcode';
 import { useBearStore } from '@/zustand/data';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 export default function SelectProduct() {
     const setShowSelectedProduct = useBearStore((state) => state.setShowSelectedProduct);
     const dataSelectedProduct = useBearStore((state) => state.dataSelectedProduct);
-    const [hiddenStock, setHiddenStock] = useState(true)
-
     const barcodeRefs = useRef({});
 
     useEffect(() => {
@@ -28,10 +26,7 @@ export default function SelectProduct() {
         <>
             <div className={styles.bghitam} onClick={() => setShowSelectedProduct()}></div>
             <div className={styles.inputbarang}>
-                <h3>Detail Produk</h3>
-                <p><strong>ID:</strong> {dataSelectedProduct.id}</p>
-                <p><strong>Nama Barang:</strong> {dataSelectedProduct.name_barang}</p>
-                {hiddenStock && <p onClick={() => setHiddenStock(false)}><strong>Stok Barang:</strong> {dataSelectedProduct.stock_barang}</p>}
+                <p><strong className={styles.juduldetail}>{dataSelectedProduct.namaBarang}</strong></p>
                 <div className={styles.gambarbarcode}>
                     <svg
                         width={100}

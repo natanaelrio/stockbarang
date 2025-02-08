@@ -14,6 +14,9 @@ export async function GET(req) {
                     contains: query,
                     mode: 'insensitive'
                 }
+            },
+            include: {
+                produkGedung: true,
             }
         });
 

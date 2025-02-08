@@ -31,6 +31,9 @@ export const useBearStore = create((set) => ({
     dataProduk: [],
     setDataProduk: (e) => set((state) => ({ dataProduk: e })),
 
+    dataPending: [],
+    setDataPending: (e) => set((state) => ({ dataPending: e })),
+
     dataSales: {},
     setDataSales: (e) => set((state) => ({ dataSales: e })),
 

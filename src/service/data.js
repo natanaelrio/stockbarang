@@ -88,19 +88,39 @@ export const CreateProductPendding = async (e) => {
     }
     revalidatePath('/')
 }
-
-
-export const GetPendingProduct = async (role) => {
+export const UpdateProductIndentIncrement = async (e) => {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/getPendingProduct?role=${role}`, {
-            method: 'GET',
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/updateProductIndentIncrement`, {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
             },
             next: {
                 revalidate: 0
-            }
+            },
+            body: JSON.stringify(e),
+        });
+        const data = await res.json()
+        return data
+    }
+    catch (err) {
+        console.log(err);
+    }
+    revalidatePath('/')
+}
+export const UpdateProductIndentDecrement = async (e) => {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/updateProductIndentDecrement`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
+            },
+            next: {
+                revalidate: 0
+            },
+            body: JSON.stringify(e),
         });
         const data = await res.json()
         return data

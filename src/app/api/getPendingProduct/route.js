@@ -6,13 +6,14 @@ export async function GET(req) {
     const authorization = req.headers.get('authorization')
     const searchParams = req.nextUrl.searchParams;
     const query = searchParams.get('role')
+    const jenis = searchParams.get('jenisBarang')
 
     if (authorization == process.env.NEXT_PUBLIC_SECREET) {
         const data = await prisma.pendingProduct.findMany({
             where: query != 'null' ? {
                 role: {
                     contains: query
-                }
+                }, jenisBarang: jenis == 'undefined' ? {} : jenis
             } : {},
             orderBy: {
                 start: 'desc'

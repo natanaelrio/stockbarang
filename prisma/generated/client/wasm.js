@@ -122,25 +122,43 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.GedungScalarFieldEnum = {
+  id: 'id',
+  start: 'start',
+  end: 'end',
+  nama: 'nama',
+  alamat: 'alamat'
+};
+
 exports.Prisma.ProductScalarFieldEnum = {
   id: 'id',
   start: 'start',
   end: 'end',
-  name_barang: 'name_barang',
-  stock_barang: 'stock_barang'
+  namaBarang: 'namaBarang'
+};
+
+exports.Prisma.ProdukGedungScalarFieldEnum = {
+  id: 'id',
+  start: 'start',
+  end: 'end',
+  produkId: 'produkId',
+  gedungId: 'gedungId',
+  stockBarang: 'stockBarang'
 };
 
 exports.Prisma.PendingProductScalarFieldEnum = {
   id: 'id',
   start: 'start',
   end: 'end',
-  stock_barang: 'stock_barang',
+  stockBarang: 'stockBarang',
   user: 'user',
   username: 'username',
   role: 'role',
   note: 'note',
   jenisBarang: 'jenisBarang',
-  statusProduct: 'statusProduct'
+  statusProduct: 'statusProduct',
+  produkId: 'produkId',
+  gedungId: 'gedungId'
 };
 
 exports.Prisma.NotifUserScalarFieldEnum = {
@@ -178,7 +196,9 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
+  gedung: 'gedung',
   product: 'product',
+  produkGedung: 'produkGedung',
   pendingProduct: 'pendingProduct',
   notifUser: 'notifUser',
   logUser: 'logUser'

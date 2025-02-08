@@ -2,12 +2,10 @@ import { prisma } from "@/controllers/prisma"
 import { ResponseData } from "@/controllers/ResponseData";
 
 export async function PUT(req) {
-    const { productId, stockBarang, idPending, statusProduct, gedungId } = await req.json()
-
+    const { productId, stockBarang } = await req.json()
     BigInt.prototype.toJSON = function () {
         return this.toString();
     };
-
     const authorization = req.headers.get('authorization')
     if (authorization == process.env.NEXT_PUBLIC_SECREET) {
         try {
@@ -20,26 +18,18 @@ export async function PUT(req) {
                         updateMany: {
                             where: {
                                 produkId: productId,  // ID produk yang ingin dicari
-                                gedungId: Number(gedungId)    // ID gedung yang ingin dicari
+                                gedungId: Number(10000)    // ID gedung yang ingin dicari
                             },
                             data: {
                                 stockBarang: {
-                                    decrement: Number(stockBarang)  // Tambah stok barang
+                                    increment: Number(stockBarang)  // Tambah stok barang
                                 }
                             }
                         }
                     },
-                    pendingProduct: idPending ? {
-                        update: {
-                            where: {
-                                id: idPending
-                            }, data: {
-                                statusProduct: Boolean(statusProduct)
-                            }
-                        }
-                    } : {}
                 }
             });
+
 
             const res = await ResponseData(data, authorization)
             return res

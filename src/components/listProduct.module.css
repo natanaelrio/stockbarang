@@ -54,6 +54,7 @@
     cursor: pointer;
 }
 
+
 /* .productTable td:nth-child(3) {
     width: 5px;
 }
@@ -69,6 +70,10 @@
 .productTable td svg {
     width: 110px !important;
     height: 20px;
+}
+
+.juduldetail {
+    font-size: 18px;
 }
 
 
@@ -196,6 +201,29 @@
     padding: 20px;
     text-align: center;
     font-weight: 700;
+}
+
+.fillterpendding {
+    padding: 20px 0;
+    display: flex;
+    gap: 10px;
+}
+
+.fillterpendding span {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border: 1px solid black;
+    height: 40px;
+    padding: 0 18px;
+    border-radius: 7px;
+    color: black;
+    cursor: pointer;
+}
+
+.fillterpendding span:hover {
+    /* opacity: 0.5; */
+    background-color: rgba(32, 29, 29, 0.352);
 }
 
 @media (max-width: 768px) {

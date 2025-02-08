@@ -2,11 +2,14 @@ import { prisma } from "@/controllers/prisma"
 import { ResponseData } from "@/controllers/ResponseData";
 
 export async function POST(req) {
-    const { note, stock_barang, produkid, user, role, jenisBarang, username } = await req.json()
+    const { note, stockBarang, user, role, jenisBarang, username, produkid, gedungId } = await req.json()
     BigInt.prototype.toJSON = function () {
         return this.toString();
     };
-    console.log(produkid);
+
+    const daaw = {
+        note, stockBarang, user, role, jenisBarang, username, produkid, gedungId
+    }
 
     const authorization = req.headers.get('authorization')
     if (authorization == process.env.NEXT_PUBLIC_SECREET) {
@@ -16,9 +19,10 @@ export async function POST(req) {
                     note,
                     role,
                     jenisBarang,
-                    stock_barang: Number(stock_barang),
+                    stockBarang: Number(stockBarang),
                     user,
                     username,
+                    gedungId: Number(gedungId),
                     products: {
                         connect: [
                             { id: produkid }, // Ganti dengan ID produk yang ada

@@ -15,6 +15,7 @@ export default function InputBarang({ session }) {
     const roles = session?.role || [];
     const KondisiSessionTambahIndent = roles.includes('tambahindent')
     const KondisiSessionSales = roles.includes('sales')
+    const GudangID = session?.gudang
 
     const id = GetCurrentDateTimeGMT7()
 
@@ -31,7 +32,7 @@ export default function InputBarang({ session }) {
         initialValues: {
             idBarang: scannedData ? scannedData : id,
             namaBarang: '',
-            stockBarang: '',
+            stockBarang: KondisiSessionTambahIndent ? 0 : '',
             jenisBarang: KondisiSessionSales ? 'Request' : 'Langsung',
             catatanIndent: '',
         },
@@ -49,38 +50,40 @@ export default function InputBarang({ session }) {
                     setIsLoadingProduk(true)
                     const dataProduct = await CreateProduct({
                         id: values.idBarang,
-                        name_barang: values.namaBarang,
-                        stock_barang: values.jenisBarang == 'Langsung' ? values.stockBarang : 0,
+                        namaBarang: values.namaBarang,
+                        // stock_barang: values.jenisBarang == 'Langsung' ? values.stockBarang : 0,
                     });
 
                     if (dataProduct.status == '500') {
                         throw new Error(`ID ${values.idBarang} sudah ada !!`);
                     }
 
-                    values.jenisBarang == 'Indent' && await CreateProductPendding({
-                        produkid: values.idBarang,
-                        stock_barang: values.stockBarang,
-                        note: values.catatanIndent,
-                        jenisBarang: values.jenisBarang,
-                        user: session?.namaUser,
-                        username: session?.username,
-                        role: 'verplus'
-                    })
+                    // values.jenisBarang == 'Indent' && await CreateProductPendding({
+                    //     produkid: values.idBarang,
+                    //     stockBarang: values.stockBarang,
+                    //     note: values.catatanIndent,
+                    //     jenisBarang: values.jenisBarang,
+                    //     user: session?.namaUser,
+                    //     username: session?.username,
+                    //     role: 'verplus',
+                    //     gedungId: GudangID
+                    // })
                     values.jenisBarang == 'Request' && await CreateProductPendding({
                         produkid: values.idBarang,
-                        stock_barang: values.stockBarang,
+                        stockBarang: values.stockBarang,
                         note: values.catatanIndent,
                         jenisBarang: values.jenisBarang,
                         user: session?.namaUser,
                         username: session?.username,
-                        role: 'verplus'
+                        role: 'verplus',
+                        gedungId: GudangID
                     })
                     await CreateActivity({
                         userActivity: session.namaUser,
                         activity: `Penambahan Product ${values.namaBarang} ( ${values.idBarang} ) ${values.jenisBarang == 'Indent' && '( INDENT )'} ${values.jenisBarang == 'Request' && '( REQUEST )'}`,
                     });
                     router.refresh();
-                    setShowInputBarang();
+                    // setShowInputBarang();
                     setRefreshData()
                     setIsLoadingProduk(false)
                 };
@@ -133,7 +136,7 @@ export default function InputBarang({ session }) {
                 />
                 {formik.touched.namaBarang && formik.errors.namaBarang ? <div className={styles.error}>{formik.errors.namaBarang}</div> : null}
 
-                <input
+                {!KondisiSessionTambahIndent && <input
                     type='number'
                     name='stockBarang'
                     placeholder='STOCK BARANG'
@@ -141,10 +144,10 @@ export default function InputBarang({ session }) {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     disabled={isLoadingProduk}
-                />
+                />}
                 {formik.touched.stockBarang && formik.errors.stockBarang ? <div className={styles.error}>{formik.errors.stockBarang}</div> : null}
 
-                {KondisiSessionTambahIndent &&
+                {false &&
                     <div className={styles.radioGroup}>
                         <input
                             type="radio"

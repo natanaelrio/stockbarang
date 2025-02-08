@@ -2,7 +2,7 @@ import { prisma } from "@/controllers/prisma"
 import { ResponseData } from "@/controllers/ResponseData";
 
 export async function POST(req) {
-    const { id, name_barang, stock_barang } = await req.json()
+    const { id, namaBarang, stockBarang } = await req.json()
 
     BigInt.prototype.toJSON = function () {
         return this.toString();
@@ -14,10 +14,18 @@ export async function POST(req) {
             const data = await prisma.product.create({
                 data: {
                     id: id,
-                    name_barang,
-                    stock_barang,
+                    namaBarang,
+                    stockBarang,
+                    produkGedung: {
+                        create: [
+                            { stockBarang: 0, gedung: { connect: { id: 11111 } } },
+                            { stockBarang: 0, gedung: { connect: { id: 22222 } } },
+                            { stockBarang: 0, gedung: { connect: { id: 33333 } } },
+                            { stockBarang: 0, gedung: { connect: { id: 10000 } } },
+                        ]
+                    }
                 }
-            })
+            });
             const res = await ResponseData(data, authorization)
             return res
         } catch (error) {

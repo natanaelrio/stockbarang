@@ -1,6 +1,65 @@
 // import type { NextAuthOptions } from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 
+export const dataUsers = [
+    {
+        id: "1",
+        email: "rio@pelangiteknik.com",
+        password: "developer",
+        namaUser: "Rio ( Developer )",
+        username: 'riodev',
+        gudang: 0,
+        role: ['tambahindent', 'pending', 'verminplus', 'log']
+    },
+    {
+        id: "2",
+        email:
+            "purchfitri@pelangiteknik.com",
+        password: "purshfitri1x23",
+        namaUser: "Fitri ( Purchasing94 )",
+        username: 'fitripurcha',
+        gudang: 0,
+        role: ['tambahindent', 'verplus', 'nopending']
+    },
+    {
+        id: "3",
+        email: "adminsin@pelangiteknik.com",
+        password: "adminsin12e3",
+        namaUser: "Sin ( Admin94 )",
+        username: 'adminsin',
+        gudang: 11111,
+        role: ['pending', 'nopending']
+    },
+    {
+        id: "4",
+        email: "spvirfan@pelangiteknik.com",
+        password: "spvirfan12k3",
+        namaUser: "Irfan (SPV94)",
+        username: 'irfanspv',
+        gudang: 11111,
+        role: ['vermin']
+    },
+    {
+        id: "5",
+        email: "selesdhita@pelangiteknik.com",
+        password: "selesdhitav123",
+        namaUser: "Dhita (Sales94)",
+        username: 'dhitasales',
+        gudang: 11111,
+        role: ['sales']
+    },
+    {
+        id: "6",
+        email: "dwispert@pelangiteknik.com",
+        password: "dwispertsv123",
+        namaUser: "Dwi (Sparepart94)",
+        username: 'sparepartdwi',
+        gudang: 11111,
+        role: ['pending', 'nopending']
+    },
+];
+
+
 export const authOptions = {
     session: {
         strategy: "jwt",
@@ -18,66 +77,8 @@ export const authOptions = {
             async authorize(credentials) {
                 if (!credentials?.email || !credentials.password) return null
 
-                const users = [
-                    {
-                        id: "1",
-                        email: "rio@pelangiteknik.com",
-                        password: "developer",
-                        namaUser: "Rio ( Developer )",
-                        username: 'riodev',
-                        gudang: [11111, 22222, 33333],
-                        role: ['tambahindent', 'pending', 'verminplus', 'log']
-                    },
-                    {
-                        id: "2",
-                        email:
-                            "purchfitri@pelangiteknik.com",
-                        password: "purshfitri1x23",
-                        namaUser: "Fitri ( Purchasing )",
-                        username: 'fitripurcha',
-                        gudang: [11111, 22222, 33333],
-                        role: ['tambahindent', 'verplus', 'nopending']
-                    },
-                    {
-                        id: "3",
-                        email: "adminsin@pelangiteknik.com",
-                        password: "adminsin12e3",
-                        namaUser: "Sin ( Admin )",
-                        username: 'adminsin',
-                        gudang: [11111],
-                        role: ['pending', 'nopending']
-                    },
-                    {
-                        id: "4",
-                        email: "spvirfan@pelangiteknik.com",
-                        password: "spvirfan12k3",
-                        namaUser: "Irfan (SPV)",
-                        username: 'irfanspv',
-                        gudang: [11111],
-                        role: ['vermin']
-                    },
-                    {
-                        id: "5",
-                        email: "selesdhita@pelangiteknik.com",
-                        password: "selesdhitav123",
-                        namaUser: "Dhita (Sales)",
-                        username: 'dhitasales',
-                        gudang: [11111],
-                        role: ['sales']
-                    },
-                    {
-                        id: "6",
-                        email: "dwispert@pelangiteknik.com",
-                        password: "dwispertsv123",
-                        namaUser: "Dwi (Sparepart)",
-                        username: 'sparepartdwi',
-                        gudang: [11111],
-                        role: ['pending', 'nopending']
-                    },
-                ];
-
                 // Cari pengguna berdasarkan email dan password
-                const user = users.find(
+                const user = dataUsers.find(
                     (u) => u.email === credentials.email && u.password === credentials.password
                 );
 
@@ -92,13 +93,14 @@ export const authOptions = {
                     email: user.email,
                     username: user.username,
                     namaUser: user.namaUser,
-                    role: user.role
+                    role: user.role,
+                    gudang: user.gudang
                 };
             }
         })
     ],
     callbacks: {
-        jwt({ token, user }) {
+        async jwt({ token, user }) {
             if (user) {
                 return {
                     ...token,
@@ -106,6 +108,7 @@ export const authOptions = {
                     username: user.username,
                     namaUser: user.namaUser,
                     role: user.role,
+                    gudang: user.gudang,
                     exp: Math.floor(Date.now() / 1000) + 2 * 60 * 60 // Set waktu expired 2 jam dari sekarang
                 };
             }
@@ -122,6 +125,7 @@ export const authOptions = {
                 username: token.username,
                 namaUser: token.namaUser,
                 role: token.role,
+                gudang: token.gudang
             };
         }
     },

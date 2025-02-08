@@ -10,16 +10,10 @@ export async function GET(req) {
                 start: 'desc'
             },
             include: {
-                pendingProduct: {
-                    where: {
-                        jenisBarang: {
-                            contains: 'Indent',
-                            mode: 'insensitive'
-                        }
-                    }
-                }
+                produkGedung: true,
             }
         });
+
         const authorization = req.headers.get('authorization')
         const res = await ResponseData(data, authorization)
         return res

@@ -14,10 +14,20 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
+ * Model gedung
+ * 
+ */
+export type gedung = $Result.DefaultSelection<Prisma.$gedungPayload>
+/**
  * Model product
  * 
  */
 export type product = $Result.DefaultSelection<Prisma.$productPayload>
+/**
+ * Model produkGedung
+ * 
+ */
+export type produkGedung = $Result.DefaultSelection<Prisma.$produkGedungPayload>
 /**
  * Model pendingProduct
  * 
@@ -41,8 +51,8 @@ export type logUser = $Result.DefaultSelection<Prisma.$logUserPayload>
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Products
- * const products = await prisma.product.findMany()
+ * // Fetch zero or more Gedungs
+ * const gedungs = await prisma.gedung.findMany()
  * ```
  *
  * 
@@ -62,8 +72,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Products
-   * const products = await prisma.product.findMany()
+   * // Fetch zero or more Gedungs
+   * const gedungs = await prisma.gedung.findMany()
    * ```
    *
    * 
@@ -158,6 +168,16 @@ export class PrismaClient<
   $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb, ExtArgs>
 
       /**
+   * `prisma.gedung`: Exposes CRUD operations for the **gedung** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Gedungs
+    * const gedungs = await prisma.gedung.findMany()
+    * ```
+    */
+  get gedung(): Prisma.gedungDelegate<ExtArgs>;
+
+  /**
    * `prisma.product`: Exposes CRUD operations for the **product** model.
     * Example usage:
     * ```ts
@@ -166,6 +186,16 @@ export class PrismaClient<
     * ```
     */
   get product(): Prisma.productDelegate<ExtArgs>;
+
+  /**
+   * `prisma.produkGedung`: Exposes CRUD operations for the **produkGedung** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProdukGedungs
+    * const produkGedungs = await prisma.produkGedung.findMany()
+    * ```
+    */
+  get produkGedung(): Prisma.produkGedungDelegate<ExtArgs>;
 
   /**
    * `prisma.pendingProduct`: Exposes CRUD operations for the **pendingProduct** model.
@@ -637,7 +667,9 @@ export namespace Prisma {
 
 
   export const ModelName: {
+    gedung: 'gedung',
     product: 'product',
+    produkGedung: 'produkGedung',
     pendingProduct: 'pendingProduct',
     notifUser: 'notifUser',
     logUser: 'logUser'
@@ -656,10 +688,80 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "product" | "pendingProduct" | "notifUser" | "logUser"
+      modelProps: "gedung" | "product" | "produkGedung" | "pendingProduct" | "notifUser" | "logUser"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
+      gedung: {
+        payload: Prisma.$gedungPayload<ExtArgs>
+        fields: Prisma.gedungFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.gedungFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$gedungPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.gedungFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$gedungPayload>
+          }
+          findFirst: {
+            args: Prisma.gedungFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$gedungPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.gedungFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$gedungPayload>
+          }
+          findMany: {
+            args: Prisma.gedungFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$gedungPayload>[]
+          }
+          create: {
+            args: Prisma.gedungCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$gedungPayload>
+          }
+          createMany: {
+            args: Prisma.gedungCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.gedungCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$gedungPayload>[]
+          }
+          delete: {
+            args: Prisma.gedungDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$gedungPayload>
+          }
+          update: {
+            args: Prisma.gedungUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$gedungPayload>
+          }
+          deleteMany: {
+            args: Prisma.gedungDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.gedungUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.gedungUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$gedungPayload>
+          }
+          aggregate: {
+            args: Prisma.GedungAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateGedung>
+          }
+          groupBy: {
+            args: Prisma.gedungGroupByArgs<ExtArgs>
+            result: $Utils.Optional<GedungGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.gedungCountArgs<ExtArgs>
+            result: $Utils.Optional<GedungCountAggregateOutputType> | number
+          }
+        }
+      }
       product: {
         payload: Prisma.$productPayload<ExtArgs>
         fields: Prisma.productFieldRefs
@@ -727,6 +829,76 @@ export namespace Prisma {
           count: {
             args: Prisma.productCountArgs<ExtArgs>
             result: $Utils.Optional<ProductCountAggregateOutputType> | number
+          }
+        }
+      }
+      produkGedung: {
+        payload: Prisma.$produkGedungPayload<ExtArgs>
+        fields: Prisma.produkGedungFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.produkGedungFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$produkGedungPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.produkGedungFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$produkGedungPayload>
+          }
+          findFirst: {
+            args: Prisma.produkGedungFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$produkGedungPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.produkGedungFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$produkGedungPayload>
+          }
+          findMany: {
+            args: Prisma.produkGedungFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$produkGedungPayload>[]
+          }
+          create: {
+            args: Prisma.produkGedungCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$produkGedungPayload>
+          }
+          createMany: {
+            args: Prisma.produkGedungCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.produkGedungCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$produkGedungPayload>[]
+          }
+          delete: {
+            args: Prisma.produkGedungDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$produkGedungPayload>
+          }
+          update: {
+            args: Prisma.produkGedungUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$produkGedungPayload>
+          }
+          deleteMany: {
+            args: Prisma.produkGedungDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.produkGedungUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.produkGedungUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$produkGedungPayload>
+          }
+          aggregate: {
+            args: Prisma.ProdukGedungAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProdukGedung>
+          }
+          groupBy: {
+            args: Prisma.produkGedungGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProdukGedungGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.produkGedungCountArgs<ExtArgs>
+            result: $Utils.Optional<ProdukGedungCountAggregateOutputType> | number
           }
         }
       }
@@ -1097,14 +1269,47 @@ export namespace Prisma {
 
 
   /**
+   * Count Type GedungCountOutputType
+   */
+
+  export type GedungCountOutputType = {
+    produk: number
+  }
+
+  export type GedungCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    produk?: boolean | GedungCountOutputTypeCountProdukArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * GedungCountOutputType without action
+   */
+  export type GedungCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the GedungCountOutputType
+     */
+    select?: GedungCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * GedungCountOutputType without action
+   */
+  export type GedungCountOutputTypeCountProdukArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: produkGedungWhereInput
+  }
+
+
+  /**
    * Count Type ProductCountOutputType
    */
 
   export type ProductCountOutputType = {
+    produkGedung: number
     pendingProduct: number
   }
 
   export type ProductCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    produkGedung?: boolean | ProductCountOutputTypeCountProdukGedungArgs
     pendingProduct?: boolean | ProductCountOutputTypeCountPendingProductArgs
   }
 
@@ -1117,6 +1322,13 @@ export namespace Prisma {
      * Select specific fields to fetch from the ProductCountOutputType
      */
     select?: ProductCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ProductCountOutputType without action
+   */
+  export type ProductCountOutputTypeCountProdukGedungArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: produkGedungWhereInput
   }
 
   /**
@@ -1163,81 +1375,1039 @@ export namespace Prisma {
    */
 
   /**
+   * Model gedung
+   */
+
+  export type AggregateGedung = {
+    _count: GedungCountAggregateOutputType | null
+    _avg: GedungAvgAggregateOutputType | null
+    _sum: GedungSumAggregateOutputType | null
+    _min: GedungMinAggregateOutputType | null
+    _max: GedungMaxAggregateOutputType | null
+  }
+
+  export type GedungAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type GedungSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type GedungMinAggregateOutputType = {
+    id: number | null
+    start: Date | null
+    end: Date | null
+    nama: string | null
+    alamat: string | null
+  }
+
+  export type GedungMaxAggregateOutputType = {
+    id: number | null
+    start: Date | null
+    end: Date | null
+    nama: string | null
+    alamat: string | null
+  }
+
+  export type GedungCountAggregateOutputType = {
+    id: number
+    start: number
+    end: number
+    nama: number
+    alamat: number
+    _all: number
+  }
+
+
+  export type GedungAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type GedungSumAggregateInputType = {
+    id?: true
+  }
+
+  export type GedungMinAggregateInputType = {
+    id?: true
+    start?: true
+    end?: true
+    nama?: true
+    alamat?: true
+  }
+
+  export type GedungMaxAggregateInputType = {
+    id?: true
+    start?: true
+    end?: true
+    nama?: true
+    alamat?: true
+  }
+
+  export type GedungCountAggregateInputType = {
+    id?: true
+    start?: true
+    end?: true
+    nama?: true
+    alamat?: true
+    _all?: true
+  }
+
+  export type GedungAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which gedung to aggregate.
+     */
+    where?: gedungWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of gedungs to fetch.
+     */
+    orderBy?: gedungOrderByWithRelationInput | gedungOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: gedungWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` gedungs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` gedungs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned gedungs
+    **/
+    _count?: true | GedungCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: GedungAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: GedungSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: GedungMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: GedungMaxAggregateInputType
+  }
+
+  export type GetGedungAggregateType<T extends GedungAggregateArgs> = {
+        [P in keyof T & keyof AggregateGedung]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateGedung[P]>
+      : GetScalarType<T[P], AggregateGedung[P]>
+  }
+
+
+
+
+  export type gedungGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: gedungWhereInput
+    orderBy?: gedungOrderByWithAggregationInput | gedungOrderByWithAggregationInput[]
+    by: GedungScalarFieldEnum[] | GedungScalarFieldEnum
+    having?: gedungScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: GedungCountAggregateInputType | true
+    _avg?: GedungAvgAggregateInputType
+    _sum?: GedungSumAggregateInputType
+    _min?: GedungMinAggregateInputType
+    _max?: GedungMaxAggregateInputType
+  }
+
+  export type GedungGroupByOutputType = {
+    id: number
+    start: Date
+    end: Date | null
+    nama: string | null
+    alamat: string | null
+    _count: GedungCountAggregateOutputType | null
+    _avg: GedungAvgAggregateOutputType | null
+    _sum: GedungSumAggregateOutputType | null
+    _min: GedungMinAggregateOutputType | null
+    _max: GedungMaxAggregateOutputType | null
+  }
+
+  type GetGedungGroupByPayload<T extends gedungGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<GedungGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof GedungGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], GedungGroupByOutputType[P]>
+            : GetScalarType<T[P], GedungGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type gedungSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    start?: boolean
+    end?: boolean
+    nama?: boolean
+    alamat?: boolean
+    produk?: boolean | gedung$produkArgs<ExtArgs>
+    _count?: boolean | GedungCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["gedung"]>
+
+  export type gedungSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    start?: boolean
+    end?: boolean
+    nama?: boolean
+    alamat?: boolean
+  }, ExtArgs["result"]["gedung"]>
+
+  export type gedungSelectScalar = {
+    id?: boolean
+    start?: boolean
+    end?: boolean
+    nama?: boolean
+    alamat?: boolean
+  }
+
+  export type gedungInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    produk?: boolean | gedung$produkArgs<ExtArgs>
+    _count?: boolean | GedungCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type gedungIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $gedungPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "gedung"
+    objects: {
+      produk: Prisma.$produkGedungPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      start: Date
+      end: Date | null
+      nama: string | null
+      alamat: string | null
+    }, ExtArgs["result"]["gedung"]>
+    composites: {}
+  }
+
+  type gedungGetPayload<S extends boolean | null | undefined | gedungDefaultArgs> = $Result.GetResult<Prisma.$gedungPayload, S>
+
+  type gedungCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<gedungFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: GedungCountAggregateInputType | true
+    }
+
+  export interface gedungDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['gedung'], meta: { name: 'gedung' } }
+    /**
+     * Find zero or one Gedung that matches the filter.
+     * @param {gedungFindUniqueArgs} args - Arguments to find a Gedung
+     * @example
+     * // Get one Gedung
+     * const gedung = await prisma.gedung.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends gedungFindUniqueArgs>(args: SelectSubset<T, gedungFindUniqueArgs<ExtArgs>>): Prisma__gedungClient<$Result.GetResult<Prisma.$gedungPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one Gedung that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {gedungFindUniqueOrThrowArgs} args - Arguments to find a Gedung
+     * @example
+     * // Get one Gedung
+     * const gedung = await prisma.gedung.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends gedungFindUniqueOrThrowArgs>(args: SelectSubset<T, gedungFindUniqueOrThrowArgs<ExtArgs>>): Prisma__gedungClient<$Result.GetResult<Prisma.$gedungPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first Gedung that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gedungFindFirstArgs} args - Arguments to find a Gedung
+     * @example
+     * // Get one Gedung
+     * const gedung = await prisma.gedung.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends gedungFindFirstArgs>(args?: SelectSubset<T, gedungFindFirstArgs<ExtArgs>>): Prisma__gedungClient<$Result.GetResult<Prisma.$gedungPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first Gedung that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gedungFindFirstOrThrowArgs} args - Arguments to find a Gedung
+     * @example
+     * // Get one Gedung
+     * const gedung = await prisma.gedung.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends gedungFindFirstOrThrowArgs>(args?: SelectSubset<T, gedungFindFirstOrThrowArgs<ExtArgs>>): Prisma__gedungClient<$Result.GetResult<Prisma.$gedungPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more Gedungs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gedungFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Gedungs
+     * const gedungs = await prisma.gedung.findMany()
+     * 
+     * // Get first 10 Gedungs
+     * const gedungs = await prisma.gedung.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const gedungWithIdOnly = await prisma.gedung.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends gedungFindManyArgs>(args?: SelectSubset<T, gedungFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gedungPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a Gedung.
+     * @param {gedungCreateArgs} args - Arguments to create a Gedung.
+     * @example
+     * // Create one Gedung
+     * const Gedung = await prisma.gedung.create({
+     *   data: {
+     *     // ... data to create a Gedung
+     *   }
+     * })
+     * 
+     */
+    create<T extends gedungCreateArgs>(args: SelectSubset<T, gedungCreateArgs<ExtArgs>>): Prisma__gedungClient<$Result.GetResult<Prisma.$gedungPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many Gedungs.
+     * @param {gedungCreateManyArgs} args - Arguments to create many Gedungs.
+     * @example
+     * // Create many Gedungs
+     * const gedung = await prisma.gedung.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends gedungCreateManyArgs>(args?: SelectSubset<T, gedungCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Gedungs and returns the data saved in the database.
+     * @param {gedungCreateManyAndReturnArgs} args - Arguments to create many Gedungs.
+     * @example
+     * // Create many Gedungs
+     * const gedung = await prisma.gedung.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Gedungs and only return the `id`
+     * const gedungWithIdOnly = await prisma.gedung.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends gedungCreateManyAndReturnArgs>(args?: SelectSubset<T, gedungCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gedungPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a Gedung.
+     * @param {gedungDeleteArgs} args - Arguments to delete one Gedung.
+     * @example
+     * // Delete one Gedung
+     * const Gedung = await prisma.gedung.delete({
+     *   where: {
+     *     // ... filter to delete one Gedung
+     *   }
+     * })
+     * 
+     */
+    delete<T extends gedungDeleteArgs>(args: SelectSubset<T, gedungDeleteArgs<ExtArgs>>): Prisma__gedungClient<$Result.GetResult<Prisma.$gedungPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one Gedung.
+     * @param {gedungUpdateArgs} args - Arguments to update one Gedung.
+     * @example
+     * // Update one Gedung
+     * const gedung = await prisma.gedung.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends gedungUpdateArgs>(args: SelectSubset<T, gedungUpdateArgs<ExtArgs>>): Prisma__gedungClient<$Result.GetResult<Prisma.$gedungPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more Gedungs.
+     * @param {gedungDeleteManyArgs} args - Arguments to filter Gedungs to delete.
+     * @example
+     * // Delete a few Gedungs
+     * const { count } = await prisma.gedung.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends gedungDeleteManyArgs>(args?: SelectSubset<T, gedungDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Gedungs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gedungUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Gedungs
+     * const gedung = await prisma.gedung.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends gedungUpdateManyArgs>(args: SelectSubset<T, gedungUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Gedung.
+     * @param {gedungUpsertArgs} args - Arguments to update or create a Gedung.
+     * @example
+     * // Update or create a Gedung
+     * const gedung = await prisma.gedung.upsert({
+     *   create: {
+     *     // ... data to create a Gedung
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Gedung we want to update
+     *   }
+     * })
+     */
+    upsert<T extends gedungUpsertArgs>(args: SelectSubset<T, gedungUpsertArgs<ExtArgs>>): Prisma__gedungClient<$Result.GetResult<Prisma.$gedungPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of Gedungs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gedungCountArgs} args - Arguments to filter Gedungs to count.
+     * @example
+     * // Count the number of Gedungs
+     * const count = await prisma.gedung.count({
+     *   where: {
+     *     // ... the filter for the Gedungs we want to count
+     *   }
+     * })
+    **/
+    count<T extends gedungCountArgs>(
+      args?: Subset<T, gedungCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], GedungCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Gedung.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {GedungAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends GedungAggregateArgs>(args: Subset<T, GedungAggregateArgs>): Prisma.PrismaPromise<GetGedungAggregateType<T>>
+
+    /**
+     * Group by Gedung.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {gedungGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends gedungGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: gedungGroupByArgs['orderBy'] }
+        : { orderBy?: gedungGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, gedungGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetGedungGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the gedung model
+   */
+  readonly fields: gedungFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for gedung.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__gedungClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    produk<T extends gedung$produkArgs<ExtArgs> = {}>(args?: Subset<T, gedung$produkArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$produkGedungPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the gedung model
+   */ 
+  interface gedungFieldRefs {
+    readonly id: FieldRef<"gedung", 'Int'>
+    readonly start: FieldRef<"gedung", 'DateTime'>
+    readonly end: FieldRef<"gedung", 'DateTime'>
+    readonly nama: FieldRef<"gedung", 'String'>
+    readonly alamat: FieldRef<"gedung", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * gedung findUnique
+   */
+  export type gedungFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gedung
+     */
+    select?: gedungSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gedungInclude<ExtArgs> | null
+    /**
+     * Filter, which gedung to fetch.
+     */
+    where: gedungWhereUniqueInput
+  }
+
+  /**
+   * gedung findUniqueOrThrow
+   */
+  export type gedungFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gedung
+     */
+    select?: gedungSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gedungInclude<ExtArgs> | null
+    /**
+     * Filter, which gedung to fetch.
+     */
+    where: gedungWhereUniqueInput
+  }
+
+  /**
+   * gedung findFirst
+   */
+  export type gedungFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gedung
+     */
+    select?: gedungSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gedungInclude<ExtArgs> | null
+    /**
+     * Filter, which gedung to fetch.
+     */
+    where?: gedungWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of gedungs to fetch.
+     */
+    orderBy?: gedungOrderByWithRelationInput | gedungOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for gedungs.
+     */
+    cursor?: gedungWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` gedungs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` gedungs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of gedungs.
+     */
+    distinct?: GedungScalarFieldEnum | GedungScalarFieldEnum[]
+  }
+
+  /**
+   * gedung findFirstOrThrow
+   */
+  export type gedungFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gedung
+     */
+    select?: gedungSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gedungInclude<ExtArgs> | null
+    /**
+     * Filter, which gedung to fetch.
+     */
+    where?: gedungWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of gedungs to fetch.
+     */
+    orderBy?: gedungOrderByWithRelationInput | gedungOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for gedungs.
+     */
+    cursor?: gedungWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` gedungs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` gedungs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of gedungs.
+     */
+    distinct?: GedungScalarFieldEnum | GedungScalarFieldEnum[]
+  }
+
+  /**
+   * gedung findMany
+   */
+  export type gedungFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gedung
+     */
+    select?: gedungSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gedungInclude<ExtArgs> | null
+    /**
+     * Filter, which gedungs to fetch.
+     */
+    where?: gedungWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of gedungs to fetch.
+     */
+    orderBy?: gedungOrderByWithRelationInput | gedungOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing gedungs.
+     */
+    cursor?: gedungWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` gedungs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` gedungs.
+     */
+    skip?: number
+    distinct?: GedungScalarFieldEnum | GedungScalarFieldEnum[]
+  }
+
+  /**
+   * gedung create
+   */
+  export type gedungCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gedung
+     */
+    select?: gedungSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gedungInclude<ExtArgs> | null
+    /**
+     * The data needed to create a gedung.
+     */
+    data?: XOR<gedungCreateInput, gedungUncheckedCreateInput>
+  }
+
+  /**
+   * gedung createMany
+   */
+  export type gedungCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many gedungs.
+     */
+    data: gedungCreateManyInput | gedungCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * gedung createManyAndReturn
+   */
+  export type gedungCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gedung
+     */
+    select?: gedungSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many gedungs.
+     */
+    data: gedungCreateManyInput | gedungCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * gedung update
+   */
+  export type gedungUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gedung
+     */
+    select?: gedungSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gedungInclude<ExtArgs> | null
+    /**
+     * The data needed to update a gedung.
+     */
+    data: XOR<gedungUpdateInput, gedungUncheckedUpdateInput>
+    /**
+     * Choose, which gedung to update.
+     */
+    where: gedungWhereUniqueInput
+  }
+
+  /**
+   * gedung updateMany
+   */
+  export type gedungUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update gedungs.
+     */
+    data: XOR<gedungUpdateManyMutationInput, gedungUncheckedUpdateManyInput>
+    /**
+     * Filter which gedungs to update
+     */
+    where?: gedungWhereInput
+  }
+
+  /**
+   * gedung upsert
+   */
+  export type gedungUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gedung
+     */
+    select?: gedungSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gedungInclude<ExtArgs> | null
+    /**
+     * The filter to search for the gedung to update in case it exists.
+     */
+    where: gedungWhereUniqueInput
+    /**
+     * In case the gedung found by the `where` argument doesn't exist, create a new gedung with this data.
+     */
+    create: XOR<gedungCreateInput, gedungUncheckedCreateInput>
+    /**
+     * In case the gedung was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<gedungUpdateInput, gedungUncheckedUpdateInput>
+  }
+
+  /**
+   * gedung delete
+   */
+  export type gedungDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gedung
+     */
+    select?: gedungSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gedungInclude<ExtArgs> | null
+    /**
+     * Filter which gedung to delete.
+     */
+    where: gedungWhereUniqueInput
+  }
+
+  /**
+   * gedung deleteMany
+   */
+  export type gedungDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which gedungs to delete
+     */
+    where?: gedungWhereInput
+  }
+
+  /**
+   * gedung.produk
+   */
+  export type gedung$produkArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the produkGedung
+     */
+    select?: produkGedungSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: produkGedungInclude<ExtArgs> | null
+    where?: produkGedungWhereInput
+    orderBy?: produkGedungOrderByWithRelationInput | produkGedungOrderByWithRelationInput[]
+    cursor?: produkGedungWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProdukGedungScalarFieldEnum | ProdukGedungScalarFieldEnum[]
+  }
+
+  /**
+   * gedung without action
+   */
+  export type gedungDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the gedung
+     */
+    select?: gedungSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: gedungInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model product
    */
 
   export type AggregateProduct = {
     _count: ProductCountAggregateOutputType | null
-    _avg: ProductAvgAggregateOutputType | null
-    _sum: ProductSumAggregateOutputType | null
     _min: ProductMinAggregateOutputType | null
     _max: ProductMaxAggregateOutputType | null
-  }
-
-  export type ProductAvgAggregateOutputType = {
-    stock_barang: number | null
-  }
-
-  export type ProductSumAggregateOutputType = {
-    stock_barang: number | null
   }
 
   export type ProductMinAggregateOutputType = {
     id: string | null
     start: Date | null
     end: Date | null
-    name_barang: string | null
-    stock_barang: number | null
+    namaBarang: string | null
   }
 
   export type ProductMaxAggregateOutputType = {
     id: string | null
     start: Date | null
     end: Date | null
-    name_barang: string | null
-    stock_barang: number | null
+    namaBarang: string | null
   }
 
   export type ProductCountAggregateOutputType = {
     id: number
     start: number
     end: number
-    name_barang: number
-    stock_barang: number
+    namaBarang: number
     _all: number
   }
 
-
-  export type ProductAvgAggregateInputType = {
-    stock_barang?: true
-  }
-
-  export type ProductSumAggregateInputType = {
-    stock_barang?: true
-  }
 
   export type ProductMinAggregateInputType = {
     id?: true
     start?: true
     end?: true
-    name_barang?: true
-    stock_barang?: true
+    namaBarang?: true
   }
 
   export type ProductMaxAggregateInputType = {
     id?: true
     start?: true
     end?: true
-    name_barang?: true
-    stock_barang?: true
+    namaBarang?: true
   }
 
   export type ProductCountAggregateInputType = {
     id?: true
     start?: true
     end?: true
-    name_barang?: true
-    stock_barang?: true
+    namaBarang?: true
     _all?: true
   }
 
@@ -1279,18 +2449,6 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Select which fields to average
-    **/
-    _avg?: ProductAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ProductSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
      * Select which fields to find the minimum value
     **/
     _min?: ProductMinAggregateInputType
@@ -1321,8 +2479,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: ProductCountAggregateInputType | true
-    _avg?: ProductAvgAggregateInputType
-    _sum?: ProductSumAggregateInputType
     _min?: ProductMinAggregateInputType
     _max?: ProductMaxAggregateInputType
   }
@@ -1331,11 +2487,8 @@ export namespace Prisma {
     id: string
     start: Date
     end: Date | null
-    name_barang: string | null
-    stock_barang: number | null
+    namaBarang: string | null
     _count: ProductCountAggregateOutputType | null
-    _avg: ProductAvgAggregateOutputType | null
-    _sum: ProductSumAggregateOutputType | null
     _min: ProductMinAggregateOutputType | null
     _max: ProductMaxAggregateOutputType | null
   }
@@ -1358,8 +2511,8 @@ export namespace Prisma {
     id?: boolean
     start?: boolean
     end?: boolean
-    name_barang?: boolean
-    stock_barang?: boolean
+    namaBarang?: boolean
+    produkGedung?: boolean | product$produkGedungArgs<ExtArgs>
     pendingProduct?: boolean | product$pendingProductArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
@@ -1368,19 +2521,18 @@ export namespace Prisma {
     id?: boolean
     start?: boolean
     end?: boolean
-    name_barang?: boolean
-    stock_barang?: boolean
+    namaBarang?: boolean
   }, ExtArgs["result"]["product"]>
 
   export type productSelectScalar = {
     id?: boolean
     start?: boolean
     end?: boolean
-    name_barang?: boolean
-    stock_barang?: boolean
+    namaBarang?: boolean
   }
 
   export type productInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    produkGedung?: boolean | product$produkGedungArgs<ExtArgs>
     pendingProduct?: boolean | product$pendingProductArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -1389,14 +2541,14 @@ export namespace Prisma {
   export type $productPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "product"
     objects: {
+      produkGedung: Prisma.$produkGedungPayload<ExtArgs>[]
       pendingProduct: Prisma.$pendingProductPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       start: Date
       end: Date | null
-      name_barang: string | null
-      stock_barang: number | null
+      namaBarang: string | null
     }, ExtArgs["result"]["product"]>
     composites: {}
   }
@@ -1761,6 +2913,7 @@ export namespace Prisma {
    */
   export interface Prisma__productClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    produkGedung<T extends product$produkGedungArgs<ExtArgs> = {}>(args?: Subset<T, product$produkGedungArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$produkGedungPayload<ExtArgs>, T, "findMany"> | Null>
     pendingProduct<T extends product$pendingProductArgs<ExtArgs> = {}>(args?: Subset<T, product$pendingProductArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pendingProductPayload<ExtArgs>, T, "findMany"> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1794,8 +2947,7 @@ export namespace Prisma {
     readonly id: FieldRef<"product", 'String'>
     readonly start: FieldRef<"product", 'DateTime'>
     readonly end: FieldRef<"product", 'DateTime'>
-    readonly name_barang: FieldRef<"product", 'String'>
-    readonly stock_barang: FieldRef<"product", 'Int'>
+    readonly namaBarang: FieldRef<"product", 'String'>
   }
     
 
@@ -2110,6 +3262,26 @@ export namespace Prisma {
   }
 
   /**
+   * product.produkGedung
+   */
+  export type product$produkGedungArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the produkGedung
+     */
+    select?: produkGedungSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: produkGedungInclude<ExtArgs> | null
+    where?: produkGedungWhereInput
+    orderBy?: produkGedungOrderByWithRelationInput | produkGedungOrderByWithRelationInput[]
+    cursor?: produkGedungWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProdukGedungScalarFieldEnum | ProdukGedungScalarFieldEnum[]
+  }
+
+  /**
    * product.pendingProduct
    */
   export type product$pendingProductArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2145,6 +3317,995 @@ export namespace Prisma {
 
 
   /**
+   * Model produkGedung
+   */
+
+  export type AggregateProdukGedung = {
+    _count: ProdukGedungCountAggregateOutputType | null
+    _avg: ProdukGedungAvgAggregateOutputType | null
+    _sum: ProdukGedungSumAggregateOutputType | null
+    _min: ProdukGedungMinAggregateOutputType | null
+    _max: ProdukGedungMaxAggregateOutputType | null
+  }
+
+  export type ProdukGedungAvgAggregateOutputType = {
+    gedungId: number | null
+    stockBarang: number | null
+  }
+
+  export type ProdukGedungSumAggregateOutputType = {
+    gedungId: number | null
+    stockBarang: number | null
+  }
+
+  export type ProdukGedungMinAggregateOutputType = {
+    id: string | null
+    start: Date | null
+    end: Date | null
+    produkId: string | null
+    gedungId: number | null
+    stockBarang: number | null
+  }
+
+  export type ProdukGedungMaxAggregateOutputType = {
+    id: string | null
+    start: Date | null
+    end: Date | null
+    produkId: string | null
+    gedungId: number | null
+    stockBarang: number | null
+  }
+
+  export type ProdukGedungCountAggregateOutputType = {
+    id: number
+    start: number
+    end: number
+    produkId: number
+    gedungId: number
+    stockBarang: number
+    _all: number
+  }
+
+
+  export type ProdukGedungAvgAggregateInputType = {
+    gedungId?: true
+    stockBarang?: true
+  }
+
+  export type ProdukGedungSumAggregateInputType = {
+    gedungId?: true
+    stockBarang?: true
+  }
+
+  export type ProdukGedungMinAggregateInputType = {
+    id?: true
+    start?: true
+    end?: true
+    produkId?: true
+    gedungId?: true
+    stockBarang?: true
+  }
+
+  export type ProdukGedungMaxAggregateInputType = {
+    id?: true
+    start?: true
+    end?: true
+    produkId?: true
+    gedungId?: true
+    stockBarang?: true
+  }
+
+  export type ProdukGedungCountAggregateInputType = {
+    id?: true
+    start?: true
+    end?: true
+    produkId?: true
+    gedungId?: true
+    stockBarang?: true
+    _all?: true
+  }
+
+  export type ProdukGedungAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which produkGedung to aggregate.
+     */
+    where?: produkGedungWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of produkGedungs to fetch.
+     */
+    orderBy?: produkGedungOrderByWithRelationInput | produkGedungOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: produkGedungWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` produkGedungs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` produkGedungs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned produkGedungs
+    **/
+    _count?: true | ProdukGedungCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ProdukGedungAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProdukGedungSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProdukGedungMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProdukGedungMaxAggregateInputType
+  }
+
+  export type GetProdukGedungAggregateType<T extends ProdukGedungAggregateArgs> = {
+        [P in keyof T & keyof AggregateProdukGedung]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProdukGedung[P]>
+      : GetScalarType<T[P], AggregateProdukGedung[P]>
+  }
+
+
+
+
+  export type produkGedungGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: produkGedungWhereInput
+    orderBy?: produkGedungOrderByWithAggregationInput | produkGedungOrderByWithAggregationInput[]
+    by: ProdukGedungScalarFieldEnum[] | ProdukGedungScalarFieldEnum
+    having?: produkGedungScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProdukGedungCountAggregateInputType | true
+    _avg?: ProdukGedungAvgAggregateInputType
+    _sum?: ProdukGedungSumAggregateInputType
+    _min?: ProdukGedungMinAggregateInputType
+    _max?: ProdukGedungMaxAggregateInputType
+  }
+
+  export type ProdukGedungGroupByOutputType = {
+    id: string
+    start: Date
+    end: Date | null
+    produkId: string
+    gedungId: number
+    stockBarang: number
+    _count: ProdukGedungCountAggregateOutputType | null
+    _avg: ProdukGedungAvgAggregateOutputType | null
+    _sum: ProdukGedungSumAggregateOutputType | null
+    _min: ProdukGedungMinAggregateOutputType | null
+    _max: ProdukGedungMaxAggregateOutputType | null
+  }
+
+  type GetProdukGedungGroupByPayload<T extends produkGedungGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProdukGedungGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProdukGedungGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProdukGedungGroupByOutputType[P]>
+            : GetScalarType<T[P], ProdukGedungGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type produkGedungSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    start?: boolean
+    end?: boolean
+    produkId?: boolean
+    gedungId?: boolean
+    stockBarang?: boolean
+    produk?: boolean | productDefaultArgs<ExtArgs>
+    gedung?: boolean | gedungDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["produkGedung"]>
+
+  export type produkGedungSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    start?: boolean
+    end?: boolean
+    produkId?: boolean
+    gedungId?: boolean
+    stockBarang?: boolean
+    produk?: boolean | productDefaultArgs<ExtArgs>
+    gedung?: boolean | gedungDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["produkGedung"]>
+
+  export type produkGedungSelectScalar = {
+    id?: boolean
+    start?: boolean
+    end?: boolean
+    produkId?: boolean
+    gedungId?: boolean
+    stockBarang?: boolean
+  }
+
+  export type produkGedungInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    produk?: boolean | productDefaultArgs<ExtArgs>
+    gedung?: boolean | gedungDefaultArgs<ExtArgs>
+  }
+  export type produkGedungIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    produk?: boolean | productDefaultArgs<ExtArgs>
+    gedung?: boolean | gedungDefaultArgs<ExtArgs>
+  }
+
+  export type $produkGedungPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "produkGedung"
+    objects: {
+      produk: Prisma.$productPayload<ExtArgs>
+      gedung: Prisma.$gedungPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      start: Date
+      end: Date | null
+      produkId: string
+      gedungId: number
+      stockBarang: number
+    }, ExtArgs["result"]["produkGedung"]>
+    composites: {}
+  }
+
+  type produkGedungGetPayload<S extends boolean | null | undefined | produkGedungDefaultArgs> = $Result.GetResult<Prisma.$produkGedungPayload, S>
+
+  type produkGedungCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<produkGedungFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ProdukGedungCountAggregateInputType | true
+    }
+
+  export interface produkGedungDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['produkGedung'], meta: { name: 'produkGedung' } }
+    /**
+     * Find zero or one ProdukGedung that matches the filter.
+     * @param {produkGedungFindUniqueArgs} args - Arguments to find a ProdukGedung
+     * @example
+     * // Get one ProdukGedung
+     * const produkGedung = await prisma.produkGedung.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends produkGedungFindUniqueArgs>(args: SelectSubset<T, produkGedungFindUniqueArgs<ExtArgs>>): Prisma__produkGedungClient<$Result.GetResult<Prisma.$produkGedungPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one ProdukGedung that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {produkGedungFindUniqueOrThrowArgs} args - Arguments to find a ProdukGedung
+     * @example
+     * // Get one ProdukGedung
+     * const produkGedung = await prisma.produkGedung.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends produkGedungFindUniqueOrThrowArgs>(args: SelectSubset<T, produkGedungFindUniqueOrThrowArgs<ExtArgs>>): Prisma__produkGedungClient<$Result.GetResult<Prisma.$produkGedungPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first ProdukGedung that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {produkGedungFindFirstArgs} args - Arguments to find a ProdukGedung
+     * @example
+     * // Get one ProdukGedung
+     * const produkGedung = await prisma.produkGedung.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends produkGedungFindFirstArgs>(args?: SelectSubset<T, produkGedungFindFirstArgs<ExtArgs>>): Prisma__produkGedungClient<$Result.GetResult<Prisma.$produkGedungPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first ProdukGedung that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {produkGedungFindFirstOrThrowArgs} args - Arguments to find a ProdukGedung
+     * @example
+     * // Get one ProdukGedung
+     * const produkGedung = await prisma.produkGedung.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends produkGedungFindFirstOrThrowArgs>(args?: SelectSubset<T, produkGedungFindFirstOrThrowArgs<ExtArgs>>): Prisma__produkGedungClient<$Result.GetResult<Prisma.$produkGedungPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more ProdukGedungs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {produkGedungFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProdukGedungs
+     * const produkGedungs = await prisma.produkGedung.findMany()
+     * 
+     * // Get first 10 ProdukGedungs
+     * const produkGedungs = await prisma.produkGedung.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const produkGedungWithIdOnly = await prisma.produkGedung.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends produkGedungFindManyArgs>(args?: SelectSubset<T, produkGedungFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$produkGedungPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a ProdukGedung.
+     * @param {produkGedungCreateArgs} args - Arguments to create a ProdukGedung.
+     * @example
+     * // Create one ProdukGedung
+     * const ProdukGedung = await prisma.produkGedung.create({
+     *   data: {
+     *     // ... data to create a ProdukGedung
+     *   }
+     * })
+     * 
+     */
+    create<T extends produkGedungCreateArgs>(args: SelectSubset<T, produkGedungCreateArgs<ExtArgs>>): Prisma__produkGedungClient<$Result.GetResult<Prisma.$produkGedungPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many ProdukGedungs.
+     * @param {produkGedungCreateManyArgs} args - Arguments to create many ProdukGedungs.
+     * @example
+     * // Create many ProdukGedungs
+     * const produkGedung = await prisma.produkGedung.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends produkGedungCreateManyArgs>(args?: SelectSubset<T, produkGedungCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ProdukGedungs and returns the data saved in the database.
+     * @param {produkGedungCreateManyAndReturnArgs} args - Arguments to create many ProdukGedungs.
+     * @example
+     * // Create many ProdukGedungs
+     * const produkGedung = await prisma.produkGedung.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ProdukGedungs and only return the `id`
+     * const produkGedungWithIdOnly = await prisma.produkGedung.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends produkGedungCreateManyAndReturnArgs>(args?: SelectSubset<T, produkGedungCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$produkGedungPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a ProdukGedung.
+     * @param {produkGedungDeleteArgs} args - Arguments to delete one ProdukGedung.
+     * @example
+     * // Delete one ProdukGedung
+     * const ProdukGedung = await prisma.produkGedung.delete({
+     *   where: {
+     *     // ... filter to delete one ProdukGedung
+     *   }
+     * })
+     * 
+     */
+    delete<T extends produkGedungDeleteArgs>(args: SelectSubset<T, produkGedungDeleteArgs<ExtArgs>>): Prisma__produkGedungClient<$Result.GetResult<Prisma.$produkGedungPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one ProdukGedung.
+     * @param {produkGedungUpdateArgs} args - Arguments to update one ProdukGedung.
+     * @example
+     * // Update one ProdukGedung
+     * const produkGedung = await prisma.produkGedung.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends produkGedungUpdateArgs>(args: SelectSubset<T, produkGedungUpdateArgs<ExtArgs>>): Prisma__produkGedungClient<$Result.GetResult<Prisma.$produkGedungPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more ProdukGedungs.
+     * @param {produkGedungDeleteManyArgs} args - Arguments to filter ProdukGedungs to delete.
+     * @example
+     * // Delete a few ProdukGedungs
+     * const { count } = await prisma.produkGedung.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends produkGedungDeleteManyArgs>(args?: SelectSubset<T, produkGedungDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProdukGedungs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {produkGedungUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProdukGedungs
+     * const produkGedung = await prisma.produkGedung.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends produkGedungUpdateManyArgs>(args: SelectSubset<T, produkGedungUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ProdukGedung.
+     * @param {produkGedungUpsertArgs} args - Arguments to update or create a ProdukGedung.
+     * @example
+     * // Update or create a ProdukGedung
+     * const produkGedung = await prisma.produkGedung.upsert({
+     *   create: {
+     *     // ... data to create a ProdukGedung
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProdukGedung we want to update
+     *   }
+     * })
+     */
+    upsert<T extends produkGedungUpsertArgs>(args: SelectSubset<T, produkGedungUpsertArgs<ExtArgs>>): Prisma__produkGedungClient<$Result.GetResult<Prisma.$produkGedungPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of ProdukGedungs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {produkGedungCountArgs} args - Arguments to filter ProdukGedungs to count.
+     * @example
+     * // Count the number of ProdukGedungs
+     * const count = await prisma.produkGedung.count({
+     *   where: {
+     *     // ... the filter for the ProdukGedungs we want to count
+     *   }
+     * })
+    **/
+    count<T extends produkGedungCountArgs>(
+      args?: Subset<T, produkGedungCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProdukGedungCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProdukGedung.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProdukGedungAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProdukGedungAggregateArgs>(args: Subset<T, ProdukGedungAggregateArgs>): Prisma.PrismaPromise<GetProdukGedungAggregateType<T>>
+
+    /**
+     * Group by ProdukGedung.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {produkGedungGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends produkGedungGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: produkGedungGroupByArgs['orderBy'] }
+        : { orderBy?: produkGedungGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, produkGedungGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProdukGedungGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the produkGedung model
+   */
+  readonly fields: produkGedungFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for produkGedung.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__produkGedungClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    produk<T extends productDefaultArgs<ExtArgs> = {}>(args?: Subset<T, productDefaultArgs<ExtArgs>>): Prisma__productClient<$Result.GetResult<Prisma.$productPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    gedung<T extends gedungDefaultArgs<ExtArgs> = {}>(args?: Subset<T, gedungDefaultArgs<ExtArgs>>): Prisma__gedungClient<$Result.GetResult<Prisma.$gedungPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the produkGedung model
+   */ 
+  interface produkGedungFieldRefs {
+    readonly id: FieldRef<"produkGedung", 'String'>
+    readonly start: FieldRef<"produkGedung", 'DateTime'>
+    readonly end: FieldRef<"produkGedung", 'DateTime'>
+    readonly produkId: FieldRef<"produkGedung", 'String'>
+    readonly gedungId: FieldRef<"produkGedung", 'Int'>
+    readonly stockBarang: FieldRef<"produkGedung", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * produkGedung findUnique
+   */
+  export type produkGedungFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the produkGedung
+     */
+    select?: produkGedungSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: produkGedungInclude<ExtArgs> | null
+    /**
+     * Filter, which produkGedung to fetch.
+     */
+    where: produkGedungWhereUniqueInput
+  }
+
+  /**
+   * produkGedung findUniqueOrThrow
+   */
+  export type produkGedungFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the produkGedung
+     */
+    select?: produkGedungSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: produkGedungInclude<ExtArgs> | null
+    /**
+     * Filter, which produkGedung to fetch.
+     */
+    where: produkGedungWhereUniqueInput
+  }
+
+  /**
+   * produkGedung findFirst
+   */
+  export type produkGedungFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the produkGedung
+     */
+    select?: produkGedungSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: produkGedungInclude<ExtArgs> | null
+    /**
+     * Filter, which produkGedung to fetch.
+     */
+    where?: produkGedungWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of produkGedungs to fetch.
+     */
+    orderBy?: produkGedungOrderByWithRelationInput | produkGedungOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for produkGedungs.
+     */
+    cursor?: produkGedungWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` produkGedungs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` produkGedungs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of produkGedungs.
+     */
+    distinct?: ProdukGedungScalarFieldEnum | ProdukGedungScalarFieldEnum[]
+  }
+
+  /**
+   * produkGedung findFirstOrThrow
+   */
+  export type produkGedungFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the produkGedung
+     */
+    select?: produkGedungSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: produkGedungInclude<ExtArgs> | null
+    /**
+     * Filter, which produkGedung to fetch.
+     */
+    where?: produkGedungWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of produkGedungs to fetch.
+     */
+    orderBy?: produkGedungOrderByWithRelationInput | produkGedungOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for produkGedungs.
+     */
+    cursor?: produkGedungWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` produkGedungs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` produkGedungs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of produkGedungs.
+     */
+    distinct?: ProdukGedungScalarFieldEnum | ProdukGedungScalarFieldEnum[]
+  }
+
+  /**
+   * produkGedung findMany
+   */
+  export type produkGedungFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the produkGedung
+     */
+    select?: produkGedungSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: produkGedungInclude<ExtArgs> | null
+    /**
+     * Filter, which produkGedungs to fetch.
+     */
+    where?: produkGedungWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of produkGedungs to fetch.
+     */
+    orderBy?: produkGedungOrderByWithRelationInput | produkGedungOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing produkGedungs.
+     */
+    cursor?: produkGedungWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` produkGedungs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` produkGedungs.
+     */
+    skip?: number
+    distinct?: ProdukGedungScalarFieldEnum | ProdukGedungScalarFieldEnum[]
+  }
+
+  /**
+   * produkGedung create
+   */
+  export type produkGedungCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the produkGedung
+     */
+    select?: produkGedungSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: produkGedungInclude<ExtArgs> | null
+    /**
+     * The data needed to create a produkGedung.
+     */
+    data: XOR<produkGedungCreateInput, produkGedungUncheckedCreateInput>
+  }
+
+  /**
+   * produkGedung createMany
+   */
+  export type produkGedungCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many produkGedungs.
+     */
+    data: produkGedungCreateManyInput | produkGedungCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * produkGedung createManyAndReturn
+   */
+  export type produkGedungCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the produkGedung
+     */
+    select?: produkGedungSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many produkGedungs.
+     */
+    data: produkGedungCreateManyInput | produkGedungCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: produkGedungIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * produkGedung update
+   */
+  export type produkGedungUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the produkGedung
+     */
+    select?: produkGedungSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: produkGedungInclude<ExtArgs> | null
+    /**
+     * The data needed to update a produkGedung.
+     */
+    data: XOR<produkGedungUpdateInput, produkGedungUncheckedUpdateInput>
+    /**
+     * Choose, which produkGedung to update.
+     */
+    where: produkGedungWhereUniqueInput
+  }
+
+  /**
+   * produkGedung updateMany
+   */
+  export type produkGedungUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update produkGedungs.
+     */
+    data: XOR<produkGedungUpdateManyMutationInput, produkGedungUncheckedUpdateManyInput>
+    /**
+     * Filter which produkGedungs to update
+     */
+    where?: produkGedungWhereInput
+  }
+
+  /**
+   * produkGedung upsert
+   */
+  export type produkGedungUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the produkGedung
+     */
+    select?: produkGedungSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: produkGedungInclude<ExtArgs> | null
+    /**
+     * The filter to search for the produkGedung to update in case it exists.
+     */
+    where: produkGedungWhereUniqueInput
+    /**
+     * In case the produkGedung found by the `where` argument doesn't exist, create a new produkGedung with this data.
+     */
+    create: XOR<produkGedungCreateInput, produkGedungUncheckedCreateInput>
+    /**
+     * In case the produkGedung was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<produkGedungUpdateInput, produkGedungUncheckedUpdateInput>
+  }
+
+  /**
+   * produkGedung delete
+   */
+  export type produkGedungDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the produkGedung
+     */
+    select?: produkGedungSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: produkGedungInclude<ExtArgs> | null
+    /**
+     * Filter which produkGedung to delete.
+     */
+    where: produkGedungWhereUniqueInput
+  }
+
+  /**
+   * produkGedung deleteMany
+   */
+  export type produkGedungDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which produkGedungs to delete
+     */
+    where?: produkGedungWhereInput
+  }
+
+  /**
+   * produkGedung without action
+   */
+  export type produkGedungDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the produkGedung
+     */
+    select?: produkGedungSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: produkGedungInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model pendingProduct
    */
 
@@ -2157,99 +4318,115 @@ export namespace Prisma {
   }
 
   export type PendingProductAvgAggregateOutputType = {
-    stock_barang: number | null
+    stockBarang: number | null
+    gedungId: number | null
   }
 
   export type PendingProductSumAggregateOutputType = {
-    stock_barang: number | null
+    stockBarang: number | null
+    gedungId: number | null
   }
 
   export type PendingProductMinAggregateOutputType = {
     id: string | null
     start: Date | null
     end: Date | null
-    stock_barang: number | null
+    stockBarang: number | null
     user: string | null
     username: string | null
     role: string | null
     note: string | null
     jenisBarang: string | null
     statusProduct: boolean | null
+    produkId: string | null
+    gedungId: number | null
   }
 
   export type PendingProductMaxAggregateOutputType = {
     id: string | null
     start: Date | null
     end: Date | null
-    stock_barang: number | null
+    stockBarang: number | null
     user: string | null
     username: string | null
     role: string | null
     note: string | null
     jenisBarang: string | null
     statusProduct: boolean | null
+    produkId: string | null
+    gedungId: number | null
   }
 
   export type PendingProductCountAggregateOutputType = {
     id: number
     start: number
     end: number
-    stock_barang: number
+    stockBarang: number
     user: number
     username: number
     role: number
     note: number
     jenisBarang: number
     statusProduct: number
+    produkId: number
+    gedungId: number
     _all: number
   }
 
 
   export type PendingProductAvgAggregateInputType = {
-    stock_barang?: true
+    stockBarang?: true
+    gedungId?: true
   }
 
   export type PendingProductSumAggregateInputType = {
-    stock_barang?: true
+    stockBarang?: true
+    gedungId?: true
   }
 
   export type PendingProductMinAggregateInputType = {
     id?: true
     start?: true
     end?: true
-    stock_barang?: true
+    stockBarang?: true
     user?: true
     username?: true
     role?: true
     note?: true
     jenisBarang?: true
     statusProduct?: true
+    produkId?: true
+    gedungId?: true
   }
 
   export type PendingProductMaxAggregateInputType = {
     id?: true
     start?: true
     end?: true
-    stock_barang?: true
+    stockBarang?: true
     user?: true
     username?: true
     role?: true
     note?: true
     jenisBarang?: true
     statusProduct?: true
+    produkId?: true
+    gedungId?: true
   }
 
   export type PendingProductCountAggregateInputType = {
     id?: true
     start?: true
     end?: true
-    stock_barang?: true
+    stockBarang?: true
     user?: true
     username?: true
     role?: true
     note?: true
     jenisBarang?: true
     statusProduct?: true
+    produkId?: true
+    gedungId?: true
     _all?: true
   }
 
@@ -2343,13 +4520,15 @@ export namespace Prisma {
     id: string
     start: Date
     end: Date | null
-    stock_barang: number | null
+    stockBarang: number
     user: string | null
     username: string | null
     role: string | null
     note: string | null
     jenisBarang: string | null
     statusProduct: boolean
+    produkId: string | null
+    gedungId: number | null
     _count: PendingProductCountAggregateOutputType | null
     _avg: PendingProductAvgAggregateOutputType | null
     _sum: PendingProductSumAggregateOutputType | null
@@ -2375,13 +4554,15 @@ export namespace Prisma {
     id?: boolean
     start?: boolean
     end?: boolean
-    stock_barang?: boolean
+    stockBarang?: boolean
     user?: boolean
     username?: boolean
     role?: boolean
     note?: boolean
     jenisBarang?: boolean
     statusProduct?: boolean
+    produkId?: boolean
+    gedungId?: boolean
     products?: boolean | pendingProduct$productsArgs<ExtArgs>
     _count?: boolean | PendingProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pendingProduct"]>
@@ -2390,26 +4571,30 @@ export namespace Prisma {
     id?: boolean
     start?: boolean
     end?: boolean
-    stock_barang?: boolean
+    stockBarang?: boolean
     user?: boolean
     username?: boolean
     role?: boolean
     note?: boolean
     jenisBarang?: boolean
     statusProduct?: boolean
+    produkId?: boolean
+    gedungId?: boolean
   }, ExtArgs["result"]["pendingProduct"]>
 
   export type pendingProductSelectScalar = {
     id?: boolean
     start?: boolean
     end?: boolean
-    stock_barang?: boolean
+    stockBarang?: boolean
     user?: boolean
     username?: boolean
     role?: boolean
     note?: boolean
     jenisBarang?: boolean
     statusProduct?: boolean
+    produkId?: boolean
+    gedungId?: boolean
   }
 
   export type pendingProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2427,13 +4612,15 @@ export namespace Prisma {
       id: string
       start: Date
       end: Date | null
-      stock_barang: number | null
+      stockBarang: number
       user: string | null
       username: string | null
       role: string | null
       note: string | null
       jenisBarang: string | null
       statusProduct: boolean
+      produkId: string | null
+      gedungId: number | null
     }, ExtArgs["result"]["pendingProduct"]>
     composites: {}
   }
@@ -2831,13 +5018,15 @@ export namespace Prisma {
     readonly id: FieldRef<"pendingProduct", 'String'>
     readonly start: FieldRef<"pendingProduct", 'DateTime'>
     readonly end: FieldRef<"pendingProduct", 'DateTime'>
-    readonly stock_barang: FieldRef<"pendingProduct", 'Int'>
+    readonly stockBarang: FieldRef<"pendingProduct", 'Int'>
     readonly user: FieldRef<"pendingProduct", 'String'>
     readonly username: FieldRef<"pendingProduct", 'String'>
     readonly role: FieldRef<"pendingProduct", 'String'>
     readonly note: FieldRef<"pendingProduct", 'String'>
     readonly jenisBarang: FieldRef<"pendingProduct", 'String'>
     readonly statusProduct: FieldRef<"pendingProduct", 'Boolean'>
+    readonly produkId: FieldRef<"pendingProduct", 'String'>
+    readonly gedungId: FieldRef<"pendingProduct", 'Int'>
   }
     
 
@@ -5014,28 +7203,52 @@ export namespace Prisma {
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+  export const GedungScalarFieldEnum: {
+    id: 'id',
+    start: 'start',
+    end: 'end',
+    nama: 'nama',
+    alamat: 'alamat'
+  };
+
+  export type GedungScalarFieldEnum = (typeof GedungScalarFieldEnum)[keyof typeof GedungScalarFieldEnum]
+
+
   export const ProductScalarFieldEnum: {
     id: 'id',
     start: 'start',
     end: 'end',
-    name_barang: 'name_barang',
-    stock_barang: 'stock_barang'
+    namaBarang: 'namaBarang'
   };
 
   export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
+
+
+  export const ProdukGedungScalarFieldEnum: {
+    id: 'id',
+    start: 'start',
+    end: 'end',
+    produkId: 'produkId',
+    gedungId: 'gedungId',
+    stockBarang: 'stockBarang'
+  };
+
+  export type ProdukGedungScalarFieldEnum = (typeof ProdukGedungScalarFieldEnum)[keyof typeof ProdukGedungScalarFieldEnum]
 
 
   export const PendingProductScalarFieldEnum: {
     id: 'id',
     start: 'start',
     end: 'end',
-    stock_barang: 'stock_barang',
+    stockBarang: 'stockBarang',
     user: 'user',
     username: 'username',
     role: 'role',
     note: 'note',
     jenisBarang: 'jenisBarang',
-    statusProduct: 'statusProduct'
+    statusProduct: 'statusProduct',
+    produkId: 'produkId',
+    gedungId: 'gedungId'
   };
 
   export type PendingProductScalarFieldEnum = (typeof PendingProductScalarFieldEnum)[keyof typeof PendingProductScalarFieldEnum]
@@ -5095,16 +7308,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'String'
+   * Reference to a field of type 'Int'
    */
-  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
     
 
 
   /**
-   * Reference to a field of type 'String[]'
+   * Reference to a field of type 'Int[]'
    */
-  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -5123,16 +7336,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
+   * Reference to a field of type 'String'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
     
 
 
   /**
-   * Reference to a field of type 'Int[]'
+   * Reference to a field of type 'String[]'
    */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
     
 
 
@@ -5160,6 +7373,63 @@ export namespace Prisma {
    */
 
 
+  export type gedungWhereInput = {
+    AND?: gedungWhereInput | gedungWhereInput[]
+    OR?: gedungWhereInput[]
+    NOT?: gedungWhereInput | gedungWhereInput[]
+    id?: IntFilter<"gedung"> | number
+    start?: DateTimeFilter<"gedung"> | Date | string
+    end?: DateTimeNullableFilter<"gedung"> | Date | string | null
+    nama?: StringNullableFilter<"gedung"> | string | null
+    alamat?: StringNullableFilter<"gedung"> | string | null
+    produk?: ProdukGedungListRelationFilter
+  }
+
+  export type gedungOrderByWithRelationInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrderInput | SortOrder
+    nama?: SortOrderInput | SortOrder
+    alamat?: SortOrderInput | SortOrder
+    produk?: produkGedungOrderByRelationAggregateInput
+  }
+
+  export type gedungWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: gedungWhereInput | gedungWhereInput[]
+    OR?: gedungWhereInput[]
+    NOT?: gedungWhereInput | gedungWhereInput[]
+    start?: DateTimeFilter<"gedung"> | Date | string
+    end?: DateTimeNullableFilter<"gedung"> | Date | string | null
+    nama?: StringNullableFilter<"gedung"> | string | null
+    alamat?: StringNullableFilter<"gedung"> | string | null
+    produk?: ProdukGedungListRelationFilter
+  }, "id">
+
+  export type gedungOrderByWithAggregationInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrderInput | SortOrder
+    nama?: SortOrderInput | SortOrder
+    alamat?: SortOrderInput | SortOrder
+    _count?: gedungCountOrderByAggregateInput
+    _avg?: gedungAvgOrderByAggregateInput
+    _max?: gedungMaxOrderByAggregateInput
+    _min?: gedungMinOrderByAggregateInput
+    _sum?: gedungSumOrderByAggregateInput
+  }
+
+  export type gedungScalarWhereWithAggregatesInput = {
+    AND?: gedungScalarWhereWithAggregatesInput | gedungScalarWhereWithAggregatesInput[]
+    OR?: gedungScalarWhereWithAggregatesInput[]
+    NOT?: gedungScalarWhereWithAggregatesInput | gedungScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"gedung"> | number
+    start?: DateTimeWithAggregatesFilter<"gedung"> | Date | string
+    end?: DateTimeNullableWithAggregatesFilter<"gedung"> | Date | string | null
+    nama?: StringNullableWithAggregatesFilter<"gedung"> | string | null
+    alamat?: StringNullableWithAggregatesFilter<"gedung"> | string | null
+  }
+
   export type productWhereInput = {
     AND?: productWhereInput | productWhereInput[]
     OR?: productWhereInput[]
@@ -5167,8 +7437,8 @@ export namespace Prisma {
     id?: StringFilter<"product"> | string
     start?: DateTimeFilter<"product"> | Date | string
     end?: DateTimeNullableFilter<"product"> | Date | string | null
-    name_barang?: StringNullableFilter<"product"> | string | null
-    stock_barang?: IntNullableFilter<"product"> | number | null
+    namaBarang?: StringNullableFilter<"product"> | string | null
+    produkGedung?: ProdukGedungListRelationFilter
     pendingProduct?: PendingProductListRelationFilter
   }
 
@@ -5176,8 +7446,8 @@ export namespace Prisma {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrderInput | SortOrder
-    name_barang?: SortOrderInput | SortOrder
-    stock_barang?: SortOrderInput | SortOrder
+    namaBarang?: SortOrderInput | SortOrder
+    produkGedung?: produkGedungOrderByRelationAggregateInput
     pendingProduct?: pendingProductOrderByRelationAggregateInput
   }
 
@@ -5188,8 +7458,8 @@ export namespace Prisma {
     NOT?: productWhereInput | productWhereInput[]
     start?: DateTimeFilter<"product"> | Date | string
     end?: DateTimeNullableFilter<"product"> | Date | string | null
-    name_barang?: StringNullableFilter<"product"> | string | null
-    stock_barang?: IntNullableFilter<"product"> | number | null
+    namaBarang?: StringNullableFilter<"product"> | string | null
+    produkGedung?: ProdukGedungListRelationFilter
     pendingProduct?: PendingProductListRelationFilter
   }, "id">
 
@@ -5197,13 +7467,10 @@ export namespace Prisma {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrderInput | SortOrder
-    name_barang?: SortOrderInput | SortOrder
-    stock_barang?: SortOrderInput | SortOrder
+    namaBarang?: SortOrderInput | SortOrder
     _count?: productCountOrderByAggregateInput
-    _avg?: productAvgOrderByAggregateInput
     _max?: productMaxOrderByAggregateInput
     _min?: productMinOrderByAggregateInput
-    _sum?: productSumOrderByAggregateInput
   }
 
   export type productScalarWhereWithAggregatesInput = {
@@ -5213,8 +7480,73 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"product"> | string
     start?: DateTimeWithAggregatesFilter<"product"> | Date | string
     end?: DateTimeNullableWithAggregatesFilter<"product"> | Date | string | null
-    name_barang?: StringNullableWithAggregatesFilter<"product"> | string | null
-    stock_barang?: IntNullableWithAggregatesFilter<"product"> | number | null
+    namaBarang?: StringNullableWithAggregatesFilter<"product"> | string | null
+  }
+
+  export type produkGedungWhereInput = {
+    AND?: produkGedungWhereInput | produkGedungWhereInput[]
+    OR?: produkGedungWhereInput[]
+    NOT?: produkGedungWhereInput | produkGedungWhereInput[]
+    id?: StringFilter<"produkGedung"> | string
+    start?: DateTimeFilter<"produkGedung"> | Date | string
+    end?: DateTimeNullableFilter<"produkGedung"> | Date | string | null
+    produkId?: StringFilter<"produkGedung"> | string
+    gedungId?: IntFilter<"produkGedung"> | number
+    stockBarang?: IntFilter<"produkGedung"> | number
+    produk?: XOR<ProductRelationFilter, productWhereInput>
+    gedung?: XOR<GedungRelationFilter, gedungWhereInput>
+  }
+
+  export type produkGedungOrderByWithRelationInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrderInput | SortOrder
+    produkId?: SortOrder
+    gedungId?: SortOrder
+    stockBarang?: SortOrder
+    produk?: productOrderByWithRelationInput
+    gedung?: gedungOrderByWithRelationInput
+  }
+
+  export type produkGedungWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    produkId_gedungId?: produkGedungProdukIdGedungIdCompoundUniqueInput
+    AND?: produkGedungWhereInput | produkGedungWhereInput[]
+    OR?: produkGedungWhereInput[]
+    NOT?: produkGedungWhereInput | produkGedungWhereInput[]
+    start?: DateTimeFilter<"produkGedung"> | Date | string
+    end?: DateTimeNullableFilter<"produkGedung"> | Date | string | null
+    produkId?: StringFilter<"produkGedung"> | string
+    gedungId?: IntFilter<"produkGedung"> | number
+    stockBarang?: IntFilter<"produkGedung"> | number
+    produk?: XOR<ProductRelationFilter, productWhereInput>
+    gedung?: XOR<GedungRelationFilter, gedungWhereInput>
+  }, "id" | "produkId_gedungId">
+
+  export type produkGedungOrderByWithAggregationInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrderInput | SortOrder
+    produkId?: SortOrder
+    gedungId?: SortOrder
+    stockBarang?: SortOrder
+    _count?: produkGedungCountOrderByAggregateInput
+    _avg?: produkGedungAvgOrderByAggregateInput
+    _max?: produkGedungMaxOrderByAggregateInput
+    _min?: produkGedungMinOrderByAggregateInput
+    _sum?: produkGedungSumOrderByAggregateInput
+  }
+
+  export type produkGedungScalarWhereWithAggregatesInput = {
+    AND?: produkGedungScalarWhereWithAggregatesInput | produkGedungScalarWhereWithAggregatesInput[]
+    OR?: produkGedungScalarWhereWithAggregatesInput[]
+    NOT?: produkGedungScalarWhereWithAggregatesInput | produkGedungScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"produkGedung"> | string
+    start?: DateTimeWithAggregatesFilter<"produkGedung"> | Date | string
+    end?: DateTimeNullableWithAggregatesFilter<"produkGedung"> | Date | string | null
+    produkId?: StringWithAggregatesFilter<"produkGedung"> | string
+    gedungId?: IntWithAggregatesFilter<"produkGedung"> | number
+    stockBarang?: IntWithAggregatesFilter<"produkGedung"> | number
   }
 
   export type pendingProductWhereInput = {
@@ -5224,13 +7556,15 @@ export namespace Prisma {
     id?: StringFilter<"pendingProduct"> | string
     start?: DateTimeFilter<"pendingProduct"> | Date | string
     end?: DateTimeNullableFilter<"pendingProduct"> | Date | string | null
-    stock_barang?: IntNullableFilter<"pendingProduct"> | number | null
+    stockBarang?: IntFilter<"pendingProduct"> | number
     user?: StringNullableFilter<"pendingProduct"> | string | null
     username?: StringNullableFilter<"pendingProduct"> | string | null
     role?: StringNullableFilter<"pendingProduct"> | string | null
     note?: StringNullableFilter<"pendingProduct"> | string | null
     jenisBarang?: StringNullableFilter<"pendingProduct"> | string | null
     statusProduct?: BoolFilter<"pendingProduct"> | boolean
+    produkId?: StringNullableFilter<"pendingProduct"> | string | null
+    gedungId?: IntNullableFilter<"pendingProduct"> | number | null
     products?: ProductListRelationFilter
   }
 
@@ -5238,13 +7572,15 @@ export namespace Prisma {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrderInput | SortOrder
-    stock_barang?: SortOrderInput | SortOrder
+    stockBarang?: SortOrder
     user?: SortOrderInput | SortOrder
     username?: SortOrderInput | SortOrder
     role?: SortOrderInput | SortOrder
     note?: SortOrderInput | SortOrder
     jenisBarang?: SortOrderInput | SortOrder
     statusProduct?: SortOrder
+    produkId?: SortOrderInput | SortOrder
+    gedungId?: SortOrderInput | SortOrder
     products?: productOrderByRelationAggregateInput
   }
 
@@ -5255,13 +7591,15 @@ export namespace Prisma {
     NOT?: pendingProductWhereInput | pendingProductWhereInput[]
     start?: DateTimeFilter<"pendingProduct"> | Date | string
     end?: DateTimeNullableFilter<"pendingProduct"> | Date | string | null
-    stock_barang?: IntNullableFilter<"pendingProduct"> | number | null
+    stockBarang?: IntFilter<"pendingProduct"> | number
     user?: StringNullableFilter<"pendingProduct"> | string | null
     username?: StringNullableFilter<"pendingProduct"> | string | null
     role?: StringNullableFilter<"pendingProduct"> | string | null
     note?: StringNullableFilter<"pendingProduct"> | string | null
     jenisBarang?: StringNullableFilter<"pendingProduct"> | string | null
     statusProduct?: BoolFilter<"pendingProduct"> | boolean
+    produkId?: StringNullableFilter<"pendingProduct"> | string | null
+    gedungId?: IntNullableFilter<"pendingProduct"> | number | null
     products?: ProductListRelationFilter
   }, "id">
 
@@ -5269,13 +7607,15 @@ export namespace Prisma {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrderInput | SortOrder
-    stock_barang?: SortOrderInput | SortOrder
+    stockBarang?: SortOrder
     user?: SortOrderInput | SortOrder
     username?: SortOrderInput | SortOrder
     role?: SortOrderInput | SortOrder
     note?: SortOrderInput | SortOrder
     jenisBarang?: SortOrderInput | SortOrder
     statusProduct?: SortOrder
+    produkId?: SortOrderInput | SortOrder
+    gedungId?: SortOrderInput | SortOrder
     _count?: pendingProductCountOrderByAggregateInput
     _avg?: pendingProductAvgOrderByAggregateInput
     _max?: pendingProductMaxOrderByAggregateInput
@@ -5290,13 +7630,15 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"pendingProduct"> | string
     start?: DateTimeWithAggregatesFilter<"pendingProduct"> | Date | string
     end?: DateTimeNullableWithAggregatesFilter<"pendingProduct"> | Date | string | null
-    stock_barang?: IntNullableWithAggregatesFilter<"pendingProduct"> | number | null
+    stockBarang?: IntWithAggregatesFilter<"pendingProduct"> | number
     user?: StringNullableWithAggregatesFilter<"pendingProduct"> | string | null
     username?: StringNullableWithAggregatesFilter<"pendingProduct"> | string | null
     role?: StringNullableWithAggregatesFilter<"pendingProduct"> | string | null
     note?: StringNullableWithAggregatesFilter<"pendingProduct"> | string | null
     jenisBarang?: StringNullableWithAggregatesFilter<"pendingProduct"> | string | null
     statusProduct?: BoolWithAggregatesFilter<"pendingProduct"> | boolean
+    produkId?: StringNullableWithAggregatesFilter<"pendingProduct"> | string | null
+    gedungId?: IntNullableWithAggregatesFilter<"pendingProduct"> | number | null
   }
 
   export type notifUserWhereInput = {
@@ -5415,12 +7757,72 @@ export namespace Prisma {
     activity?: StringNullableWithAggregatesFilter<"logUser"> | string | null
   }
 
+  export type gedungCreateInput = {
+    id?: number
+    start?: Date | string
+    end?: Date | string | null
+    nama?: string | null
+    alamat?: string | null
+    produk?: produkGedungCreateNestedManyWithoutGedungInput
+  }
+
+  export type gedungUncheckedCreateInput = {
+    id?: number
+    start?: Date | string
+    end?: Date | string | null
+    nama?: string | null
+    alamat?: string | null
+    produk?: produkGedungUncheckedCreateNestedManyWithoutGedungInput
+  }
+
+  export type gedungUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    alamat?: NullableStringFieldUpdateOperationsInput | string | null
+    produk?: produkGedungUpdateManyWithoutGedungNestedInput
+  }
+
+  export type gedungUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    alamat?: NullableStringFieldUpdateOperationsInput | string | null
+    produk?: produkGedungUncheckedUpdateManyWithoutGedungNestedInput
+  }
+
+  export type gedungCreateManyInput = {
+    id?: number
+    start?: Date | string
+    end?: Date | string | null
+    nama?: string | null
+    alamat?: string | null
+  }
+
+  export type gedungUpdateManyMutationInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    alamat?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type gedungUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    alamat?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type productCreateInput = {
     id?: string
     start?: Date | string
     end?: Date | string | null
-    name_barang?: string | null
-    stock_barang?: number | null
+    namaBarang?: string | null
+    produkGedung?: produkGedungCreateNestedManyWithoutProdukInput
     pendingProduct?: pendingProductCreateNestedManyWithoutProductsInput
   }
 
@@ -5428,8 +7830,8 @@ export namespace Prisma {
     id?: string
     start?: Date | string
     end?: Date | string | null
-    name_barang?: string | null
-    stock_barang?: number | null
+    namaBarang?: string | null
+    produkGedung?: produkGedungUncheckedCreateNestedManyWithoutProdukInput
     pendingProduct?: pendingProductUncheckedCreateNestedManyWithoutProductsInput
   }
 
@@ -5437,8 +7839,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    name_barang?: NullableStringFieldUpdateOperationsInput | string | null
-    stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
+    namaBarang?: NullableStringFieldUpdateOperationsInput | string | null
+    produkGedung?: produkGedungUpdateManyWithoutProdukNestedInput
     pendingProduct?: pendingProductUpdateManyWithoutProductsNestedInput
   }
 
@@ -5446,8 +7848,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    name_barang?: NullableStringFieldUpdateOperationsInput | string | null
-    stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
+    namaBarang?: NullableStringFieldUpdateOperationsInput | string | null
+    produkGedung?: produkGedungUncheckedUpdateManyWithoutProdukNestedInput
     pendingProduct?: pendingProductUncheckedUpdateManyWithoutProductsNestedInput
   }
 
@@ -5455,37 +7857,97 @@ export namespace Prisma {
     id?: string
     start?: Date | string
     end?: Date | string | null
-    name_barang?: string | null
-    stock_barang?: number | null
+    namaBarang?: string | null
   }
 
   export type productUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    name_barang?: NullableStringFieldUpdateOperationsInput | string | null
-    stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
+    namaBarang?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type productUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    name_barang?: NullableStringFieldUpdateOperationsInput | string | null
-    stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
+    namaBarang?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type produkGedungCreateInput = {
+    id?: string
+    start?: Date | string
+    end?: Date | string | null
+    stockBarang?: number
+    produk: productCreateNestedOneWithoutProdukGedungInput
+    gedung: gedungCreateNestedOneWithoutProdukInput
+  }
+
+  export type produkGedungUncheckedCreateInput = {
+    id?: string
+    start?: Date | string
+    end?: Date | string | null
+    produkId: string
+    gedungId: number
+    stockBarang?: number
+  }
+
+  export type produkGedungUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stockBarang?: IntFieldUpdateOperationsInput | number
+    produk?: productUpdateOneRequiredWithoutProdukGedungNestedInput
+    gedung?: gedungUpdateOneRequiredWithoutProdukNestedInput
+  }
+
+  export type produkGedungUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    produkId?: StringFieldUpdateOperationsInput | string
+    gedungId?: IntFieldUpdateOperationsInput | number
+    stockBarang?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type produkGedungCreateManyInput = {
+    id?: string
+    start?: Date | string
+    end?: Date | string | null
+    produkId: string
+    gedungId: number
+    stockBarang?: number
+  }
+
+  export type produkGedungUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stockBarang?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type produkGedungUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    produkId?: StringFieldUpdateOperationsInput | string
+    gedungId?: IntFieldUpdateOperationsInput | number
+    stockBarang?: IntFieldUpdateOperationsInput | number
   }
 
   export type pendingProductCreateInput = {
     id?: string
     start?: Date | string
     end?: Date | string | null
-    stock_barang?: number | null
+    stockBarang?: number
     user?: string | null
     username?: string | null
     role?: string | null
     note?: string | null
     jenisBarang?: string | null
     statusProduct?: boolean
+    produkId?: string | null
+    gedungId?: number | null
     products?: productCreateNestedManyWithoutPendingProductInput
   }
 
@@ -5493,13 +7955,15 @@ export namespace Prisma {
     id?: string
     start?: Date | string
     end?: Date | string | null
-    stock_barang?: number | null
+    stockBarang?: number
     user?: string | null
     username?: string | null
     role?: string | null
     note?: string | null
     jenisBarang?: string | null
     statusProduct?: boolean
+    produkId?: string | null
+    gedungId?: number | null
     products?: productUncheckedCreateNestedManyWithoutPendingProductInput
   }
 
@@ -5507,13 +7971,15 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
+    stockBarang?: IntFieldUpdateOperationsInput | number
     user?: NullableStringFieldUpdateOperationsInput | string | null
     username?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
+    produkId?: NullableStringFieldUpdateOperationsInput | string | null
+    gedungId?: NullableIntFieldUpdateOperationsInput | number | null
     products?: productUpdateManyWithoutPendingProductNestedInput
   }
 
@@ -5521,13 +7987,15 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
+    stockBarang?: IntFieldUpdateOperationsInput | number
     user?: NullableStringFieldUpdateOperationsInput | string | null
     username?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
+    produkId?: NullableStringFieldUpdateOperationsInput | string | null
+    gedungId?: NullableIntFieldUpdateOperationsInput | number | null
     products?: productUncheckedUpdateManyWithoutPendingProductNestedInput
   }
 
@@ -5535,39 +8003,45 @@ export namespace Prisma {
     id?: string
     start?: Date | string
     end?: Date | string | null
-    stock_barang?: number | null
+    stockBarang?: number
     user?: string | null
     username?: string | null
     role?: string | null
     note?: string | null
     jenisBarang?: string | null
     statusProduct?: boolean
+    produkId?: string | null
+    gedungId?: number | null
   }
 
   export type pendingProductUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
+    stockBarang?: IntFieldUpdateOperationsInput | number
     user?: NullableStringFieldUpdateOperationsInput | string | null
     username?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
+    produkId?: NullableStringFieldUpdateOperationsInput | string | null
+    gedungId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type pendingProductUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
+    stockBarang?: IntFieldUpdateOperationsInput | number
     user?: NullableStringFieldUpdateOperationsInput | string | null
     username?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
+    produkId?: NullableStringFieldUpdateOperationsInput | string | null
+    gedungId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type notifUserCreateInput = {
@@ -5696,19 +8170,15 @@ export namespace Prisma {
     activity?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type StringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringFilter<$PrismaModel> | string
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -5748,21 +8218,10 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type PendingProductListRelationFilter = {
-    every?: pendingProductWhereInput
-    some?: pendingProductWhereInput
-    none?: pendingProductWhereInput
+  export type ProdukGedungListRelationFilter = {
+    every?: produkGedungWhereInput
+    some?: produkGedungWhereInput
+    none?: produkGedungWhereInput
   }
 
   export type SortOrderInput = {
@@ -5770,58 +8229,56 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
-  export type pendingProductOrderByRelationAggregateInput = {
+  export type produkGedungOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type productCountOrderByAggregateInput = {
+  export type gedungCountOrderByAggregateInput = {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrder
-    name_barang?: SortOrder
-    stock_barang?: SortOrder
+    nama?: SortOrder
+    alamat?: SortOrder
   }
 
-  export type productAvgOrderByAggregateInput = {
-    stock_barang?: SortOrder
+  export type gedungAvgOrderByAggregateInput = {
+    id?: SortOrder
   }
 
-  export type productMaxOrderByAggregateInput = {
+  export type gedungMaxOrderByAggregateInput = {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrder
-    name_barang?: SortOrder
-    stock_barang?: SortOrder
+    nama?: SortOrder
+    alamat?: SortOrder
   }
 
-  export type productMinOrderByAggregateInput = {
+  export type gedungMinOrderByAggregateInput = {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrder
-    name_barang?: SortOrder
-    stock_barang?: SortOrder
+    nama?: SortOrder
+    alamat?: SortOrder
   }
 
-  export type productSumOrderByAggregateInput = {
-    stock_barang?: SortOrder
+  export type gedungSumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
-  export type StringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -5870,7 +8327,128 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+  export type StringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type PendingProductListRelationFilter = {
+    every?: pendingProductWhereInput
+    some?: pendingProductWhereInput
+    none?: pendingProductWhereInput
+  }
+
+  export type pendingProductOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type productCountOrderByAggregateInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrder
+    namaBarang?: SortOrder
+  }
+
+  export type productMaxOrderByAggregateInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrder
+    namaBarang?: SortOrder
+  }
+
+  export type productMinOrderByAggregateInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrder
+    namaBarang?: SortOrder
+  }
+
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type ProductRelationFilter = {
+    is?: productWhereInput
+    isNot?: productWhereInput
+  }
+
+  export type GedungRelationFilter = {
+    is?: gedungWhereInput
+    isNot?: gedungWhereInput
+  }
+
+  export type produkGedungProdukIdGedungIdCompoundUniqueInput = {
+    produkId: string
+    gedungId: number
+  }
+
+  export type produkGedungCountOrderByAggregateInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrder
+    produkId?: SortOrder
+    gedungId?: SortOrder
+    stockBarang?: SortOrder
+  }
+
+  export type produkGedungAvgOrderByAggregateInput = {
+    gedungId?: SortOrder
+    stockBarang?: SortOrder
+  }
+
+  export type produkGedungMaxOrderByAggregateInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrder
+    produkId?: SortOrder
+    gedungId?: SortOrder
+    stockBarang?: SortOrder
+  }
+
+  export type produkGedungMinOrderByAggregateInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrder
+    produkId?: SortOrder
+    gedungId?: SortOrder
+    stockBarang?: SortOrder
+  }
+
+  export type produkGedungSumOrderByAggregateInput = {
+    gedungId?: SortOrder
+    stockBarang?: SortOrder
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -5878,17 +8456,7 @@ export namespace Prisma {
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type ProductListRelationFilter = {
@@ -5905,47 +8473,55 @@ export namespace Prisma {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrder
-    stock_barang?: SortOrder
+    stockBarang?: SortOrder
     user?: SortOrder
     username?: SortOrder
     role?: SortOrder
     note?: SortOrder
     jenisBarang?: SortOrder
     statusProduct?: SortOrder
+    produkId?: SortOrder
+    gedungId?: SortOrder
   }
 
   export type pendingProductAvgOrderByAggregateInput = {
-    stock_barang?: SortOrder
+    stockBarang?: SortOrder
+    gedungId?: SortOrder
   }
 
   export type pendingProductMaxOrderByAggregateInput = {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrder
-    stock_barang?: SortOrder
+    stockBarang?: SortOrder
     user?: SortOrder
     username?: SortOrder
     role?: SortOrder
     note?: SortOrder
     jenisBarang?: SortOrder
     statusProduct?: SortOrder
+    produkId?: SortOrder
+    gedungId?: SortOrder
   }
 
   export type pendingProductMinOrderByAggregateInput = {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrder
-    stock_barang?: SortOrder
+    stockBarang?: SortOrder
     user?: SortOrder
     username?: SortOrder
     role?: SortOrder
     note?: SortOrder
     jenisBarang?: SortOrder
     statusProduct?: SortOrder
+    produkId?: SortOrder
+    gedungId?: SortOrder
   }
 
   export type pendingProductSumOrderByAggregateInput = {
-    stock_barang?: SortOrder
+    stockBarang?: SortOrder
+    gedungId?: SortOrder
   }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -5954,6 +8530,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type notifUserCountOrderByAggregateInput = {
@@ -6018,20 +8610,26 @@ export namespace Prisma {
     activity?: SortOrder
   }
 
-  export type pendingProductCreateNestedManyWithoutProductsInput = {
-    create?: XOR<pendingProductCreateWithoutProductsInput, pendingProductUncheckedCreateWithoutProductsInput> | pendingProductCreateWithoutProductsInput[] | pendingProductUncheckedCreateWithoutProductsInput[]
-    connectOrCreate?: pendingProductCreateOrConnectWithoutProductsInput | pendingProductCreateOrConnectWithoutProductsInput[]
-    connect?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
+  export type produkGedungCreateNestedManyWithoutGedungInput = {
+    create?: XOR<produkGedungCreateWithoutGedungInput, produkGedungUncheckedCreateWithoutGedungInput> | produkGedungCreateWithoutGedungInput[] | produkGedungUncheckedCreateWithoutGedungInput[]
+    connectOrCreate?: produkGedungCreateOrConnectWithoutGedungInput | produkGedungCreateOrConnectWithoutGedungInput[]
+    createMany?: produkGedungCreateManyGedungInputEnvelope
+    connect?: produkGedungWhereUniqueInput | produkGedungWhereUniqueInput[]
   }
 
-  export type pendingProductUncheckedCreateNestedManyWithoutProductsInput = {
-    create?: XOR<pendingProductCreateWithoutProductsInput, pendingProductUncheckedCreateWithoutProductsInput> | pendingProductCreateWithoutProductsInput[] | pendingProductUncheckedCreateWithoutProductsInput[]
-    connectOrCreate?: pendingProductCreateOrConnectWithoutProductsInput | pendingProductCreateOrConnectWithoutProductsInput[]
-    connect?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
+  export type produkGedungUncheckedCreateNestedManyWithoutGedungInput = {
+    create?: XOR<produkGedungCreateWithoutGedungInput, produkGedungUncheckedCreateWithoutGedungInput> | produkGedungCreateWithoutGedungInput[] | produkGedungUncheckedCreateWithoutGedungInput[]
+    connectOrCreate?: produkGedungCreateOrConnectWithoutGedungInput | produkGedungCreateOrConnectWithoutGedungInput[]
+    createMany?: produkGedungCreateManyGedungInputEnvelope
+    connect?: produkGedungWhereUniqueInput | produkGedungWhereUniqueInput[]
   }
 
-  export type StringFieldUpdateOperationsInput = {
-    set?: string
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -6046,12 +8644,76 @@ export namespace Prisma {
     set?: string | null
   }
 
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+  export type produkGedungUpdateManyWithoutGedungNestedInput = {
+    create?: XOR<produkGedungCreateWithoutGedungInput, produkGedungUncheckedCreateWithoutGedungInput> | produkGedungCreateWithoutGedungInput[] | produkGedungUncheckedCreateWithoutGedungInput[]
+    connectOrCreate?: produkGedungCreateOrConnectWithoutGedungInput | produkGedungCreateOrConnectWithoutGedungInput[]
+    upsert?: produkGedungUpsertWithWhereUniqueWithoutGedungInput | produkGedungUpsertWithWhereUniqueWithoutGedungInput[]
+    createMany?: produkGedungCreateManyGedungInputEnvelope
+    set?: produkGedungWhereUniqueInput | produkGedungWhereUniqueInput[]
+    disconnect?: produkGedungWhereUniqueInput | produkGedungWhereUniqueInput[]
+    delete?: produkGedungWhereUniqueInput | produkGedungWhereUniqueInput[]
+    connect?: produkGedungWhereUniqueInput | produkGedungWhereUniqueInput[]
+    update?: produkGedungUpdateWithWhereUniqueWithoutGedungInput | produkGedungUpdateWithWhereUniqueWithoutGedungInput[]
+    updateMany?: produkGedungUpdateManyWithWhereWithoutGedungInput | produkGedungUpdateManyWithWhereWithoutGedungInput[]
+    deleteMany?: produkGedungScalarWhereInput | produkGedungScalarWhereInput[]
+  }
+
+  export type produkGedungUncheckedUpdateManyWithoutGedungNestedInput = {
+    create?: XOR<produkGedungCreateWithoutGedungInput, produkGedungUncheckedCreateWithoutGedungInput> | produkGedungCreateWithoutGedungInput[] | produkGedungUncheckedCreateWithoutGedungInput[]
+    connectOrCreate?: produkGedungCreateOrConnectWithoutGedungInput | produkGedungCreateOrConnectWithoutGedungInput[]
+    upsert?: produkGedungUpsertWithWhereUniqueWithoutGedungInput | produkGedungUpsertWithWhereUniqueWithoutGedungInput[]
+    createMany?: produkGedungCreateManyGedungInputEnvelope
+    set?: produkGedungWhereUniqueInput | produkGedungWhereUniqueInput[]
+    disconnect?: produkGedungWhereUniqueInput | produkGedungWhereUniqueInput[]
+    delete?: produkGedungWhereUniqueInput | produkGedungWhereUniqueInput[]
+    connect?: produkGedungWhereUniqueInput | produkGedungWhereUniqueInput[]
+    update?: produkGedungUpdateWithWhereUniqueWithoutGedungInput | produkGedungUpdateWithWhereUniqueWithoutGedungInput[]
+    updateMany?: produkGedungUpdateManyWithWhereWithoutGedungInput | produkGedungUpdateManyWithWhereWithoutGedungInput[]
+    deleteMany?: produkGedungScalarWhereInput | produkGedungScalarWhereInput[]
+  }
+
+  export type produkGedungCreateNestedManyWithoutProdukInput = {
+    create?: XOR<produkGedungCreateWithoutProdukInput, produkGedungUncheckedCreateWithoutProdukInput> | produkGedungCreateWithoutProdukInput[] | produkGedungUncheckedCreateWithoutProdukInput[]
+    connectOrCreate?: produkGedungCreateOrConnectWithoutProdukInput | produkGedungCreateOrConnectWithoutProdukInput[]
+    createMany?: produkGedungCreateManyProdukInputEnvelope
+    connect?: produkGedungWhereUniqueInput | produkGedungWhereUniqueInput[]
+  }
+
+  export type pendingProductCreateNestedManyWithoutProductsInput = {
+    create?: XOR<pendingProductCreateWithoutProductsInput, pendingProductUncheckedCreateWithoutProductsInput> | pendingProductCreateWithoutProductsInput[] | pendingProductUncheckedCreateWithoutProductsInput[]
+    connectOrCreate?: pendingProductCreateOrConnectWithoutProductsInput | pendingProductCreateOrConnectWithoutProductsInput[]
+    connect?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
+  }
+
+  export type produkGedungUncheckedCreateNestedManyWithoutProdukInput = {
+    create?: XOR<produkGedungCreateWithoutProdukInput, produkGedungUncheckedCreateWithoutProdukInput> | produkGedungCreateWithoutProdukInput[] | produkGedungUncheckedCreateWithoutProdukInput[]
+    connectOrCreate?: produkGedungCreateOrConnectWithoutProdukInput | produkGedungCreateOrConnectWithoutProdukInput[]
+    createMany?: produkGedungCreateManyProdukInputEnvelope
+    connect?: produkGedungWhereUniqueInput | produkGedungWhereUniqueInput[]
+  }
+
+  export type pendingProductUncheckedCreateNestedManyWithoutProductsInput = {
+    create?: XOR<pendingProductCreateWithoutProductsInput, pendingProductUncheckedCreateWithoutProductsInput> | pendingProductCreateWithoutProductsInput[] | pendingProductUncheckedCreateWithoutProductsInput[]
+    connectOrCreate?: pendingProductCreateOrConnectWithoutProductsInput | pendingProductCreateOrConnectWithoutProductsInput[]
+    connect?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
+  }
+
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
+  }
+
+  export type produkGedungUpdateManyWithoutProdukNestedInput = {
+    create?: XOR<produkGedungCreateWithoutProdukInput, produkGedungUncheckedCreateWithoutProdukInput> | produkGedungCreateWithoutProdukInput[] | produkGedungUncheckedCreateWithoutProdukInput[]
+    connectOrCreate?: produkGedungCreateOrConnectWithoutProdukInput | produkGedungCreateOrConnectWithoutProdukInput[]
+    upsert?: produkGedungUpsertWithWhereUniqueWithoutProdukInput | produkGedungUpsertWithWhereUniqueWithoutProdukInput[]
+    createMany?: produkGedungCreateManyProdukInputEnvelope
+    set?: produkGedungWhereUniqueInput | produkGedungWhereUniqueInput[]
+    disconnect?: produkGedungWhereUniqueInput | produkGedungWhereUniqueInput[]
+    delete?: produkGedungWhereUniqueInput | produkGedungWhereUniqueInput[]
+    connect?: produkGedungWhereUniqueInput | produkGedungWhereUniqueInput[]
+    update?: produkGedungUpdateWithWhereUniqueWithoutProdukInput | produkGedungUpdateWithWhereUniqueWithoutProdukInput[]
+    updateMany?: produkGedungUpdateManyWithWhereWithoutProdukInput | produkGedungUpdateManyWithWhereWithoutProdukInput[]
+    deleteMany?: produkGedungScalarWhereInput | produkGedungScalarWhereInput[]
   }
 
   export type pendingProductUpdateManyWithoutProductsNestedInput = {
@@ -6067,6 +8729,20 @@ export namespace Prisma {
     deleteMany?: pendingProductScalarWhereInput | pendingProductScalarWhereInput[]
   }
 
+  export type produkGedungUncheckedUpdateManyWithoutProdukNestedInput = {
+    create?: XOR<produkGedungCreateWithoutProdukInput, produkGedungUncheckedCreateWithoutProdukInput> | produkGedungCreateWithoutProdukInput[] | produkGedungUncheckedCreateWithoutProdukInput[]
+    connectOrCreate?: produkGedungCreateOrConnectWithoutProdukInput | produkGedungCreateOrConnectWithoutProdukInput[]
+    upsert?: produkGedungUpsertWithWhereUniqueWithoutProdukInput | produkGedungUpsertWithWhereUniqueWithoutProdukInput[]
+    createMany?: produkGedungCreateManyProdukInputEnvelope
+    set?: produkGedungWhereUniqueInput | produkGedungWhereUniqueInput[]
+    disconnect?: produkGedungWhereUniqueInput | produkGedungWhereUniqueInput[]
+    delete?: produkGedungWhereUniqueInput | produkGedungWhereUniqueInput[]
+    connect?: produkGedungWhereUniqueInput | produkGedungWhereUniqueInput[]
+    update?: produkGedungUpdateWithWhereUniqueWithoutProdukInput | produkGedungUpdateWithWhereUniqueWithoutProdukInput[]
+    updateMany?: produkGedungUpdateManyWithWhereWithoutProdukInput | produkGedungUpdateManyWithWhereWithoutProdukInput[]
+    deleteMany?: produkGedungScalarWhereInput | produkGedungScalarWhereInput[]
+  }
+
   export type pendingProductUncheckedUpdateManyWithoutProductsNestedInput = {
     create?: XOR<pendingProductCreateWithoutProductsInput, pendingProductUncheckedCreateWithoutProductsInput> | pendingProductCreateWithoutProductsInput[] | pendingProductUncheckedCreateWithoutProductsInput[]
     connectOrCreate?: pendingProductCreateOrConnectWithoutProductsInput | pendingProductCreateOrConnectWithoutProductsInput[]
@@ -6078,6 +8754,34 @@ export namespace Prisma {
     update?: pendingProductUpdateWithWhereUniqueWithoutProductsInput | pendingProductUpdateWithWhereUniqueWithoutProductsInput[]
     updateMany?: pendingProductUpdateManyWithWhereWithoutProductsInput | pendingProductUpdateManyWithWhereWithoutProductsInput[]
     deleteMany?: pendingProductScalarWhereInput | pendingProductScalarWhereInput[]
+  }
+
+  export type productCreateNestedOneWithoutProdukGedungInput = {
+    create?: XOR<productCreateWithoutProdukGedungInput, productUncheckedCreateWithoutProdukGedungInput>
+    connectOrCreate?: productCreateOrConnectWithoutProdukGedungInput
+    connect?: productWhereUniqueInput
+  }
+
+  export type gedungCreateNestedOneWithoutProdukInput = {
+    create?: XOR<gedungCreateWithoutProdukInput, gedungUncheckedCreateWithoutProdukInput>
+    connectOrCreate?: gedungCreateOrConnectWithoutProdukInput
+    connect?: gedungWhereUniqueInput
+  }
+
+  export type productUpdateOneRequiredWithoutProdukGedungNestedInput = {
+    create?: XOR<productCreateWithoutProdukGedungInput, productUncheckedCreateWithoutProdukGedungInput>
+    connectOrCreate?: productCreateOrConnectWithoutProdukGedungInput
+    upsert?: productUpsertWithoutProdukGedungInput
+    connect?: productWhereUniqueInput
+    update?: XOR<XOR<productUpdateToOneWithWhereWithoutProdukGedungInput, productUpdateWithoutProdukGedungInput>, productUncheckedUpdateWithoutProdukGedungInput>
+  }
+
+  export type gedungUpdateOneRequiredWithoutProdukNestedInput = {
+    create?: XOR<gedungCreateWithoutProdukInput, gedungUncheckedCreateWithoutProdukInput>
+    connectOrCreate?: gedungCreateOrConnectWithoutProdukInput
+    upsert?: gedungUpsertWithoutProdukInput
+    connect?: gedungWhereUniqueInput
+    update?: XOR<XOR<gedungUpdateToOneWithWhereWithoutProdukInput, gedungUpdateWithoutProdukInput>, gedungUncheckedUpdateWithoutProdukInput>
   }
 
   export type productCreateNestedManyWithoutPendingProductInput = {
@@ -6094,6 +8798,14 @@ export namespace Prisma {
 
   export type BoolFieldUpdateOperationsInput = {
     set?: boolean
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type productUpdateManyWithoutPendingProductNestedInput = {
@@ -6122,18 +8834,15 @@ export namespace Prisma {
     deleteMany?: productScalarWhereInput | productScalarWhereInput[]
   }
 
-  export type NestedStringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringFilter<$PrismaModel> | string
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -6172,35 +8881,7 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type NestedIntFilter<$PrismaModel = never> = {
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
     notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -6208,7 +8889,23 @@ export namespace Prisma {
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -6239,6 +8936,17 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -6254,6 +8962,50 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedStringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -6283,48 +9035,135 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
+  export type produkGedungCreateWithoutGedungInput = {
+    id?: string
+    start?: Date | string
+    end?: Date | string | null
+    stockBarang?: number
+    produk: productCreateNestedOneWithoutProdukGedungInput
   }
 
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
+  export type produkGedungUncheckedCreateWithoutGedungInput = {
+    id?: string
+    start?: Date | string
+    end?: Date | string | null
+    produkId: string
+    stockBarang?: number
+  }
+
+  export type produkGedungCreateOrConnectWithoutGedungInput = {
+    where: produkGedungWhereUniqueInput
+    create: XOR<produkGedungCreateWithoutGedungInput, produkGedungUncheckedCreateWithoutGedungInput>
+  }
+
+  export type produkGedungCreateManyGedungInputEnvelope = {
+    data: produkGedungCreateManyGedungInput | produkGedungCreateManyGedungInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type produkGedungUpsertWithWhereUniqueWithoutGedungInput = {
+    where: produkGedungWhereUniqueInput
+    update: XOR<produkGedungUpdateWithoutGedungInput, produkGedungUncheckedUpdateWithoutGedungInput>
+    create: XOR<produkGedungCreateWithoutGedungInput, produkGedungUncheckedCreateWithoutGedungInput>
+  }
+
+  export type produkGedungUpdateWithWhereUniqueWithoutGedungInput = {
+    where: produkGedungWhereUniqueInput
+    data: XOR<produkGedungUpdateWithoutGedungInput, produkGedungUncheckedUpdateWithoutGedungInput>
+  }
+
+  export type produkGedungUpdateManyWithWhereWithoutGedungInput = {
+    where: produkGedungScalarWhereInput
+    data: XOR<produkGedungUpdateManyMutationInput, produkGedungUncheckedUpdateManyWithoutGedungInput>
+  }
+
+  export type produkGedungScalarWhereInput = {
+    AND?: produkGedungScalarWhereInput | produkGedungScalarWhereInput[]
+    OR?: produkGedungScalarWhereInput[]
+    NOT?: produkGedungScalarWhereInput | produkGedungScalarWhereInput[]
+    id?: StringFilter<"produkGedung"> | string
+    start?: DateTimeFilter<"produkGedung"> | Date | string
+    end?: DateTimeNullableFilter<"produkGedung"> | Date | string | null
+    produkId?: StringFilter<"produkGedung"> | string
+    gedungId?: IntFilter<"produkGedung"> | number
+    stockBarang?: IntFilter<"produkGedung"> | number
+  }
+
+  export type produkGedungCreateWithoutProdukInput = {
+    id?: string
+    start?: Date | string
+    end?: Date | string | null
+    stockBarang?: number
+    gedung: gedungCreateNestedOneWithoutProdukInput
+  }
+
+  export type produkGedungUncheckedCreateWithoutProdukInput = {
+    id?: string
+    start?: Date | string
+    end?: Date | string | null
+    gedungId: number
+    stockBarang?: number
+  }
+
+  export type produkGedungCreateOrConnectWithoutProdukInput = {
+    where: produkGedungWhereUniqueInput
+    create: XOR<produkGedungCreateWithoutProdukInput, produkGedungUncheckedCreateWithoutProdukInput>
+  }
+
+  export type produkGedungCreateManyProdukInputEnvelope = {
+    data: produkGedungCreateManyProdukInput | produkGedungCreateManyProdukInput[]
+    skipDuplicates?: boolean
   }
 
   export type pendingProductCreateWithoutProductsInput = {
     id?: string
     start?: Date | string
     end?: Date | string | null
-    stock_barang?: number | null
+    stockBarang?: number
     user?: string | null
     username?: string | null
     role?: string | null
     note?: string | null
     jenisBarang?: string | null
     statusProduct?: boolean
+    produkId?: string | null
+    gedungId?: number | null
   }
 
   export type pendingProductUncheckedCreateWithoutProductsInput = {
     id?: string
     start?: Date | string
     end?: Date | string | null
-    stock_barang?: number | null
+    stockBarang?: number
     user?: string | null
     username?: string | null
     role?: string | null
     note?: string | null
     jenisBarang?: string | null
     statusProduct?: boolean
+    produkId?: string | null
+    gedungId?: number | null
   }
 
   export type pendingProductCreateOrConnectWithoutProductsInput = {
     where: pendingProductWhereUniqueInput
     create: XOR<pendingProductCreateWithoutProductsInput, pendingProductUncheckedCreateWithoutProductsInput>
+  }
+
+  export type produkGedungUpsertWithWhereUniqueWithoutProdukInput = {
+    where: produkGedungWhereUniqueInput
+    update: XOR<produkGedungUpdateWithoutProdukInput, produkGedungUncheckedUpdateWithoutProdukInput>
+    create: XOR<produkGedungCreateWithoutProdukInput, produkGedungUncheckedCreateWithoutProdukInput>
+  }
+
+  export type produkGedungUpdateWithWhereUniqueWithoutProdukInput = {
+    where: produkGedungWhereUniqueInput
+    data: XOR<produkGedungUpdateWithoutProdukInput, produkGedungUncheckedUpdateWithoutProdukInput>
+  }
+
+  export type produkGedungUpdateManyWithWhereWithoutProdukInput = {
+    where: produkGedungScalarWhereInput
+    data: XOR<produkGedungUpdateManyMutationInput, produkGedungUncheckedUpdateManyWithoutProdukInput>
   }
 
   export type pendingProductUpsertWithWhereUniqueWithoutProductsInput = {
@@ -6350,29 +9189,127 @@ export namespace Prisma {
     id?: StringFilter<"pendingProduct"> | string
     start?: DateTimeFilter<"pendingProduct"> | Date | string
     end?: DateTimeNullableFilter<"pendingProduct"> | Date | string | null
-    stock_barang?: IntNullableFilter<"pendingProduct"> | number | null
+    stockBarang?: IntFilter<"pendingProduct"> | number
     user?: StringNullableFilter<"pendingProduct"> | string | null
     username?: StringNullableFilter<"pendingProduct"> | string | null
     role?: StringNullableFilter<"pendingProduct"> | string | null
     note?: StringNullableFilter<"pendingProduct"> | string | null
     jenisBarang?: StringNullableFilter<"pendingProduct"> | string | null
     statusProduct?: BoolFilter<"pendingProduct"> | boolean
+    produkId?: StringNullableFilter<"pendingProduct"> | string | null
+    gedungId?: IntNullableFilter<"pendingProduct"> | number | null
+  }
+
+  export type productCreateWithoutProdukGedungInput = {
+    id?: string
+    start?: Date | string
+    end?: Date | string | null
+    namaBarang?: string | null
+    pendingProduct?: pendingProductCreateNestedManyWithoutProductsInput
+  }
+
+  export type productUncheckedCreateWithoutProdukGedungInput = {
+    id?: string
+    start?: Date | string
+    end?: Date | string | null
+    namaBarang?: string | null
+    pendingProduct?: pendingProductUncheckedCreateNestedManyWithoutProductsInput
+  }
+
+  export type productCreateOrConnectWithoutProdukGedungInput = {
+    where: productWhereUniqueInput
+    create: XOR<productCreateWithoutProdukGedungInput, productUncheckedCreateWithoutProdukGedungInput>
+  }
+
+  export type gedungCreateWithoutProdukInput = {
+    id?: number
+    start?: Date | string
+    end?: Date | string | null
+    nama?: string | null
+    alamat?: string | null
+  }
+
+  export type gedungUncheckedCreateWithoutProdukInput = {
+    id?: number
+    start?: Date | string
+    end?: Date | string | null
+    nama?: string | null
+    alamat?: string | null
+  }
+
+  export type gedungCreateOrConnectWithoutProdukInput = {
+    where: gedungWhereUniqueInput
+    create: XOR<gedungCreateWithoutProdukInput, gedungUncheckedCreateWithoutProdukInput>
+  }
+
+  export type productUpsertWithoutProdukGedungInput = {
+    update: XOR<productUpdateWithoutProdukGedungInput, productUncheckedUpdateWithoutProdukGedungInput>
+    create: XOR<productCreateWithoutProdukGedungInput, productUncheckedCreateWithoutProdukGedungInput>
+    where?: productWhereInput
+  }
+
+  export type productUpdateToOneWithWhereWithoutProdukGedungInput = {
+    where?: productWhereInput
+    data: XOR<productUpdateWithoutProdukGedungInput, productUncheckedUpdateWithoutProdukGedungInput>
+  }
+
+  export type productUpdateWithoutProdukGedungInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    namaBarang?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingProduct?: pendingProductUpdateManyWithoutProductsNestedInput
+  }
+
+  export type productUncheckedUpdateWithoutProdukGedungInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    namaBarang?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingProduct?: pendingProductUncheckedUpdateManyWithoutProductsNestedInput
+  }
+
+  export type gedungUpsertWithoutProdukInput = {
+    update: XOR<gedungUpdateWithoutProdukInput, gedungUncheckedUpdateWithoutProdukInput>
+    create: XOR<gedungCreateWithoutProdukInput, gedungUncheckedCreateWithoutProdukInput>
+    where?: gedungWhereInput
+  }
+
+  export type gedungUpdateToOneWithWhereWithoutProdukInput = {
+    where?: gedungWhereInput
+    data: XOR<gedungUpdateWithoutProdukInput, gedungUncheckedUpdateWithoutProdukInput>
+  }
+
+  export type gedungUpdateWithoutProdukInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    alamat?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type gedungUncheckedUpdateWithoutProdukInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    alamat?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type productCreateWithoutPendingProductInput = {
     id?: string
     start?: Date | string
     end?: Date | string | null
-    name_barang?: string | null
-    stock_barang?: number | null
+    namaBarang?: string | null
+    produkGedung?: produkGedungCreateNestedManyWithoutProdukInput
   }
 
   export type productUncheckedCreateWithoutPendingProductInput = {
     id?: string
     start?: Date | string
     end?: Date | string | null
-    name_barang?: string | null
-    stock_barang?: number | null
+    namaBarang?: string | null
+    produkGedung?: produkGedungUncheckedCreateNestedManyWithoutProdukInput
   }
 
   export type productCreateOrConnectWithoutPendingProductInput = {
@@ -6403,71 +9340,139 @@ export namespace Prisma {
     id?: StringFilter<"product"> | string
     start?: DateTimeFilter<"product"> | Date | string
     end?: DateTimeNullableFilter<"product"> | Date | string | null
-    name_barang?: StringNullableFilter<"product"> | string | null
-    stock_barang?: IntNullableFilter<"product"> | number | null
+    namaBarang?: StringNullableFilter<"product"> | string | null
+  }
+
+  export type produkGedungCreateManyGedungInput = {
+    id?: string
+    start?: Date | string
+    end?: Date | string | null
+    produkId: string
+    stockBarang?: number
+  }
+
+  export type produkGedungUpdateWithoutGedungInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stockBarang?: IntFieldUpdateOperationsInput | number
+    produk?: productUpdateOneRequiredWithoutProdukGedungNestedInput
+  }
+
+  export type produkGedungUncheckedUpdateWithoutGedungInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    produkId?: StringFieldUpdateOperationsInput | string
+    stockBarang?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type produkGedungUncheckedUpdateManyWithoutGedungInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    produkId?: StringFieldUpdateOperationsInput | string
+    stockBarang?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type produkGedungCreateManyProdukInput = {
+    id?: string
+    start?: Date | string
+    end?: Date | string | null
+    gedungId: number
+    stockBarang?: number
+  }
+
+  export type produkGedungUpdateWithoutProdukInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stockBarang?: IntFieldUpdateOperationsInput | number
+    gedung?: gedungUpdateOneRequiredWithoutProdukNestedInput
+  }
+
+  export type produkGedungUncheckedUpdateWithoutProdukInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gedungId?: IntFieldUpdateOperationsInput | number
+    stockBarang?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type produkGedungUncheckedUpdateManyWithoutProdukInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    gedungId?: IntFieldUpdateOperationsInput | number
+    stockBarang?: IntFieldUpdateOperationsInput | number
   }
 
   export type pendingProductUpdateWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
+    stockBarang?: IntFieldUpdateOperationsInput | number
     user?: NullableStringFieldUpdateOperationsInput | string | null
     username?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
+    produkId?: NullableStringFieldUpdateOperationsInput | string | null
+    gedungId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type pendingProductUncheckedUpdateWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
+    stockBarang?: IntFieldUpdateOperationsInput | number
     user?: NullableStringFieldUpdateOperationsInput | string | null
     username?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
+    produkId?: NullableStringFieldUpdateOperationsInput | string | null
+    gedungId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type pendingProductUncheckedUpdateManyWithoutProductsInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
+    stockBarang?: IntFieldUpdateOperationsInput | number
     user?: NullableStringFieldUpdateOperationsInput | string | null
     username?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
     jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
+    produkId?: NullableStringFieldUpdateOperationsInput | string | null
+    gedungId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type productUpdateWithoutPendingProductInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    name_barang?: NullableStringFieldUpdateOperationsInput | string | null
-    stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
+    namaBarang?: NullableStringFieldUpdateOperationsInput | string | null
+    produkGedung?: produkGedungUpdateManyWithoutProdukNestedInput
   }
 
   export type productUncheckedUpdateWithoutPendingProductInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    name_barang?: NullableStringFieldUpdateOperationsInput | string | null
-    stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
+    namaBarang?: NullableStringFieldUpdateOperationsInput | string | null
+    produkGedung?: produkGedungUncheckedUpdateManyWithoutProdukNestedInput
   }
 
   export type productUncheckedUpdateManyWithoutPendingProductInput = {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    name_barang?: NullableStringFieldUpdateOperationsInput | string | null
-    stock_barang?: NullableIntFieldUpdateOperationsInput | number | null
+    namaBarang?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 
@@ -6475,6 +9480,10 @@ export namespace Prisma {
   /**
    * Aliases for legacy arg types
    */
+    /**
+     * @deprecated Use GedungCountOutputTypeDefaultArgs instead
+     */
+    export type GedungCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = GedungCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use ProductCountOutputTypeDefaultArgs instead
      */
@@ -6484,9 +9493,17 @@ export namespace Prisma {
      */
     export type PendingProductCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PendingProductCountOutputTypeDefaultArgs<ExtArgs>
     /**
+     * @deprecated Use gedungDefaultArgs instead
+     */
+    export type gedungArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = gedungDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use productDefaultArgs instead
      */
     export type productArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = productDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use produkGedungDefaultArgs instead
+     */
+    export type produkGedungArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = produkGedungDefaultArgs<ExtArgs>
     /**
      * @deprecated Use pendingProductDefaultArgs instead
      */
