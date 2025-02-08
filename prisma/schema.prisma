@@ -8,23 +8,37 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model gudang {
-  id            String    @id @default(uuid())
-  start         DateTime  @default(now())
-  end           DateTime? @updatedAt
-  namaGudang    String?   @unique
-  gudangProduct product[] @relation("GudangProduct")
+model gedung {
+  id     Int            @id @default(1)
+  start  DateTime       @default(now())
+  end    DateTime?      @updatedAt
+  nama   String
+  alamat String
+  produk produkGedung[]
 }
 
 model product {
-  id           String    @id @default(uuid())
-  start        DateTime  @default(now())
-  end          DateTime? @updatedAt
-  name_barang  String?
-  stock_barang Int?
-
-  gudangProduct  gudang[]         @relation("GudangProduct")
+  id             String           @id @default(uuid())
+  start          DateTime         @default(now())
+  end            DateTime?        @updatedAt
+  name_barang    String?
+  harga          Int
+  produkGedung   produkGedung[]
   pendingProduct pendingProduct[] @relation("PendingProduct")
+}
+
+model produkGedung {
+  id       String    @id @default(uuid())
+  start    DateTime  @default(now())
+  end      DateTime? @updatedAt
+  produkId String
+  gedungId Int
+  stok     Int
+
+  produk product @relation(fields: [produkId], references: [id])
+  gedung gedung  @relation(fields: [gedungId], references: [id])
+
+  @@unique([produkId, gedungId]) // Setiap produk hanya boleh ada satu stok per gedung
 }
 
 model pendingProduct {
@@ -39,6 +53,7 @@ model pendingProduct {
   jenisBarang   String?
   statusProduct Boolean   @default(false)
   products      product[] @relation("PendingProduct")
+  produkId      String?
 }
 
 model notifUser {

@@ -25,6 +25,7 @@ export const authOptions = {
                         password: "developer",
                         namaUser: "Rio ( Developer )",
                         username: 'riodev',
+                        gudang: [11111, 22222, 33333],
                         role: ['tambahindent', 'pending', 'verminplus', 'log']
                     },
                     {
@@ -34,6 +35,7 @@ export const authOptions = {
                         password: "purshfitri1x23",
                         namaUser: "Fitri ( Purchasing )",
                         username: 'fitripurcha',
+                        gudang: [11111, 22222, 33333],
                         role: ['tambahindent', 'verplus', 'nopending']
                     },
                     {
@@ -42,6 +44,7 @@ export const authOptions = {
                         password: "adminsin12e3",
                         namaUser: "Sin ( Admin )",
                         username: 'adminsin',
+                        gudang: [11111],
                         role: ['pending', 'nopending']
                     },
                     {
@@ -50,6 +53,7 @@ export const authOptions = {
                         password: "spvirfan12k3",
                         namaUser: "Irfan (SPV)",
                         username: 'irfanspv',
+                        gudang: [11111],
                         role: ['vermin']
                     },
                     {
@@ -58,6 +62,7 @@ export const authOptions = {
                         password: "selesdhitav123",
                         namaUser: "Dhita (Sales)",
                         username: 'dhitasales',
+                        gudang: [11111],
                         role: ['sales']
                     },
                     {
@@ -66,6 +71,7 @@ export const authOptions = {
                         password: "dwispertsv123",
                         namaUser: "Dwi (Sparepart)",
                         username: 'sparepartdwi',
+                        gudang: [11111],
                         role: ['pending', 'nopending']
                     },
                 ];
