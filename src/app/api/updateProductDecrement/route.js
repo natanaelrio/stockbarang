@@ -2,7 +2,7 @@ import { prisma } from "@/controllers/prisma"
 import { ResponseData } from "@/controllers/ResponseData";
 
 export async function PUT(req) {
-    const { productId, stockBarang, idPending, statusProduct, gedungId } = await req.json()
+    const { productId, stockBarang, gedungId } = await req.json()
 
     BigInt.prototype.toJSON = function () {
         return this.toString();
@@ -28,16 +28,7 @@ export async function PUT(req) {
                                 }
                             }
                         }
-                    },
-                    pendingProduct: idPending ? {
-                        update: {
-                            where: {
-                                id: idPending
-                            }, data: {
-                                statusProduct: Boolean(statusProduct)
-                            }
-                        }
-                    } : {}
+                    }
                 }
             });
 

@@ -80,10 +80,10 @@ export default function InputBarang({ session }) {
                     })
                     await CreateActivity({
                         userActivity: session.namaUser,
-                        activity: `Penambahan Product ${values.namaBarang} ( ${values.idBarang} ) ${values.jenisBarang == 'Indent' && '( INDENT )'} ${values.jenisBarang == 'Request' && '( REQUEST )'}`,
+                        activity: `Penambahan Product ${values.namaBarang} ( ${values.idBarang} )}`,
                     });
                     router.refresh();
-                    // setShowInputBarang();
+                    setShowInputBarang();
                     setRefreshData()
                     setIsLoadingProduk(false)
                 };
@@ -113,7 +113,7 @@ export default function InputBarang({ session }) {
             <div className={styles.bghitam} onClick={() => setShowInputBarang()}></div>
             <form className={styles.inputbarang} onSubmit={formik.handleSubmit}>
                 {showScan && <BarcodeScanner kondisiInput={true} />}
-                <button onClick={() => setShowScan(!showScan)}>{!showScan ? 'Input ID SCAN' : 'Tutup Input ID SCAN'}</button>
+                <button disabled={isLoadingProduk} onClick={() => setShowScan(!showScan)}>{!showScan ? 'Input ID SCAN' : 'Tutup Input ID SCAN'}</button>
                 <input
                     type='text'
                     name='idBarang'

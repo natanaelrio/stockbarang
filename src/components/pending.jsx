@@ -1,7 +1,7 @@
 "use client"
 import styles from '@/components/listProduct.module.css';
 import { TimeConverter } from '@/utils/formatMoment';
-import { CreateActivity, UpdateDecrement, UpdateIncrement, updateJenisBarang, UpdateProductIndentDecrement, UpdateProductIndentIncrement } from '@/service/data';
+import { CreateActivity, UpdateDecrement, UpdateIncrement, updateJenisBarang, UpdateProductIndentDecrement, UpdateProductIndentIncrement, UpdateStatusPending } from '@/service/data';
 import { GetPendingProduct } from '@/service/dataClient'
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
@@ -45,82 +45,139 @@ export default function Pending({ session }) {
         const KondisiMin = product?.role == 'vermin'
         const isConfirmed = window.confirm(`Apakah Anda yakin ingin mengonfirmasi ${product?.products[0].namaBarang}?`);
         if (isConfirmed) {
-            const FetchDataFinal = async () => {
-                try {
-                    setIsLoadingProduk(true)
-                    !product?.statusProduct ?
-                        await UpdateDecrement({
-                            stockBarang: product?.stockBarang,
-                            gedungId: product?.gedungId,
-                            productId: product?.products[0]?.id,
-                            idPending: product?.id,
-                            statusProduct: !product?.statusProduct,
-                        }) : await UpdateIncrement({
-                            stockBarang: product?.stockBarang,
-                            gedungId: product?.gedungId,
-                            productId: product?.products[0]?.id,
-                            idPending: product?.id,
-                            statusProduct: !product?.statusProduct,
-                        })
+            // const FetchDataFinal = async () => {
+            //     try {
+            //         setIsLoadingProduk(true)
+            //         !product?.statusProduct ?
+            //             await UpdateDecrement({
+            //                 stockBarang: product?.stockBarang,
+            //                 gedungId: product?.gedungId,
+            //                 productId: product?.products[0]?.id,
+            //                 idPending: product?.id,
+            //                 statusProduct: !product?.statusProduct,
+            //             }) : await UpdateIncrement({
+            //                 stockBarang: product?.stockBarang,
+            //                 gedungId: product?.gedungId,
+            //                 productId: product?.products[0]?.id,
+            //                 idPending: product?.id,
+            //                 statusProduct: !product?.statusProduct,
+            //             })
 
-                    !product?.statusProduct ?
-                        await CreateActivity({
-                            userActivity: session.namaUser,
-                            activity: `Konfirmasi Pengurangan ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} ( ${product?.products[0]?.id} ) `
-                        }) :
-                        await CreateActivity({
-                            userActivity: session.namaUser,
-                            activity: `Konfirmasi Pembatalan ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} ( ${product?.products[0]?.id} ) `
-                        })
-                    setIsLoadingProduk(false)
-                } catch (e) {
-                    throw new Error("Server error, gagal menyimpan produk.");
-                }
-            }
-            KondisiMin && toast.promise(
-                FetchDataFinal(),
-                {
-                    loading: 'Saving...',
-                    success: <b>{product?.products[0].namaBarang}, Berhasil diUpdate!</b>,
-                    error: <b>ID : {product?.products[0]?.id} syudah adaww....</b>,
-                }
-            );
+            //         !product?.statusProduct ?
+            //             await CreateActivity({
+            //                 userActivity: session.namaUser,
+            //                 activity: `Konfirmasi Pengurangan ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} ( ${product?.products[0]?.id} ) `
+            //             }) :
+            //             await CreateActivity({
+            //                 userActivity: session.namaUser,
+            //                 activity: `Konfirmasi Pembatalan ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} ( ${product?.products[0]?.id} ) `
+            //             })
+            //         setIsLoadingProduk(false)
+            //     } catch (e) {
+            //         throw new Error("Server error, gagal menyimpan produk.");
+            //     }
+            // }
+            // KondisiMin && toast.promise(
+            //     FetchDataFinal(),
+            //     {
+            //         loading: 'Saving...',
+            //         success: <b>{product?.products[0].namaBarang}, Berhasil diUpdate!</b>,
+            //         error: <b>ID : {product?.products[0]?.id} syudah adaww....</b>,
+            //     }
+            // );
             const FetchDataPlus = async () => {
                 try {
                     setIsLoadingProduk(true)
-                    !product?.statusProduct ?
-                        await UpdateIncrement({
-                            stockBarang: product?.stockBarang,
-                            gedungId: product?.gedungId,
-                            productId: product?.products[0]?.id,
-                            idPending: product?.id,
-                            statusProduct: !product?.statusProduct,
-                        }) : await UpdateDecrement({
-                            stockBarang: product?.stockBarang,
-                            gedungId: product?.gedungId,
-                            productId: product?.products[0]?.id,
-                            idPending: product?.id,
-                            statusProduct: !product?.statusProduct,
-                        })
 
-                    !product?.statusProduct ?
-                        await UpdateProductIndentDecrement({
-                            productId: product?.products[0]?.id,
-                            stockBarang: product?.stockBarang,
-                        }) : await UpdateProductIndentIncrement({
-                            productId: product?.products[0]?.id,
-                            stockBarang: product?.stockBarang,
-                        })
+                    product?.jenisBarang == 'TidakLangsung' ?
+                        product?.statusProduct ?
+                            await UpdateIncrement({
+                                stockBarang: product?.stockBarang,
+                                gedungId: product?.gedungId,
+                                productId: product?.products[0]?.id,
+                                // idPending: product?.id,
+                                // statusProduct: !product?.statusProduct,
+                            }) : await UpdateDecrement({
+                                stockBarang: product?.stockBarang,
+                                gedungId: product?.gedungId,
+                                productId: product?.products[0]?.id,
+                                // idPending: product?.id,
+                                // statusProduct: !product?.statusProduct,
+                            }) : null
 
-                    !product?.statusProduct ?
-                        await CreateActivity({
-                            userActivity: session.namaUser,
-                            activity: `Konfirmasi Tambah(indent) ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} ( ${product?.products[0]?.id} ) `
-                        }) :
-                        await CreateActivity({
-                            userActivity: session.namaUser,
-                            activity: `Konfirmasi Pembatalan(indent) ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} ( ${product?.products[0]?.id} ) `
-                        })
+                    product?.jenisBarang == 'Langsung' ?
+                        product?.statusProduct ?
+                            await UpdateDecrement({
+                                stockBarang: product?.stockBarang,
+                                gedungId: product?.gedungId,
+                                productId: product?.products[0]?.id,
+                                // idPending: product?.id,
+                                // statusProduct: !product?.statusProduct,
+                            }) : await UpdateIncrement({
+                                stockBarang: product?.stockBarang,
+                                gedungId: product?.gedungId,
+                                productId: product?.products[0]?.id,
+                                // idPending: product?.id,
+                                // statusProduct: !product?.statusProduct,
+                            }) : null
+
+                    product?.jenisBarang == 'Indent' ?
+                        product?.statusProduct ?
+                            await UpdateProductIndentDecrement({
+                                productId: product?.products[0]?.id,
+                                stockBarang: product?.stockBarang,
+                            }) : await UpdateProductIndentIncrement({
+                                productId: product?.products[0]?.id,
+                                stockBarang: product?.stockBarang,
+                            }) : null
+
+                    product?.jenisBarang == 'Langsung' ?
+                        product?.statusProduct ?
+                            await UpdateProductIndentIncrement({
+                                productId: product?.products[0]?.id,
+                                stockBarang: product?.stockBarang,
+                            }) : await UpdateProductIndentDecrement({
+                                productId: product?.products[0]?.id,
+                                stockBarang: product?.stockBarang,
+                            }) : null
+
+                    await UpdateStatusPending({
+                        idPending: product?.id,
+                        statusProduct: !product?.statusProduct
+                    })
+
+
+
+                    product?.jenisBarang == 'TidakLangsung' ?
+                        product?.statusProduct ?
+                            await CreateActivity({
+                                userActivity: session.namaUser,
+                                activity: `Konfirmasi Pembatalan Pengurangan(Final) ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} ( ${product?.products[0]?.id} ) `
+                            }) : await CreateActivity({
+                                userActivity: session.namaUser,
+                                activity: `Konfirmasi Pengurangan(Final) ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} ( ${product?.products[0]?.id} ) `
+                            }) : null
+
+                    product?.jenisBarang == 'Langsung' ?
+                        product?.statusProduct ?
+                            await CreateActivity({
+                                userActivity: session.namaUser,
+                                activity: `Konfirmasi Pembatalan(Langsung) ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} ( ${product?.products[0]?.id} ) `
+                            }) : await CreateActivity({
+                                userActivity: session.namaUser,
+                                activity: `Konfirmasi Penambahan(Langsung) ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} ( ${product?.products[0]?.id} ) `
+                            }) : null
+
+                    product?.jenisBarang == 'Indent' ?
+                        product?.statusProduct ?
+                            await CreateActivity({
+                                userActivity: session.namaUser,
+                                activity: `Konfirmasi Pembatalan(Indent) ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} ( ${product?.products[0]?.id} ) `
+                            }) : await CreateActivity({
+                                userActivity: session.namaUser,
+                                activity: `Konfirmasi Penambahan(Indent) ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} ( ${product?.products[0]?.id} ) `
+                            }) : null
+
                     setIsLoadingProduk(false)
                     setRefreshData()
 
@@ -130,7 +187,7 @@ export default function Pending({ session }) {
                     throw new Error("Server error, gagal menyimpan produk.");
                 }
             }
-            KondisiPlus && toast.promise(
+            toast.promise(
                 FetchDataPlus(),
                 {
                     loading: 'Saving...',
@@ -201,10 +258,11 @@ export default function Pending({ session }) {
                                     <th>ID</th>
                                     <th>Name Barang</th>
                                     <th>User</th>
-                                    <th>{KondisiSessionTambah && 'Jumlah'}{KondisiSessionKurang && 'Pengurangan'}{KondisiSessionKurang || KondisiSessionTambah || '+/-'}</th>
-                                    {KondisiSessionTambah && <th>Eksekusi</th>}
+                                    {/* <th>{KondisiSessionTambah && 'Jumlah'}{KondisiSessionKurang && 'Pengurangan'}{KondisiSessionKurang || KondisiSessionTambah || '+/-'}</th>
+                                    {KondisiSessionTambah && <th>Eksekusi</th>} */}
+                                    <th>Stock</th>
                                     <th>Note</th>
-                                    {dataFillter != 'Indent' && <th>Validasi</th>}
+                                    <th>Validasi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -216,23 +274,33 @@ export default function Pending({ session }) {
                                             <td>{product?.products[0]?.namaBarang}</td>
                                             <td>{product?.user}</td>
                                             <td>{product?.stockBarang}</td>
-                                            {KondisiSessionTambah && <td>{product?.jenisBarang}</td>}
+                                            {/* {KondisiSessionTambah && <td>{product?.jenisBarang}</td>} */}
                                             <td>{product?.note}</td>
-                                            {dataFillter != 'Indent' &&
-                                                <td>
-                                                    {product?.jenisBarang == 'Request' ?
-                                                        <>
-                                                            {/* <button disabled={isLoadingProduk} onClick={() => handlePlusMinIndent(product)}>+ Indent</button>&nbsp; */}
-                                                            {product?.statusProduct ? "Berhasil dikirim 😁" : <button disabled={isLoadingProduk} onClick={() => handleHapusRequest(product)}>Konfirmasi Pesan</button>}
-                                                        </>
-                                                        : <button className={styles.buttonconfirmasi}
-                                                            style={product.jenisBarang == 'Indent' ? { display: 'none' } : {}}
-                                                            disabled={isLoadingProduk}
-                                                            onClick={() => handleConfirm(product)}>
-                                                            {product?.statusProduct ?
-                                                                KondisiSessionTambah && 'Batalkan Kurang' || KondisiSessionKurang && 'Batalkan' :
-                                                                KondisiSessionTambah && 'Tambahkan' || KondisiSessionKurang && 'Konfirmasi'}</button>}
-                                                </td>}
+                                            <td>
+                                                {/* TAMBAHKAN KE PURCHASING */}
+                                                {product?.jenisBarang == 'Request' ? product?.statusProduct ? "Berhasil dikirim 😁" : <button disabled={isLoadingProduk} onClick={() => handleHapusRequest(product)}>Konfirmasi Pesan</button> : null}
+                                                {product?.jenisBarang == 'Langsung' ?
+                                                    <button className={styles.buttonconfirmasi}
+                                                        disabled={isLoadingProduk}
+                                                        onClick={() => handleConfirm(product, 'Langsung')}>
+                                                        {product?.statusProduct ? "Batalkan -" : "Konfirmasi +"}</button>
+                                                    : null}
+
+                                                {product?.jenisBarang == 'Indent' ?
+                                                    <button className={styles.buttonconfirmasi}
+                                                        disabled={isLoadingProduk}
+                                                        onClick={() => handleConfirm(product, 'Indent')}>
+                                                        {product?.statusProduct ? 'Batalkan Indent -' : 'Konfirmasi Indent +'}</button>
+                                                    : null}
+
+                                                {/* TAMBAHKAN KE AKUNTING */}
+                                                {product?.jenisBarang == 'TidakLangsung' ?
+                                                    <button className={styles.buttonconfirmasi}
+                                                        disabled={isLoadingProduk}
+                                                        onClick={() => handleConfirm(product, 'TidakLangsung')}>
+                                                        {product?.statusProduct ? 'Batalkan +' : 'Konfirmasi -'}</button>
+                                                    : null}
+                                            </td>
                                         </tr>
                                     )
                                 })}

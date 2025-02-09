@@ -16,13 +16,9 @@ export default function NoteSales({ data }) {
         setNote(event.target.value);
     };
 
-    console.log(data);
-
-
-
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const isConfirmed = window.confirm(`Apakah Anda yakin ingin mengonfirmasi Hapus ${data.products[0].namaBarang}?`);
+        const isConfirmed = window.confirm(`Apakah Anda yakin ingin mengonfirmasi ${data.products[0].namaBarang}?`);
         if (isConfirmed) {
             const FetchData = async () => {
                 setIsLoadingProduk(true)
@@ -41,7 +37,7 @@ export default function NoteSales({ data }) {
                     // await DeletePending(data?.id)
                     await CreateActivity({
                         userActivity: data?.datauser,
-                        activity: `Kirim Pesan ${data?.user}) ${data?.stockBarang} stock - ${data?.products[0]?.namaBarang} karena ${note} ( ${data?.products[0]?.id} )  `
+                        activity: `Kirim Pesan ${data?.user}) ${data?.stockBarang} stock - ${data?.products[0]?.namaBarang} ( ${data?.products[0]?.id} ) karena ${note}   `
                     })
                     router.refresh()
                     setRefreshData()

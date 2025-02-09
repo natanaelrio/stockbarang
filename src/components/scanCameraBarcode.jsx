@@ -67,10 +67,10 @@ export default function ScanCameraBarcode({ session }) {
                     gedungId: GudangID
                 })
 
-                KondisiSessionIndent && await UpdateProductIndentIncrement({
-                    productId: dataBarcode?.data[0]?.id,
-                    stockBarang: valueTambahKurang,
-                })
+                // KondisiSessionIndent && await UpdateProductIndentIncrement({
+                //     productId: dataBarcode?.data[0]?.id,
+                //     stockBarang: valueTambahKurang,
+                // })
 
                 isTambahKurang == 'kurang' && await CreateProductPendding({
                     stockBarang: valueTambahKurang,
@@ -78,7 +78,7 @@ export default function ScanCameraBarcode({ session }) {
                     produkid: dataBarcode?.data[0]?.id,
                     user: session.namaUser,
                     username: session.username,
-                    jenisBarang: 'Langsung',
+                    jenisBarang: 'TidakLangsung',
                     role: 'vermin',
                     gedungId: GudangID
                 })
@@ -95,11 +95,11 @@ export default function ScanCameraBarcode({ session }) {
 
                 isTambahKurang == 'tambah' && await CreateActivity({
                     userActivity: session.namaUser,
-                    activity: `Update Tambah ${valueTambahKurang} stock - ${dataBarcode?.data[0]?.namaBarang} ( ${dataBarcode?.data[0]?.id} ) `
+                    activity: `Request Tambah ${valueTambahKurang} stock - ${dataBarcode?.data[0]?.namaBarang} ( ${dataBarcode?.data[0]?.id} ) `
                 })
                 isTambahKurang == 'kurang' && await CreateActivity({
                     userActivity: session.namaUser,
-                    activity: `Request ${valueTambahKurang} stock - ${dataBarcode?.data[0]?.namaBarang} ( ${dataBarcode?.data[0]?.id}) - (note: ${valueNoteBarang}) ) `
+                    activity: `Request Kurang ${valueTambahKurang} stock - ${dataBarcode?.data[0]?.namaBarang} ( ${dataBarcode?.data[0]?.id}) - (note: ${valueNoteBarang}) ) `
                 })
                 KondisiSessionSales && await CreateActivity({
                     userActivity: session.namaUser,
