@@ -2,41 +2,51 @@ import styles from '@/components/listProduct.module.css';
 import { useState } from 'react';
 import { useBearStore } from '@/zustand/data';
 import toast from 'react-hot-toast';
-import { CreateNotifikasiSales, DeleteListUtama, DeletePending, CreateActivity } from '@/service/data';
+import { CreateNotifikasiSales, DeleteListUtama, DeletePending, CreateActivity, UpdateStatusPending } from '@/service/data';
 import { useRouter } from 'next/navigation';
 
 export default function NoteSales({ data }) {
     const setShowNoteSales = useBearStore((state) => state.setShowNoteSales);
     const setIsLoadingProduk = useBearStore((state) => state.setIsLoadingProduk);
     const isLoadingProduk = useBearStore((state) => state.isLoadingProduk);
+    const setRefreshData = useBearStore((state) => state.setRefreshData);
     const [note, setNote] = useState('');
     const router = useRouter()
     const handleChange = (event) => {
         setNote(event.target.value);
     };
 
+    console.log(data);
+
+
+
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const isConfirmed = window.confirm(`Apakah Anda yakin ingin mengonfirmasi Hapus ${data.products[0].name_barang}?`);
+        const isConfirmed = window.confirm(`Apakah Anda yakin ingin mengonfirmasi Hapus ${data.products[0].namaBarang}?`);
         if (isConfirmed) {
             const FetchData = async () => {
                 setIsLoadingProduk(true)
                 try {
                     await CreateNotifikasiSales({
                         username: data?.username,
-                        namaBarang: data?.products[0].name_barang,
-                        jumlahBarang: data?.stock_barang,
-                        note: `dibatalkan ${data?.datauser} karena ` + note
+                        namaBarang: data?.products[0].namaBarang,
+                        jumlahBarang: data?.stockBarang,
+                        note: `( ${data?.datauser} )` + note
                     })
-                    await DeleteListUtama(data?.products[0].id)
-                    await DeletePending(data?.id)
+                    await UpdateStatusPending({
+                        idPending: data.id,
+                        statusProduct: !data.statusProduct
+                    })
+                    // await DeleteListUtama(data?.products[0].id)
+                    // await DeletePending(data?.id)
                     await CreateActivity({
-                        userActivity: session.namaUser,
-                        activity: `Konfirmasi Pembatalan(Request ${data?.user}) ${data?.stock_barang} stock - ${data?.products[0]?.name_barang} karena ${note} ( ${data?.products[0]?.id} )  `
+                        userActivity: data?.datauser,
+                        activity: `Kirim Pesan ${data?.user}) ${data?.stockBarang} stock - ${data?.products[0]?.namaBarang} karena ${note} ( ${data?.products[0]?.id} )  `
                     })
                     router.refresh()
-                    setShowNoteSales()
+                    setRefreshData()
                     setIsLoadingProduk(false)
+                    setShowNoteSales()
                 } catch (e) {
                     setShowNoteSales()
                     setIsLoadingProduk(false)
@@ -47,7 +57,7 @@ export default function NoteSales({ data }) {
                 FetchData(),
                 {
                     loading: 'Saving...',
-                    success: <b>{data?.products[0].name_barang}, Berhasil di hapus dan notif ke {session.username}</b>,
+                    success: <b>{data?.products[0].namaBarang}, Berhasil di hapus dan notif ke {session.username}</b>,
                     error: <b>ID : gagal ulangg!!....</b>,
                 })
         }
@@ -57,13 +67,13 @@ export default function NoteSales({ data }) {
         <>
             <div className={styles.bghitam} onClick={() => setShowNoteSales()}></div>
             <form className={styles.inputbarang}>
-                <b>Barang: {data?.products[0].name_barang}</b>
-                <b>Jumlah: {data?.stock_barang}</b>
+                <b>Barang: {data?.products[0].namaBarang}</b>
+                <b>Jumlah: {data?.stockBarang}</b>
                 <b>User: {data?.user}</b>
                 <b>username: {data?.username}</b>
                 <input
                     type='text'
-                    placeholder='Alasan dibatalkan...'
+                    placeholder='Kirim Pesan...'
                     value={note}
                     onChange={handleChange}
                     disabled={isLoadingProduk}

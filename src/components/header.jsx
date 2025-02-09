@@ -8,8 +8,10 @@ import InputBarang from '@/components/inputBarang';
 import SelectProduct from '@/components/selectProduct';
 import ScanCameraBarcode from '@/components/scanCameraBarcode';
 import NoteSales from '@/components/noteSales';
+// import UseAutoRefreshSession from "@/controllers/useAutoRefreshSession";
 
 export default function Header({ session, Ksearch }) {
+    // UseAutoRefreshSession()
     const [isLoading, setLoading] = useState(false);
     const [isLoadingCari, setLoadingCari] = useState(false);
     const [search, setSearch] = useState('');
@@ -20,7 +22,6 @@ export default function Header({ session, Ksearch }) {
     const showScanCameraBarcode = useBearStore((state) => state.showScanCameraBarcode);
     const showNoteSales = useBearStore((state) => state.showNoteSales);
     const dataSales = useBearStore((state) => state.dataSales);
-
 
     const handleSearch = async (e) => {
         e.preventDefault();

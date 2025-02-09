@@ -18,10 +18,10 @@ export async function POST(req) {
                     stockBarang,
                     produkGedung: {
                         create: [
-                            { stockBarang: 0, gedung: { connect: { id: 11111 } } },
-                            { stockBarang: 0, gedung: { connect: { id: 22222 } } },
-                            { stockBarang: 0, gedung: { connect: { id: 33333 } } },
-                            { stockBarang: 0, gedung: { connect: { id: 10000 } } },
+                            { gedung: { connect: { id: 11111 } } },
+                            { gedung: { connect: { id: 22222 } } },
+                            { gedung: { connect: { id: 33333 } } },
+                            { gedung: { connect: { id: 10000 } } },
                         ]
                     }
                 }

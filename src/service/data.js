@@ -1,6 +1,28 @@
 'use server'
 import { revalidatePath } from 'next/cache';
 
+export const GetDataUser = async (e) => {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/getDataUser?query=${e}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
+            },
+            next: {
+                revalidate: 0
+            }
+        });
+        const data = await res.json()
+        return data.data
+    }
+    catch (err) {
+        console.log(err);
+    }
+    revalidatePath('/')
+}
+
+
 export const CreateNotifikasiSales = async (e) => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/createNotifikasiSales`, {
@@ -152,7 +174,6 @@ export const GetSearchProductID = async (e) => {
     revalidatePath('/')
 }
 
-
 export const UpdateIncrement = async (e) => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/updateProductIncrement`, {
@@ -200,6 +221,27 @@ export const UpdateDecrement = async (e) => {
 export const updateJenisBarang = async (e) => {
     try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/updateJenisBarang`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
+            },
+            body: JSON.stringify(e),
+            next: {
+                revalidate: 0
+            }
+        });
+        const data = await res.json()
+        return data
+    }
+    catch (err) {
+        console.log(err);
+    }
+    revalidatePath('/')
+}
+export const UpdateStatusPending = async (e) => {
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/updateStatusPending`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

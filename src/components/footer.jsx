@@ -47,12 +47,12 @@ export default function Footer({ session }) {
                     </div>
                     <span>New Product</span>
                 </button>}
-                {KondisiSessionSales && <button className={styles.tambahproduct} onClick={TombolTambahkan}>
+                {/* {KondisiSessionSales && <button className={styles.tambahproduct} onClick={TombolTambahkan}>
                     <div>
                         <FaPlusSquare size={39} />
                     </div>
                     <span>Req Product</span>
-                </button>}
+                </button>} */}
                 <div className={styles.transparan}></div>
                 <button className={styles.tombolscan} onClick={TombolScan}>
                     <div><LuScanSearch size={39} /></div>

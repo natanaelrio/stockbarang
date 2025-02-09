@@ -33,12 +33,13 @@ export default function ScanCameraBarcode({ session }) {
     // const [dataBarcode, setDataBarcode] = useState(null)
 
     const [valueIdBarang, setValueIdBarang] = useState('')
+    const [enterValueIdBarang, setEnterValueIdBarang] = useState('')
 
     const handleCariIdBarang = async (e) => {
         e.preventDefault()
-        // setHiddenCamera(false)
         setIsLoadingProduk(true)
         const data = await GetSearchProductID(valueIdBarang)
+        setEnterValueIdBarang(valueIdBarang)
         setDataBarcode(data)
         setNotifNoData(!data.data.length)
         setIsLoadingProduk(false)
@@ -140,7 +141,10 @@ export default function ScanCameraBarcode({ session }) {
                         />
                     </div>
                 }
-                {Boolean(notifNoData) && <div className={styles.tidakadaproduk}>Tidak ada Product</div>}
+                {Boolean(notifNoData) && <div className={styles.tidakadaproduk}>
+                    <p>{scannedData ? scannedData : enterValueIdBarang}</p>
+                    <p>Tidak ada Product</p>
+                </div>}
                 {!isLoadingProduk && !Boolean(dataBarcode?.data?.length) &&
                     <>
                         <BarcodeScanner />

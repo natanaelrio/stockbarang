@@ -182,7 +182,7 @@ export default function InputBarang({ session }) {
                     disabled={isLoadingProduk}
                 />}
 
-                {KondisiSessionSales && <input
+                {/* {KondisiSessionSales && <input
                     type='text'
                     name='catatanIndent'
                     placeholder='Catatan'
@@ -190,7 +190,7 @@ export default function InputBarang({ session }) {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     disabled={isLoadingProduk}
-                />}
+                />} */}
 
                 {formik.touched.jenisBarang && formik.errors.jenisBarang ? <div className={styles.error}>{formik.errors.jenisBarang}</div> : null}
 

@@ -19,8 +19,6 @@ export async function POST(req) {
                 }
             })
 
-            console.log('owkdkodwwkod', data);
-
             const res = await ResponseData(data, authorization)
             return res
         } catch (error) {

@@ -12,7 +12,7 @@ export default function NotifikasiSales({ data }) {
                             <th>Tgl/hari</th>
                             <th>Nama Barang</th>
                             <th>Jumlah</th>
-                            <th>Note ditolak</th>
+                            <th>Pesan</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -143,34 +143,34 @@ export default function Pending({ session }) {
     };
 
 
-    const handlePlusMinIndent = async (e) => {
-        const FetchDataIndent = async () => {
-            try {
-                setIsLoadingProduk(true)
-                await updateJenisBarang({
-                    id: e?.id,
-                    jenisBarang: 'Indent'
-                })
-                setIsLoadingProduk(false)
-                setRefreshData()
-                await CreateActivity({
-                    userActivity: session.namaUser,
-                    activity: `Konfirmasi Tambah(indent) ${e?.stockBarang} stock - ${e?.products[0]?.namaBarang} ( ${e?.products[0]?.id} ) `
-                })
-            } catch (e) {
-                setRefreshData()
-                setIsLoadingProduk(false)
-                throw new Error("Server error, gagal menyimpan produk.");
-            }
-        }
-        toast.promise(
-            FetchDataIndent(),
-            {
-                loading: 'Saving...',
-                success: <b>{e.products[0].namaBarang}, Berhasil diUpdate!</b>,
-                error: <b>ID : gagal ulangg!!....</b>,
-            })
-    }
+    // const handlePlusMinIndent = async (e) => {
+    //     const FetchDataIndent = async () => {
+    //         try {
+    //             setIsLoadingProduk(true)
+    //             await updateJenisBarang({
+    //                 id: e?.id,
+    //                 jenisBarang: 'Indent'
+    //             })
+    //             setIsLoadingProduk(false)
+    //             setRefreshData()
+    //             await CreateActivity({
+    //                 userActivity: session.namaUser,
+    //                 activity: `Konfirmasi Tambah(indent) ${e?.stockBarang} stock - ${e?.products[0]?.namaBarang} ( ${e?.products[0]?.id} ) `
+    //             })
+    //         } catch (e) {
+    //             setRefreshData()
+    //             setIsLoadingProduk(false)
+    //             throw new Error("Server error, gagal menyimpan produk.");
+    //         }
+    //     }
+    //     toast.promise(
+    //         FetchDataIndent(),
+    //         {
+    //             loading: 'Saving...',
+    //             success: <b>{e.products[0].namaBarang}, Berhasil diUpdate!</b>,
+    //             error: <b>ID : gagal ulangg!!....</b>,
+    //         })
+    // }
 
     const userSeason = {
         datauser: session.namaUser
@@ -222,8 +222,8 @@ export default function Pending({ session }) {
                                                 <td>
                                                     {product?.jenisBarang == 'Request' ?
                                                         <>
-                                                            <button disabled={isLoadingProduk} onClick={() => handlePlusMinIndent(product)}>+ Indent</button>&nbsp;
-                                                            <button disabled={isLoadingProduk} onClick={() => handleHapusRequest(product)}>Hapus</button>
+                                                            {/* <button disabled={isLoadingProduk} onClick={() => handlePlusMinIndent(product)}>+ Indent</button>&nbsp; */}
+                                                            {product?.statusProduct ? "Berhasil dikirim 😁" : <button disabled={isLoadingProduk} onClick={() => handleHapusRequest(product)}>Konfirmasi Pesan</button>}
                                                         </>
                                                         : <button className={styles.buttonconfirmasi}
                                                             style={product.jenisBarang == 'Indent' ? { display: 'none' } : {}}
