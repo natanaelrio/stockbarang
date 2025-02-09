@@ -2,7 +2,7 @@ import { prisma } from "@/controllers/prisma"
 import { ResponseData } from "@/controllers/ResponseData";
 
 export async function POST(req) {
-    const { userActivity, activity } = await req.json()
+    const { userActivity, activity, username } = await req.json()
 
     BigInt.prototype.toJSON = function () {
         return this.toString();
@@ -13,7 +13,7 @@ export async function POST(req) {
         try {
             const data = await prisma.logUser.create({
                 data: {
-                    userActivity, activity
+                    userActivity, activity, username
                 }
             })
             const res = await ResponseData(data, authorization)

@@ -51,23 +51,12 @@ export default function InputBarang({ session }) {
                     const dataProduct = await CreateProduct({
                         id: values.idBarang,
                         namaBarang: values.namaBarang,
-                        // stock_barang: values.jenisBarang == 'Langsung' ? values.stockBarang : 0,
                     });
 
                     if (dataProduct.status == '500') {
                         throw new Error(`ID ${values.idBarang} sudah ada !!`);
                     }
 
-                    // values.jenisBarang == 'Indent' && await CreateProductPendding({
-                    //     produkid: values.idBarang,
-                    //     stockBarang: values.stockBarang,
-                    //     note: values.catatanIndent,
-                    //     jenisBarang: values.jenisBarang,
-                    //     user: session?.namaUser,
-                    //     username: session?.username,
-                    //     role: 'verplus',
-                    //     gedungId: GudangID
-                    // })
                     values.jenisBarang == 'Request' && await CreateProductPendding({
                         produkid: values.idBarang,
                         stockBarang: values.stockBarang,
@@ -79,8 +68,9 @@ export default function InputBarang({ session }) {
                         gedungId: GudangID
                     })
                     await CreateActivity({
+                        username: session.username,
                         userActivity: session.namaUser,
-                        activity: `Penambahan Product ${values.namaBarang} ( ${values.idBarang} )}`,
+                        activity: `Penambahan Product ${values.namaBarang} (${values.idBarang})`,
                     });
                     router.refresh();
                     setShowInputBarang();
@@ -181,16 +171,6 @@ export default function InputBarang({ session }) {
                     onBlur={formik.handleBlur}
                     disabled={isLoadingProduk}
                 />}
-
-                {/* {KondisiSessionSales && <input
-                    type='text'
-                    name='catatanIndent'
-                    placeholder='Catatan'
-                    value={formik.values.catatanIndent}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    disabled={isLoadingProduk}
-                />} */}
 
                 {formik.touched.jenisBarang && formik.errors.jenisBarang ? <div className={styles.error}>{formik.errors.jenisBarang}</div> : null}
 

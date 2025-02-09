@@ -175,6 +175,7 @@ exports.Prisma.LogUserScalarFieldEnum = {
   id: 'id',
   start: 'start',
   end: 'end',
+  username: 'username',
   userActivity: 'userActivity',
   activity: 'activity'
 };

@@ -9,7 +9,7 @@ export default async function Page() {
     const session = await getServerSession(authOptions)
     const roles = session?.role || [];
 
-    const data = await GetNotifikasiSales(session.username)
+    const data = await GetNotifikasiSales(session?.username)
 
     return (
         <>

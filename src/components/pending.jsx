@@ -41,50 +41,8 @@ export default function Pending({ session }) {
     }, [refreshData, dataFillter])
 
     const handleConfirm = async (product) => {
-        const KondisiPlus = product?.role == 'verplus'
-        const KondisiMin = product?.role == 'vermin'
         const isConfirmed = window.confirm(`Apakah Anda yakin ingin mengonfirmasi ${product?.products[0].namaBarang}?`);
         if (isConfirmed) {
-            // const FetchDataFinal = async () => {
-            //     try {
-            //         setIsLoadingProduk(true)
-            //         !product?.statusProduct ?
-            //             await UpdateDecrement({
-            //                 stockBarang: product?.stockBarang,
-            //                 gedungId: product?.gedungId,
-            //                 productId: product?.products[0]?.id,
-            //                 idPending: product?.id,
-            //                 statusProduct: !product?.statusProduct,
-            //             }) : await UpdateIncrement({
-            //                 stockBarang: product?.stockBarang,
-            //                 gedungId: product?.gedungId,
-            //                 productId: product?.products[0]?.id,
-            //                 idPending: product?.id,
-            //                 statusProduct: !product?.statusProduct,
-            //             })
-
-            //         !product?.statusProduct ?
-            //             await CreateActivity({
-            //                 userActivity: session.namaUser,
-            //                 activity: `Konfirmasi Pengurangan ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} ( ${product?.products[0]?.id} ) `
-            //             }) :
-            //             await CreateActivity({
-            //                 userActivity: session.namaUser,
-            //                 activity: `Konfirmasi Pembatalan ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} ( ${product?.products[0]?.id} ) `
-            //             })
-            //         setIsLoadingProduk(false)
-            //     } catch (e) {
-            //         throw new Error("Server error, gagal menyimpan produk.");
-            //     }
-            // }
-            // KondisiMin && toast.promise(
-            //     FetchDataFinal(),
-            //     {
-            //         loading: 'Saving...',
-            //         success: <b>{product?.products[0].namaBarang}, Berhasil diUpdate!</b>,
-            //         error: <b>ID : {product?.products[0]?.id} syudah adaww....</b>,
-            //     }
-            // );
             const FetchDataPlus = async () => {
                 try {
                     setIsLoadingProduk(true)
@@ -95,14 +53,10 @@ export default function Pending({ session }) {
                                 stockBarang: product?.stockBarang,
                                 gedungId: product?.gedungId,
                                 productId: product?.products[0]?.id,
-                                // idPending: product?.id,
-                                // statusProduct: !product?.statusProduct,
                             }) : await UpdateDecrement({
                                 stockBarang: product?.stockBarang,
                                 gedungId: product?.gedungId,
                                 productId: product?.products[0]?.id,
-                                // idPending: product?.id,
-                                // statusProduct: !product?.statusProduct,
                             }) : null
 
                     product?.jenisBarang == 'Langsung' ?
@@ -111,14 +65,10 @@ export default function Pending({ session }) {
                                 stockBarang: product?.stockBarang,
                                 gedungId: product?.gedungId,
                                 productId: product?.products[0]?.id,
-                                // idPending: product?.id,
-                                // statusProduct: !product?.statusProduct,
                             }) : await UpdateIncrement({
                                 stockBarang: product?.stockBarang,
                                 gedungId: product?.gedungId,
                                 productId: product?.products[0]?.id,
-                                // idPending: product?.id,
-                                // statusProduct: !product?.statusProduct,
                             }) : null
 
                     product?.jenisBarang == 'Indent' ?
@@ -151,31 +101,37 @@ export default function Pending({ session }) {
                     product?.jenisBarang == 'TidakLangsung' ?
                         product?.statusProduct ?
                             await CreateActivity({
+                                username: session?.username,
                                 userActivity: session.namaUser,
-                                activity: `Konfirmasi Pembatalan Pengurangan(Final) ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} ( ${product?.products[0]?.id} ) `
+                                activity: `Konfirmasi Pembatalan Pengurangan(Final) ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} (${product?.products[0]?.id}) `
                             }) : await CreateActivity({
+                                username: session?.username,
                                 userActivity: session.namaUser,
-                                activity: `Konfirmasi Pengurangan(Final) ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} ( ${product?.products[0]?.id} ) `
+                                activity: `Konfirmasi Pengurangan(Final) ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} (${product?.products[0]?.id}) `
                             }) : null
 
                     product?.jenisBarang == 'Langsung' ?
                         product?.statusProduct ?
                             await CreateActivity({
+                                username: session?.username,
                                 userActivity: session.namaUser,
-                                activity: `Konfirmasi Pembatalan(Langsung) ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} ( ${product?.products[0]?.id} ) `
+                                activity: `Konfirmasi Pembatalan(Langsung) ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} (${product?.products[0]?.id}) - (REQ: ${product?.user})`
                             }) : await CreateActivity({
+                                username: session?.username,
                                 userActivity: session.namaUser,
-                                activity: `Konfirmasi Penambahan(Langsung) ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} ( ${product?.products[0]?.id} ) `
+                                activity: `Konfirmasi Penambahan(Langsung) ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} (${product?.products[0]?.id}) - (REQ: ${product?.user})`
                             }) : null
 
                     product?.jenisBarang == 'Indent' ?
                         product?.statusProduct ?
                             await CreateActivity({
+                                username: session?.username,
                                 userActivity: session.namaUser,
-                                activity: `Konfirmasi Pembatalan(Indent) ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} ( ${product?.products[0]?.id} ) `
+                                activity: `Konfirmasi Pembatalan(Indent) ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} (${product?.products[0]?.id}) `
                             }) : await CreateActivity({
+                                username: session?.username,
                                 userActivity: session.namaUser,
-                                activity: `Konfirmasi Penambahan(Indent) ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} ( ${product?.products[0]?.id} ) `
+                                activity: `Konfirmasi Penambahan(Indent) ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} (${product?.products[0]?.id}) `
                             }) : null
 
                     setIsLoadingProduk(false)
@@ -200,37 +156,8 @@ export default function Pending({ session }) {
     };
 
 
-    // const handlePlusMinIndent = async (e) => {
-    //     const FetchDataIndent = async () => {
-    //         try {
-    //             setIsLoadingProduk(true)
-    //             await updateJenisBarang({
-    //                 id: e?.id,
-    //                 jenisBarang: 'Indent'
-    //             })
-    //             setIsLoadingProduk(false)
-    //             setRefreshData()
-    //             await CreateActivity({
-    //                 userActivity: session.namaUser,
-    //                 activity: `Konfirmasi Tambah(indent) ${e?.stockBarang} stock - ${e?.products[0]?.namaBarang} ( ${e?.products[0]?.id} ) `
-    //             })
-    //         } catch (e) {
-    //             setRefreshData()
-    //             setIsLoadingProduk(false)
-    //             throw new Error("Server error, gagal menyimpan produk.");
-    //         }
-    //     }
-    //     toast.promise(
-    //         FetchDataIndent(),
-    //         {
-    //             loading: 'Saving...',
-    //             success: <b>{e.products[0].namaBarang}, Berhasil diUpdate!</b>,
-    //             error: <b>ID : gagal ulangg!!....</b>,
-    //         })
-    // }
-
     const userSeason = {
-        datauser: session.namaUser
+        datauser: session.namaUser,
     }
     const handleHapusRequest = async (e) => {
         setDataSales({ ...e, ...userSeason })

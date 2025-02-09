@@ -9,6 +9,7 @@ export default function Activity({ data }) {
                     <thead>
                         <tr>
                             <th>Tgl/hari</th>
+                            <th>username</th>
                             <th>User</th>
                             <th>Activity</th>
                         </tr>
@@ -17,8 +18,9 @@ export default function Activity({ data }) {
                         {data?.map((product) => {
                             return (
                                 <tr key={product.id}>
-                                    <td>{TimeConverter(product?.start)}</td>
-                                    <td>{product?.userActivity}</td>
+                                    <td style={{ width: '50px' }}>{TimeConverter(product?.start)}</td>
+                                    <td style={{ width: '50px' }}>{product?.username}</td>
+                                    <td style={{ width: '50px' }}>{product?.userActivity}</td>
                                     <td>{product?.activity}</td>
                                 </tr>
                             )

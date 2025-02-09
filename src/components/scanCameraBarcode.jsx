@@ -48,7 +48,8 @@ export default function ScanCameraBarcode({ session }) {
     const [isTambahKurang, setIsTambahKurang] = useState(null)
     const [isShowRequest, setShowRequest] = useState(null)
     const [valueTambahKurang, setValueTambahKurang] = useState(1)
-    const [valueNoteBarang, setValueNoteBarang] = useState('tidak ada')
+    const [valueNoteBarang, setValueNoteBarang] = useState('-')
+
 
     const handleTambahKurang = async (e) => {
         e.preventDefault()
@@ -56,54 +57,33 @@ export default function ScanCameraBarcode({ session }) {
 
         const FetchData = async () => {
             try {
-                isTambahKurang == 'tambah' && await CreateProductPendding({
+                await CreateProductPendding({
                     stockBarang: valueTambahKurang,
                     note: valueNoteBarang,
                     produkid: dataBarcode?.data[0]?.id,
                     user: session.namaUser,
                     username: session.username,
-                    jenisBarang: KondisiSessionIndent ? 'Indent' : 'Langsung',
-                    role: 'verplus',
-                    gedungId: GudangID
-                })
-
-                // KondisiSessionIndent && await UpdateProductIndentIncrement({
-                //     productId: dataBarcode?.data[0]?.id,
-                //     stockBarang: valueTambahKurang,
-                // })
-
-                isTambahKurang == 'kurang' && await CreateProductPendding({
-                    stockBarang: valueTambahKurang,
-                    note: valueNoteBarang,
-                    produkid: dataBarcode?.data[0]?.id,
-                    user: session.namaUser,
-                    username: session.username,
-                    jenisBarang: 'TidakLangsung',
-                    role: 'vermin',
-                    gedungId: GudangID
-                })
-                KondisiSessionSales && await CreateProductPendding({
-                    stockBarang: valueTambahKurang,
-                    note: valueNoteBarang,
-                    produkid: dataBarcode?.data[0]?.id,
-                    user: session.namaUser,
-                    username: session.username,
-                    jenisBarang: 'Request',
-                    role: 'verplus',
+                    jenisBarang: isTambahKurang == 'kurang' && 'TidakLangsung' || KondisiSessionSales && 'Request' || KondisiSessionIndent && 'Indent' || 'Langsung',
+                    role: KondisiSessionSales && 'verplus' ||
+                        isTambahKurang == 'tambah' && 'verplus' ||
+                        isTambahKurang == 'kurang' && 'vermin',
                     gedungId: GudangID
                 })
 
                 isTambahKurang == 'tambah' && await CreateActivity({
+                    username: session.username,
                     userActivity: session.namaUser,
-                    activity: `Request Tambah ${valueTambahKurang} stock - ${dataBarcode?.data[0]?.namaBarang} ( ${dataBarcode?.data[0]?.id} ) `
+                    activity: `Request Tambah ${valueTambahKurang} stock - ${dataBarcode?.data[0]?.namaBarang} - (${dataBarcode?.data[0]?.id}) - (note: ${valueNoteBarang})`
                 })
                 isTambahKurang == 'kurang' && await CreateActivity({
+                    username: session.username,
                     userActivity: session.namaUser,
-                    activity: `Request Kurang ${valueTambahKurang} stock - ${dataBarcode?.data[0]?.namaBarang} ( ${dataBarcode?.data[0]?.id}) - (note: ${valueNoteBarang}) ) `
+                    activity: `Request Kurang ${valueTambahKurang} stock - ${dataBarcode?.data[0]?.namaBarang} - (${dataBarcode?.data[0]?.id}) - (note: ${valueNoteBarang})`
                 })
                 KondisiSessionSales && await CreateActivity({
+                    username: session.username,
                     userActivity: session.namaUser,
-                    activity: `Request ${valueTambahKurang} stock - ${dataBarcode?.data[0]?.namaBarang} ( ${dataBarcode?.data[0]?.id}) - (note: ${valueNoteBarang}) ) `
+                    activity: `Request ${valueTambahKurang} stock - ${dataBarcode?.data[0]?.namaBarang} - (${dataBarcode?.data[0]?.id}) - (note: ${valueNoteBarang}) `
                 })
                 router.refresh()
                 setScanShowCameraBarcode()
@@ -204,11 +184,11 @@ export default function ScanCameraBarcode({ session }) {
                             </table>
                         )}
                         <span>
-                            {KondisiSessionNoPending && <button disabled={isLoadingProduk} onClick={() => setIsTambahKurang('tambah')}>Tambah +</button>}
+                            {KondisiSessionNoPending && <button disabled={isLoadingProduk} onClick={() => setIsTambahKurang('tambah')}>{KondisiSessionIndent ? 'Tambah Indent+' : 'Tambah+'}</button>}
                             {KondisiSessionPending && <button disabled={isLoadingProduk} onClick={() => setIsTambahKurang('kurang')}>Kurang -</button>}
                             {isTambahKurang !== null &&
                                 <form className={styles.inputkamera}>
-                                    <input disabled={isLoadingProduk} onChange={(e) => setValueTambahKurang(e.target.value)} type='number' placeholder={isTambahKurang == 'tambah' && 'Tambahi ++' || isTambahKurang == 'kurang' && 'Kurangi--'} name='IdBarang' />
+                                    <input disabled={isLoadingProduk} onChange={(e) => setValueTambahKurang(e.target.value)} type='number' placeholder={isTambahKurang == 'tambah' && 'Stock++' || isTambahKurang == 'kurang' && 'Stock--'} name='IdBarang' />
                                     <input disabled={isLoadingProduk} onChange={(e) => setValueNoteBarang(e.target.value)} type="text" placeholder='Note' />
                                     <button disabled={isLoadingProduk} onClick={handleTambahKurang} type='submit'>{!isLoadingProduk ? 'Submit' : 'Loading...'}{isTambahKurang == 'tambah' && '(Tambah)' || isTambahKurang == 'kurang' && '(Kurang)' || KondisiSessionIndent && '(Tambah Indent)'}</button>
                                 </form>
@@ -217,7 +197,7 @@ export default function ScanCameraBarcode({ session }) {
                             {KondisiSessionSales && <button disabled={isLoadingProduk} onClick={() => setShowRequest(true)}>Request Tambah +</button>}
                             {isShowRequest &&
                                 <form className={styles.inputkamera}>
-                                    <input disabled={isLoadingProduk} onChange={(e) => setValueTambahKurang(e.target.value)} type='number' placeholder={'Request Tambah'} name='IdBarang' />
+                                    <input disabled={isLoadingProduk} onChange={(e) => setValueTambahKurang(e.target.value)} type='number' placeholder={'Stock++'} name='IdBarang' />
                                     <input disabled={isLoadingProduk} onChange={(e) => setValueNoteBarang(e.target.value)} type="text" placeholder='Note' />
                                     <button disabled={isLoadingProduk} onClick={handleTambahKurang} type='submit'>{!isLoadingProduk ? 'Submit' : 'Loading...'}</button>
                                 </form>

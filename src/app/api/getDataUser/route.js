@@ -11,7 +11,7 @@ export async function GET(req) {
                 id: "1",
                 email: "rio@pelangiteknik.com",
                 password: "developer",
-                namaUser: "Rio ( Developer)",
+                namaUser: "Rio (Developer)",
                 username: 'riodev',
                 gudang: 0,
                 role: ['tambahindent', 'pending', 'verminplus', 'log']
@@ -21,7 +21,7 @@ export async function GET(req) {
                 email:
                     "purchfitri@pelangiteknik.com",
                 password: "purshfitri1x23",
-                namaUser: "Fitri ( Purchasing94 )",
+                namaUser: "Fitri (Purchasing94)",
                 username: 'fitripurcha',
                 gudang: 0,
                 role: ['tambahindent', 'verplus', 'nopending']
@@ -30,7 +30,7 @@ export async function GET(req) {
                 id: "3",
                 email: "adminsin@pelangiteknik.com",
                 password: "adminsin12e3",
-                namaUser: "Sin ( Admin94 )",
+                namaUser: "Sin (Admin94)",
                 username: 'adminsin',
                 gudang: 11111,
                 role: ['pending', 'nopending']

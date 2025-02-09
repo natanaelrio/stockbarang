@@ -6325,6 +6325,7 @@ export namespace Prisma {
     id: string | null
     start: Date | null
     end: Date | null
+    username: string | null
     userActivity: string | null
     activity: string | null
   }
@@ -6333,6 +6334,7 @@ export namespace Prisma {
     id: string | null
     start: Date | null
     end: Date | null
+    username: string | null
     userActivity: string | null
     activity: string | null
   }
@@ -6341,6 +6343,7 @@ export namespace Prisma {
     id: number
     start: number
     end: number
+    username: number
     userActivity: number
     activity: number
     _all: number
@@ -6351,6 +6354,7 @@ export namespace Prisma {
     id?: true
     start?: true
     end?: true
+    username?: true
     userActivity?: true
     activity?: true
   }
@@ -6359,6 +6363,7 @@ export namespace Prisma {
     id?: true
     start?: true
     end?: true
+    username?: true
     userActivity?: true
     activity?: true
   }
@@ -6367,6 +6372,7 @@ export namespace Prisma {
     id?: true
     start?: true
     end?: true
+    username?: true
     userActivity?: true
     activity?: true
     _all?: true
@@ -6448,6 +6454,7 @@ export namespace Prisma {
     id: string
     start: Date
     end: Date | null
+    username: string | null
     userActivity: string | null
     activity: string | null
     _count: LogUserCountAggregateOutputType | null
@@ -6473,6 +6480,7 @@ export namespace Prisma {
     id?: boolean
     start?: boolean
     end?: boolean
+    username?: boolean
     userActivity?: boolean
     activity?: boolean
   }, ExtArgs["result"]["logUser"]>
@@ -6481,6 +6489,7 @@ export namespace Prisma {
     id?: boolean
     start?: boolean
     end?: boolean
+    username?: boolean
     userActivity?: boolean
     activity?: boolean
   }, ExtArgs["result"]["logUser"]>
@@ -6489,6 +6498,7 @@ export namespace Prisma {
     id?: boolean
     start?: boolean
     end?: boolean
+    username?: boolean
     userActivity?: boolean
     activity?: boolean
   }
@@ -6501,6 +6511,7 @@ export namespace Prisma {
       id: string
       start: Date
       end: Date | null
+      username: string | null
       userActivity: string | null
       activity: string | null
     }, ExtArgs["result"]["logUser"]>
@@ -6899,6 +6910,7 @@ export namespace Prisma {
     readonly id: FieldRef<"logUser", 'String'>
     readonly start: FieldRef<"logUser", 'DateTime'>
     readonly end: FieldRef<"logUser", 'DateTime'>
+    readonly username: FieldRef<"logUser", 'String'>
     readonly userActivity: FieldRef<"logUser", 'String'>
     readonly activity: FieldRef<"logUser", 'String'>
   }
@@ -7271,6 +7283,7 @@ export namespace Prisma {
     id: 'id',
     start: 'start',
     end: 'end',
+    username: 'username',
     userActivity: 'userActivity',
     activity: 'activity'
   };
@@ -7712,6 +7725,7 @@ export namespace Prisma {
     id?: StringFilter<"logUser"> | string
     start?: DateTimeFilter<"logUser"> | Date | string
     end?: DateTimeNullableFilter<"logUser"> | Date | string | null
+    username?: StringNullableFilter<"logUser"> | string | null
     userActivity?: StringNullableFilter<"logUser"> | string | null
     activity?: StringNullableFilter<"logUser"> | string | null
   }
@@ -7720,6 +7734,7 @@ export namespace Prisma {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrderInput | SortOrder
+    username?: SortOrderInput | SortOrder
     userActivity?: SortOrderInput | SortOrder
     activity?: SortOrderInput | SortOrder
   }
@@ -7731,6 +7746,7 @@ export namespace Prisma {
     NOT?: logUserWhereInput | logUserWhereInput[]
     start?: DateTimeFilter<"logUser"> | Date | string
     end?: DateTimeNullableFilter<"logUser"> | Date | string | null
+    username?: StringNullableFilter<"logUser"> | string | null
     userActivity?: StringNullableFilter<"logUser"> | string | null
     activity?: StringNullableFilter<"logUser"> | string | null
   }, "id">
@@ -7739,6 +7755,7 @@ export namespace Prisma {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrderInput | SortOrder
+    username?: SortOrderInput | SortOrder
     userActivity?: SortOrderInput | SortOrder
     activity?: SortOrderInput | SortOrder
     _count?: logUserCountOrderByAggregateInput
@@ -7753,6 +7770,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"logUser"> | string
     start?: DateTimeWithAggregatesFilter<"logUser"> | Date | string
     end?: DateTimeNullableWithAggregatesFilter<"logUser"> | Date | string | null
+    username?: StringNullableWithAggregatesFilter<"logUser"> | string | null
     userActivity?: StringNullableWithAggregatesFilter<"logUser"> | string | null
     activity?: StringNullableWithAggregatesFilter<"logUser"> | string | null
   }
@@ -8118,6 +8136,7 @@ export namespace Prisma {
     id?: string
     start?: Date | string
     end?: Date | string | null
+    username?: string | null
     userActivity?: string | null
     activity?: string | null
   }
@@ -8126,6 +8145,7 @@ export namespace Prisma {
     id?: string
     start?: Date | string
     end?: Date | string | null
+    username?: string | null
     userActivity?: string | null
     activity?: string | null
   }
@@ -8134,6 +8154,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
     userActivity?: NullableStringFieldUpdateOperationsInput | string | null
     activity?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -8142,6 +8163,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
     userActivity?: NullableStringFieldUpdateOperationsInput | string | null
     activity?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -8150,6 +8172,7 @@ export namespace Prisma {
     id?: string
     start?: Date | string
     end?: Date | string | null
+    username?: string | null
     userActivity?: string | null
     activity?: string | null
   }
@@ -8158,6 +8181,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
     userActivity?: NullableStringFieldUpdateOperationsInput | string | null
     activity?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -8166,6 +8190,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     start?: DateTimeFieldUpdateOperationsInput | Date | string
     end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
     userActivity?: NullableStringFieldUpdateOperationsInput | string | null
     activity?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -8590,6 +8615,7 @@ export namespace Prisma {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrder
+    username?: SortOrder
     userActivity?: SortOrder
     activity?: SortOrder
   }
@@ -8598,6 +8624,7 @@ export namespace Prisma {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrder
+    username?: SortOrder
     userActivity?: SortOrder
     activity?: SortOrder
   }
@@ -8606,6 +8633,7 @@ export namespace Prisma {
     id?: SortOrder
     start?: SortOrder
     end?: SortOrder
+    username?: SortOrder
     userActivity?: SortOrder
     activity?: SortOrder
   }

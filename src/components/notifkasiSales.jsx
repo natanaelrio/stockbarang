@@ -19,9 +19,9 @@ export default function NotifikasiSales({ data }) {
                         {data?.map((product) => {
                             return (
                                 <tr key={product.id}>
-                                    <td>{TimeConverter(product?.start)}</td>
-                                    <td>{product?.namaBarang}</td>
-                                    <td>{product?.jumlahBarang}</td>
+                                    <td style={{ width: '50px' }}>{TimeConverter(product?.start)}</td>
+                                    <td style={{ width: '50px' }}>{product?.namaBarang}</td>
+                                    <td style={{ width: '50px' }}>{product?.jumlahBarang}</td>
                                     <td>{product?.note}</td>
                                 </tr>
                             )

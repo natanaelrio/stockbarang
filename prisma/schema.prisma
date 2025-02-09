@@ -71,6 +71,9 @@ model logUser {
   id           String    @id @default(uuid())
   start        DateTime  @default(now())
   end          DateTime? @updatedAt
+  username     String?
   userActivity String?
   activity     String?
+
+  @@index([username])
 }

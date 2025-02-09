@@ -27,7 +27,7 @@ export default function NoteSales({ data }) {
                         username: data?.username,
                         namaBarang: data?.products[0].namaBarang,
                         jumlahBarang: data?.stockBarang,
-                        note: `( ${data?.datauser} )` + note
+                        note: `dari ${data?.datauser}: ` + note
                     })
                     await UpdateStatusPending({
                         idPending: data.id,
@@ -36,11 +36,13 @@ export default function NoteSales({ data }) {
                     // await DeleteListUtama(data?.products[0].id)
                     // await DeletePending(data?.id)
                     await CreateActivity({
+                        username: data?.username,
                         userActivity: data?.datauser,
-                        activity: `Kirim Pesan ${data?.user}) ${data?.stockBarang} stock - ${data?.products[0]?.namaBarang} ( ${data?.products[0]?.id} ) karena ${note}   `
+                        activity: `Kirim Pesan ${data?.user} ${data?.stockBarang} stock - ${data?.products[0]?.namaBarang} (${data?.products[0]?.id}) note: ${note}   `
                     })
                     router.refresh()
                     setRefreshData()
+
                     setIsLoadingProduk(false)
                     setShowNoteSales()
                 } catch (e) {
