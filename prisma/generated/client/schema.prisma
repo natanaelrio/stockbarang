@@ -41,20 +41,34 @@ model produkGedung {
   @@unique([produkId, gedungId]) // Setiap produk hanya boleh ada satu stok per gedung
 }
 
+model jenisBarang {
+  id            Int              @id @default(1)
+  start         DateTime         @default(now())
+  end           DateTime?        @updatedAt
+  jenisBarang   String?
+  pendingProduk pendingProduct[]
+
+  @@index([jenisBarang])
+}
+
 model pendingProduct {
-  id            String    @id @default(uuid())
-  start         DateTime  @default(now())
-  end           DateTime? @updatedAt
-  stockBarang   Int       @default(0)
+  id            String       @id @default(uuid())
+  start         DateTime     @default(now())
+  end           DateTime?    @updatedAt
+  stockBarang   Int          @default(0)
   user          String?
   username      String?
   role          String?
   note          String?
-  jenisBarang   String?
-  statusProduct Boolean   @default(false)
-  products      product[] @relation("PendingProduct")
+  // jenisBarang   String?
+  statusProduct Boolean      @default(false)
+  products      product[]    @relation("PendingProduct")
   produkId      String?
   gedungId      Int?
+  jenisBarang   jenisBarang? @relation(fields: [jenisBarangId], references: [id])
+  jenisBarangId Int?
+
+  @@index([jenisBarangId])
 }
 
 model notifUser {

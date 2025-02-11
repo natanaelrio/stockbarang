@@ -63,7 +63,7 @@ export default function ScanCameraBarcode({ session }) {
                     produkid: dataBarcode?.data[0]?.id,
                     user: session.namaUser,
                     username: session.username,
-                    jenisBarang: isTambahKurang == 'kurang' && 'TidakLangsung' || KondisiSessionSales && 'Request' || KondisiSessionIndent && 'Indent' || 'Langsung',
+                    jenisBarangId: isTambahKurang == 'kurang' && 333 || KondisiSessionSales && 444 || KondisiSessionIndent && 111 || 222,
                     role: KondisiSessionSales && 'verplus' ||
                         isTambahKurang == 'tambah' && 'verplus' ||
                         isTambahKurang == 'kurang' && 'vermin',

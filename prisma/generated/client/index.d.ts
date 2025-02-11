@@ -29,6 +29,11 @@ export type product = $Result.DefaultSelection<Prisma.$productPayload>
  */
 export type produkGedung = $Result.DefaultSelection<Prisma.$produkGedungPayload>
 /**
+ * Model jenisBarang
+ * 
+ */
+export type jenisBarang = $Result.DefaultSelection<Prisma.$jenisBarangPayload>
+/**
  * Model pendingProduct
  * 
  */
@@ -196,6 +201,16 @@ export class PrismaClient<
     * ```
     */
   get produkGedung(): Prisma.produkGedungDelegate<ExtArgs>;
+
+  /**
+   * `prisma.jenisBarang`: Exposes CRUD operations for the **jenisBarang** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more JenisBarangs
+    * const jenisBarangs = await prisma.jenisBarang.findMany()
+    * ```
+    */
+  get jenisBarang(): Prisma.jenisBarangDelegate<ExtArgs>;
 
   /**
    * `prisma.pendingProduct`: Exposes CRUD operations for the **pendingProduct** model.
@@ -670,6 +685,7 @@ export namespace Prisma {
     gedung: 'gedung',
     product: 'product',
     produkGedung: 'produkGedung',
+    jenisBarang: 'jenisBarang',
     pendingProduct: 'pendingProduct',
     notifUser: 'notifUser',
     logUser: 'logUser'
@@ -688,7 +704,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "gedung" | "product" | "produkGedung" | "pendingProduct" | "notifUser" | "logUser"
+      modelProps: "gedung" | "product" | "produkGedung" | "jenisBarang" | "pendingProduct" | "notifUser" | "logUser"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -899,6 +915,76 @@ export namespace Prisma {
           count: {
             args: Prisma.produkGedungCountArgs<ExtArgs>
             result: $Utils.Optional<ProdukGedungCountAggregateOutputType> | number
+          }
+        }
+      }
+      jenisBarang: {
+        payload: Prisma.$jenisBarangPayload<ExtArgs>
+        fields: Prisma.jenisBarangFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.jenisBarangFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$jenisBarangPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.jenisBarangFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$jenisBarangPayload>
+          }
+          findFirst: {
+            args: Prisma.jenisBarangFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$jenisBarangPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.jenisBarangFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$jenisBarangPayload>
+          }
+          findMany: {
+            args: Prisma.jenisBarangFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$jenisBarangPayload>[]
+          }
+          create: {
+            args: Prisma.jenisBarangCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$jenisBarangPayload>
+          }
+          createMany: {
+            args: Prisma.jenisBarangCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.jenisBarangCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$jenisBarangPayload>[]
+          }
+          delete: {
+            args: Prisma.jenisBarangDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$jenisBarangPayload>
+          }
+          update: {
+            args: Prisma.jenisBarangUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$jenisBarangPayload>
+          }
+          deleteMany: {
+            args: Prisma.jenisBarangDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.jenisBarangUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.jenisBarangUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$jenisBarangPayload>
+          }
+          aggregate: {
+            args: Prisma.JenisBarangAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateJenisBarang>
+          }
+          groupBy: {
+            args: Prisma.jenisBarangGroupByArgs<ExtArgs>
+            result: $Utils.Optional<JenisBarangGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.jenisBarangCountArgs<ExtArgs>
+            result: $Utils.Optional<JenisBarangCountAggregateOutputType> | number
           }
         }
       }
@@ -1335,6 +1421,37 @@ export namespace Prisma {
    * ProductCountOutputType without action
    */
   export type ProductCountOutputTypeCountPendingProductArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: pendingProductWhereInput
+  }
+
+
+  /**
+   * Count Type JenisBarangCountOutputType
+   */
+
+  export type JenisBarangCountOutputType = {
+    pendingProduk: number
+  }
+
+  export type JenisBarangCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    pendingProduk?: boolean | JenisBarangCountOutputTypeCountPendingProdukArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * JenisBarangCountOutputType without action
+   */
+  export type JenisBarangCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JenisBarangCountOutputType
+     */
+    select?: JenisBarangCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * JenisBarangCountOutputType without action
+   */
+  export type JenisBarangCountOutputTypeCountPendingProdukArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: pendingProductWhereInput
   }
 
@@ -4306,6 +4423,976 @@ export namespace Prisma {
 
 
   /**
+   * Model jenisBarang
+   */
+
+  export type AggregateJenisBarang = {
+    _count: JenisBarangCountAggregateOutputType | null
+    _avg: JenisBarangAvgAggregateOutputType | null
+    _sum: JenisBarangSumAggregateOutputType | null
+    _min: JenisBarangMinAggregateOutputType | null
+    _max: JenisBarangMaxAggregateOutputType | null
+  }
+
+  export type JenisBarangAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type JenisBarangSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type JenisBarangMinAggregateOutputType = {
+    id: number | null
+    start: Date | null
+    end: Date | null
+    jenisBarang: string | null
+  }
+
+  export type JenisBarangMaxAggregateOutputType = {
+    id: number | null
+    start: Date | null
+    end: Date | null
+    jenisBarang: string | null
+  }
+
+  export type JenisBarangCountAggregateOutputType = {
+    id: number
+    start: number
+    end: number
+    jenisBarang: number
+    _all: number
+  }
+
+
+  export type JenisBarangAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type JenisBarangSumAggregateInputType = {
+    id?: true
+  }
+
+  export type JenisBarangMinAggregateInputType = {
+    id?: true
+    start?: true
+    end?: true
+    jenisBarang?: true
+  }
+
+  export type JenisBarangMaxAggregateInputType = {
+    id?: true
+    start?: true
+    end?: true
+    jenisBarang?: true
+  }
+
+  export type JenisBarangCountAggregateInputType = {
+    id?: true
+    start?: true
+    end?: true
+    jenisBarang?: true
+    _all?: true
+  }
+
+  export type JenisBarangAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which jenisBarang to aggregate.
+     */
+    where?: jenisBarangWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of jenisBarangs to fetch.
+     */
+    orderBy?: jenisBarangOrderByWithRelationInput | jenisBarangOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: jenisBarangWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` jenisBarangs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` jenisBarangs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned jenisBarangs
+    **/
+    _count?: true | JenisBarangCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: JenisBarangAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: JenisBarangSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: JenisBarangMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: JenisBarangMaxAggregateInputType
+  }
+
+  export type GetJenisBarangAggregateType<T extends JenisBarangAggregateArgs> = {
+        [P in keyof T & keyof AggregateJenisBarang]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateJenisBarang[P]>
+      : GetScalarType<T[P], AggregateJenisBarang[P]>
+  }
+
+
+
+
+  export type jenisBarangGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: jenisBarangWhereInput
+    orderBy?: jenisBarangOrderByWithAggregationInput | jenisBarangOrderByWithAggregationInput[]
+    by: JenisBarangScalarFieldEnum[] | JenisBarangScalarFieldEnum
+    having?: jenisBarangScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: JenisBarangCountAggregateInputType | true
+    _avg?: JenisBarangAvgAggregateInputType
+    _sum?: JenisBarangSumAggregateInputType
+    _min?: JenisBarangMinAggregateInputType
+    _max?: JenisBarangMaxAggregateInputType
+  }
+
+  export type JenisBarangGroupByOutputType = {
+    id: number
+    start: Date
+    end: Date | null
+    jenisBarang: string | null
+    _count: JenisBarangCountAggregateOutputType | null
+    _avg: JenisBarangAvgAggregateOutputType | null
+    _sum: JenisBarangSumAggregateOutputType | null
+    _min: JenisBarangMinAggregateOutputType | null
+    _max: JenisBarangMaxAggregateOutputType | null
+  }
+
+  type GetJenisBarangGroupByPayload<T extends jenisBarangGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<JenisBarangGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof JenisBarangGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], JenisBarangGroupByOutputType[P]>
+            : GetScalarType<T[P], JenisBarangGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type jenisBarangSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    start?: boolean
+    end?: boolean
+    jenisBarang?: boolean
+    pendingProduk?: boolean | jenisBarang$pendingProdukArgs<ExtArgs>
+    _count?: boolean | JenisBarangCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["jenisBarang"]>
+
+  export type jenisBarangSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    start?: boolean
+    end?: boolean
+    jenisBarang?: boolean
+  }, ExtArgs["result"]["jenisBarang"]>
+
+  export type jenisBarangSelectScalar = {
+    id?: boolean
+    start?: boolean
+    end?: boolean
+    jenisBarang?: boolean
+  }
+
+  export type jenisBarangInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    pendingProduk?: boolean | jenisBarang$pendingProdukArgs<ExtArgs>
+    _count?: boolean | JenisBarangCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type jenisBarangIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $jenisBarangPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "jenisBarang"
+    objects: {
+      pendingProduk: Prisma.$pendingProductPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      start: Date
+      end: Date | null
+      jenisBarang: string | null
+    }, ExtArgs["result"]["jenisBarang"]>
+    composites: {}
+  }
+
+  type jenisBarangGetPayload<S extends boolean | null | undefined | jenisBarangDefaultArgs> = $Result.GetResult<Prisma.$jenisBarangPayload, S>
+
+  type jenisBarangCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<jenisBarangFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: JenisBarangCountAggregateInputType | true
+    }
+
+  export interface jenisBarangDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['jenisBarang'], meta: { name: 'jenisBarang' } }
+    /**
+     * Find zero or one JenisBarang that matches the filter.
+     * @param {jenisBarangFindUniqueArgs} args - Arguments to find a JenisBarang
+     * @example
+     * // Get one JenisBarang
+     * const jenisBarang = await prisma.jenisBarang.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends jenisBarangFindUniqueArgs>(args: SelectSubset<T, jenisBarangFindUniqueArgs<ExtArgs>>): Prisma__jenisBarangClient<$Result.GetResult<Prisma.$jenisBarangPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one JenisBarang that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {jenisBarangFindUniqueOrThrowArgs} args - Arguments to find a JenisBarang
+     * @example
+     * // Get one JenisBarang
+     * const jenisBarang = await prisma.jenisBarang.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends jenisBarangFindUniqueOrThrowArgs>(args: SelectSubset<T, jenisBarangFindUniqueOrThrowArgs<ExtArgs>>): Prisma__jenisBarangClient<$Result.GetResult<Prisma.$jenisBarangPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first JenisBarang that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {jenisBarangFindFirstArgs} args - Arguments to find a JenisBarang
+     * @example
+     * // Get one JenisBarang
+     * const jenisBarang = await prisma.jenisBarang.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends jenisBarangFindFirstArgs>(args?: SelectSubset<T, jenisBarangFindFirstArgs<ExtArgs>>): Prisma__jenisBarangClient<$Result.GetResult<Prisma.$jenisBarangPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first JenisBarang that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {jenisBarangFindFirstOrThrowArgs} args - Arguments to find a JenisBarang
+     * @example
+     * // Get one JenisBarang
+     * const jenisBarang = await prisma.jenisBarang.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends jenisBarangFindFirstOrThrowArgs>(args?: SelectSubset<T, jenisBarangFindFirstOrThrowArgs<ExtArgs>>): Prisma__jenisBarangClient<$Result.GetResult<Prisma.$jenisBarangPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more JenisBarangs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {jenisBarangFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all JenisBarangs
+     * const jenisBarangs = await prisma.jenisBarang.findMany()
+     * 
+     * // Get first 10 JenisBarangs
+     * const jenisBarangs = await prisma.jenisBarang.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const jenisBarangWithIdOnly = await prisma.jenisBarang.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends jenisBarangFindManyArgs>(args?: SelectSubset<T, jenisBarangFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$jenisBarangPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a JenisBarang.
+     * @param {jenisBarangCreateArgs} args - Arguments to create a JenisBarang.
+     * @example
+     * // Create one JenisBarang
+     * const JenisBarang = await prisma.jenisBarang.create({
+     *   data: {
+     *     // ... data to create a JenisBarang
+     *   }
+     * })
+     * 
+     */
+    create<T extends jenisBarangCreateArgs>(args: SelectSubset<T, jenisBarangCreateArgs<ExtArgs>>): Prisma__jenisBarangClient<$Result.GetResult<Prisma.$jenisBarangPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many JenisBarangs.
+     * @param {jenisBarangCreateManyArgs} args - Arguments to create many JenisBarangs.
+     * @example
+     * // Create many JenisBarangs
+     * const jenisBarang = await prisma.jenisBarang.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends jenisBarangCreateManyArgs>(args?: SelectSubset<T, jenisBarangCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many JenisBarangs and returns the data saved in the database.
+     * @param {jenisBarangCreateManyAndReturnArgs} args - Arguments to create many JenisBarangs.
+     * @example
+     * // Create many JenisBarangs
+     * const jenisBarang = await prisma.jenisBarang.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many JenisBarangs and only return the `id`
+     * const jenisBarangWithIdOnly = await prisma.jenisBarang.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends jenisBarangCreateManyAndReturnArgs>(args?: SelectSubset<T, jenisBarangCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$jenisBarangPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a JenisBarang.
+     * @param {jenisBarangDeleteArgs} args - Arguments to delete one JenisBarang.
+     * @example
+     * // Delete one JenisBarang
+     * const JenisBarang = await prisma.jenisBarang.delete({
+     *   where: {
+     *     // ... filter to delete one JenisBarang
+     *   }
+     * })
+     * 
+     */
+    delete<T extends jenisBarangDeleteArgs>(args: SelectSubset<T, jenisBarangDeleteArgs<ExtArgs>>): Prisma__jenisBarangClient<$Result.GetResult<Prisma.$jenisBarangPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one JenisBarang.
+     * @param {jenisBarangUpdateArgs} args - Arguments to update one JenisBarang.
+     * @example
+     * // Update one JenisBarang
+     * const jenisBarang = await prisma.jenisBarang.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends jenisBarangUpdateArgs>(args: SelectSubset<T, jenisBarangUpdateArgs<ExtArgs>>): Prisma__jenisBarangClient<$Result.GetResult<Prisma.$jenisBarangPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more JenisBarangs.
+     * @param {jenisBarangDeleteManyArgs} args - Arguments to filter JenisBarangs to delete.
+     * @example
+     * // Delete a few JenisBarangs
+     * const { count } = await prisma.jenisBarang.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends jenisBarangDeleteManyArgs>(args?: SelectSubset<T, jenisBarangDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more JenisBarangs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {jenisBarangUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many JenisBarangs
+     * const jenisBarang = await prisma.jenisBarang.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends jenisBarangUpdateManyArgs>(args: SelectSubset<T, jenisBarangUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one JenisBarang.
+     * @param {jenisBarangUpsertArgs} args - Arguments to update or create a JenisBarang.
+     * @example
+     * // Update or create a JenisBarang
+     * const jenisBarang = await prisma.jenisBarang.upsert({
+     *   create: {
+     *     // ... data to create a JenisBarang
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the JenisBarang we want to update
+     *   }
+     * })
+     */
+    upsert<T extends jenisBarangUpsertArgs>(args: SelectSubset<T, jenisBarangUpsertArgs<ExtArgs>>): Prisma__jenisBarangClient<$Result.GetResult<Prisma.$jenisBarangPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of JenisBarangs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {jenisBarangCountArgs} args - Arguments to filter JenisBarangs to count.
+     * @example
+     * // Count the number of JenisBarangs
+     * const count = await prisma.jenisBarang.count({
+     *   where: {
+     *     // ... the filter for the JenisBarangs we want to count
+     *   }
+     * })
+    **/
+    count<T extends jenisBarangCountArgs>(
+      args?: Subset<T, jenisBarangCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], JenisBarangCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a JenisBarang.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JenisBarangAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends JenisBarangAggregateArgs>(args: Subset<T, JenisBarangAggregateArgs>): Prisma.PrismaPromise<GetJenisBarangAggregateType<T>>
+
+    /**
+     * Group by JenisBarang.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {jenisBarangGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends jenisBarangGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: jenisBarangGroupByArgs['orderBy'] }
+        : { orderBy?: jenisBarangGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, jenisBarangGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetJenisBarangGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the jenisBarang model
+   */
+  readonly fields: jenisBarangFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for jenisBarang.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__jenisBarangClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    pendingProduk<T extends jenisBarang$pendingProdukArgs<ExtArgs> = {}>(args?: Subset<T, jenisBarang$pendingProdukArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$pendingProductPayload<ExtArgs>, T, "findMany"> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the jenisBarang model
+   */ 
+  interface jenisBarangFieldRefs {
+    readonly id: FieldRef<"jenisBarang", 'Int'>
+    readonly start: FieldRef<"jenisBarang", 'DateTime'>
+    readonly end: FieldRef<"jenisBarang", 'DateTime'>
+    readonly jenisBarang: FieldRef<"jenisBarang", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * jenisBarang findUnique
+   */
+  export type jenisBarangFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jenisBarang
+     */
+    select?: jenisBarangSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jenisBarangInclude<ExtArgs> | null
+    /**
+     * Filter, which jenisBarang to fetch.
+     */
+    where: jenisBarangWhereUniqueInput
+  }
+
+  /**
+   * jenisBarang findUniqueOrThrow
+   */
+  export type jenisBarangFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jenisBarang
+     */
+    select?: jenisBarangSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jenisBarangInclude<ExtArgs> | null
+    /**
+     * Filter, which jenisBarang to fetch.
+     */
+    where: jenisBarangWhereUniqueInput
+  }
+
+  /**
+   * jenisBarang findFirst
+   */
+  export type jenisBarangFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jenisBarang
+     */
+    select?: jenisBarangSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jenisBarangInclude<ExtArgs> | null
+    /**
+     * Filter, which jenisBarang to fetch.
+     */
+    where?: jenisBarangWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of jenisBarangs to fetch.
+     */
+    orderBy?: jenisBarangOrderByWithRelationInput | jenisBarangOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for jenisBarangs.
+     */
+    cursor?: jenisBarangWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` jenisBarangs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` jenisBarangs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of jenisBarangs.
+     */
+    distinct?: JenisBarangScalarFieldEnum | JenisBarangScalarFieldEnum[]
+  }
+
+  /**
+   * jenisBarang findFirstOrThrow
+   */
+  export type jenisBarangFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jenisBarang
+     */
+    select?: jenisBarangSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jenisBarangInclude<ExtArgs> | null
+    /**
+     * Filter, which jenisBarang to fetch.
+     */
+    where?: jenisBarangWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of jenisBarangs to fetch.
+     */
+    orderBy?: jenisBarangOrderByWithRelationInput | jenisBarangOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for jenisBarangs.
+     */
+    cursor?: jenisBarangWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` jenisBarangs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` jenisBarangs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of jenisBarangs.
+     */
+    distinct?: JenisBarangScalarFieldEnum | JenisBarangScalarFieldEnum[]
+  }
+
+  /**
+   * jenisBarang findMany
+   */
+  export type jenisBarangFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jenisBarang
+     */
+    select?: jenisBarangSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jenisBarangInclude<ExtArgs> | null
+    /**
+     * Filter, which jenisBarangs to fetch.
+     */
+    where?: jenisBarangWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of jenisBarangs to fetch.
+     */
+    orderBy?: jenisBarangOrderByWithRelationInput | jenisBarangOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing jenisBarangs.
+     */
+    cursor?: jenisBarangWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` jenisBarangs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` jenisBarangs.
+     */
+    skip?: number
+    distinct?: JenisBarangScalarFieldEnum | JenisBarangScalarFieldEnum[]
+  }
+
+  /**
+   * jenisBarang create
+   */
+  export type jenisBarangCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jenisBarang
+     */
+    select?: jenisBarangSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jenisBarangInclude<ExtArgs> | null
+    /**
+     * The data needed to create a jenisBarang.
+     */
+    data?: XOR<jenisBarangCreateInput, jenisBarangUncheckedCreateInput>
+  }
+
+  /**
+   * jenisBarang createMany
+   */
+  export type jenisBarangCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many jenisBarangs.
+     */
+    data: jenisBarangCreateManyInput | jenisBarangCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * jenisBarang createManyAndReturn
+   */
+  export type jenisBarangCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jenisBarang
+     */
+    select?: jenisBarangSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many jenisBarangs.
+     */
+    data: jenisBarangCreateManyInput | jenisBarangCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * jenisBarang update
+   */
+  export type jenisBarangUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jenisBarang
+     */
+    select?: jenisBarangSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jenisBarangInclude<ExtArgs> | null
+    /**
+     * The data needed to update a jenisBarang.
+     */
+    data: XOR<jenisBarangUpdateInput, jenisBarangUncheckedUpdateInput>
+    /**
+     * Choose, which jenisBarang to update.
+     */
+    where: jenisBarangWhereUniqueInput
+  }
+
+  /**
+   * jenisBarang updateMany
+   */
+  export type jenisBarangUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update jenisBarangs.
+     */
+    data: XOR<jenisBarangUpdateManyMutationInput, jenisBarangUncheckedUpdateManyInput>
+    /**
+     * Filter which jenisBarangs to update
+     */
+    where?: jenisBarangWhereInput
+  }
+
+  /**
+   * jenisBarang upsert
+   */
+  export type jenisBarangUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jenisBarang
+     */
+    select?: jenisBarangSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jenisBarangInclude<ExtArgs> | null
+    /**
+     * The filter to search for the jenisBarang to update in case it exists.
+     */
+    where: jenisBarangWhereUniqueInput
+    /**
+     * In case the jenisBarang found by the `where` argument doesn't exist, create a new jenisBarang with this data.
+     */
+    create: XOR<jenisBarangCreateInput, jenisBarangUncheckedCreateInput>
+    /**
+     * In case the jenisBarang was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<jenisBarangUpdateInput, jenisBarangUncheckedUpdateInput>
+  }
+
+  /**
+   * jenisBarang delete
+   */
+  export type jenisBarangDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jenisBarang
+     */
+    select?: jenisBarangSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jenisBarangInclude<ExtArgs> | null
+    /**
+     * Filter which jenisBarang to delete.
+     */
+    where: jenisBarangWhereUniqueInput
+  }
+
+  /**
+   * jenisBarang deleteMany
+   */
+  export type jenisBarangDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which jenisBarangs to delete
+     */
+    where?: jenisBarangWhereInput
+  }
+
+  /**
+   * jenisBarang.pendingProduk
+   */
+  export type jenisBarang$pendingProdukArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the pendingProduct
+     */
+    select?: pendingProductSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pendingProductInclude<ExtArgs> | null
+    where?: pendingProductWhereInput
+    orderBy?: pendingProductOrderByWithRelationInput | pendingProductOrderByWithRelationInput[]
+    cursor?: pendingProductWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PendingProductScalarFieldEnum | PendingProductScalarFieldEnum[]
+  }
+
+  /**
+   * jenisBarang without action
+   */
+  export type jenisBarangDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jenisBarang
+     */
+    select?: jenisBarangSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jenisBarangInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model pendingProduct
    */
 
@@ -4320,11 +5407,13 @@ export namespace Prisma {
   export type PendingProductAvgAggregateOutputType = {
     stockBarang: number | null
     gedungId: number | null
+    jenisBarangId: number | null
   }
 
   export type PendingProductSumAggregateOutputType = {
     stockBarang: number | null
     gedungId: number | null
+    jenisBarangId: number | null
   }
 
   export type PendingProductMinAggregateOutputType = {
@@ -4336,10 +5425,10 @@ export namespace Prisma {
     username: string | null
     role: string | null
     note: string | null
-    jenisBarang: string | null
     statusProduct: boolean | null
     produkId: string | null
     gedungId: number | null
+    jenisBarangId: number | null
   }
 
   export type PendingProductMaxAggregateOutputType = {
@@ -4351,10 +5440,10 @@ export namespace Prisma {
     username: string | null
     role: string | null
     note: string | null
-    jenisBarang: string | null
     statusProduct: boolean | null
     produkId: string | null
     gedungId: number | null
+    jenisBarangId: number | null
   }
 
   export type PendingProductCountAggregateOutputType = {
@@ -4366,10 +5455,10 @@ export namespace Prisma {
     username: number
     role: number
     note: number
-    jenisBarang: number
     statusProduct: number
     produkId: number
     gedungId: number
+    jenisBarangId: number
     _all: number
   }
 
@@ -4377,11 +5466,13 @@ export namespace Prisma {
   export type PendingProductAvgAggregateInputType = {
     stockBarang?: true
     gedungId?: true
+    jenisBarangId?: true
   }
 
   export type PendingProductSumAggregateInputType = {
     stockBarang?: true
     gedungId?: true
+    jenisBarangId?: true
   }
 
   export type PendingProductMinAggregateInputType = {
@@ -4393,10 +5484,10 @@ export namespace Prisma {
     username?: true
     role?: true
     note?: true
-    jenisBarang?: true
     statusProduct?: true
     produkId?: true
     gedungId?: true
+    jenisBarangId?: true
   }
 
   export type PendingProductMaxAggregateInputType = {
@@ -4408,10 +5499,10 @@ export namespace Prisma {
     username?: true
     role?: true
     note?: true
-    jenisBarang?: true
     statusProduct?: true
     produkId?: true
     gedungId?: true
+    jenisBarangId?: true
   }
 
   export type PendingProductCountAggregateInputType = {
@@ -4423,10 +5514,10 @@ export namespace Prisma {
     username?: true
     role?: true
     note?: true
-    jenisBarang?: true
     statusProduct?: true
     produkId?: true
     gedungId?: true
+    jenisBarangId?: true
     _all?: true
   }
 
@@ -4525,10 +5616,10 @@ export namespace Prisma {
     username: string | null
     role: string | null
     note: string | null
-    jenisBarang: string | null
     statusProduct: boolean
     produkId: string | null
     gedungId: number | null
+    jenisBarangId: number | null
     _count: PendingProductCountAggregateOutputType | null
     _avg: PendingProductAvgAggregateOutputType | null
     _sum: PendingProductSumAggregateOutputType | null
@@ -4559,11 +5650,12 @@ export namespace Prisma {
     username?: boolean
     role?: boolean
     note?: boolean
-    jenisBarang?: boolean
     statusProduct?: boolean
     produkId?: boolean
     gedungId?: boolean
+    jenisBarangId?: boolean
     products?: boolean | pendingProduct$productsArgs<ExtArgs>
+    jenisBarang?: boolean | pendingProduct$jenisBarangArgs<ExtArgs>
     _count?: boolean | PendingProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pendingProduct"]>
 
@@ -4576,10 +5668,11 @@ export namespace Prisma {
     username?: boolean
     role?: boolean
     note?: boolean
-    jenisBarang?: boolean
     statusProduct?: boolean
     produkId?: boolean
     gedungId?: boolean
+    jenisBarangId?: boolean
+    jenisBarang?: boolean | pendingProduct$jenisBarangArgs<ExtArgs>
   }, ExtArgs["result"]["pendingProduct"]>
 
   export type pendingProductSelectScalar = {
@@ -4591,22 +5684,26 @@ export namespace Prisma {
     username?: boolean
     role?: boolean
     note?: boolean
-    jenisBarang?: boolean
     statusProduct?: boolean
     produkId?: boolean
     gedungId?: boolean
+    jenisBarangId?: boolean
   }
 
   export type pendingProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     products?: boolean | pendingProduct$productsArgs<ExtArgs>
+    jenisBarang?: boolean | pendingProduct$jenisBarangArgs<ExtArgs>
     _count?: boolean | PendingProductCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type pendingProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type pendingProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    jenisBarang?: boolean | pendingProduct$jenisBarangArgs<ExtArgs>
+  }
 
   export type $pendingProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "pendingProduct"
     objects: {
       products: Prisma.$productPayload<ExtArgs>[]
+      jenisBarang: Prisma.$jenisBarangPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4617,10 +5714,10 @@ export namespace Prisma {
       username: string | null
       role: string | null
       note: string | null
-      jenisBarang: string | null
       statusProduct: boolean
       produkId: string | null
       gedungId: number | null
+      jenisBarangId: number | null
     }, ExtArgs["result"]["pendingProduct"]>
     composites: {}
   }
@@ -4986,6 +6083,7 @@ export namespace Prisma {
   export interface Prisma__pendingProductClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     products<T extends pendingProduct$productsArgs<ExtArgs> = {}>(args?: Subset<T, pendingProduct$productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$productPayload<ExtArgs>, T, "findMany"> | Null>
+    jenisBarang<T extends pendingProduct$jenisBarangArgs<ExtArgs> = {}>(args?: Subset<T, pendingProduct$jenisBarangArgs<ExtArgs>>): Prisma__jenisBarangClient<$Result.GetResult<Prisma.$jenisBarangPayload<ExtArgs>, T, "findUniqueOrThrow"> | null, null, ExtArgs>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5023,10 +6121,10 @@ export namespace Prisma {
     readonly username: FieldRef<"pendingProduct", 'String'>
     readonly role: FieldRef<"pendingProduct", 'String'>
     readonly note: FieldRef<"pendingProduct", 'String'>
-    readonly jenisBarang: FieldRef<"pendingProduct", 'String'>
     readonly statusProduct: FieldRef<"pendingProduct", 'Boolean'>
     readonly produkId: FieldRef<"pendingProduct", 'String'>
     readonly gedungId: FieldRef<"pendingProduct", 'Int'>
+    readonly jenisBarangId: FieldRef<"pendingProduct", 'Int'>
   }
     
 
@@ -5248,6 +6346,10 @@ export namespace Prisma {
      */
     data: pendingProductCreateManyInput | pendingProductCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: pendingProductIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -5358,6 +6460,21 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ProductScalarFieldEnum | ProductScalarFieldEnum[]
+  }
+
+  /**
+   * pendingProduct.jenisBarang
+   */
+  export type pendingProduct$jenisBarangArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the jenisBarang
+     */
+    select?: jenisBarangSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: jenisBarangInclude<ExtArgs> | null
+    where?: jenisBarangWhereInput
   }
 
   /**
@@ -7248,6 +8365,16 @@ export namespace Prisma {
   export type ProdukGedungScalarFieldEnum = (typeof ProdukGedungScalarFieldEnum)[keyof typeof ProdukGedungScalarFieldEnum]
 
 
+  export const JenisBarangScalarFieldEnum: {
+    id: 'id',
+    start: 'start',
+    end: 'end',
+    jenisBarang: 'jenisBarang'
+  };
+
+  export type JenisBarangScalarFieldEnum = (typeof JenisBarangScalarFieldEnum)[keyof typeof JenisBarangScalarFieldEnum]
+
+
   export const PendingProductScalarFieldEnum: {
     id: 'id',
     start: 'start',
@@ -7257,10 +8384,10 @@ export namespace Prisma {
     username: 'username',
     role: 'role',
     note: 'note',
-    jenisBarang: 'jenisBarang',
     statusProduct: 'statusProduct',
     produkId: 'produkId',
-    gedungId: 'gedungId'
+    gedungId: 'gedungId',
+    jenisBarangId: 'jenisBarangId'
   };
 
   export type PendingProductScalarFieldEnum = (typeof PendingProductScalarFieldEnum)[keyof typeof PendingProductScalarFieldEnum]
@@ -7562,6 +8689,58 @@ export namespace Prisma {
     stockBarang?: IntWithAggregatesFilter<"produkGedung"> | number
   }
 
+  export type jenisBarangWhereInput = {
+    AND?: jenisBarangWhereInput | jenisBarangWhereInput[]
+    OR?: jenisBarangWhereInput[]
+    NOT?: jenisBarangWhereInput | jenisBarangWhereInput[]
+    id?: IntFilter<"jenisBarang"> | number
+    start?: DateTimeFilter<"jenisBarang"> | Date | string
+    end?: DateTimeNullableFilter<"jenisBarang"> | Date | string | null
+    jenisBarang?: StringNullableFilter<"jenisBarang"> | string | null
+    pendingProduk?: PendingProductListRelationFilter
+  }
+
+  export type jenisBarangOrderByWithRelationInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrderInput | SortOrder
+    jenisBarang?: SortOrderInput | SortOrder
+    pendingProduk?: pendingProductOrderByRelationAggregateInput
+  }
+
+  export type jenisBarangWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: jenisBarangWhereInput | jenisBarangWhereInput[]
+    OR?: jenisBarangWhereInput[]
+    NOT?: jenisBarangWhereInput | jenisBarangWhereInput[]
+    start?: DateTimeFilter<"jenisBarang"> | Date | string
+    end?: DateTimeNullableFilter<"jenisBarang"> | Date | string | null
+    jenisBarang?: StringNullableFilter<"jenisBarang"> | string | null
+    pendingProduk?: PendingProductListRelationFilter
+  }, "id">
+
+  export type jenisBarangOrderByWithAggregationInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrderInput | SortOrder
+    jenisBarang?: SortOrderInput | SortOrder
+    _count?: jenisBarangCountOrderByAggregateInput
+    _avg?: jenisBarangAvgOrderByAggregateInput
+    _max?: jenisBarangMaxOrderByAggregateInput
+    _min?: jenisBarangMinOrderByAggregateInput
+    _sum?: jenisBarangSumOrderByAggregateInput
+  }
+
+  export type jenisBarangScalarWhereWithAggregatesInput = {
+    AND?: jenisBarangScalarWhereWithAggregatesInput | jenisBarangScalarWhereWithAggregatesInput[]
+    OR?: jenisBarangScalarWhereWithAggregatesInput[]
+    NOT?: jenisBarangScalarWhereWithAggregatesInput | jenisBarangScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"jenisBarang"> | number
+    start?: DateTimeWithAggregatesFilter<"jenisBarang"> | Date | string
+    end?: DateTimeNullableWithAggregatesFilter<"jenisBarang"> | Date | string | null
+    jenisBarang?: StringNullableWithAggregatesFilter<"jenisBarang"> | string | null
+  }
+
   export type pendingProductWhereInput = {
     AND?: pendingProductWhereInput | pendingProductWhereInput[]
     OR?: pendingProductWhereInput[]
@@ -7574,11 +8753,12 @@ export namespace Prisma {
     username?: StringNullableFilter<"pendingProduct"> | string | null
     role?: StringNullableFilter<"pendingProduct"> | string | null
     note?: StringNullableFilter<"pendingProduct"> | string | null
-    jenisBarang?: StringNullableFilter<"pendingProduct"> | string | null
     statusProduct?: BoolFilter<"pendingProduct"> | boolean
     produkId?: StringNullableFilter<"pendingProduct"> | string | null
     gedungId?: IntNullableFilter<"pendingProduct"> | number | null
+    jenisBarangId?: IntNullableFilter<"pendingProduct"> | number | null
     products?: ProductListRelationFilter
+    jenisBarang?: XOR<JenisBarangNullableRelationFilter, jenisBarangWhereInput> | null
   }
 
   export type pendingProductOrderByWithRelationInput = {
@@ -7590,11 +8770,12 @@ export namespace Prisma {
     username?: SortOrderInput | SortOrder
     role?: SortOrderInput | SortOrder
     note?: SortOrderInput | SortOrder
-    jenisBarang?: SortOrderInput | SortOrder
     statusProduct?: SortOrder
     produkId?: SortOrderInput | SortOrder
     gedungId?: SortOrderInput | SortOrder
+    jenisBarangId?: SortOrderInput | SortOrder
     products?: productOrderByRelationAggregateInput
+    jenisBarang?: jenisBarangOrderByWithRelationInput
   }
 
   export type pendingProductWhereUniqueInput = Prisma.AtLeast<{
@@ -7609,11 +8790,12 @@ export namespace Prisma {
     username?: StringNullableFilter<"pendingProduct"> | string | null
     role?: StringNullableFilter<"pendingProduct"> | string | null
     note?: StringNullableFilter<"pendingProduct"> | string | null
-    jenisBarang?: StringNullableFilter<"pendingProduct"> | string | null
     statusProduct?: BoolFilter<"pendingProduct"> | boolean
     produkId?: StringNullableFilter<"pendingProduct"> | string | null
     gedungId?: IntNullableFilter<"pendingProduct"> | number | null
+    jenisBarangId?: IntNullableFilter<"pendingProduct"> | number | null
     products?: ProductListRelationFilter
+    jenisBarang?: XOR<JenisBarangNullableRelationFilter, jenisBarangWhereInput> | null
   }, "id">
 
   export type pendingProductOrderByWithAggregationInput = {
@@ -7625,10 +8807,10 @@ export namespace Prisma {
     username?: SortOrderInput | SortOrder
     role?: SortOrderInput | SortOrder
     note?: SortOrderInput | SortOrder
-    jenisBarang?: SortOrderInput | SortOrder
     statusProduct?: SortOrder
     produkId?: SortOrderInput | SortOrder
     gedungId?: SortOrderInput | SortOrder
+    jenisBarangId?: SortOrderInput | SortOrder
     _count?: pendingProductCountOrderByAggregateInput
     _avg?: pendingProductAvgOrderByAggregateInput
     _max?: pendingProductMaxOrderByAggregateInput
@@ -7648,10 +8830,10 @@ export namespace Prisma {
     username?: StringNullableWithAggregatesFilter<"pendingProduct"> | string | null
     role?: StringNullableWithAggregatesFilter<"pendingProduct"> | string | null
     note?: StringNullableWithAggregatesFilter<"pendingProduct"> | string | null
-    jenisBarang?: StringNullableWithAggregatesFilter<"pendingProduct"> | string | null
     statusProduct?: BoolWithAggregatesFilter<"pendingProduct"> | boolean
     produkId?: StringNullableWithAggregatesFilter<"pendingProduct"> | string | null
     gedungId?: IntNullableWithAggregatesFilter<"pendingProduct"> | number | null
+    jenisBarangId?: IntNullableWithAggregatesFilter<"pendingProduct"> | number | null
   }
 
   export type notifUserWhereInput = {
@@ -7953,6 +9135,59 @@ export namespace Prisma {
     stockBarang?: IntFieldUpdateOperationsInput | number
   }
 
+  export type jenisBarangCreateInput = {
+    id?: number
+    start?: Date | string
+    end?: Date | string | null
+    jenisBarang?: string | null
+    pendingProduk?: pendingProductCreateNestedManyWithoutJenisBarangInput
+  }
+
+  export type jenisBarangUncheckedCreateInput = {
+    id?: number
+    start?: Date | string
+    end?: Date | string | null
+    jenisBarang?: string | null
+    pendingProduk?: pendingProductUncheckedCreateNestedManyWithoutJenisBarangInput
+  }
+
+  export type jenisBarangUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingProduk?: pendingProductUpdateManyWithoutJenisBarangNestedInput
+  }
+
+  export type jenisBarangUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
+    pendingProduk?: pendingProductUncheckedUpdateManyWithoutJenisBarangNestedInput
+  }
+
+  export type jenisBarangCreateManyInput = {
+    id?: number
+    start?: Date | string
+    end?: Date | string | null
+    jenisBarang?: string | null
+  }
+
+  export type jenisBarangUpdateManyMutationInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type jenisBarangUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type pendingProductCreateInput = {
     id?: string
     start?: Date | string
@@ -7962,11 +9197,11 @@ export namespace Prisma {
     username?: string | null
     role?: string | null
     note?: string | null
-    jenisBarang?: string | null
     statusProduct?: boolean
     produkId?: string | null
     gedungId?: number | null
     products?: productCreateNestedManyWithoutPendingProductInput
+    jenisBarang?: jenisBarangCreateNestedOneWithoutPendingProdukInput
   }
 
   export type pendingProductUncheckedCreateInput = {
@@ -7978,10 +9213,10 @@ export namespace Prisma {
     username?: string | null
     role?: string | null
     note?: string | null
-    jenisBarang?: string | null
     statusProduct?: boolean
     produkId?: string | null
     gedungId?: number | null
+    jenisBarangId?: number | null
     products?: productUncheckedCreateNestedManyWithoutPendingProductInput
   }
 
@@ -7994,11 +9229,11 @@ export namespace Prisma {
     username?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
-    jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
     produkId?: NullableStringFieldUpdateOperationsInput | string | null
     gedungId?: NullableIntFieldUpdateOperationsInput | number | null
     products?: productUpdateManyWithoutPendingProductNestedInput
+    jenisBarang?: jenisBarangUpdateOneWithoutPendingProdukNestedInput
   }
 
   export type pendingProductUncheckedUpdateInput = {
@@ -8010,10 +9245,10 @@ export namespace Prisma {
     username?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
-    jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
     produkId?: NullableStringFieldUpdateOperationsInput | string | null
     gedungId?: NullableIntFieldUpdateOperationsInput | number | null
+    jenisBarangId?: NullableIntFieldUpdateOperationsInput | number | null
     products?: productUncheckedUpdateManyWithoutPendingProductNestedInput
   }
 
@@ -8026,10 +9261,10 @@ export namespace Prisma {
     username?: string | null
     role?: string | null
     note?: string | null
-    jenisBarang?: string | null
     statusProduct?: boolean
     produkId?: string | null
     gedungId?: number | null
+    jenisBarangId?: number | null
   }
 
   export type pendingProductUpdateManyMutationInput = {
@@ -8041,7 +9276,6 @@ export namespace Prisma {
     username?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
-    jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
     produkId?: NullableStringFieldUpdateOperationsInput | string | null
     gedungId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -8056,10 +9290,10 @@ export namespace Prisma {
     username?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
-    jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
     produkId?: NullableStringFieldUpdateOperationsInput | string | null
     gedungId?: NullableIntFieldUpdateOperationsInput | number | null
+    jenisBarangId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type notifUserCreateInput = {
@@ -8468,6 +9702,35 @@ export namespace Prisma {
     stockBarang?: SortOrder
   }
 
+  export type jenisBarangCountOrderByAggregateInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrder
+    jenisBarang?: SortOrder
+  }
+
+  export type jenisBarangAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type jenisBarangMaxOrderByAggregateInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrder
+    jenisBarang?: SortOrder
+  }
+
+  export type jenisBarangMinOrderByAggregateInput = {
+    id?: SortOrder
+    start?: SortOrder
+    end?: SortOrder
+    jenisBarang?: SortOrder
+  }
+
+  export type jenisBarangSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
   export type BoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
@@ -8490,6 +9753,11 @@ export namespace Prisma {
     none?: productWhereInput
   }
 
+  export type JenisBarangNullableRelationFilter = {
+    is?: jenisBarangWhereInput | null
+    isNot?: jenisBarangWhereInput | null
+  }
+
   export type productOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -8503,15 +9771,16 @@ export namespace Prisma {
     username?: SortOrder
     role?: SortOrder
     note?: SortOrder
-    jenisBarang?: SortOrder
     statusProduct?: SortOrder
     produkId?: SortOrder
     gedungId?: SortOrder
+    jenisBarangId?: SortOrder
   }
 
   export type pendingProductAvgOrderByAggregateInput = {
     stockBarang?: SortOrder
     gedungId?: SortOrder
+    jenisBarangId?: SortOrder
   }
 
   export type pendingProductMaxOrderByAggregateInput = {
@@ -8523,10 +9792,10 @@ export namespace Prisma {
     username?: SortOrder
     role?: SortOrder
     note?: SortOrder
-    jenisBarang?: SortOrder
     statusProduct?: SortOrder
     produkId?: SortOrder
     gedungId?: SortOrder
+    jenisBarangId?: SortOrder
   }
 
   export type pendingProductMinOrderByAggregateInput = {
@@ -8538,15 +9807,16 @@ export namespace Prisma {
     username?: SortOrder
     role?: SortOrder
     note?: SortOrder
-    jenisBarang?: SortOrder
     statusProduct?: SortOrder
     produkId?: SortOrder
     gedungId?: SortOrder
+    jenisBarangId?: SortOrder
   }
 
   export type pendingProductSumOrderByAggregateInput = {
     stockBarang?: SortOrder
     gedungId?: SortOrder
+    jenisBarangId?: SortOrder
   }
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -8812,10 +10082,58 @@ export namespace Prisma {
     update?: XOR<XOR<gedungUpdateToOneWithWhereWithoutProdukInput, gedungUpdateWithoutProdukInput>, gedungUncheckedUpdateWithoutProdukInput>
   }
 
+  export type pendingProductCreateNestedManyWithoutJenisBarangInput = {
+    create?: XOR<pendingProductCreateWithoutJenisBarangInput, pendingProductUncheckedCreateWithoutJenisBarangInput> | pendingProductCreateWithoutJenisBarangInput[] | pendingProductUncheckedCreateWithoutJenisBarangInput[]
+    connectOrCreate?: pendingProductCreateOrConnectWithoutJenisBarangInput | pendingProductCreateOrConnectWithoutJenisBarangInput[]
+    createMany?: pendingProductCreateManyJenisBarangInputEnvelope
+    connect?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
+  }
+
+  export type pendingProductUncheckedCreateNestedManyWithoutJenisBarangInput = {
+    create?: XOR<pendingProductCreateWithoutJenisBarangInput, pendingProductUncheckedCreateWithoutJenisBarangInput> | pendingProductCreateWithoutJenisBarangInput[] | pendingProductUncheckedCreateWithoutJenisBarangInput[]
+    connectOrCreate?: pendingProductCreateOrConnectWithoutJenisBarangInput | pendingProductCreateOrConnectWithoutJenisBarangInput[]
+    createMany?: pendingProductCreateManyJenisBarangInputEnvelope
+    connect?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
+  }
+
+  export type pendingProductUpdateManyWithoutJenisBarangNestedInput = {
+    create?: XOR<pendingProductCreateWithoutJenisBarangInput, pendingProductUncheckedCreateWithoutJenisBarangInput> | pendingProductCreateWithoutJenisBarangInput[] | pendingProductUncheckedCreateWithoutJenisBarangInput[]
+    connectOrCreate?: pendingProductCreateOrConnectWithoutJenisBarangInput | pendingProductCreateOrConnectWithoutJenisBarangInput[]
+    upsert?: pendingProductUpsertWithWhereUniqueWithoutJenisBarangInput | pendingProductUpsertWithWhereUniqueWithoutJenisBarangInput[]
+    createMany?: pendingProductCreateManyJenisBarangInputEnvelope
+    set?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
+    disconnect?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
+    delete?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
+    connect?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
+    update?: pendingProductUpdateWithWhereUniqueWithoutJenisBarangInput | pendingProductUpdateWithWhereUniqueWithoutJenisBarangInput[]
+    updateMany?: pendingProductUpdateManyWithWhereWithoutJenisBarangInput | pendingProductUpdateManyWithWhereWithoutJenisBarangInput[]
+    deleteMany?: pendingProductScalarWhereInput | pendingProductScalarWhereInput[]
+  }
+
+  export type pendingProductUncheckedUpdateManyWithoutJenisBarangNestedInput = {
+    create?: XOR<pendingProductCreateWithoutJenisBarangInput, pendingProductUncheckedCreateWithoutJenisBarangInput> | pendingProductCreateWithoutJenisBarangInput[] | pendingProductUncheckedCreateWithoutJenisBarangInput[]
+    connectOrCreate?: pendingProductCreateOrConnectWithoutJenisBarangInput | pendingProductCreateOrConnectWithoutJenisBarangInput[]
+    upsert?: pendingProductUpsertWithWhereUniqueWithoutJenisBarangInput | pendingProductUpsertWithWhereUniqueWithoutJenisBarangInput[]
+    createMany?: pendingProductCreateManyJenisBarangInputEnvelope
+    set?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
+    disconnect?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
+    delete?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
+    connect?: pendingProductWhereUniqueInput | pendingProductWhereUniqueInput[]
+    update?: pendingProductUpdateWithWhereUniqueWithoutJenisBarangInput | pendingProductUpdateWithWhereUniqueWithoutJenisBarangInput[]
+    updateMany?: pendingProductUpdateManyWithWhereWithoutJenisBarangInput | pendingProductUpdateManyWithWhereWithoutJenisBarangInput[]
+    deleteMany?: pendingProductScalarWhereInput | pendingProductScalarWhereInput[]
+  }
+
   export type productCreateNestedManyWithoutPendingProductInput = {
     create?: XOR<productCreateWithoutPendingProductInput, productUncheckedCreateWithoutPendingProductInput> | productCreateWithoutPendingProductInput[] | productUncheckedCreateWithoutPendingProductInput[]
     connectOrCreate?: productCreateOrConnectWithoutPendingProductInput | productCreateOrConnectWithoutPendingProductInput[]
     connect?: productWhereUniqueInput | productWhereUniqueInput[]
+  }
+
+  export type jenisBarangCreateNestedOneWithoutPendingProdukInput = {
+    create?: XOR<jenisBarangCreateWithoutPendingProdukInput, jenisBarangUncheckedCreateWithoutPendingProdukInput>
+    connectOrCreate?: jenisBarangCreateOrConnectWithoutPendingProdukInput
+    connect?: jenisBarangWhereUniqueInput
   }
 
   export type productUncheckedCreateNestedManyWithoutPendingProductInput = {
@@ -8847,6 +10165,16 @@ export namespace Prisma {
     update?: productUpdateWithWhereUniqueWithoutPendingProductInput | productUpdateWithWhereUniqueWithoutPendingProductInput[]
     updateMany?: productUpdateManyWithWhereWithoutPendingProductInput | productUpdateManyWithWhereWithoutPendingProductInput[]
     deleteMany?: productScalarWhereInput | productScalarWhereInput[]
+  }
+
+  export type jenisBarangUpdateOneWithoutPendingProdukNestedInput = {
+    create?: XOR<jenisBarangCreateWithoutPendingProdukInput, jenisBarangUncheckedCreateWithoutPendingProdukInput>
+    connectOrCreate?: jenisBarangCreateOrConnectWithoutPendingProdukInput
+    upsert?: jenisBarangUpsertWithoutPendingProdukInput
+    disconnect?: jenisBarangWhereInput | boolean
+    delete?: jenisBarangWhereInput | boolean
+    connect?: jenisBarangWhereUniqueInput
+    update?: XOR<XOR<jenisBarangUpdateToOneWithWhereWithoutPendingProdukInput, jenisBarangUpdateWithoutPendingProdukInput>, jenisBarangUncheckedUpdateWithoutPendingProdukInput>
   }
 
   export type productUncheckedUpdateManyWithoutPendingProductNestedInput = {
@@ -9152,10 +10480,10 @@ export namespace Prisma {
     username?: string | null
     role?: string | null
     note?: string | null
-    jenisBarang?: string | null
     statusProduct?: boolean
     produkId?: string | null
     gedungId?: number | null
+    jenisBarang?: jenisBarangCreateNestedOneWithoutPendingProdukInput
   }
 
   export type pendingProductUncheckedCreateWithoutProductsInput = {
@@ -9167,10 +10495,10 @@ export namespace Prisma {
     username?: string | null
     role?: string | null
     note?: string | null
-    jenisBarang?: string | null
     statusProduct?: boolean
     produkId?: string | null
     gedungId?: number | null
+    jenisBarangId?: number | null
   }
 
   export type pendingProductCreateOrConnectWithoutProductsInput = {
@@ -9222,10 +10550,10 @@ export namespace Prisma {
     username?: StringNullableFilter<"pendingProduct"> | string | null
     role?: StringNullableFilter<"pendingProduct"> | string | null
     note?: StringNullableFilter<"pendingProduct"> | string | null
-    jenisBarang?: StringNullableFilter<"pendingProduct"> | string | null
     statusProduct?: BoolFilter<"pendingProduct"> | boolean
     produkId?: StringNullableFilter<"pendingProduct"> | string | null
     gedungId?: IntNullableFilter<"pendingProduct"> | number | null
+    jenisBarangId?: IntNullableFilter<"pendingProduct"> | number | null
   }
 
   export type productCreateWithoutProdukGedungInput = {
@@ -9324,6 +10652,62 @@ export namespace Prisma {
     alamat?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type pendingProductCreateWithoutJenisBarangInput = {
+    id?: string
+    start?: Date | string
+    end?: Date | string | null
+    stockBarang?: number
+    user?: string | null
+    username?: string | null
+    role?: string | null
+    note?: string | null
+    statusProduct?: boolean
+    produkId?: string | null
+    gedungId?: number | null
+    products?: productCreateNestedManyWithoutPendingProductInput
+  }
+
+  export type pendingProductUncheckedCreateWithoutJenisBarangInput = {
+    id?: string
+    start?: Date | string
+    end?: Date | string | null
+    stockBarang?: number
+    user?: string | null
+    username?: string | null
+    role?: string | null
+    note?: string | null
+    statusProduct?: boolean
+    produkId?: string | null
+    gedungId?: number | null
+    products?: productUncheckedCreateNestedManyWithoutPendingProductInput
+  }
+
+  export type pendingProductCreateOrConnectWithoutJenisBarangInput = {
+    where: pendingProductWhereUniqueInput
+    create: XOR<pendingProductCreateWithoutJenisBarangInput, pendingProductUncheckedCreateWithoutJenisBarangInput>
+  }
+
+  export type pendingProductCreateManyJenisBarangInputEnvelope = {
+    data: pendingProductCreateManyJenisBarangInput | pendingProductCreateManyJenisBarangInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type pendingProductUpsertWithWhereUniqueWithoutJenisBarangInput = {
+    where: pendingProductWhereUniqueInput
+    update: XOR<pendingProductUpdateWithoutJenisBarangInput, pendingProductUncheckedUpdateWithoutJenisBarangInput>
+    create: XOR<pendingProductCreateWithoutJenisBarangInput, pendingProductUncheckedCreateWithoutJenisBarangInput>
+  }
+
+  export type pendingProductUpdateWithWhereUniqueWithoutJenisBarangInput = {
+    where: pendingProductWhereUniqueInput
+    data: XOR<pendingProductUpdateWithoutJenisBarangInput, pendingProductUncheckedUpdateWithoutJenisBarangInput>
+  }
+
+  export type pendingProductUpdateManyWithWhereWithoutJenisBarangInput = {
+    where: pendingProductScalarWhereInput
+    data: XOR<pendingProductUpdateManyMutationInput, pendingProductUncheckedUpdateManyWithoutJenisBarangInput>
+  }
+
   export type productCreateWithoutPendingProductInput = {
     id?: string
     start?: Date | string
@@ -9343,6 +10727,25 @@ export namespace Prisma {
   export type productCreateOrConnectWithoutPendingProductInput = {
     where: productWhereUniqueInput
     create: XOR<productCreateWithoutPendingProductInput, productUncheckedCreateWithoutPendingProductInput>
+  }
+
+  export type jenisBarangCreateWithoutPendingProdukInput = {
+    id?: number
+    start?: Date | string
+    end?: Date | string | null
+    jenisBarang?: string | null
+  }
+
+  export type jenisBarangUncheckedCreateWithoutPendingProdukInput = {
+    id?: number
+    start?: Date | string
+    end?: Date | string | null
+    jenisBarang?: string | null
+  }
+
+  export type jenisBarangCreateOrConnectWithoutPendingProdukInput = {
+    where: jenisBarangWhereUniqueInput
+    create: XOR<jenisBarangCreateWithoutPendingProdukInput, jenisBarangUncheckedCreateWithoutPendingProdukInput>
   }
 
   export type productUpsertWithWhereUniqueWithoutPendingProductInput = {
@@ -9369,6 +10772,31 @@ export namespace Prisma {
     start?: DateTimeFilter<"product"> | Date | string
     end?: DateTimeNullableFilter<"product"> | Date | string | null
     namaBarang?: StringNullableFilter<"product"> | string | null
+  }
+
+  export type jenisBarangUpsertWithoutPendingProdukInput = {
+    update: XOR<jenisBarangUpdateWithoutPendingProdukInput, jenisBarangUncheckedUpdateWithoutPendingProdukInput>
+    create: XOR<jenisBarangCreateWithoutPendingProdukInput, jenisBarangUncheckedCreateWithoutPendingProdukInput>
+    where?: jenisBarangWhereInput
+  }
+
+  export type jenisBarangUpdateToOneWithWhereWithoutPendingProdukInput = {
+    where?: jenisBarangWhereInput
+    data: XOR<jenisBarangUpdateWithoutPendingProdukInput, jenisBarangUncheckedUpdateWithoutPendingProdukInput>
+  }
+
+  export type jenisBarangUpdateWithoutPendingProdukInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type jenisBarangUncheckedUpdateWithoutPendingProdukInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type produkGedungCreateManyGedungInput = {
@@ -9444,10 +10872,10 @@ export namespace Prisma {
     username?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
-    jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
     produkId?: NullableStringFieldUpdateOperationsInput | string | null
     gedungId?: NullableIntFieldUpdateOperationsInput | number | null
+    jenisBarang?: jenisBarangUpdateOneWithoutPendingProdukNestedInput
   }
 
   export type pendingProductUncheckedUpdateWithoutProductsInput = {
@@ -9459,10 +10887,10 @@ export namespace Prisma {
     username?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
-    jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
     produkId?: NullableStringFieldUpdateOperationsInput | string | null
     gedungId?: NullableIntFieldUpdateOperationsInput | number | null
+    jenisBarangId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type pendingProductUncheckedUpdateManyWithoutProductsInput = {
@@ -9474,7 +10902,65 @@ export namespace Prisma {
     username?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableStringFieldUpdateOperationsInput | string | null
     note?: NullableStringFieldUpdateOperationsInput | string | null
-    jenisBarang?: NullableStringFieldUpdateOperationsInput | string | null
+    statusProduct?: BoolFieldUpdateOperationsInput | boolean
+    produkId?: NullableStringFieldUpdateOperationsInput | string | null
+    gedungId?: NullableIntFieldUpdateOperationsInput | number | null
+    jenisBarangId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type pendingProductCreateManyJenisBarangInput = {
+    id?: string
+    start?: Date | string
+    end?: Date | string | null
+    stockBarang?: number
+    user?: string | null
+    username?: string | null
+    role?: string | null
+    note?: string | null
+    statusProduct?: boolean
+    produkId?: string | null
+    gedungId?: number | null
+  }
+
+  export type pendingProductUpdateWithoutJenisBarangInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stockBarang?: IntFieldUpdateOperationsInput | number
+    user?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    statusProduct?: BoolFieldUpdateOperationsInput | boolean
+    produkId?: NullableStringFieldUpdateOperationsInput | string | null
+    gedungId?: NullableIntFieldUpdateOperationsInput | number | null
+    products?: productUpdateManyWithoutPendingProductNestedInput
+  }
+
+  export type pendingProductUncheckedUpdateWithoutJenisBarangInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stockBarang?: IntFieldUpdateOperationsInput | number
+    user?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    statusProduct?: BoolFieldUpdateOperationsInput | boolean
+    produkId?: NullableStringFieldUpdateOperationsInput | string | null
+    gedungId?: NullableIntFieldUpdateOperationsInput | number | null
+    products?: productUncheckedUpdateManyWithoutPendingProductNestedInput
+  }
+
+  export type pendingProductUncheckedUpdateManyWithoutJenisBarangInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    start?: DateTimeFieldUpdateOperationsInput | Date | string
+    end?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stockBarang?: IntFieldUpdateOperationsInput | number
+    user?: NullableStringFieldUpdateOperationsInput | string | null
+    username?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
     statusProduct?: BoolFieldUpdateOperationsInput | boolean
     produkId?: NullableStringFieldUpdateOperationsInput | string | null
     gedungId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -9517,6 +11003,10 @@ export namespace Prisma {
      */
     export type ProductCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ProductCountOutputTypeDefaultArgs<ExtArgs>
     /**
+     * @deprecated Use JenisBarangCountOutputTypeDefaultArgs instead
+     */
+    export type JenisBarangCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = JenisBarangCountOutputTypeDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use PendingProductCountOutputTypeDefaultArgs instead
      */
     export type PendingProductCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = PendingProductCountOutputTypeDefaultArgs<ExtArgs>
@@ -9532,6 +11022,10 @@ export namespace Prisma {
      * @deprecated Use produkGedungDefaultArgs instead
      */
     export type produkGedungArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = produkGedungDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use jenisBarangDefaultArgs instead
+     */
+    export type jenisBarangArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = jenisBarangDefaultArgs<ExtArgs>
     /**
      * @deprecated Use pendingProductDefaultArgs instead
      */

@@ -226,6 +226,14 @@
     background-color: rgba(32, 29, 29, 0.352);
 }
 
+.history {
+    margin-bottom: 20px;
+}
+
+.history h1 {
+    font-size: 20px;
+}
+
 @media (max-width: 768px) {
     .containerlist {
         overflow-x: scroll;

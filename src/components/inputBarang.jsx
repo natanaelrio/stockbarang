@@ -6,7 +6,7 @@ import BarcodeScanner from '@/components/barcode';
 import { useBearStore } from '@/zustand/data';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
-import { CreateActivity, CreateProduct, CreateProductPendding } from '@/service/data';
+import { CreateActivity, CreateProduct } from '@/service/data';
 import { GetCurrentDateTimeGMT7 } from '@/utils/getCurrentDateTimeGMT7';
 import { useState } from "react";
 
@@ -15,7 +15,6 @@ export default function InputBarang({ session }) {
     const roles = session?.role || [];
     const KondisiSessionTambahIndent = roles.includes('tambahindent')
     const KondisiSessionSales = roles.includes('sales')
-    const GudangID = session?.gudang
 
     const id = GetCurrentDateTimeGMT7()
 
@@ -57,16 +56,6 @@ export default function InputBarang({ session }) {
                         throw new Error(`ID ${values.idBarang} sudah ada !!`);
                     }
 
-                    values.jenisBarang == 'Request' && await CreateProductPendding({
-                        produkid: values.idBarang,
-                        stockBarang: values.stockBarang,
-                        note: values.catatanIndent,
-                        jenisBarang: values.jenisBarang,
-                        user: session?.namaUser,
-                        username: session?.username,
-                        role: 'verplus',
-                        gedungId: GudangID
-                    })
                     await CreateActivity({
                         username: session.username,
                         userActivity: session.namaUser,

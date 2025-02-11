@@ -5,22 +5,21 @@ import { ResponseData } from "@/controllers/ResponseData";
 export async function GET(req) {
     const authorization = req.headers.get('authorization')
     const searchParams = req.nextUrl.searchParams;
-    const query = searchParams.get('role')
-    const jenisBarang = searchParams.get('jenisBarang')
+    const id = searchParams.get('id')
+    const jenisBarangId = searchParams.get('jenisBarangId')
 
     if (authorization == process.env.NEXT_PUBLIC_SECREET) {
-        const data = await prisma.pendingProduct.findMany({
-            where: query != 'null' ? {
-                role: {
-                    contains: query
-                },
-                jenisBarangId: jenisBarang == 'undefined' ? {} : Number(jenisBarang)
-            } : {},
-            orderBy: {
-                start: 'desc'
+        const data = await prisma.product.findMany({
+            where: {
+                id: id
             },
             include: {
-                products: true
+                pendingProduct: {
+                    where: {
+                        statusProduct: true,
+                        jenisBarangId: Number(jenisBarangId)
+                    }
+                }
             }
         });
         const res = await ResponseData(data, authorization)

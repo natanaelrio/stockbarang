@@ -146,6 +146,13 @@ exports.Prisma.ProdukGedungScalarFieldEnum = {
   stockBarang: 'stockBarang'
 };
 
+exports.Prisma.JenisBarangScalarFieldEnum = {
+  id: 'id',
+  start: 'start',
+  end: 'end',
+  jenisBarang: 'jenisBarang'
+};
+
 exports.Prisma.PendingProductScalarFieldEnum = {
   id: 'id',
   start: 'start',
@@ -155,10 +162,10 @@ exports.Prisma.PendingProductScalarFieldEnum = {
   username: 'username',
   role: 'role',
   note: 'note',
-  jenisBarang: 'jenisBarang',
   statusProduct: 'statusProduct',
   produkId: 'produkId',
-  gedungId: 'gedungId'
+  gedungId: 'gedungId',
+  jenisBarangId: 'jenisBarangId'
 };
 
 exports.Prisma.NotifUserScalarFieldEnum = {
@@ -200,6 +207,7 @@ exports.Prisma.ModelName = {
   gedung: 'gedung',
   product: 'product',
   produkGedung: 'produkGedung',
+  jenisBarang: 'jenisBarang',
   pendingProduct: 'pendingProduct',
   notifUser: 'notifUser',
   logUser: 'logUser'

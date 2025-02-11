@@ -347,3 +347,25 @@ export const GetNotifikasiSales = async (username) => {
     }
     revalidatePath('/')
 }
+
+export const GetHistoryProduct = async (id, jenisBarangId) => {
+
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/getHistoryProduct?id=${id}&jenisBarangId=${jenisBarangId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${process.env.NEXT_PUBLIC_SECREET}`
+            },
+            next: {
+                revalidate: 0
+            }
+        });
+        const data = await res.json()
+        return data
+    }
+    catch (err) {
+        console.log(err);
+    }
+    revalidatePath('/')
+}

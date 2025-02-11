@@ -2,13 +2,13 @@ import { prisma } from "@/controllers/prisma"
 import { ResponseData } from "@/controllers/ResponseData";
 
 export async function POST(req) {
-    const { note, stockBarang, user, role, jenisBarang, username, produkid, gedungId } = await req.json()
+    const { note, stockBarang, user, role, jenisBarangId, username, produkid, gedungId } = await req.json()
     BigInt.prototype.toJSON = function () {
         return this.toString();
     };
 
     const daaw = {
-        note, stockBarang, user, role, jenisBarang, username, produkid, gedungId
+        note, stockBarang, user, role, jenisBarangId, username, produkid, gedungId
     }
 
     const authorization = req.headers.get('authorization')
@@ -18,7 +18,7 @@ export async function POST(req) {
                 data: {
                     note,
                     role,
-                    jenisBarang,
+                    jenisBarangId,
                     stockBarang: Number(stockBarang),
                     user,
                     username,

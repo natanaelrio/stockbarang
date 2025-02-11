@@ -3,6 +3,8 @@ import styles from '@/components/listProduct.module.css';
 import { useBearStore } from '@/zustand/data';
 import { useEffect } from 'react';
 import { GetProduct } from '@/service/dataClient'
+import { GetHistoryProduct } from '@/service/data';
+import Link from 'next/link';
 
 export default function ListProduct() {
     const setShowSelectedProduct = useBearStore((state) => state.setShowSelectedProduct);
@@ -48,19 +50,20 @@ export default function ListProduct() {
                                     <th>NO</th>
                                     <th>ID</th>
                                     <th>Name Barang</th>
-                                    <th>Gudang 94</th>
-                                    <th>Gudang 29</th>
-                                    <th>Gudang Surabaya</th>
-                                    <th>Total Produk</th>
-                                    <th>Indent Barang</th>
+                                    <th>G94</th>
+                                    <th>G29</th>
+                                    <th>GSBY</th>
+                                    <th>TOTAL</th>
+                                    <th>Indent</th>
+                                    <th>History (-)</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {dataProduk?.data?.map((product, i) => {
                                     return (
-                                        <tr tr key={product?.id} onClick={() => handleBarcodeClick(product)}>
+                                        <tr tr key={product?.id} >
                                             <td>{i + 1}</td>
-                                            <td>{product?.id}</td>
+                                            <td onClick={() => handleBarcodeClick(product)}>{product?.id}</td>
                                             <td>{product?.namaBarang}</td>
                                             <td>{product?.produkGedung?.find((item) => item?.gedungId == 11111)?.stockBarang}</td>
                                             <td>{product?.produkGedung?.find((item) => item?.gedungId == 22222)?.stockBarang}</td>
@@ -71,6 +74,7 @@ export default function ListProduct() {
                                                     .reduce((total, item) => total + (item?.stockBarang || 0), 0)}
                                             </td>
                                             <td>{product?.produkGedung?.find((item) => item?.gedungId == 10000)?.stockBarang}</td>
+                                            <td> <Link href={`/history/${product?.id}?jenisbarang=333`} target='_blank'><button>History -</button> </Link></td>
                                         </tr>
                                     )
                                 }

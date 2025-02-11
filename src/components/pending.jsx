@@ -47,7 +47,7 @@ export default function Pending({ session }) {
                 try {
                     setIsLoadingProduk(true)
 
-                    product?.jenisBarang == 'TidakLangsung' ?
+                    product?.jenisBarangId == 333 ?
                         product?.statusProduct ?
                             await UpdateIncrement({
                                 stockBarang: product?.stockBarang,
@@ -59,7 +59,7 @@ export default function Pending({ session }) {
                                 productId: product?.products[0]?.id,
                             }) : null
 
-                    product?.jenisBarang == 'Langsung' ?
+                    product?.jenisBarangId == 222 ?
                         product?.statusProduct ?
                             await UpdateDecrement({
                                 stockBarang: product?.stockBarang,
@@ -71,7 +71,7 @@ export default function Pending({ session }) {
                                 productId: product?.products[0]?.id,
                             }) : null
 
-                    product?.jenisBarang == 'Indent' ?
+                    product?.jenisBarangId == 111 ?
                         product?.statusProduct ?
                             await UpdateProductIndentDecrement({
                                 productId: product?.products[0]?.id,
@@ -81,7 +81,7 @@ export default function Pending({ session }) {
                                 stockBarang: product?.stockBarang,
                             }) : null
 
-                    product?.jenisBarang == 'Langsung' ?
+                    product?.jenisBarangId == 222 ?
                         product?.statusProduct ?
                             await UpdateProductIndentIncrement({
                                 productId: product?.products[0]?.id,
@@ -98,7 +98,7 @@ export default function Pending({ session }) {
 
 
 
-                    product?.jenisBarang == 'TidakLangsung' ?
+                    product?.jenisBarangId == 333 ?
                         product?.statusProduct ?
                             await CreateActivity({
                                 username: session?.username,
@@ -110,7 +110,7 @@ export default function Pending({ session }) {
                                 activity: `Konfirmasi Pengurangan(Final) ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} (${product?.products[0]?.id}) `
                             }) : null
 
-                    product?.jenisBarang == 'Langsung' ?
+                    product?.jenisBarangId == 222 ?
                         product?.statusProduct ?
                             await CreateActivity({
                                 username: session?.username,
@@ -122,7 +122,7 @@ export default function Pending({ session }) {
                                 activity: `Konfirmasi Penambahan(Langsung) ${product?.stockBarang} stock - ${product?.products[0]?.namaBarang} (${product?.products[0]?.id}) - (REQ: ${product?.user})`
                             }) : null
 
-                    product?.jenisBarang == 'Indent' ?
+                    product?.jenisBarangId == 111 ?
                         product?.statusProduct ?
                             await CreateActivity({
                                 username: session?.username,
@@ -173,9 +173,9 @@ export default function Pending({ session }) {
                         {KondisiSessionTambah &&
                             <div className={styles.fillterpendding}>
                                 <span style={dataFillter == 'undefined' ? { background: 'black', color: 'white' } : {}} onClick={() => setDataFillter('undefined')}>Semua</span>
-                                <span style={dataFillter == 'Langsung' ? { background: 'black', color: 'white' } : {}} onClick={() => setDataFillter('Langsung')}>Langsung</span>
-                                <span style={dataFillter == 'Indent' ? { background: 'black', color: 'white' } : {}} onClick={() => setDataFillter('Indent')}>Indent</span>
-                                <span style={dataFillter == 'Request' ? { background: 'black', color: 'white' } : {}} onClick={() => setDataFillter('Request')}>Request</span>
+                                <span style={dataFillter == 222 ? { background: 'black', color: 'white' } : {}} onClick={() => setDataFillter(222)}>Penambahan</span>
+                                <span style={dataFillter == 111 ? { background: 'black', color: 'white' } : {}} onClick={() => setDataFillter(111)}>Indent</span>
+                                <span style={dataFillter == 444 ? { background: 'black', color: 'white' } : {}} onClick={() => setDataFillter(444)}>Request</span>
                             </div>
                         }
                         <table className={styles.productTable}>
@@ -185,8 +185,6 @@ export default function Pending({ session }) {
                                     <th>ID</th>
                                     <th>Name Barang</th>
                                     <th>User</th>
-                                    {/* <th>{KondisiSessionTambah && 'Jumlah'}{KondisiSessionKurang && 'Pengurangan'}{KondisiSessionKurang || KondisiSessionTambah || '+/-'}</th>
-                                    {KondisiSessionTambah && <th>Eksekusi</th>} */}
                                     <th>Stock</th>
                                     <th>Note</th>
                                     <th>Validasi</th>
@@ -194,6 +192,7 @@ export default function Pending({ session }) {
                             </thead>
                             <tbody>
                                 {dataPending?.map((product) => {
+                                    console.log(product);
                                     return (
                                         <tr style={product?.statusProduct ? { background: '#00afb9', fontWeight: 700 } : { background: '#f07167', fontWeight: 700 }} key={product?.id}>
                                             <td>{TimeConverter(product?.start)}</td>
@@ -201,30 +200,29 @@ export default function Pending({ session }) {
                                             <td>{product?.products[0]?.namaBarang}</td>
                                             <td>{product?.user}</td>
                                             <td>{product?.stockBarang}</td>
-                                            {/* {KondisiSessionTambah && <td>{product?.jenisBarang}</td>} */}
                                             <td>{product?.note}</td>
                                             <td>
                                                 {/* TAMBAHKAN KE PURCHASING */}
-                                                {product?.jenisBarang == 'Request' ? product?.statusProduct ? "Berhasil dikirim 😁" : <button disabled={isLoadingProduk} onClick={() => handleHapusRequest(product)}>Konfirmasi Pesan</button> : null}
-                                                {product?.jenisBarang == 'Langsung' ?
+                                                {product?.jenisBarangId == 444 ? product?.statusProduct ? "Berhasil dikirim 😁" : <button disabled={isLoadingProduk} onClick={() => handleHapusRequest(product)}>Konfirmasi Pesan</button> : null}
+                                                {product?.jenisBarangId == 222 ?
                                                     <button className={styles.buttonconfirmasi}
                                                         disabled={isLoadingProduk}
-                                                        onClick={() => handleConfirm(product, 'Langsung')}>
+                                                        onClick={() => handleConfirm(product, 222)}>
                                                         {product?.statusProduct ? "Batalkan -" : "Konfirmasi +"}</button>
                                                     : null}
 
-                                                {product?.jenisBarang == 'Indent' ?
+                                                {product?.jenisBarangId == 111 ?
                                                     <button className={styles.buttonconfirmasi}
                                                         disabled={isLoadingProduk}
-                                                        onClick={() => handleConfirm(product, 'Indent')}>
+                                                        onClick={() => handleConfirm(product, 111)}>
                                                         {product?.statusProduct ? 'Batalkan Indent -' : 'Konfirmasi Indent +'}</button>
                                                     : null}
 
                                                 {/* TAMBAHKAN KE AKUNTING */}
-                                                {product?.jenisBarang == 'TidakLangsung' ?
+                                                {product?.jenisBarangId == 333 ?
                                                     <button className={styles.buttonconfirmasi}
                                                         disabled={isLoadingProduk}
-                                                        onClick={() => handleConfirm(product, 'TidakLangsung')}>
+                                                        onClick={() => handleConfirm(product, 333)}>
                                                         {product?.statusProduct ? 'Batalkan +' : 'Konfirmasi -'}</button>
                                                     : null}
                                             </td>
