@@ -16,7 +16,6 @@ export async function POST(req) {
                     id: id,
                     namaBarang,
                     stockBarang,
-                    jenisBarangId: 111,
                     produkGedung: {
                         create: [
                             { gedung: { connect: { id: 11111 } } },
